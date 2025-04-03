@@ -60,6 +60,7 @@
 }
 .footer-select p{
     font-size: 12px;
+    cursor: pointer;
 }
 .footer-bottom{
    width: 95%;

@@ -22,7 +22,7 @@ const Router = createBrowserRouter([
     {path: '/signup', element: <SignUp />},
     {path: '/login', element: <Login/>},
     {path: '*', element: <NotFound/>},
-])
+
  
 
 export default Router

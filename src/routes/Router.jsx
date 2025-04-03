@@ -15,11 +15,12 @@ const Router = createBrowserRouter([
             {path: '/', element: <HomePage />},
             {path: '/about', element: <AboutUs />},
             {path: '/contact', element: <Contact />},
-            {path: '/signup', element: <SignUp />},
-            {path: '/login', element: <Login/>},
-            {path: '*', element: <h1>404 Not Found</h1>}
+           
         ]
     },
+    {path: '/signup', element: <SignUp />},
+    {path: '/login', element: <Login/>},
+    {path: '*', element: <h1>404 Not Found</h1>}
 ])
  
 

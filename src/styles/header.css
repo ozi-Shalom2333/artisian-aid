@@ -1,0 +1,38 @@
+.Header-container{
+    width: 100%;
+    height: 8vh;
+    position: fixed;
+    top: 10px;
+    
+
+}
+.Header-section{
+    display: flex;
+    width: 90%;
+    border-radius: 30px;
+    background-color: #ffff;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px ;
+    justify-content: space-between
+
+}
+.Header-Pages{
+    display: flex;
+    gap: 55px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+}
+.Header-authentication{
+    display: flex;
+    gap: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

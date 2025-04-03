@@ -1,0 +1,79 @@
+.Footer-container{
+    width: 100%;
+    height: 80vh;
+    background-color: #000435;
+    padding: 40px 0px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+
+}
+.Footer-section-lightblue{
+    width: 95%; 
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #2F80ED;  
+    margin: 0 auto;
+    padding: 30px;
+}
+.Footer-section-lightblue h2{
+    font-size: 30px;
+    color: #ffff;
+   
+    font-weight: 700;
+
+}
+.Footer-section-lightblue div{
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffff;
+}
+.Footer-section-lightblue div p{
+    background-color: #000435;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-weight: 600;
+    
+}
+.footer-select{
+    display: flex;
+    color: #ffff;
+    width: 95%;
+    padding: 30px;
+    margin: 0 auto;
+    height: fit-content;
+    justify-content: space-between;
+}
+.footer-select div{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+.footer-select h3{
+    cursor: pointer;
+    font-size: 14px;
+}
+.footer-select p{
+    font-size: 12px;
+}
+.footer-bottom{
+   width: 95%;
+   height: fit-content;
+   display: flex;
+   padding: 30px 0;
+   margin: 0 auto;
+   justify-content: space-between;
+}
+.footer-bottom p{
+    color: #ffff;
+}
+.footer-social{
+    color: #98a2b3;
+    display: flex;
+    gap: 20px;
+}

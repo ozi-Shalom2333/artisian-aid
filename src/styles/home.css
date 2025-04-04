@@ -1,0 +1,92 @@
+.HomePage{
+    width: 100%;
+    height: auto;
+}
+.homePage__hero1{
+    width: 100%;
+    height: 100vh;
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.homePage__hero1 h1{
+    text-align: center;
+    font-size: 56px;
+    font-weight: 700;
+}
+.homePage__hero1 > p{
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+
+}
+.homePage__hero1__btns{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+   
+    
+}
+.homePage__hero1__btns p{
+    width: 46%;
+    padding: 10px 20px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.75;
+}
+.homePage__hero1__btns p:first-child{
+    background-color: #000435;
+    border-radius: 5px;
+}
+.homePage__hero1__btns p:last-child{
+    border: 2px solid #FFA500;
+}
+.homePage__hero2{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    gap: 10px;
+    border: 2px solid red;
+}
+.homePage__hero2 > div{
+    width: 50%;
+    height: 100%;
+    border: 2px solid green; 
+    padding: 20px;  
+}
+.homePage__hero2 > div:first-child section:first-of-type{
+   display: flex;
+   width: fit-content;
+   height: fit-content;
+   justify-content: center;
+   align-items: center;
+   background-color: #000435;
+   color: #fff;
+   padding: 7px 15px;
+   margin: 30px 0;
+   border-radius: 9px;
+}
+.homePage__hero2 > div:first-child > h1{
+    font-size: 56px;
+    font-weight: 700;
+ }
+.homePage__hero2 > div:first-child > p{
+   font-size: 24px;
+   font-weight: 700;
+}
+.homePage__hero2 > div:first-child section:last-of-type{
+    width: 70%;
+    display: flex;
+    gap: 10px;
+    border: 2px solid green;
+}
+.homePage__hero2 > div:first-child section:last-of-type div{
+    width: 30%;
+    display: flex;
+    height: fit-content;
+}
+

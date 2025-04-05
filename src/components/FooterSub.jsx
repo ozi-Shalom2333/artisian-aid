@@ -4,7 +4,7 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 
 const FooterSub = () => {
   return (
-    <div className='footerSub'>
+    <div className='footerContainer'>
       <div className='footerSub__content'>
          <div>
             <h1>

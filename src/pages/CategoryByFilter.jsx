@@ -5,8 +5,8 @@ const CategoryByFilter = () => {
    const {category} = useParams()
   return (
     <div>
-      axios.get(`url/getone/${category}`)
-      serfthujmk,l
+
+      serfthujmk
     </div>
   )
 }

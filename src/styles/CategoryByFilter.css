@@ -1,0 +1,35 @@
+.cat-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  && img{
+    position: absolute;
+    filter: brightness(0.6);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transform: scale(1.1);
+  }
+}
+
+.cat-overlay {
+  text-align: center;
+  color: white;
+}
+
+.cat-subheading {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.highlight{
+  color: #eec06a;
+}
+
+h1 {
+  font-size: 3rem;
+}

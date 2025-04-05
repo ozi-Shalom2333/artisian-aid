@@ -62,12 +62,13 @@
    display: flex;
    width: fit-content;
    height: fit-content;
+   
    justify-content: center;
    align-items: center;
    background-color: #000435;
    color: #fff;
    padding: 7px 15px;
-   margin: 30px 0;
+   margin: 40px 0;
    border-radius: 9px;
 }
 .homePage__hero2 > div:first-child > h1{
@@ -81,12 +82,20 @@
 .homePage__hero2 > div:first-child section:last-of-type{
     width: 70%;
     display: flex;
+    margin-top: 30%;
+    height: fit-content;
     gap: 10px;
-    border: 2px solid green;
 }
 .homePage__hero2 > div:first-child section:last-of-type div{
-    width: 30%;
+    width: 25%;
     display: flex;
+    margin: 0 auto;
+    gap: 20px;
+    align-items: center;
     height: fit-content;
+}
+.homePage__hero2 > div:first-child section:last-of-type div > img{
+  object-fit: contain;
+  width: 20%;
 }
 

@@ -4,9 +4,11 @@ import HomePage from '../pages/HomePage';
 import App from '../App';
 import AboutUs from '../pages/AboutUs';
 import Contact from '../pages/Contact';
+import CategoryByFilter from '../pages/CategoryByFilter';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
+import CategoryPage from '../pages/CategoryPage';
 
 const Router = createBrowserRouter([
     {
@@ -16,7 +18,7 @@ const Router = createBrowserRouter([
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
             { path:'/category', element: <CategoryPage />},
-            { path:'/category/:id', element: <CategoryByFilter />},
+            { path:'/categoryfilter/:id', element: <CategoryByFilter />},
             { path: '/contact', element: <Contact /> },
         ],
     },

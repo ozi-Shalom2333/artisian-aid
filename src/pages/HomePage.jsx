@@ -26,19 +26,18 @@ const HomePage = () => {
             </section>
             <section>
               <div>
-                <img src="/Group.png" alt="" />
+                <img src="/Group.png" alt=""  />
                 <p>Efficient</p>
               </div>
               <div>
                 <img src="/flexible-access-svgrepo-com 1.png" alt="" />
-                <p></p>
+                <p>Flexible</p>
               </div>
               <div>
                 <img src="/diamond-1-solid-svgrepo-com 1.png" alt="" />
-                <p></p>
+                <p>Trustworthy</p>
               </div>
             </section>
-
           </div>
           <div>
 

@@ -39,9 +39,19 @@ const HomePage = () => {
               </div>
             </section>
           </div>
-          <div>
-
+          <div className='homePage__hero2__img'>
+             <h1>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+               Cupiditate, eius? Numquam dolore commodi ratione voluptatem 
+               cupiditate accusamus quaerat. Hic, quis!
+             </h1>
           </div>
+       </div>
+       <div className='homePage__hero3'>
+          <aside >
+          <h1>Discover Our <span style={{color:'#FFA500'}}>Artisans</span> Categories</h1>
+          <h3>Browse our categories to find the perfect professional for your needs.</h3>
+          </aside>
        </div>
     </div>
   )

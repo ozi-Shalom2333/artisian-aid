@@ -1,9 +1,25 @@
 import React from 'react'
 import './../styles/footer.css'
 import { FaTwitter, FaLinkedin, FaFacebook } from "react-icons/fa6";
+import { RiArrowDropRightLine } from "react-icons/ri";
+
 
 const Footer = () => {
   return (
+    <div>
+      <div className='footerContainer'>
+      <div className='footerSub__content'>
+         <div>
+            <h1>
+            "Experience the <br /> Art of Expert <br /> Craftsmanship - <span style={{color:' #2F80ED'}}> Explore Now!"</span>
+            </h1>
+         </div>
+         <p>
+            Explore Artisans
+         <RiArrowDropRightLine size={25}/>
+         </p>
+       </div>
+    </div>
     <div className='Footer-container'>
       <div className='Footer-section-lightblue'>
         <h2>"Unlock New Opportunities -  Get <br />Started <span style={{color:'#FFA500'}}>Now!"</span></h2>
@@ -46,6 +62,8 @@ const Footer = () => {
         </div>
       </div>
     </div>
+    </div>
+    
   )
 }
 

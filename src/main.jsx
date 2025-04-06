@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import Router from './routes/Router'
 import FooterSub from './components/FooterSub'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={Router}/>

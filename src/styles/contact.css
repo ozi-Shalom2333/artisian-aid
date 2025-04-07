@@ -166,28 +166,3 @@
     background-color: blue;
     color: white;
   }
-  
-
-  @media (max-width: 768px) {
-    .form-section {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .form-left,
-    .form-right {
-      width: 100%;
-      height: auto;
-    }
-  
-    .form-right {
-      align-items: center;
-      padding: 1.5rem;
-    }
-  
-    .form-heading,
-    .contact-detail {
-      text-align: center;
-    }
-  }
-  

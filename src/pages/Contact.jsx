@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/contact.css"
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
+
 const Contact = () => {
   return (
     <div className="contact-container">

@@ -24,6 +24,8 @@ const Router = createBrowserRouter([
     },
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
+    { path: '/verify', element: <VerifyPassword />},
+    { path : '/forget', element: <ForgetPassword />},
     { path: '*', element: <NotFound /> },
 ]);
 

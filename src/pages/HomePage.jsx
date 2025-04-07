@@ -2,8 +2,13 @@ import React from 'react'
 import '../styles/home.css'
 import categoryListing from '../components/categoryList';
 import { RiArrowDropRightLine } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const handleCategoryClick = (category) => {
+    navigate(`/category/${category}`);
+  };
   return (
     <div className='HomePage'>
        <div className='homePage__hero1'>
@@ -55,7 +60,11 @@ const HomePage = () => {
           </aside>
           <div className='homePage__hero3__category'>
              {categoryListing.map((category, index) => (
-             <div key={index} className='homePage__hero3__categories'>
+
+             <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
+
+           
+
                 <img src={category.image} alt="" />
                 <p>{category.text}</p>
             </div>

@@ -60,7 +60,11 @@ const HomePage = () => {
           </aside>
           <div className='homePage__hero3__category'>
              {categoryListing.map((category, index) => (
+
              <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
+
+           
+
                 <img src={category.image} alt="" />
                 <p>{category.text}</p>
             </div>

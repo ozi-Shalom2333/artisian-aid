@@ -55,6 +55,18 @@ const CategoryPage = () => {
           <FaPaintBrush className="category-icon" /> 
           <span className="category-label">Painting</span>
         </div>
+        <div className="category-item-box">
+          <FaHammer className="category-icon" />
+          <span className="category-label">Carpentry</span>
+        </div>
+        <div className="category-item-box">
+          <FaLeaf className="category-icon" />
+          <span className="category-label">Gardening</span>
+        </div>
+        <div className="category-item-box">
+          <FaPaintBrush className="category-icon" /> 
+          <span className="category-label">Painting</span>
+        </div>
       </div>
     </div>
   );

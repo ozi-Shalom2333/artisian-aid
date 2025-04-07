@@ -17,7 +17,7 @@ const Contact = () => {
         </p>
       </div>
 
-      {/* Now form-section comes after the content */}
+     
       <div className="form-section">
         <div className="form-left">
           <h2 className="form-heading">"Get in Touch - We're Here to Help!"</h2>

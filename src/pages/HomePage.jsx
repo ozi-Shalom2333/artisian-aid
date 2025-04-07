@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/home.css'
 import categoryListing from '../components/categoryList';
 import { RiArrowDropRightLine } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const navigate = useNavigate();

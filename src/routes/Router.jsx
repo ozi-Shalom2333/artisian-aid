@@ -8,6 +8,8 @@ import CategoryByFilter from '../pages/CategoryByFilter';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
+import VerifyPassword from '../auth/VerifyPassword';
+import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
 
 const Router = createBrowserRouter([
@@ -18,12 +20,14 @@ const Router = createBrowserRouter([
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
             { path:'/category', element: <CategoryPage />},
-            { path:'/categoryfilter/:id', element: <CategoryByFilter />},
+            { path:'/category/:category', element: <CategoryByFilter />},
             { path: '/contact', element: <Contact /> },
         ],
     },
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
+    { path: '/verify', element: <VerifyPassword />},
+    { path : '/forget', element: <ForgetPassword />},
     { path: '*', element: <NotFound /> },
 ]);
 

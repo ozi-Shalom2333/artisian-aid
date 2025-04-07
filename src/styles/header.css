@@ -3,6 +3,7 @@
     height: 8vh;
     position: fixed;
     top: 10px;
+    z-index: 3;
     
 
 }

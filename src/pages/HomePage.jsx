@@ -46,11 +46,10 @@ const HomePage = () => {
             </section>
           </div>
           <div className='homePage__hero2__img'>
-             <h1>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-               Cupiditate, eius? Numquam dolore commodi ratione voluptatem 
-               cupiditate accusamus quaerat. Hic, quis!
-             </h1>
+             <img src="/Group 14.png" alt="" />
+             <section>
+               <p></p>
+             </section>
           </div>
        </div>
        <div className='homePage__hero3'>
@@ -62,9 +61,6 @@ const HomePage = () => {
              {categoryListing.map((category, index) => (
 
              <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
-
-           
-
                 <img src={category.image} alt="" />
                 <p>{category.text}</p>
             </div>

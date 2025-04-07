@@ -1,6 +1,6 @@
 import React from 'react'
 import "../styles/signup.css"
-import { IoIosArrowUp } from "react-icons/io";
+
 
 
 const SignUp = () => {

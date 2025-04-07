@@ -8,6 +8,8 @@ import CategoryByFilter from '../pages/CategoryByFilter';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
+import VerifyPassword from '../auth/VerifyPassword';
+import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
 
 const Router = createBrowserRouter([

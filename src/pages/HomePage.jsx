@@ -67,6 +67,11 @@ const HomePage = () => {
          ))}
           </div>
        </div>
+       <div className='homePage__carousel'>
+            
+       </div>
+
+
     </div>
   )
 }

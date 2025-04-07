@@ -5,11 +5,14 @@
 .homePage__hero1{
     width: 100%;
     height: 100vh;
-    border: 2px solid red;
     display: flex;
+    background-color: aqua;
     flex-direction: column;
     justify-content: center;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('/carpenter-cutting-mdf-board-inside-workshop (3).jpg');    background-size: cover; 
+    background-repeat: no-repeat;  
     align-items: center;
+    color: #fff;
     gap: 10px;
 }
 .homePage__hero1 h1{
@@ -50,12 +53,12 @@
     height: 100vh;
     display: flex;
     gap: 10px;
-    border: 2px solid red;
+    margin: 100px 0;
+   
 }
 .homePage__hero2 > div{
     width: 50%;
     height: 100%;
-    border: 2px solid green; 
     padding: 20px;  
 }
 .homePage__hero2 > div:first-child section:first-of-type{
@@ -98,4 +101,91 @@
   object-fit: contain;
   width: 20%;
 }
+.homePage__hero2__img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.homePage__hero2__img > img{
+    object-fit: contain;
+    width: 80%;
+}
+.homePage__hero3{
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   background-color: #D8E7F0;
+    padding: 30px;
+    margin: 30px 0;
+}
+.homePage__hero3 > aside{
+   width: 100%;
+   height: fit-content;
+   display: flex;
+   flex-direction: column;
+   color: #000435;
 
+}
+.homePage__hero3 > aside > h1{
+    font-size: 56px;
+    font-weight: 700;
+}
+.homePage__hero3 > aside > p{
+    font-size: 24px;
+    font-weight: 700;
+}
+.homePage__hero3__category{
+    width: 100%;
+    height: fit-content;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+.homePage__hero3__category > div{
+    width: 32%;
+    font-weight: 700;
+    height: 40%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    
+}
+.homePage__hero3__category > div > img{
+    object-fit: contain;
+    width: 18%;
+}
+.homePage__hero3__category > div > p{
+    font-size: 32px;
+    font-weight: 700;
+}
+.homePage__hero3__categories{
+    width: 100%;
+    height: fit-content;
+    padding: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+}
+.seeMore{
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    font-size: 16px;
+    display: flex;
+    font-weight: 400;
+    color: #000435;
+    align-items: center;
+
+}

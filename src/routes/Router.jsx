@@ -18,12 +18,14 @@ const Router = createBrowserRouter([
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
             { path:'/category', element: <CategoryPage />},
-            { path:'/categoryfilter/:category', element: <CategoryByFilter />},
+            { path:'/category/:category', element: <CategoryByFilter />},
             { path: '/contact', element: <Contact /> },
         ],
     },
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
+    { path: '/verify', element: <VerifyPassword />},
+    { path : '/forget', element: <ForgetPassword />},
     { path: '*', element: <NotFound /> },
 ]);
 

@@ -3,9 +3,8 @@ import "./CategoryByFiliter.css";
 import { VscStarFull } from "react-icons/vsc";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
-
+import { ToastContainer, toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 const CategoryByFiliter = () => {
   // const artisans = [
   //   {
@@ -36,6 +35,18 @@ const CategoryByFiliter = () => {
   //     verified: true,
   //   },
   // ];
+  const renderStars = (rating) => {
+    if(rating===0){
+      return null;
+    }
+    const stars = [];
+    for (let i = 0; i < rating; i++) {
+      stars.push(<VscStarFull key={i} style={{ color: "#FFD700" }}/>);
+    }
+    return stars;
+  };
+
+
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -133,16 +144,10 @@ const CategoryByFiliter = () => {
                   <div className="card-footer">
                     <p className="service-name">{items.category}</p>
                     <p className="rating">
-                      {" "}
-                      {items.rating}
-                      {/* <VscStarFull style={{ color: "#FFD700" }} />
-                      <VscStarFull style={{ color: "#FFD700" }} />
-                      <VscStarFull style={{ color: "#FFD700" }} />
-                      <VscStarFull style={{ color: "#FFD700" }} />
-                      <VscStarFull style={{ color: "#FFD700" }} /> */}
-                      <span className="recommend">
+                  {renderStars(items.rating)}
+                  {items.isRecommended &&  <span className="recommend">
                        {items.isRecommended}
-                      </span>
+                      </span>}
                     </p>
                     <button
                       className="book-btn"

@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import axios from "axios"; 
+import axios from "axios";
 import "../styles/categoryByFilter.css";
 import { VscStarFull } from "react-icons/vsc";
 import { BsBoxArrowUpRight } from "react-icons/bs";
@@ -12,7 +11,7 @@ const CategoryByFiliter = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [category, setCategory] = useState(""); 
+  const [category, setCategory] = useState("");
 
   const renderStars = (rating) => {
     if (rating === 0) {
@@ -34,7 +33,7 @@ const CategoryByFiliter = () => {
             params: { category },
           }
         );
-        setItems(response.data.data); 
+        setItems(response.data.data);
         console.log(response.data.data);
       } catch (err) {
         if (err.response && err.response.status === 404) {
@@ -58,7 +57,7 @@ const CategoryByFiliter = () => {
     <div>
       <div className="cat-hero">
         <img
-          src="https://s3-alpha-sig.figma.com/img/aa01/ae37/f9348ed1d380e33d8c556a6bcafc47e4?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ITsl1j~zUlO1cRcHL8j83qpjUAB8iWx09LOkUjP8lWG-5yb~CQaJjmk3CZsZqnUEHdMrntgTmjznTJ3wnkXG4WT751GzXJhFOxG7XUKX7GJ8SXNtIh9NsjeShnFOF9mLskZ7WNkcFyUAGFuJczacfLb26QIRglLxIc-u61G9aPQU9fPRJC3mOTuMK4Th64tPKif7sroHapC4D4i5EkzsJwjLk0JDaAQSiCkMFKjocpqUWUZYbgjbEeS8Xu1CKbhqJMFNtY5m0Wqh8sYIbNr32V7cb5PGQKAhTcYpiuUlsazJc~yxIjrhmYrygyLop6NUuOSgZELPmwZsTS974TgePw__"
+          src="/public/Premium Photo _ AfricanAmerican decorator painting light wall.jpeg"
           alt=""
         />
         <div className="cat-overlay">
@@ -74,7 +73,7 @@ const CategoryByFiliter = () => {
           <input
             type="text"
             placeholder="Search ..."
-            onChange={(e) => setCategory(e.target.value)} 
+            onChange={(e) => setCategory(e.target.value)}
           />
           <button className="search-btn">Search</button>
         </div>

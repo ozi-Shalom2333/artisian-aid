@@ -101,7 +101,7 @@ const ArtisanPage = () => {
         <>
           <div className="Ahero-section">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp0VewMzP9LF_uPTmBcvLd4pmD33kxTLm5BQ&s"
+              src="/public/workers-talking-about-order-management-depot-planning-manufacturing-stock-shipment-retail-store-production-storehouse-employees-moving-merchandise-goods-handheld-shot.jpg"
               alt=""
             />
             <div className="Ahero-overlay">

@@ -1,10 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/home.css'
 import categoryListing from '../components/categoryList';
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Carousel from '../components/Carousel';
 
 const HomePage = () => {
+  
+  const [data, setData] = useState([])  
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const getRecommededArtisans = async () => {
+      try {
+        const response = await axios.get('https://artisanaid.onrender.com/v1/recommended/artisans');
+        console.log(response.data.message);
+        // setData(response.data);
+        // setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    getRecommededArtisans();
+  }, []);
+
+
+
   const navigate = useNavigate();
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);
@@ -47,9 +73,6 @@ const HomePage = () => {
           </div>
           <div className='homePage__hero2__img'>
              <img src="/Group 14.png" alt="" />
-             <section>
-               <p></p>
-             </section>
           </div>
        </div>
        <div className='homePage__hero3'>
@@ -66,9 +89,15 @@ const HomePage = () => {
             </div>
          ))}
           </div>
+          <div className='seeMore'>
+            <p>See more</p>
+            <RiArrowDropRightLine size={25}/>
+          </div>
        </div>
        <div className='homePage__carousel'>
-            
+            <h3>Testimonials</h3>
+            <h1>Hear from Our  <span style={{color:'#2F80ED'}}>Satisfied</span> <br /> Employers</h1>
+            <Carousel/>
        </div>
 
 

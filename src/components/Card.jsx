@@ -1,7 +1,7 @@
 import React from 'react';
 import './../styles/profile.css'
-import { FiUpload } from 'react-icons/fi'; // Share icon
-import { AiFillStar } from 'react-icons/ai'; // Star icon
+import { FiUpload } from 'react-icons/fi'; 
+import { AiFillStar } from 'react-icons/ai'; 
 
 function Card({data}) {
   return (
@@ -9,7 +9,6 @@ function Card({data}) {
       <div className="card-header">
         <div className="profile-info">
           <div className="profile-image">
-            {/* Replace with actual image source */}
             <img src="/download (16).jpeg" alt="Profile" />
           </div>
           <div className="profile-text">
@@ -22,21 +21,27 @@ function Card({data}) {
         </div>
       </div>
       <div className="card-image">
-        {/* Replace with actual image source */}
+        
         <img src="/Free Photo _ Young african american builder man wearing construction vest and safety helmet showing paint brush stretching out looking confident on isolated white.jpeg" alt="Painter" />
       </div>
       <div className="card-footer">
         <div className="service-info">
           <div className="service-name">{data.category}</div>
           <div className="service-details">
-            <span className="rating">
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-            </span>
-            <span className="recommended">Recommended</span>
+           {
+             data.isRecommended ? 
+             <span className="rating">
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+           </span> : null
+
+           }
+           {
+            data.isRecommended ?  <span className="recommended">Recommended</span> : null
+           }
           </div>
         </div>
         <button className="book-now-button">Book Now</button>

@@ -1,0 +1,151 @@
+.Ahero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    
+    && img{
+        position: absolute;
+        /* filter: brightness(0.6); */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        transform: scale(1.1);
+      }
+  }
+  
+  .Ahero-overlay {
+    text-align: center;
+    color: white;
+
+  }
+  
+  .Ahero-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    line-height: 1.3;
+    align-items: center;
+  }
+  
+  .Ahighlight-blue {
+    color: #1b4fdc;
+  }
+  
+  .Ahero-description {
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: #ddd;
+  }
+  .Aartisan-container {
+    height: 100%;
+    padding: 40px;
+    background-color: #d9e7f0;
+    min-height: auto;
+    font-family: sans-serif;
+    margin-top: 33px;
+
+  }
+
+
+  .Acard-grid {
+    display: flex;
+    gap: 70px;
+    flex-wrap: wrap;
+  }
+
+  .Acard {
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    width: 350px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .Acard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Aprofile-info {
+    display: flex;
+    gap: 10px;
+  }
+
+  .Aprofile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .Aname {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .Acheck {
+    color: #3a83f1;
+  }
+
+  .Aview-profile {
+    font-size: 0.85rem;
+  color: black;
+  }
+
+  .Aexpand {
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+
+  .Aservice-img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .Acard-footer {
+    display: flex;
+  flex-direction: column;
+  }
+
+  .Aservice-name {
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap;
+    /* margin-bottom: 40px;  */
+
+  }
+
+  .Arating{
+    display: flex; 
+      
+  }
+    .Arecommend {
+    color: #333;
+  }
+
+  .Abook-btn {
+    padding: 5px 20px;
+    background-color: #000434;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    width: auto;
+    min-width: 80px;
+  }

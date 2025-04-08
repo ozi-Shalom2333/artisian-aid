@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios"; 
-import "./CategoryByFiliter.css";
+import "../styles/categoryByFilter.css";
 import { VscStarFull } from "react-icons/vsc";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { RiVerifiedBadgeFill } from "react-icons/ri";

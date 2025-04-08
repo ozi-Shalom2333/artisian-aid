@@ -28,14 +28,20 @@ function Card({data}) {
         <div className="service-info">
           <div className="service-name">{data.category}</div>
           <div className="service-details">
-            <span className="rating">
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-              <AiFillStar size={16} />
-            </span>
-            <span className="recommended">Recommended</span>
+           {
+             data.isRecommended ? 
+             <span className="rating">
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+             <AiFillStar size={16} />
+           </span> : null
+
+           }
+           {
+            data.isRecommended ?  <span className="recommended">Recommended</span> : null
+           }
           </div>
         </div>
         <button className="book-now-button">Book Now</button>

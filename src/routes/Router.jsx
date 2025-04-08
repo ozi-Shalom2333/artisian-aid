@@ -11,6 +11,7 @@ import NotFound from '../pages/NotFound';
 import VerifyPassword from '../auth/VerifyPassword';
 import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
+import ArtisanPage from '../pages/ArtisanPage';
 
 const Router = createBrowserRouter([
     {
@@ -21,6 +22,7 @@ const Router = createBrowserRouter([
             { path: '/about', element: <AboutUs /> },
             { path:'/category', element: <CategoryPage />},
             { path:'/category/:category', element: <CategoryByFilter />},
+            { path:'/artisanpage' , element: <ArtisanPage/>},
             { path: '/contact', element: <Contact /> },
         ],
     },

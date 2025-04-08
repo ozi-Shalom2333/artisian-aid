@@ -18,7 +18,6 @@ const Contact = () => {
         </p>
       </div>
 
-     
       <div className="form-section">
         <div className="form-left">
           <h2 className="form-heading">"Get in Touch - We're Here to Help!"</h2>

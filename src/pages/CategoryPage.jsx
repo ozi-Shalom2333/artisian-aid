@@ -20,52 +20,52 @@ const CategoryPage = () => {
      
       <div className="category-item-boxes">
         <div className="category-item-box">
-          <FaBolt className="category-icon" /> 
+          <img src="public/electrician-svgrepo-com 1.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
         <div className="category-item-box">
-          <FaHammer className="category-icon" />
-          <span className="category-label">Carpentry</span>
-        </div>
-        <div className="category-item-box">
-          <FaLeaf className="category-icon" /> 
-          <span className="category-label">Gardening</span>
-        </div>
-        <div className="category-item-box">
-          <FaPaintBrush className="category-icon" /> 
+          <img src="public/painter-with-roller-and-paint-bucket-svgrepo-com 1.png" className="category-icon" />
           <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <FaBroom className="category-icon" /> 
+          <img src="public/gardening-tools-equipment-svgrepo-com 1 (1).png" className="category-icon" /> 
+          <span className="category-label">Gardening</span>
+        </div>
+        <div className="category-item-box">
+          <img src="public/Vector (2).png" className="category-icon" /> 
+          <span className="category-label">Laundry</span>
+        </div>
+        <div className="category-item-box">
+          <img src="public/cleaner-broom-svgrepo-com 1.png" className="category-icon" /> 
           <span className="category-label">Home Cleaning</span>
         </div>
         <div className="category-item-box">
-          <FaBolt className="category-icon" /> 
+          <img src="public/electrician-svgrepo-com 1.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
         <div className="category-item-box">
-          <FaHammer className="category-icon" />
-          <span className="category-label">Carpentry</span>
+        <img src="public/painter-with-roller-and-paint-bucket-svgrepo-com 1.png" className="category-icon" />
+        <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <FaLeaf className="category-icon" />
+          <img src="public/gardening-tools-equipment-svgrepo-com 1 (1).png" className="category-icon" />
           <span className="category-label">Gardening</span>
         </div>
         <div className="category-item-box">
-          <FaPaintBrush className="category-icon" /> 
-          <span className="category-label">Painting</span>
+        <img src="public/Vector (2).png" className="category-icon" /> 
+        <span className="category-label">Laundry</span>
         </div>
         <div className="category-item-box">
-          <FaHammer className="category-icon" />
-          <span className="category-label">Carpentry</span>
+        <img src="public/painter-with-roller-and-paint-bucket-svgrepo-com 1.png" className="category-icon" />
+        <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <FaLeaf className="category-icon" />
+          <img src="public/gardening-tools-equipment-svgrepo-com 1 (1).png" className="category-icon" />
           <span className="category-label">Gardening</span>
         </div>
         <div className="category-item-box">
-          <FaPaintBrush className="category-icon" /> 
-          <span className="category-label">Painting</span>
+        <img src="public/Vector (2).png" className="category-icon" /> 
+        <span className="category-label">Laundry</span>
         </div>
       </div>
     </div>

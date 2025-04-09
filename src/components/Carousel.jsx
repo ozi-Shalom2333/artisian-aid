@@ -20,7 +20,7 @@ const testimonialsData = [
   },
   {
     id: 3,
-    image: '/Image.png',
+    image: 'https://res.cloudinary.com/djnowfvsk/image/upload/v1744131210/samples/smile.jpg',
     text: 'With artisans i have become 10x productive my schedules',
     name: 'Joshua Ike',
     location: 'Ajegule, Lagos',

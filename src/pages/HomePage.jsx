@@ -52,7 +52,7 @@ const HomePage = () => {
           <div>
             <h1>Reliable. <span style={{color:' #FFA500'}}>Efficient.</span> <br /> Quality Guaranteed.</h1>
             <p>Find trusted artisans for all your home improvement <br /> needs as a busy professional.</p>
-            <section onClick={()=> navigate('')}>
+            <section className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
             <p>Explore Artisans</p>
             <RiArrowDropRightLine size={25}/>
             </section>
@@ -89,7 +89,7 @@ const HomePage = () => {
             </div>
          ))}
           </div>
-          <div className='seeMore'>
+          <div className='seeMore' onClick={()=> navigate('/category')}>
             <p>See more</p>
             <RiArrowDropRightLine size={25}/>
           </div>

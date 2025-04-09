@@ -186,6 +186,7 @@
     font-size: 16px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     padding: 40px;
     font-weight: 400;
     color: #000435;
@@ -208,4 +209,8 @@
     color: #5E6282;
     font-size: 18px ;
     font-weight: 700;
+}
+
+.explore-artisans{
+    cursor: pointer;
 }

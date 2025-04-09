@@ -16,7 +16,7 @@ const HomePage = () => {
     const getRecommededArtisans = async () => {
       try {
         const response = await axios.get('https://artisanaid.onrender.com/v1/recommended/artisans');
-        console.log(response.data.message);
+        console.log(response.data.data);
         // setData(response.data);
         // setLoading(false);
       } catch (error) {
@@ -35,6 +35,7 @@ const HomePage = () => {
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);
   };
+  
   return (
     <div className='HomePage'>
        <div className='homePage__hero1'>

@@ -1,5 +1,4 @@
 import React from "react";
-import { FaBolt, FaHammer, FaLeaf, FaPaintBrush, FaBroom } from "react-icons/fa";  
 import "../styles/categorypage.css"
 
 const CategoryPage = () => {

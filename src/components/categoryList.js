@@ -1,27 +1,27 @@
 const categoryListing = [
     {
-      image: '/material-symbols_carpenter (1).png',
-      text:'Carpentary'
+      image: 'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/material-symbols_carpenter_1_xkmkcs.png',
+      text:'carpentary'
     },
     {
-        image:'/cleaner-broom-svgrepo-com 1.png',
-        text:'Home Cleaning'
+        image:'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220513/cleaner-broom-svgrepo-com_1_bcq4ca.png',
+        text:'home cleaning'
     },
     {
-        image:'/painter-with-roller-and-paint-bucket-svgrepo-com 1.png',
-        text:'Painting'
+        image:'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png',
+        text:'painting'
     },
     {
-        image:'/electrician-svgrepo-com 1.png',
-        text:'Electrician'
+        image:'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/electrician-svgrepo-com_1_u0mzzu.png',
+        text:'electrician'
     },
     {
-        image:'/Vector (2).png',
-        text:'Laundry'
+        image:'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png',
+        text:'laundry'
     },
     {
-        image:'/gardening-tools-equipment-svgrepo-com 1 (1).png',
-        text:'Gardening'
+        image:'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png',
+        text:'gardening'
     },
     
 

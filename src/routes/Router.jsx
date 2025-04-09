@@ -38,5 +38,6 @@ const Router = createBrowserRouter([
     {path: '/employersignup', element: <EmployerSignUp/>},
     { path: '*', element: <NotFound /> },
 ]);
+ 
 
 export default Router;

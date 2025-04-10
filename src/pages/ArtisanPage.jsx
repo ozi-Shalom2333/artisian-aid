@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import '../styles/artisanPage.css'
 
 const ArtisanPage = () => {
-  const [artisans, setArtisans] = React.useState([]);
+  const [artisans, setArtisans] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,25 +29,13 @@ const ArtisanPage = () => {
   }, []);
 
   return (
-    <div className="Ahero-section">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp0VewMzP9LF_uPTmBcvLd4pmD33kxTLm5BQ&s"
-        alt=""
-      />
-      <div className="Ahero-overlay">
+    <div className="artisan-page">
+      <div className="Ahero-section">
         <p className="Ahero-subtitle">Explore Artisans</p>
-        <h1 className="Ahero-title">
-          "Uncover <span className="highlight-blue">Unique</span> Talents and{" "}
-          <br />
-          Exceptional Skills"
-        </h1>
-        <p className="Ahero-description">
-          Explore the Artisan Community: Where Creativity Thrives
-        </p>
+        <h1 className="Ahero-title">"Uncover <span style={{color:'rgba(47, 128, 237, 1)'}}>Unique</span> Talents and{" "}<br />Exceptional Skills"</h1>
+        <p className="Ahero-description">Explore the Artisan Community: Where Creativity Thrives</p>
       </div>
-
       <div className="ozioma">
-
         {artisans.map((data) => (
           <Card data={data} />
         ))}

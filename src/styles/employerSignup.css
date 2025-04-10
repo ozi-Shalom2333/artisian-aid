@@ -1,205 +1,174 @@
-
 .signUpMainBody {
-    width: 100%;
-    height: max-content;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  
-  .signUpImage {
-    position: absolute;
-    top: -1rem;
-    left: 2rem;
-    margin-top: 10px;
-    margin-left: 10px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 120px;
-    height: auto;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  }
-  
-  .signUpImage img {
-    width: 220px;
-    height: auto;
-    object-fit: contain;
-  }
-  
-  
-  .signUpContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 100vh;
-    padding: 2rem;
-    
-  }
-  
-  
-  .signUpCard {
-    padding: 3rem;
-    max-width: 850px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #333;
-  }
-  
-  
-  .signUpHeaderContainer {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .signUpHeaderContainer h2 {
-    font-size: 2rem;
-    color: #ffffff;
-  }
-  
-  .signUpHeaderContainer span {
-    font-size: 1rem;
-    opacity: 0.85;
-    color: #ffffff;
-  }
-  
-  
-  .signUpForm {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 1.5rem;
-    margin-top: -3rem;
-  }
-  
-  .signUpRow {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .signUpRowSingle {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  
-  .signUpInputGroup {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-width: 40%;
-    max-width: 50%;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    position: relative;
-    margin-bottom: 1rem;
-  }
-  
-  .signUpInputGroup p {
-    margin-bottom: 0.3rem;
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: #8c8787;
-  }
-  
-  .signUpInputGroup input {
-    padding: 10px 40px 10px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    outline: none;
-    background: #f9f9f9;
-    transition: 0.2s ease;
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-  }
-  
-  .signUpInputGroup input:focus {
-    border-color: #2d5bff;
-    background: #fff;
-  }
-  
-  
-  .password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 1.1rem;
-    color: #666;
-  }
-  
-  
-  .inputError {
-    color: red;
-    font-size: 0.75rem;
-    margin-top: 0.2rem;
-  }
-  
-  
-  .signUpTerms {
-    text-align: center;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    color: #ffffff;
-  }
-  
-  .signUpTerms span {
-    color: #2d5bff;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  
-  .signUpCreateAccountButton {
-    background: #8194d7;
-    color: white;
-    padding: 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background 0.3s ease;
-    width: 100%;
-  }
-  
-  .signUpCreateAccountButton:hover {
-    background: #1a40cc;
-  }
-  
-  .signUpCreateAccountButton:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-  .signUpCreateAccountButton:disabled:hover {
-    background: #ccc;
-  }
-  .signUpRouteToLogin {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    color: #ffffff;
+  width: 100%;
+  height: max-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  }
-  
-  .signUpRouteToLogin span {
-    color: #1a40cc;
-    font-weight: 600;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-  
+.signUpImage {
+  position: absolute;
+  top: -1rem;
+  left: 2rem;
+  margin-top: 10px;
+  margin-left: 10px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.signUpImage img {
+  width: 220px;
+  height: auto;
+  object-fit: contain;
+}
+
+.signUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.signUpCard {
+  padding: 3rem;
+  max-width: 850px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #333;
+}
+
+.signUpHeaderContainer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.signUpHeaderContainer h2 {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.signUpHeaderContainer span {
+  font-size: 1rem;
+  opacity: 0.85;
+  color: #ffffff;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.5rem;
+  margin-top: -3rem;
+}
+
+.signUpRow {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.signUpInputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 40%;
+  max-width: 50%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.signUpInputGroup p {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #8c8787;
+}
+
+.signUpInputGroup input {
+  padding: 10px 40px 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  background: #f9f9f9;
+  transition: 0.2s ease;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.signUpInputGroup input:focus {
+  border-color: #2d5bff;
+  background: #fff;
+}
+
+.inputError {
+  color: red;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.signUpTerms {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: #ffffff;
+}
+
+.signUpTerms span {
+  color: #2d5bff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.signUpCreateAccountButton {
+  background: #8194d7;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.signUpCreateAccountButton:hover {
+  background: #1a40cc;
+}
+
+.signUpCreateAccountButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.signUpRouteToLogin {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.signUpRouteToLogin span {
+  color: #1a40cc;
+  font-weight: 600;
+  margin-left: 5px;
+  cursor: pointer;
+}

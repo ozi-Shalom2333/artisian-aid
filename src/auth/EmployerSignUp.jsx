@@ -14,11 +14,6 @@ const EmployerSignUp = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-
-  const togglePassword = () => setShowPassword(!showPassword);
-  const toggleConfirm = () => setShowConfirm(!showConfirm);
 
   const validateForm = () => {
     const newErrors = {};
@@ -132,29 +127,13 @@ const EmployerSignUp = () => {
               </div>
               <div className='signUpInputGroup'>
                 <p>Password</p>
-                <div style={{ position: 'relative' }}>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder='Type here'
-                  />
-                  <span
-                    onClick={togglePassword}
-                    style={{
-                      position: 'absolute',
-                      right: '10px',
-                      top: '50%',
-                      transform: 'translateY(-50%)',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      color: '#666'
-                    }}
-                  >
-                    {showPassword ? '🙈' : '👁️'}
-                  </span>
-                </div>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder='Type here'
+                />
                 {errors.password && <small className="inputError">{errors.password}</small>}
               </div>
             </div>
@@ -162,29 +141,13 @@ const EmployerSignUp = () => {
             <div className='signUpRowSingle'>
               <div className='signUpInputGroup'>
                 <p>Confirm Password</p>
-                <div style={{ position: 'relative' }}>
-                  <input
-                    type={showConfirm ? 'text' : 'password'}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    placeholder='Type here'
-                  />
-                  <span
-                    onClick={toggleConfirm}
-                    style={{
-                      position: 'absolute',
-                      right: '10px',
-                      top: '50%',
-                      transform: 'translateY(-50%)',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      color: '#666'
-                    }}
-                  >
-                    {showConfirm ? '🙈' : '👁️'}
-                  </span>
-                </div>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder='Type here'
+                />
                 {errors.confirmPassword && <small className="inputError">{errors.confirmPassword}</small>}
               </div>
             </div>

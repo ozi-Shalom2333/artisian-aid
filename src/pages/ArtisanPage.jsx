@@ -45,9 +45,7 @@ const ArtisanPage = () => {
           Explore the Artisan Community: Where Creativity Thrives
         </p>
       </div>
-
       <div className="ozioma">
-
         {artisans.map((data) => (
           <Card data={data} />
         ))}

@@ -8,25 +8,24 @@ const CategoryByFilter = () => {
 
     const {category} = useParams()
     const [artisans, setArtisans] = useState([])
+    console.log(category)
+    const url = 'https://artisanaid.onrender.com/v1/artisans/category'
+
+    const getCategory = async ()=>{
+        try{
+            const response = await axios.post(`${url}`,{category})
+            console.log(response.data.data)
+            setArtisans(response.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
     
     useEffect(()=>{
-        const getCategory = async ()=>{
-            try{
-                const response = await axios.get('https://artisanaid.onrender.com/v1/artisans/category', {
-                    params: {
-                        category: category
-                    }})
-                console.log(response)
-                setArtisans(response.data.data)
-
-            }catch(error){
-                console.log(error)
-            }
-        }
-
         getCategory()
 
-    },[])
+    },[category])
 
   return (
     <div className='catfilter'>

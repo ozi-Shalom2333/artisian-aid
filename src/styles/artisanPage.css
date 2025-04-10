@@ -7,8 +7,6 @@
     justify-content: center;
     flex-direction: column;
     color: white;
-
-    
     && img{
         position: absolute;
         /* filter: brightness(0.6); */
@@ -47,6 +45,7 @@
     font-size: 1rem;
     margin-top: 1rem;
     color: #ddd;
+
   }
   .ozioma{
     width: 100%;
@@ -54,4 +53,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+
   }

@@ -1,13 +1,9 @@
 import React from "react";
-import { FaBolt, FaHammer, FaLeaf, FaPaintBrush, FaBroom } from "react-icons/fa";  
 import "../styles/categorypage.css"
 
 const CategoryPage = () => {
   return (
-    <div className="category-page-container">
-      <div className="overlay-background"></div>
-
-  
+    <div className="category-page-container">  
       <div className="category-title-section">
         <h1 className="category-title">
           Discover Our <span className="highlight-text">Artisans</span> Categories
@@ -20,52 +16,52 @@ const CategoryPage = () => {
      
       <div className="category-item-boxes">
         <div className="category-item-box">
-          <FaBolt className="category-icon" /> 
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/electrician-svgrepo-com_1_u0mzzu.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
         <div className="category-item-box">
-          <FaHammer className="category-icon" />
-          <span className="category-label">Carpentry</span>
-        </div>
-        <div className="category-item-box">
-          <FaLeaf className="category-icon" /> 
-          <span className="category-label">Gardening</span>
-        </div>
-        <div className="category-item-box">
-          <FaPaintBrush className="category-icon" /> 
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
           <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <FaBroom className="category-icon" /> 
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" /> 
+          <span className="category-label">Gardening</span>
+        </div>
+        <div className="category-item-box">
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
+          <span className="category-label">Laundry</span>
+        </div>
+        <div className="category-item-box">
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220513/cleaner-broom-svgrepo-com_1_bcq4ca.png" className="category-icon" /> 
           <span className="category-label">Home Cleaning</span>
         </div>
         <div className="category-item-box">
-          <FaBolt className="category-icon" /> 
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/electrician-svgrepo-com_1_u0mzzu.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
         <div className="category-item-box">
-          <FaHammer className="category-icon" />
-          <span className="category-label">Carpentry</span>
+        <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
+        <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <FaLeaf className="category-icon" />
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" />
           <span className="category-label">Gardening</span>
         </div>
         <div className="category-item-box">
-          <FaPaintBrush className="category-icon" /> 
-          <span className="category-label">Painting</span>
+        <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
+        <span className="category-label">Laundry</span>
         </div>
         <div className="category-item-box">
-          <FaHammer className="category-icon" />
-          <span className="category-label">Carpentry</span>
+        <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
+        <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <FaLeaf className="category-icon" />
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" />
           <span className="category-label">Gardening</span>
         </div>
         <div className="category-item-box">
-          <FaPaintBrush className="category-icon" /> 
-          <span className="category-label">Painting</span>
+        <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
+        <span className="category-label">Laundry</span>
         </div>
       </div>
     </div>

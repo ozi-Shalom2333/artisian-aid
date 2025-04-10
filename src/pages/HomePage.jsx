@@ -16,7 +16,7 @@ const HomePage = () => {
     const getRecommededArtisans = async () => {
       try {
         const response = await axios.get('https://artisanaid.onrender.com/v1/recommended/artisans');
-        console.log(response.data.message);
+        console.log(response.data.data);
         // setData(response.data);
         // setLoading(false);
       } catch (error) {
@@ -35,6 +35,7 @@ const HomePage = () => {
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);
   };
+  
   return (
     <div className='HomePage'>
        <div className='homePage__hero1'>
@@ -52,27 +53,27 @@ const HomePage = () => {
           <div>
             <h1>Reliable. <span style={{color:' #FFA500'}}>Efficient.</span> <br /> Quality Guaranteed.</h1>
             <p>Find trusted artisans for all your home improvement <br /> needs as a busy professional.</p>
-            <section>
+            <section className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
             <p>Explore Artisans</p>
             <RiArrowDropRightLine size={25}/>
             </section>
             <section>
               <div>
-                <img src="/Group.png" alt=""  />
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt=""  />
                 <p>Efficient</p>
               </div>
               <div>
-                <img src="/flexible-access-svgrepo-com 1.png" alt="" />
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="" />
                 <p>Flexible</p>
               </div>
               <div>
-                <img src="/diamond-1-solid-svgrepo-com 1.png" alt="" />
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="" />
                 <p>Trustworthy</p>
               </div>
             </section>
           </div>
           <div className='homePage__hero2__img'>
-             <img src="/Group 14.png" alt="" />
+             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
           </div>
        </div>
        <div className='homePage__hero3'>
@@ -89,7 +90,7 @@ const HomePage = () => {
             </div>
          ))}
           </div>
-          <div className='seeMore'>
+          <div className='seeMore' onClick={()=> navigate('/category')}>
             <p>See more</p>
             <RiArrowDropRightLine size={25}/>
           </div>

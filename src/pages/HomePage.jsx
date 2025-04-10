@@ -59,21 +59,21 @@ const HomePage = () => {
             </section>
             <section>
               <div>
-                <img src="/Group.png" alt=""  />
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt=""  />
                 <p>Efficient</p>
               </div>
               <div>
-                <img src="/flexible-access-svgrepo-com 1.png" alt="" />
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="" />
                 <p>Flexible</p>
               </div>
               <div>
-                <img src="/diamond-1-solid-svgrepo-com 1.png" alt="" />
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="" />
                 <p>Trustworthy</p>
               </div>
             </section>
           </div>
           <div className='homePage__hero2__img'>
-             <img src="/Group 14.png" alt="" />
+             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
           </div>
        </div>
        <div className='homePage__hero3'>

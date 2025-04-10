@@ -15,6 +15,7 @@ import ArtisanPage from '../pages/ArtisanPage';
 import EmployerNotification from '../pages/EmployerNotification';
 import EmployerDashBoard from '../pages/EmployerDashBoard';
 import EmployerSignUp from '../auth/EmployerSignUp';
+import VerifyEmail from '../auth/VerifyEmail';
 
 const Router = createBrowserRouter([
     {
@@ -36,6 +37,7 @@ const Router = createBrowserRouter([
     { path: '/verify', element: <VerifyPassword />},
     { path : '/forget', element: <ForgetPassword />},
     {path: '/employersignup', element: <EmployerSignUp/>},
+    {path: '/verifyemail', element:<VerifyEmail/>},
     { path: '*', element: <NotFound /> },
 ]);
  

@@ -59,7 +59,7 @@ const Login = () => {
     }
   };
 
-  const handleForgotPassword = () => navigate('/forgot-password');
+  const handleForgotPassword = () => navigate('/forget');
   const handleSignUpRedirect = () => navigate('/signup');
 
   return (

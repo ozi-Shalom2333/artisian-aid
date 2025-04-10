@@ -2,7 +2,31 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    padding: 20px;
+    /* padding: 20px; */
     align-items: center;
     flex-wrap: wrap;
+}
+.hero-pic{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),url('https://s3-alpha-sig.figma.com/img/aa01/ae37/f9348ed1d380e33d8c556a6bcafc47e4?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qGS9evPBfKY1C3l2ZMsFHKvz-0AC58Kqvd6~ODesf~9yIdbGCKqPa1En0i061VANaR0NSOKcmMUV1yRXog28SStqHEjnMP85gSClWYqXz7V8ZQG~-poIIOq7ArfLjraImI15kONJ78tP7CLmD318KtFeVk7m943jfeTKGHuMD-ecYMBuaMgIqaFb6w0xK2sCGQbxwog9k8vDsvG2X6j~ONL1cEmHNINHeEXan0EPXp4r51bUXEex3tx0MqKj0Ol1FI89AuJ35V1rZu0JUThSKOyjgtIjSI7TXW0KJU6na4sr4BULQ0MFVy7SrGNADZNW2P3SyCoNaZOi3g1SYCHTOA__');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+.hero-pic h3{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFFFFF;
+}
+.hero-pic h1{
+    font-size: 56px;
+    font-weight: 700;
+    text-align: center;
+    color: #FFFFFF;
 }

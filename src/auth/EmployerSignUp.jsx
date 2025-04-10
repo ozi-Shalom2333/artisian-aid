@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/employerSignup.css';
-import { Navigate, useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from 'react-router-dom'; 
 
 const EmployerSignUp = () => {
+  const navigate = useNavigate(); 
+
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -62,7 +62,6 @@ const EmployerSignUp = () => {
       [e.target.name]: e.target.value
     }));
 
-    
     setErrors(prev => ({
       ...prev,
       [e.target.name]: ''
@@ -200,11 +199,15 @@ const EmployerSignUp = () => {
             <button type="submit" className='signUpCreateAccountButton'>Create account</button>
 
             <div className='signUpRouteToLogin'>
-              <p>Already have an account?
+              <p>
+                Already have an account?{' '}
                 <span 
-              >Login
+                  onClick={() => navigate('/login')} 
+                  style={{ cursor: 'pointer', color: '#007bff' }}
+                >
+                  Login
                 </span>
-                </p>
+              </p>
             </div>
           </form>
         </div>

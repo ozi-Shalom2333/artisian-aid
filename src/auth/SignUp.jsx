@@ -43,11 +43,6 @@ const SignUp = () => {
 
   const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
-  // const isPhoneNumberValid = /^080[0-9]{8}$/.test(phoneNumber);
-
-  
-  // const isFormValid = fullname && businessName && email && phoneNumber && password && confirmPassword && password === confirmPassword && isEmailValid && isPhoneNumberValid;
-  
   
   
   const navigateToLogin = () => {
@@ -155,9 +150,7 @@ const SignUp = () => {
                 placeholder='Type here'
                 onChange={(e) => setPassword(e.target.value)} 
               />
-              {/* <div className="eye-icon" onClick={() => setPasswordVisible(!passwordVisible)}> */}
-                {/* {passwordVisible ? <FaEyeSlash /> : <FaEye />} */}
-              {/* </div> */}
+            
             
           </section>
           <section className='signUpInputForBusiness'>
@@ -168,23 +161,21 @@ const SignUp = () => {
                 placeholder='Type here'
                 onChange={(e) => setConfirmPassword(e.target.value)} 
               />
-              {/* <div className="eye-icon" onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}> */}
-                {/* {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />} */}
-              {/* </div> */}
+            
             
           </section>
         </div>
 
         <div className='SignUpForCategoryInput'>
           <section className='signUpInputForCategory'>
-            {/* <p>Category</p> */}
+          
             <aside className="category-dropdown-container">
               <p>{category}</p>
               <div className="category-dropdown-toggle" onClick={toggleCategoryDropdown}>
                 {categoryIcon ? <MdKeyboardArrowUp fontSize={25} /> : <MdKeyboardArrowDown fontSize={25} />}
               </div>
               {categoryIcon && (
-                // <article className="category-dropdown">
+                
                   <div className="category-list">
                     <input
                       type="text"
@@ -200,14 +191,14 @@ const SignUp = () => {
                       </nav>
                     ))}
                   </div>
-                // </article>
+                
               )}
             </aside>
           </section>
         </div>
       </main>
 
-      {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>} 
 
       <section className='signUpTermsAndConditions'>
         <div className='SignUpForTermsAndConditonContainer'>

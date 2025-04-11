@@ -1,0 +1,118 @@
+.verificationBody{
+    width: 100%;
+    height: 100vh;
+    /* background-color: aqua; */
+}
+
+.verificationHeaderImage{
+    width: 100%;
+    height: 15vh;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+
+     img{
+ width: 162.52px;
+height: 34.19px;
+font-family: Montserrat;
+font-weight: 700;
+font-size: 27.35px;
+line-height: 30.08px;
+letter-spacing: 0%;
+text-align: center;
+    }
+}
+
+.verificationImage{
+    width: 100%;
+height: 50vh;
+/* background-color: aqua; */
+display: flex;
+justify-content: center;
+padding-bottom: 30px;
+
+& img{
+    width: 400px;
+    height:305px;
+}
+}
+
+.verificationMessage{
+    width: 100%;
+    height: 20vh;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    
+}
+
+.verificationLinkMessage{
+    width: 100%;
+    height: 25%;
+    /* gap: 20px; */
+    /* background-color: aqua; */
+    font-family: Montserrat;
+font-weight: 700;
+font-size: 34.19px;
+line-height: 37.61px;
+letter-spacing: 0%;
+color: #000435;
+display: flex;
+justify-content: center;
+
+}
+
+.verificationSent{
+    width: 100%;
+    height: 40%;
+    /* background: red; */
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Montserrat;
+font-weight: 400;
+font-size: 17.09px;
+line-height: 23.93px;
+letter-spacing: 0%;
+text-align: center;
+margin-top: 15px;
+
+}
+
+.verificationResendLink{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    
+    & p{
+        width: 216px;
+height: 24px;
+font-family: Montserrat;
+font-weight: 700;
+font-size: 17.09px;
+line-height: 23.93px;
+letter-spacing: 0%;
+text-align: center;
+color: #000435;
+    }
+
+    & span{
+        width: 140.2px;
+        height: 24px;
+        font-family: Montserrat;
+font-weight: 700;
+font-size: 17.09px;
+line-height: 23.93px;
+letter-spacing: 0%;
+color: #2F80ED;
+         
+    }
+}

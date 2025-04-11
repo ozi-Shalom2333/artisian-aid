@@ -16,6 +16,10 @@ import EmployerNotification from '../pages/EmployerNotification';
 import EmployerDashBoard from '../pages/EmployerDashBoard';
 import EmployerSignUp from '../auth/EmployerSignUp';
 import VerifyEmail from '../auth/VerifyEmail';
+import AuthOption from '../pages/AuthOption';
+import VerificationMessage from '../pages/VerificationMessage'; 
+import ResetPasswordMessage from '../pages/ResetPasswordMessage';
+import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 
 const Router = createBrowserRouter([
     {
@@ -24,22 +28,27 @@ const Router = createBrowserRouter([
         children: [
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
-            { path:'/category', element: <CategoryPage />},
-            { path:'/category/:category', element: <CategoryByFilter />},
-            { path:'/artisanpage' , element: <ArtisanPage/>},
-            { path:'/employernotification', element: <EmployerNotification/>},
-            { path: '/employerdashboard', element: <EmployerDashBoard/>,},
+            { path:'/category', element: <CategoryPage /> },
+            { path:'/category/:category', element: <CategoryByFilter /> },
+            { path:'/artisanpage' , element: <ArtisanPage /> },
+            { path: '/verificationmessage', element: <VerificationMessage /> }, 
+            { path:'/employernotification', element: <EmployerNotification /> },
+            { path: '/employerdashboard', element: <EmployerDashBoard /> },
+            { path: '/authoption', element: <AuthOption /> },
+            { path: '/resetmessage', element: <ResetPasswordMessage/>},
+            { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
             { path: '/contact', element: <Contact /> },
         ],
     },
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
-    { path: '/verify', element: <VerifyPassword />},
-    { path : '/forget', element: <ForgetPassword />},
-    {path: '/employersignup', element: <EmployerSignUp/>},
-    {path: '/verifyemail', element:<VerifyEmail/>},
+    { path: '/verify', element: <VerifyPassword /> },
+    { path: '/forget', element: <ForgetPassword /> },
+    { path: '/employersignup', element: <EmployerSignUp /> },
+    { path: '/verifyemail', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
- 
 
 export default Router;
+
+

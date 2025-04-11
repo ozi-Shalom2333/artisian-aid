@@ -47,6 +47,7 @@
 }
 .homePage__hero1__btns p:last-child{
     border: 2px solid #FFA500;
+    border-radius: 10px;
 }
 .homePage__hero2{
     width: 100%;

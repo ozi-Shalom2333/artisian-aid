@@ -26,7 +26,7 @@ const Header = () => {
 
       <div className='Header-authentication'>
         <p>
-            <NavLink to="/signup" >Sign Up</NavLink>
+            <NavLink to="/authoption" >Sign Up</NavLink>
         </p>
         <p>
             <NavLink to="/login" >Login</NavLink>

@@ -1,8 +1,7 @@
 .signUpMainBody {
   width: 100%;
   min-height: 100vh;
-  background-image: url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744204891/bg_1_sign_up_pkyctj.jpg);
-  background: linear-gradient();
+  background-image: url('https://res.cloudinary.com/djnowfvsk/image/upload/v1744204891/bg_1_sign_up_pkyctj.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -308,3 +307,4 @@ height: 23px;
   text-align: center;
   color: #2f80ed;
 }
+

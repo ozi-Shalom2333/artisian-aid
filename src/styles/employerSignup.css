@@ -1,4 +1,4 @@
-.signUpMainBody {
+.signUpBody {
   width: 100%;
   height: max-content;
   position: relative;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.signUpImage {
+.signImage {
   position: absolute;
   top: -1rem;
   left: 2rem;
@@ -23,13 +23,13 @@
   transition: opacity 0.3s ease;
 }
 
-.signUpImage img {
+.signImage img {
   width: 220px;
   height: auto;
   object-fit: contain;
 }
 
-.signUpContainer {
+.signContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@
   padding: 2rem;
 }
 
-.signUpCard {
+.signCard {
   padding: 3rem;
   max-width: 850px;
   width: 100%;
@@ -53,18 +53,18 @@
   margin-bottom: 2rem;
 }
 
-.signUpHeaderContainer h2 {
+.signHeaderContainer h2 {
   font-size: 2rem;
   color: #ffffff;
 }
 
-.signUpHeaderContainer span {
+.signHeaderContainer span {
   font-size: 1rem;
   opacity: 0.85;
   color: #ffffff;
 }
 
-.signUpForm {
+.signForm {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -72,14 +72,14 @@
   margin-top: -3rem;
 }
 
-.signUpRow {
+.signRow {
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.signUpInputGroup {
+.signInputGroup {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -91,14 +91,14 @@
   margin-bottom: 1rem;
 }
 
-.signUpInputGroup p {
+.signInputGroup p {
   margin-bottom: 0.3rem;
   font-weight: 500;
   font-size: 0.95rem;
   color: #8c8787;
 }
 
-.signUpInputGroup input {
+.signInputGroup input {
   padding: 10px 40px 10px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -111,7 +111,7 @@
   box-sizing: border-box;
 }
 
-.signUpInputGroup input:focus {
+.signInputGroup input:focus {
   border-color: #2d5bff;
   background: #fff;
 }
@@ -122,20 +122,20 @@
   margin-top: 0.2rem;
 }
 
-.signUpTerms {
+.signTerms {
   text-align: center;
   font-size: 0.9rem;
   margin-top: 0.5rem;
   color: #ffffff;
 }
 
-.signUpTerms span {
+.signTerms span {
   color: #2d5bff;
   font-weight: 500;
   cursor: pointer;
 }
 
-.signUpCreateAccountButton {
+.signCreateAccountButton {
   background: #8194d7;
   color: white;
   padding: 12px;
@@ -148,16 +148,16 @@
   width: 100%;
 }
 
-.signUpCreateAccountButton:hover {
+.signCreateAccountButton:hover {
   background: #1a40cc;
 }
 
-.signUpCreateAccountButton:disabled {
+.signCreateAccountButton:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
 
-.signUpRouteToLogin {
+.signRouteToLogin {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -166,7 +166,7 @@
   color: #ffffff;
 }
 
-.signUpRouteToLogin span {
+.signRouteToLogin span {
   color: #1a40cc;
   font-weight: 600;
   margin-left: 5px;

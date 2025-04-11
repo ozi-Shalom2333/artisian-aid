@@ -5,7 +5,6 @@ import axios from 'axios';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import { IoIosSearch } from 'react-icons/io';
 import { toast } from 'react-toastify';
-// import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const SignUp = () => {
   const navigate = useNavigate();

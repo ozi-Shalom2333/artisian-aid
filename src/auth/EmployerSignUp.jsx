@@ -75,21 +75,21 @@ const EmployerSignUp = () => {
   };
 
   return (
-    <div className='signUpMainBody'>
-      <div className='signUpContainer'>
-        <aside className='signUpImage'>
+    <div className='signUpBody'>
+      <div className='signContainer'>
+        <aside className='signImage'>
           <img src="/Artisan.png" alt="Logo" />
         </aside>
 
-        <div className='signUpCard'>
-          <section className='signUpHeaderContainer'>
+        <div className='signCard'>
+          <section className='signHeaderContainer'>
             <h2>Create Account</h2>
             <span>Enter the required information to create your account as an Employer.</span>
           </section>
 
-          <form onSubmit={handleSubmit} className='signUpForm'>
+          <form onSubmit={handleSubmit} className='signForm'>
             <div className='signUpRow'>
-              <div className='signUpInputGroup'>
+              <div className='signInputGroup'>
                 <p>Full Name</p>
                 <input
                   type="text"
@@ -100,7 +100,7 @@ const EmployerSignUp = () => {
                 />
                 {errors.fullName && <small className="inputError">{errors.fullName}</small>}
               </div>
-              <div className='signUpInputGroup'>
+              <div className='signInputGroup'>
                 <p>Phone Number</p>
                 <input
                   type="text"
@@ -113,8 +113,8 @@ const EmployerSignUp = () => {
               </div>
             </div>
 
-            <div className='signUpRow'>
-              <div className='signUpInputGroup'>
+            <div className='signRow'>
+              <div className='signInputGroup'>
                 <p>Email</p>
                 <input
                   type="text"
@@ -125,7 +125,7 @@ const EmployerSignUp = () => {
                 />
                 {errors.email && <small className="inputError">{errors.email}</small>}
               </div>
-              <div className='signUpInputGroup'>
+              <div className='signInputGroup'>
                 <p>Password</p>
                 <input
                   type="password"
@@ -138,8 +138,8 @@ const EmployerSignUp = () => {
               </div>
             </div>
 
-            <div className='signUpRowSingle'>
-              <div className='signUpInputGroup'>
+            <div className='signRowSingle'>
+              <div className='signInputGroup'>
                 <p>Confirm Password</p>
                 <input
                   type="password"
@@ -152,7 +152,7 @@ const EmployerSignUp = () => {
               </div>
             </div>
 
-            <div className='signUpTerms'>
+            <div className='signTerms'>
               <p>
                 By creating an account you automatically agree 
               </p>
@@ -161,7 +161,7 @@ const EmployerSignUp = () => {
 
             <button type="submit" className='signUpCreateAccountButton'>Create account</button>
 
-            <div className='signUpRouteToLogin'>
+            <div className='signRouteToLogin'>
               <p>
                 Already have an account?{' '}
                 <span 

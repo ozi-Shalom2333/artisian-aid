@@ -11,10 +11,8 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [categoryIcon, setCategoryIcon] = useState(false);
   const categoryArray = ['Carpentry Services', 'Home cleaning services', 'Plumbing Services', 'Electrical Services', 'Painting Services', 'Gardening Services'];
-  
   const [categorySearch, setCategorySearch] = useState('');
   const [filteredCategories, setFilteredCategories] = useState(categoryArray);
-  
   const [fullname, setFullName] = useState('');
   const [businessName, setBusinessName] = useState('');
   const [email, setEmail] = useState('');

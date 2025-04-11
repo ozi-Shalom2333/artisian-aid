@@ -27,11 +27,12 @@ const Router = createBrowserRouter([
             { path:'/category/:category', element: <CategoryByFilter />},
             { path:'/artisanpage' , element: <ArtisanPage/>},
             { path:'/employernotification', element: <EmployerNotification/>},
-            { path: '/employerdashboard', element: <EmployerDashBoard/>,},
+           
             { path: '/contact', element: <Contact /> },
         ],
     },
     { path: '/signup', element: <SignUp /> },
+    { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
     { path: '/verify', element: <VerifyPassword />},
     { path : '/forget', element: <ForgetPassword />},

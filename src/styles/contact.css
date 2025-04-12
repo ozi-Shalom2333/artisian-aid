@@ -15,7 +15,7 @@
     width: 100%;
     height: 100vh;
     background-color: blueviolet;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("public/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning.jpg");
      background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;

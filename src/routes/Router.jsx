@@ -15,6 +15,11 @@ import ArtisanPage from '../pages/ArtisanPage';
 import EmployerNotification from '../pages/EmployerNotification';
 import EmployerDashBoard from '../pages/EmployerDashBoard';
 import EmployerSignUp from '../auth/EmployerSignUp';
+import VerifyEmail from '../auth/VerifyEmail';
+import AuthOption from '../pages/AuthOption';
+import VerificationMessage from '../pages/VerificationMessage'; 
+import ResetPasswordMessage from '../pages/ResetPasswordMessage';
+import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 
 const Router = createBrowserRouter([
     {
@@ -23,6 +28,7 @@ const Router = createBrowserRouter([
         children: [
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
+
             { path:'/category', element: <CategoryPage />},
             { path:'/category/:category', element: <CategoryByFilter />},
             { path:'/artisanpage' , element: <ArtisanPage/>},
@@ -34,11 +40,18 @@ const Router = createBrowserRouter([
     { path: '/signup', element: <SignUp /> },
     { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
-    { path: '/verify', element: <VerifyPassword />},
-    { path : '/forget', element: <ForgetPassword />},
-    {path: '/employersignup', element: <EmployerSignUp/>},
+    { path: '/verify', element: <VerifyPassword /> },
+    { path: '/verificationmessage', element: <VerificationMessage /> }, 
+    { path: '/employerdashboard', element: <EmployerDashBoard /> },
+    { path: '/authoption', element: <AuthOption /> },
+    { path: '/forget', element: <ForgetPassword /> },
+    { path: '/employersignup', element: <EmployerSignUp /> },
+    { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
+    { path: '/resetmessage', element: <ResetPasswordMessage/>},
+    { path: '/verifyemail', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
- 
 
 export default Router;
+
+

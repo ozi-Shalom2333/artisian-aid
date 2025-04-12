@@ -29,6 +29,10 @@ const CategoryByFilter = () => {
 
   return (
     <div className='catfilter'>
+        <div className='hero-pic'>
+          <h3>Painting Services</h3>
+          <h1>Get <span style={{color:'rgba(255, 165, 0, 1)'}}>Satisfying</span> Painting <br /> Services at your Finger Tip</h1>
+        </div>
         {
             artisans.map((e)=>(
                 <Card data = {e}/>

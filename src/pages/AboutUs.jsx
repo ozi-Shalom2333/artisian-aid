@@ -1,9 +1,12 @@
 import React from 'react'
+import '../styles/about.css'
+
 
 const AboutUs = () => {
   return (
-    <div className='rrr'>
-      <h1>AboutUs </h1>
+    <div className=''>
+
+      
     </div>
   )
 }

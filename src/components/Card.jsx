@@ -2,6 +2,7 @@ import React from 'react';
 import './../styles/profile.css'
 import { FiUpload } from 'react-icons/fi'; 
 import { AiFillStar } from 'react-icons/ai'; 
+import { MdVerified } from "react-icons/md";
 
 function Card({data}) {
   return (
@@ -9,10 +10,13 @@ function Card({data}) {
       <div className="card-header">
         <div className="profile-info">
           <div className="profile-image">
-            <img src="/download (16).jpeg" alt="Profile" />
+            <img src={data.profilePic.image_url} alt="Profile" />
           </div>
           <div className="profile-text">
-            <div className="profile-name">{data.fullname}</div>
+            <div className="profile-name">
+              {data.fullname}
+              <MdVerified  size={20} color='blue'/>
+              </div>
             <div className="profile-view">View profile</div>
           </div>
         </div>
@@ -22,26 +26,23 @@ function Card({data}) {
       </div>
       <div className="card-image">
         
-        <img src="/Free Photo _ Young african american builder man wearing construction vest and safety helmet showing paint brush stretching out looking confident on isolated white.jpeg" alt="Painter" />
+        <img src={data.coverPhoto.image_url}  alt="Painter" />
       </div>
       <div className="card-footer">
         <div className="service-info">
           <div className="service-name">{data.category}</div>
           <div className="service-details">
-           {
-             data.isRecommended ? 
+           
              <span className="rating">
              <AiFillStar size={16} />
              <AiFillStar size={16} />
              <AiFillStar size={16} />
              <AiFillStar size={16} />
              <AiFillStar size={16} />
-           </span> : null
-
-           }
-           {
-            data.isRecommended ?  <span className="recommended">Recommended</span> : null
-           }
+           </span>
+            
+           <span className="recommended">Recommended</span> 
+           
           </div>
         </div>
         <button className="book-now-button">Book Now</button>

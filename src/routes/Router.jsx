@@ -28,14 +28,17 @@ const Router = createBrowserRouter([
         children: [
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
-            { path:'/category', element: <CategoryPage /> },
-            { path:'/category/:category', element: <CategoryByFilter /> },
-            { path:'/artisanpage' , element: <ArtisanPage /> },
-            { path:'/employernotification', element: <EmployerNotification /> },
+
+            { path:'/category', element: <CategoryPage />},
+            { path:'/category/:category', element: <CategoryByFilter />},
+            { path:'/artisanpage' , element: <ArtisanPage/>},
+            { path:'/employernotification', element: <EmployerNotification/>},
+           
             { path: '/contact', element: <Contact /> },
         ],
     },
     { path: '/signup', element: <SignUp /> },
+    { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
     { path: '/verify', element: <VerifyPassword /> },
     { path: '/verificationmessage', element: <VerificationMessage /> }, 

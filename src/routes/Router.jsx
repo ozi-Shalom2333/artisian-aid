@@ -18,6 +18,7 @@ import EmployerSignUp from '../auth/EmployerSignUp';
 import VerifyEmail from '../auth/VerifyEmail';
 import AuthOption from '../pages/AuthOption';
 import VerificationMessage from '../pages/VerificationMessage'; 
+import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 
@@ -41,6 +42,7 @@ const Router = createBrowserRouter([
     { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
     { path: '/verify', element: <VerifyPassword /> },
+    { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
     { path: '/employerdashboard', element: <EmployerDashBoard /> },
     { path: '/authoption', element: <AuthOption /> },

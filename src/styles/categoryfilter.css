@@ -1,9 +1,10 @@
 .catfilter{
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     /* padding: 20px; */
     align-items: center;
+    /* display: block; */
     flex-wrap: wrap;
 }
 .hero-pic{
@@ -29,4 +30,12 @@
     font-weight: 700;
     text-align: center;
     color: #FFFFFF;
+}
+.catfilter-card{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    background: red;
+    gap: 10px;
 }

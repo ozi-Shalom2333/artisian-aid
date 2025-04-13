@@ -1,0 +1,28 @@
+.banner-container{
+    width: 95%;
+    margin: 0 auto;
+    height: 70vh;
+    background-color: #000435;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    color: #ffffff;
+}
+.banner-container > div{
+    width: 45%;
+    top: -10%;
+    height: 120%;
+    align-items: flex-start;
+    border: 2px solid green;
+}
+.banner-container > div:first-child{
+    padding: 20px;
+}
+.banner-container > div:last-child{
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+}
+.banner-right{
+    color: #ffffff;
+}

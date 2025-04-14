@@ -1,18 +1,20 @@
-.signUpMainBody {
+.employerSignUp__main {
   width: 100%;
   height: max-content;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #080d20;
 }
 
-.signUpImage {
+.employerSignUp__image {
   position: absolute;
   top: -1rem;
   left: 2rem;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 70px;
+  margin-left: 30px;
+  margin-right: 40px;
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -23,13 +25,13 @@
   transition: opacity 0.3s ease;
 }
 
-.signUpImage img {
+.employerSignUp__image img {
   width: 220px;
   height: auto;
   object-fit: contain;
 }
 
-.signUpContainer {
+.employerSignUp__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,68 +40,69 @@
   padding: 2rem;
 }
 
-.signUpCard {
+.employerSignUp__card {
   padding: 3rem;
   max-width: 850px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #333;
+  color: #ffffff;
 }
 
-.signUpHeaderContainer {
+.employerSignUp__header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.signUpHeaderContainer h2 {
+.employerSignUp__header h2 {
   font-size: 2rem;
   color: #ffffff;
 }
 
-.signUpHeaderContainer span {
+.employerSignUp__header span {
   font-size: 1rem;
   opacity: 0.85;
   color: #ffffff;
 }
 
-.signUpForm {
+.employerSignUp__form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1.5rem;
-  margin-top: -3rem;
 }
 
-.signUpRow {
+.employerSignUp__row {
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.signUpInputGroup {
+.employerSignUp__rowSingle {
+  display: flex;
+  flex-direction: column;
+}
+
+.employerSignUp__inputGroup {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 40%;
-  max-width: 50%;
-  padding: 0 1rem;
-  box-sizing: border-box;
+  min-width: 38%;
+  max-width: 47%;
   position: relative;
   margin-bottom: 1rem;
 }
 
-.signUpInputGroup p {
+.employerSignUp__inputGroup p {
   margin-bottom: 0.3rem;
   font-weight: 500;
   font-size: 0.95rem;
-  color: #8c8787;
+  color: #7e7a7a;
 }
 
-.signUpInputGroup input {
-  padding: 10px 40px 10px 14px;
+.employerSignUp__inputGroup input {
+  padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
@@ -107,36 +110,35 @@
   background: #f9f9f9;
   transition: 0.2s ease;
   width: 100%;
-  height: 50px;
   box-sizing: border-box;
 }
 
-.signUpInputGroup input:focus {
+.employerSignUp__inputGroup input:focus {
   border-color: #2d5bff;
   background: #fff;
 }
 
-.inputError {
+.employerSignUp__error {
   color: red;
   font-size: 0.75rem;
   margin-top: 0.2rem;
 }
 
-.signUpTerms {
+.employerSignUp__terms {
   text-align: center;
   font-size: 0.9rem;
   margin-top: 0.5rem;
   color: #ffffff;
 }
 
-.signUpTerms span {
+.employerSignUp__terms span {
   color: #2d5bff;
   font-weight: 500;
   cursor: pointer;
 }
 
-.signUpCreateAccountButton {
-  background: #8194d7;
+.employerSignUp__submitBtn {
+  background: #4d61a8;
   color: white;
   padding: 12px;
   font-size: 1rem;
@@ -146,27 +148,34 @@
   margin-top: 1rem;
   transition: background 0.3s ease;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.signUpCreateAccountButton:hover {
+.employerSignUp__submitBtn:hover {
   background: #1a40cc;
 }
 
-.signUpCreateAccountButton:disabled {
+.employerSignUp__submitBtn:disabled,
+.employerSignUp__submitBtn.loading {
   background: #ccc;
   cursor: not-allowed;
 }
 
-.signUpRouteToLogin {
-  display: flex;
-  justify-content: center;
+.employerSignUp__submitBtn.loading::after {
+  content: "⏳";
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+
+.employerSignUp__redirect {
   text-align: center;
   margin-top: 1rem;
   font-size: 0.95rem;
-  color: #ffffff;
 }
 
-.signUpRouteToLogin span {
+.employerSignUp__link {
   color: #1a40cc;
   font-weight: 600;
   margin-left: 5px;

@@ -5,7 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #080d20;
+  /* background-color: #080d20; */
+  background-image: url("https://res.cloudinary.com/dkxms3ctv/image/upload/v1744636288/SIgn_up_as_an_employer_wofarb.png");
+  background-size: cover;
+  background-position: 30% 40%;
 }
 
 .employerSignUp__image {

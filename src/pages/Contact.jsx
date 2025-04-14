@@ -56,9 +56,11 @@ const Contact = () => {
         message: formData.message,
       };
 
-      const res = await axios.post("https://artisanaid.onrender.com/contact/us", payload);
+      const res = await axios.post(
+        'https://artisanaid.onrender.com/v1/contact/us', payload
+      );
 
-      if (res.status === 200) {
+      if (res.status === 201 || 200) {
         toast.success("Message sent successfully!");
         setFormData({ fullName: "", email: "", message: "" });
       } else {

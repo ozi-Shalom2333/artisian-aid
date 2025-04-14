@@ -100,7 +100,7 @@ const EmployerSignUp = () => {
       <ToastContainer />
       <div className="employerSignUp__container">
         <aside className="employerSignUp__image">
-          <img src="/Artisan.png" alt="Logo" />
+          <img src="https://res.cloudinary.com/dkxms3ctv/image/upload/v1744634401/Artisan_3_myrrpj.png" alt="Logo" />
         </aside>
 
         <div className="employerSignUp__card">

@@ -13,13 +13,13 @@ import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
 import ArtisanPage from '../pages/ArtisanPage';
 import EmployerNotification from '../pages/EmployerNotification';
-import EmployerDashBoard from '../pages/EmployerDashBoard';
 import EmployerSignUp from '../auth/EmployerSignUp';
 import VerifyEmail from '../auth/VerifyEmail';
 import AuthOption from '../pages/AuthOption';
 import VerificationMessage from '../pages/VerificationMessage'; 
 import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
+import EmployerDashBoard from '../dashboards/employer/EmployerDashBoard';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 
 const Router = createBrowserRouter([
@@ -29,12 +29,10 @@ const Router = createBrowserRouter([
         children: [
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
-
             { path:'/category', element: <CategoryPage />},
             { path:'/category/:category', element: <CategoryByFilter />},
             { path:'/artisanpage' , element: <ArtisanPage/>},
             { path:'/employernotification', element: <EmployerNotification/>},
-           
             { path: '/contact', element: <Contact /> },
         ],
     },
@@ -44,7 +42,7 @@ const Router = createBrowserRouter([
     { path: '/verify', element: <VerifyPassword /> },
     { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
-    { path: '/employerdashboard', element: <EmployerDashBoard /> },
+    { path: '/employerdashboard', element: <EmployerDashBoard/> },
     { path: '/authoption', element: <AuthOption /> },
     { path: '/forget', element: <ForgetPassword /> },
     { path: '/employersignup', element: <EmployerSignUp /> },

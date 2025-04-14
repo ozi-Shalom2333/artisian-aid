@@ -8,6 +8,8 @@
   background-color: #1a202c;
   color: #fff;
   width: 20%;
+  position: fixed;
+  height: 100vh;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -63,8 +65,9 @@
 
 .main-content {
   flex-grow: 1;
-  border: 2px solid red;
   width: 80%;
-  height: 100vh;
+  height: fit-content;
+  overflow-y: auto;
+  margin-left: 20%;
   background-color: #f7fafc;
 }

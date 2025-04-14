@@ -1,7 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink} from 'react-router-dom';
-import '../../styles/admindashboard.css'
+import React, { useState } from 'react';
+import '../../styles/admindashboard.css';
 import PendingVerification from './pages/PendingVerification';
 import ApprovedUsers from './pages/ApprovedUsers';
 import DeclinedUsers from './pages/DeclinedUsers';
@@ -9,77 +7,62 @@ import ReportedUsers from './pages/ReportedUsers';
 import { RiHomeFill } from "react-icons/ri";
 
 const AdminDashboard = () => {
+  const [activeTab, setActiveTab] = useState('pending-verification'); 
 
-  const [activeTab, setActiveTab] = useState('/pending-verification'); // Initialize with the default active tab
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
-    <Router>
-
-      <div className="dashboard-container">
+    <div className="dashboard-container">
       <div className="sidebar">
-          <div className="logo">ArtisanAid.</div>
-          <nav>
-            <ul>
-              <li className="admin-management-header">
-                <RiHomeFill size={20}/>
-                Admin Management
-              </li>
-              <li>
-                <NavLink
-                  to="/pending-verification"
-                  className={activeTab === '/pending-verification' ? 'nav-link-active' : 'nav-link'}
-                  onClick={() => setActiveTab('/pending-verification')}
-                >
-                  Pending User Verification
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/approved-users"
-                  className={activeTab === '/approved-users' ? 'nav-link-active' : 'nav-link'}
-                  onClick={() => setActiveTab('/approved-users')}
-                >
-                  Approved Users
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/declined-users"
-                  className={activeTab === '/declined-users' ? 'nav-link-active' : 'nav-link'}
-                  onClick={() => setActiveTab('/declined-users')}
-                >
-                  Declined Users
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/reported-users"
-                  className={activeTab === '/reported-users' ? 'nav-link-active' : 'nav-link'}
-                  onClick={() => setActiveTab('/reported-users')}
-                >
-                  Reported Users
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-          {/* <div className="logout">
-            <NavLink to="/logout" className="nav-link">
-              Log out
-            </NavLink>
-          </div> */}
-        </div>
-        <div className="main-content">
-          <Routes>
-            <Route path="/pending-verification" element={<PendingVerification/>} />
-            <Route path="/approved-users" element={<ApprovedUsers />} />
-            <Route path="/declined-users" element={<DeclinedUsers/>} />
-            <Route path="/reported-users" element={<ReportedUsers />} />
-            <Route path="/" element={<PendingVerification />} />
-          </Routes>
+        <div className="logo">ArtisanAid.</div>
+        <nav>
+          <ul>
+            <li className="admin-management-header">
+              <RiHomeFill size={20}/>
+              Admin Management
+            </li>
+            <li
+              className={`nav-link ${activeTab === 'pending-verification' ? 'nav-link-active' : ''}`}
+              onClick={() => handleTabClick('pending-verification')}
+            >
+              Pending User Verification
+            </li>
+            <li
+              className={`nav-link ${activeTab === 'approved-users' ? 'nav-link-active' : 'nav-link'}`}
+              onClick={() => handleTabClick('approved-users')}
+            >
+              Approved Users
+            </li>
+            <li
+              className={`nav-link ${activeTab === 'declined-users' ? 'nav-link-active' : 'nav-link'}`}
+              onClick={() => handleTabClick('declined-users')}
+            >
+              Declined Users
+            </li>
+            <li
+              className={`nav-link ${activeTab === 'reported-users' ? 'nav-link-active' : 'nav-link'}`}
+              onClick={() => handleTabClick('reported-users')}
+            >
+              Reported Users
+            </li>
+          </ul>
+        </nav>
+        <div className="logout">
+          <p className="nav-link" onClick={() => console.log('Logout functionality here')}> 
+            Log out
+          </p>
         </div>
       </div>
-    </Router>
-  )
-}
+      <div className="main-content">
+        {activeTab === 'pending-verification' && <PendingVerification />}
+        {activeTab === 'approved-users' && <ApprovedUsers />}
+        {activeTab === 'declined-users' && <DeclinedUsers />}
+        {activeTab === 'reported-users' && <ReportedUsers />}
+      </div>
+    </div>
+  );
+};
 
-export default AdminDashboard
+export default AdminDashboard;

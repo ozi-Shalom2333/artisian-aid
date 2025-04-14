@@ -42,7 +42,7 @@
 
 .employerSignUp__card {
   padding: 3rem;
-  max-width: 850px;
+  max-width: 950px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -98,7 +98,8 @@
   margin-bottom: 0.3rem;
   font-weight: 500;
   font-size: 0.95rem;
-  color: #7e7a7a;
+  color: #ffffff;
+  font-family: sans-serif Montserrat;
 }
 
 .employerSignUp__inputGroup input {
@@ -138,10 +139,11 @@
 }
 
 .employerSignUp__submitBtn {
-  background: #4d61a8;
-  color: white;
+  background: #ffffff;
+  color: black;
   padding: 12px;
   font-size: 1rem;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;

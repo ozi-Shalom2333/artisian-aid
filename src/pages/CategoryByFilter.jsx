@@ -33,11 +33,13 @@ const CategoryByFilter = () => {
           <h3>Painting Services</h3>
           <h1>Get <span style={{color:'rgba(255, 165, 0, 1)'}}>Satisfying</span> Painting <br /> Services at your Finger Tip</h1>
         </div>
+        <div className='catfilter-card'>
         {
             artisans.map((e)=>(
                 <Card data = {e}/>
             ))
         }
+        </div>
     </div>
   )
 }

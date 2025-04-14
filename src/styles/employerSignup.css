@@ -1,22 +1,17 @@
-<<<<<<< HEAD
-.signUpBody {
-=======
 .employerSignUp__main {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   width: 100%;
   height: max-content;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #080d20;
+  /* background-color: #080d20; */
+  background-image: url("https://res.cloudinary.com/dkxms3ctv/image/upload/v1744636288/SIgn_up_as_an_employer_wofarb.png");
+  background-size: cover;
+  background-position: 30% 40%;
 }
 
-<<<<<<< HEAD
-.signImage {
-=======
 .employerSignUp__image {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   position: absolute;
   top: -1rem;
   left: 2rem;
@@ -33,21 +28,13 @@
   transition: opacity 0.3s ease;
 }
 
-<<<<<<< HEAD
-.signImage img {
-=======
 .employerSignUp__image img {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   width: 220px;
   height: auto;
   object-fit: contain;
 }
 
-<<<<<<< HEAD
-.signContainer {
-=======
 .employerSignUp__container {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,13 +43,9 @@
   padding: 2rem;
 }
 
-<<<<<<< HEAD
-.signCard {
-=======
 .employerSignUp__card {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   padding: 3rem;
-  max-width: 850px;
+  max-width: 950px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -75,56 +58,36 @@
   margin-bottom: 2rem;
 }
 
-<<<<<<< HEAD
-.signHeaderContainer h2 {
-=======
 .employerSignUp__header h2 {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   font-size: 2rem;
   color: #ffffff;
 }
 
-<<<<<<< HEAD
-.signHeaderContainer span {
-=======
 .employerSignUp__header span {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   font-size: 1rem;
   opacity: 0.85;
   color: #ffffff;
 }
 
-<<<<<<< HEAD
-.signForm {
-=======
 .employerSignUp__form {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-<<<<<<< HEAD
-.signRow {
-=======
 .employerSignUp__row {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-<<<<<<< HEAD
-.signInputGroup {
-=======
 .employerSignUp__rowSingle {
   display: flex;
   flex-direction: column;
 }
 
 .employerSignUp__inputGroup {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -134,24 +97,16 @@
   margin-bottom: 1rem;
 }
 
-<<<<<<< HEAD
-.signInputGroup p {
-=======
 .employerSignUp__inputGroup p {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   margin-bottom: 0.3rem;
   font-weight: 500;
   font-size: 0.95rem;
-  color: #7e7a7a;
+  color: #ffffff;
+  font-family: sans-serif Montserrat;
 }
 
-<<<<<<< HEAD
-.signInputGroup input {
-  padding: 10px 40px 10px 14px;
-=======
 .employerSignUp__inputGroup input {
   padding: 10px 14px;
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
@@ -162,11 +117,7 @@
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-.signInputGroup input:focus {
-=======
 .employerSignUp__inputGroup input:focus {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   border-color: #2d5bff;
   background: #fff;
 }
@@ -177,37 +128,25 @@
   margin-top: 0.2rem;
 }
 
-<<<<<<< HEAD
-.signTerms {
-=======
 .employerSignUp__terms {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   text-align: center;
   font-size: 0.9rem;
   margin-top: 0.5rem;
   color: #ffffff;
 }
 
-<<<<<<< HEAD
-.signTerms span {
-=======
 .employerSignUp__terms span {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   color: #2d5bff;
   font-weight: 500;
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-.signCreateAccountButton {
-  background: #8194d7;
-=======
 .employerSignUp__submitBtn {
-  background: #4d61a8;
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
-  color: white;
+  background: #ffffff;
+  color: black;
   padding: 12px;
   font-size: 1rem;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -219,29 +158,16 @@
   align-items: center;
 }
 
-<<<<<<< HEAD
-.signCreateAccountButton:hover {
-  background: #1a40cc;
-}
-
-.signCreateAccountButton:disabled {
-=======
 .employerSignUp__submitBtn:hover {
   background: #1a40cc;
 }
 
 .employerSignUp__submitBtn:disabled,
 .employerSignUp__submitBtn.loading {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   background: #ccc;
   cursor: not-allowed;
 }
 
-<<<<<<< HEAD
-.signRouteToLogin {
-  display: flex;
-  justify-content: center;
-=======
 .employerSignUp__submitBtn.loading::after {
   content: "⏳";
   margin-left: 0.5rem;
@@ -249,17 +175,12 @@
 }
 
 .employerSignUp__redirect {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   text-align: center;
   margin-top: 1rem;
   font-size: 0.95rem;
 }
 
-<<<<<<< HEAD
-.signRouteToLogin span {
-=======
 .employerSignUp__link {
->>>>>>> 1036de8e423301e97cf1a48f710ea00b79a0775c
   color: #1a40cc;
   font-weight: 600;
   margin-left: 5px;

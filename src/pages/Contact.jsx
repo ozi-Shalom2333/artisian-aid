@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    fullname: "",
     email: "",
     message: "",
   });
@@ -16,13 +16,14 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [name]: value });
   };
+  console.log(formData);
 
   const validateForm = () => {
-    const { fullName, email, message } = formData;
+    const { fullname, email, message } = formData;
 
-    if (!fullName.trim() || !email.trim() || !message.trim()) {
+    if (!fullname.trim() || !email.trim() || !message.trim()) {
       toast.error("Please fill in all fields.");
       return false;
     }
@@ -50,14 +51,16 @@ const Contact = () => {
 
     try {
       const payload = {
-        fullname: formData.fullName,
+        fullname: formData.fullname,
         email: formData.email,
         message: formData.message,
       };
 
-      const res = await axios.post("https://artisanaid.onrender.com/contact/us", payload);
+      const res = await axios.post(
+        'https://artisanaid.onrender.com/v1/contact/us', payload
+      );
 
-      if (res.status === 200) {
+      if (res.status === 201 || 200) {
         toast.success("Message sent successfully!");
         setFormData({ fullName: "", email: "", message: "" });
       } else {
@@ -102,10 +105,10 @@ const Contact = () => {
             <label htmlFor="fullName">Full Name</label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
+              id="fullname"
+              name="fullname"
               placeholder="Type here"
-              value={formData.fullName}
+              value={formData.fullname}
               onChange={handleChange}
               required
             />

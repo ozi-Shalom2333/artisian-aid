@@ -9,7 +9,8 @@
     background-color: aqua;
     flex-direction: column;
     justify-content: center;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://ucarecdn.com/a7e92551-040b-4d26-b40f-b7202c1c26de/carpentercuttingmdfboardinsideworkshop3.jpg');    background-size: cover; 
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://ucarecdn.com/a7e92551-040b-4d26-b40f-b7202c1c26de/carpentercuttingmdfboardinsideworkshop3.jpg');
+     background-size: cover; 
     background-repeat: no-repeat;  
     align-items: center;
     color: #fff;
@@ -215,3 +216,162 @@
 .explore-artisans{
     cursor: pointer;
 }
+
+
+
+/* Tablet View (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .homePage__hero1 {
+      height: auto;
+      padding: 50px 20px;
+    }
+  
+    .homePage__hero1 h1 {
+      font-size: 36px;
+    }
+  
+    .homePage__hero1 > p {
+      font-size: 14px;
+    }
+  
+    .homePage__hero1__btns {
+      width: 80%;
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .homePage__hero1__btns p {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 16px;
+    }
+  
+    .homePage__hero2 {
+      flex-direction: column;
+      margin: 50px 0;
+      height: auto;
+    }
+  
+    .homePage__hero2 > div {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+    }
+  
+    .homePage__hero2__img {
+      order: -1;
+    }
+  
+    .homePage__hero2 > div:first-child > h1 {
+      font-size: 36px;
+    }
+  
+    .homePage__hero2 > div:first-child > p {
+      font-size: 18px;
+    }
+  
+    .homePage__hero2 > div:first-child section:last-of-type {
+      width: 100%;
+      margin-top: 30px;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  
+    .homePage__hero2 > div:first-child section:last-of-type div {
+      width: auto;
+      gap: 10px;
+    }
+  
+    .homePage__hero3 {
+      height: auto;
+      padding: 20px;
+    }
+  
+    .homePage__hero3 > aside > h1 {
+      font-size: 36px;
+    }
+  
+    .homePage__hero3 > aside > p {
+      font-size: 18px;
+    }
+  
+    .homePage__hero3__category {
+      padding: 20px 10px;
+      flex-direction: column;
+    }
+  
+    .homePage__hero3__category > div {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  
+    .homePage__hero3__category > div > p {
+      font-size: 24px;
+    }
+  
+    .seeMore {
+      padding: 20px;
+      font-size: 14px;
+    }
+  
+    .homePage__carousel {
+      height: auto;
+      padding: 20px;
+      margin-bottom: 10%;
+    }
+  
+    .homePage__carousel > h1 {
+      font-size: 36px;
+    }
+  
+    .homePage__carousel > h3 {
+      font-size: 16px;
+    }
+  }
+  
+  /* Mobile View (max-width: 480px) */
+  @media screen and (max-width: 480px) {
+    .homePage__hero1 h1 {
+      font-size: 28px;
+      margin-top: 10vh;
+      /* background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://ucarecdn.com/a7e92551-040b-4d26-b40f-b7202c1c26de/carpentercuttingmdfboardinsideworkshop3.jpg'); */
+      background-size: contain; 
+      background-position: center;
+     background-repeat: no-repeat; 
+    }
+  
+    .homePage__hero1 > p {
+      font-size: 12px;
+    }
+  
+    .homePage__hero2 > div:first-child > h1 {
+      font-size: 28px;
+    }
+  
+    .homePage__hero2 > div:first-child > p {
+      font-size: 16px;
+    }
+  
+    .homePage__hero3 > aside > h1 {
+      font-size: 28px;
+    }
+  
+    .homePage__hero3 > aside > p {
+      font-size: 16px;
+    }
+  
+    .homePage__hero3__category > div > p {
+      font-size: 20px;
+    }
+  
+    .homePage__carousel > h1 {
+      font-size: 28px;
+    }
+  
+    .homePage__carousel > h3 {
+      font-size: 14px;
+    }
+  }

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import '../styles/home.css'
 import categoryListing from '../components/categoryList';
 import { RiArrowDropRightLine } from "react-icons/ri";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Carousel from '../components/Carousel';
-import Banner from '../components/Banner';
+
 
 const HomePage = () => {
   
@@ -46,8 +46,16 @@ const HomePage = () => {
            <b> Sign up now and <br /> start building your success story!"
            </b></p>
            <div className='homePage__hero1__btns'>
-            <p>Get Started Now</p>
-            <p>Book Now</p>
+            <p>
+              <NavLink to="/authoption" style={{textDecoration:'none', color:'white'}}>
+              Get Started Now
+              </NavLink>
+              </p>
+            <p>
+              <NavLink to="/category" style={{textDecoration:'none', color:'white'}}>
+              Book Now
+              </NavLink>
+              </p>
            </div>
         </div>
        <div className='homePage__hero2'>
@@ -101,9 +109,7 @@ const HomePage = () => {
             <h1>Hear from Our  <span style={{color:'#2F80ED'}}>Satisfied</span> <br /> Employers</h1>
             <Carousel/>
        </div>
-       {/* //media query for mobile view */}
-       
-
+      
     </div>
   )
 }

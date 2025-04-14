@@ -1,0 +1,221 @@
+.aboutUsMainBody{
+    width: 100%;
+    min-height: 100vh;
+    background-color: aqua;
+    /* max-width: 100%; */
+}
+
+.aboutTopBackgroundImage{
+    width: 1440px;
+height: 693px;
+background-image: url("../../public/imageAbout.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+background-position:center;
+display: flex;
+justify-content: center;
+align-items: center;
+/* position:sticky; */
+}
+
+.aboutUsBackgroundImageText{
+    width: 889px;
+height: 215px;
+gap: 6px;
+/* border: 1px solid red; */
+display: flex;
+flex-direction: column;
+align-items: center;
+
+   p{
+    width: 524px;
+height: 28px;
+/* background-color: aqua; */
+font-family: Montserrat;
+font-weight: 700;
+font-size: 20px;
+line-height: 28px;
+letter-spacing: 0%;
+text-align: center;
+color: #FFFFFF;
+   }
+
+   h2{
+    width: 889px;
+height: 159px;
+font-family: Montserrat;
+font-weight: 700;
+font-size: 48px;
+line-height: 52.8px;
+letter-spacing: 0%;
+text-align: center;
+color: #FFFFFF;
+   }
+}
+
+.aboutUsOurValues{
+    width: 1440px;
+height: 412px;
+background-color: #D8E7F0;
+display: flex;
+justify-content: center;
+align-items: center;
+
+  .aboutUsOurValuesChild{
+    width: 1357px;
+height: 282px;
+gap: 54px;
+/* background-color: aqua; */
+display: flex;
+flex-direction: column;
+
+
+h2{
+    width: 1357px;
+height: 53px;
+font-family: Montserrat;
+font-weight: 700;
+font-size: 48px;
+line-height: 52.8px;
+letter-spacing: 0%;
+  }
+
+  .aboutUsQuality{
+    width: 1357px;
+height: 175px;
+gap: 35px;
+/* background-color: blueviolet; */
+display: flex;
+
+   .aboutUsReliable{
+    width: 429px;
+height: 175px;
+gap: 7px;
+/* background-color: burlywood; */
+display: flex;
+flex-direction: column;
+
+nav{
+    width: 41px;
+height: 41px;
+border: 1px solid #FFA500;
+background-color: #FFFFFF;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+img{
+    width: 20px;
+height: 20px;
+}
+
+}
+
+.aboutUsText{
+    width: 414px;
+height: 112px;
+/* background-color: #FFA500; */
+font-family: Montserrat;
+font-weight: 700;
+font-size: 18px;
+line-height: 28px;
+letter-spacing: 0%;
+display: flex;
+flex-direction: column;
+/* align-items: center; */
+justify-content: center;
+}
+}
+  }
+  }
+
+}
+
+.aboutUsOurAim{
+    width: 1440px;
+height: 679px;
+background-color: #ffffff;
+display: flex;
+justify-content: center;
+align-items: center;
+/* background-color: #FFA500; */
+
+     .aboutUsAimSection{
+        width: 1360px;
+height: 557px;
+/* background-color:aqua ; */
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+
+/* justify-content: space-between; */
+
+         .aboutUsAimSectionText{
+            width: 534px;
+height: 557px;
+gap: 28px;
+/* background-color: chartreuse; */
+display: flex;
+flex-direction: column;
+
+        h2{
+            width: 534px;
+           height: 53px;
+           font-family: Montserrat;
+font-weight: 700;
+font-size: 48px;
+line-height: 52.8px;
+letter-spacing: 0%;
+color: #2F80ED;
+        }
+
+        .aboutUsFullText{
+            width: 534px;
+            height: 476px;
+            /* background-color: #2F80ED; */
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            gap: 90px;
+
+            span{
+                font-family: Montserrat;
+font-weight: 400;
+font-size: 20px;
+line-height: 28px;
+letter-spacing: 0%;
+gap: 20px;
+
+            }
+
+            p{
+                font-family: Montserrat;
+font-weight: 400;
+font-size: 20px;
+line-height: 28px;
+letter-spacing: 0%;
+
+            }
+
+
+        }
+
+         }
+
+         .aboutUsAimImageSection{
+            width: 786px;
+height: 484px;
+border-radius: 10px;
+/* border: 1px solid #414F5F; */
+background-image: url("../../public/Group\ 15.png");
+background-size: cover;
+background-repeat: no-repeat;
+background-position:center;
+
+         }
+
+     }
+
+}

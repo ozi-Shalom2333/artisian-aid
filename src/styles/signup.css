@@ -1,310 +1,276 @@
-.signUpMainBody {
-  width: 100%;
+/* Container and Background */
+.signup-container {
+  position: relative;
+  width: 100vw;
   min-height: 100vh;
-  background-image: url('https://res.cloudinary.com/djnowfvsk/image/upload/v1744204891/bg_1_sign_up_pkyctj.jpg');
+  background: url('/bgImage.jpg') no-repeat center center;
   background-size: cover;
-  background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 
-.signUpImage {
+/* Overlay to darken the background */
+.signup-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding-top: 5px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
-.signUpImage > img {
-  width: 186px;
-height: 36px;
-padding-top:9px ;
-
-}
-
-.signUpHeaderContainer {
-  width: 100%;
+/* Header & Logo */
+.signup-header {
+  position: relative;
+  z-index: 2;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 15px 0;
+  padding: 1rem 2rem;
 }
 
-.signUpHeaderContainer > h2 {
-  width: 390px;
-height: 53px;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 52.8px;
-  letter-spacing: 0%;
-  font-family: Montserrat;
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
+.logo img {
+  max-height: 30px;
+  width: auto;
 }
 
-.signUpHeaderContainer > span {
-  width: 672px;
-height: 23px;
-  font-family: Montserrat;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22.4px;
-  letter-spacing: 0%;
+/* Main Form Content Container */
+.signup-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 2rem;
+  color: #fff;
+}
+
+.signup-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
   text-align: center;
-  color: #ffffff;
 }
 
-.signUpInputSection {
-  width: 100%;
-  gap: 20px;
+.signup-subtitle {
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Grid Layout */
+.signup-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* On smaller screens, collapse the grid */
+@media (max-width: 768px) {
+  .signup-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Group and Label */
+.form-group {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Text inputs and select styling */
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+}
+
+/* ---------- Custom Dropdown Styles ---------- */
+
+/* Custom dropdown wrapping group */
+.custom-dropdown-group {
+  position: relative;
+  display: flex;
   flex-direction: column;
 }
 
-.SignUpForNameAndBusinessInput {
-  width: 90%;
-  gap: 38px;
-  display: flex;
-  justify-content: center;
+/* Main dropdown container; mimic input field style */
+.custom-dropdown {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #333;
+  padding: 0.75rem;
 }
 
-.signUpInputForName {
-  width: 45%;
-  height: 82px;
-  gap: 8px;
-}
-
-.signUpInputForName > p {
-  width: 500px;
-  height: 18px;
-  font-family: Noto Sans;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: 0%;
-  color: #7c8b9d;
-}
-
-.signUpInputForName > input {
-  width: 100%;
-  height: 56px;
-  gap: 10px;
-  border-radius: 8px;
-  border-width: 1px;
-  padding: 16px;
-  color: #7c8b9d;
-}
-
-.signUpInputForBusiness {
-  width: 45%;
-  height: 82px;
-  gap: 8px;
-}
-
-.signUpInputForBusiness > p {
-  width: 500px;
-  height: 18px;
-  font-family: Noto Sans;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: 0%;
-  color: #7c8b9d;
-}
-
-.signUpInputForBusiness > input {
- 
-  width: 100%;
-  height: 56px;
-  gap: 10px;
-  border-radius: 8px;
-  border-width: 1px;
-  padding: 16px;
-  color: #7c8b9d;
-}
-
-
-
-.SignUpForCategoryInput {
-  width: 84%;
-  height: 56px;
-  gap: 38px;
-  display: flex;
-}
-
-.signUpInputForCategory {
-  width: 505px;
-  height: 56px;
-  gap: 8px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  padding-right: 80px;
-  border-radius: 8px;
-}
-
-.signUpInputForCategory > p {
-  /* width: 500px; */
-  height: 18px;
-  font-family: Noto Sans;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: 0%;
-  color: #7c8b9d;
-}
-
-.signUpInputForCategory > .category-dropdown-container {
-  width: 505px;
-  height: 56px;
-  gap: 10px;
-  border-radius: 8px;
-  border-width: 1px;
-  padding: 16px;
-  color: #7c8b9d;
+/* Dropdown header displays selected value or placeholder */
+.dropdown-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid black;
-  cursor: pointer;
-  position: relative;
-
-  .category-dropdown-toggle {
-    display: flex;
-    align-items: center;
-    font-size: 22px;
-  }
-
-  .category-list {
-    position: absolute;
-    bottom: -100px;
-    left: 0;
-    width: 80%;
-    height: 200px;
-    max-height: 90px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 5px;
-    flex-direction: column;
-    display: flex;
-    gap: 5px;
-    color: black;
-    overflow-y: scroll;
-
-    input {
-      position: relative;
-      width: 100%;
-      min-height: 6vh;
-      border-radius: 10px;
-      border: 1px solid gainsboro;
-      outline: none;
-      padding: 15px;
-      padding-left: 35px;
-    }
-
-    .signup-search {
-      position: absolute;
-      font-size: 20px;
-      top: 13px;
-      left: 15px;
-      color: #7c8b9d;
-    }
-
-    nav {
-      min-height: 6vh;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      padding: 5px;
-    }
-
-    nav:hover {
-      background: rgba(237, 237, 237, 0.641);
-    }
-  }
 }
 
-.signUpTermsAndConditions {
-  width: 100%;
-  height: 30vh;
-  gap: 20px;
+/* Icon (arrow or close) on the right */
+.dropdown-arrow {
+  margin-left: auto; /* ensures icon is on the far right */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-
-
-.SignUpForTermsAndConditonContainer {
-  width: 55%;
-  height: 50px;
-  font-family: Montserrat;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22.4px;
-  letter-spacing: 0%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  color: #ffffff;
+/* Dropdown body with search box and list */
+.dropdown-body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  margin-top: 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  z-index: 10;
+  padding: 0.5rem 0;
 }
 
-.SignUpForTermsAndConditonContainer > span {
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 25.2px;
-  letter-spacing: 0%;
-  text-align: center;
-  color: blue;
+/* Search input within dropdown */
+.dropdown-search {
+  width: 90%;
+  margin: 0.5rem auto;
+  display: block;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
 }
 
+/* Scrollable list container */
+.dropdown-list {
+  max-height: 100px;
+  overflow-y: auto;
+}
 
-.signUpCreateAccountButton {
-  width: 1038px;
-  height: 55px;
-  gap: 10px;
-  border-radius: 8px;
-  padding-top: 16px;
-  padding-right: 80px;
-  padding-bottom: 16px;
-  padding-left: 80px;
+/* Dropdown list items */
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show text when no items match search */
+.dropdown-item.no-match {
+  cursor: default;
+  color: #999;
+  text-align: center;
+}
+
+/* ---------- End Custom Dropdown Styles ---------- */
+
+
+/* ---------- Password Requirements ---------- */
+.password-requirements {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.password-requirements .requirement {
   display: flex;
-  justify-content: center;
-  font-family: Inter;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22.4px;
-  letter-spacing: 0%;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.password-requirements .requirement.valid {
+  color: green;
+}
+
+.password-requirements .requirement.invalid {
+  color: #ccc;
+}
+
+/* ---------- Error Text ---------- */
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* ---------- Terms and Conditions ---------- */
+.signup-terms {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: #fff;
+}
+
+.terms-link {
+  color: #2F80ED;
+  text-decoration: underline;
+}
+
+/* ---------- Submit Button ---------- */
+.signup-button {
+  grid-column: 1 / -1;
+  padding: 0.75rem 2rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 4px;
   color: #000435;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.signUpRouteToLogin {
-  width: 100%;
-  height: 23px;
-  /* background: red; */
-  display: flex;
-  font-family: Montserrat;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22.4px;
-  letter-spacing: 0%;
-  text-align: center;
-  color: #ffffff;
-  justify-content: center;
+.signup-button:hover {
+  background-color: #e68a00;
 }
 
-.signUpRouteToLogin > span {
-  width: 64px;
-  height: 23px;
-  gap: 12px;
-  font-family: Montserrat;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22.4px;
-  letter-spacing: 0%;
+.signup-button.disabled,
+.signup-button:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Already Have an Account Link ---------- */
+.signup-login-text {
+  grid-column: 1 / -1;
   text-align: center;
-  color: #2f80ed;
+  color: #fff;
+}
+
+.login-link {
+  color: #2F80ED;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  .signup-content {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+  
+  .signup-title {
+    font-size: 1.75rem;
+  }
 }
 

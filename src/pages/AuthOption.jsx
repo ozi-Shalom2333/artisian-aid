@@ -34,24 +34,26 @@ const AuthOption = () => {
       </section>
 
       <section className='authInputContainer'>
-        <aside className='authOptionArtisan'>
+        <aside className='authOptionArtisan'
+        onClick={handleArtisanSignup}>
           <img src="/Vector.png" alt="Artisan Icon" />
           <section className='authOptionsConnect'>
             <h2>Artisans</h2>
             <p>Connect with clients and upscale</p>
           </section>
-          <div className='authRightArrow' onClick={handleArtisanSignup}>
+          <div className='authRightArrow'>
             <FaArrowRight />
           </div>
         </aside>
 
-        <aside className='authOptionArtisan'>
+        <aside className='authOptionArtisan' 
+        onClick={handleEmployerSignup}>
           <img src="/Vector (2).png" alt="Employer Icon" />
           <section className='authOptionsConnect'>
             <h2>Employer</h2>
             <p>Access and book the artisan you need</p>
           </section>
-          <div className='authRightArrow' onClick={handleEmployerSignup}>
+          <div className='authRightArrow' >
             <FaArrowRight />
           </div>
         </aside>       

@@ -1,0 +1,68 @@
+.change-password-container {
+    background-color: #fff; 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin: 0 auto;
+    width: 70%; 
+  }
+  
+  .change-password-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1e293b; /* Dark text color */
+  }
+  
+  .change-password-sub-heading {
+    font-size: 16px;
+    color: #64748b; /* Gray text color */
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #334155;
+  }
+  
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e0;
+    font-size: 16px;
+    color: #0f172a;
+    outline: none;
+  }
+  
+  .password-icon {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: #64748b;
+  }
+  
+  .save-changes-button {
+    background-color: #1e3a8a; /* Dark blue button color */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }

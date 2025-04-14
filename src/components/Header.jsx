@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className='Header-container'>
       <section className='Header-section'>
-      <img onClick={()=> navigate('/')} style={{objectFit: 'contain', width: '20%', cursor:'pointer'}} src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744194748/Artisan_ifmbb4.png" alt=""  sizes='30'/>
+      <img onClick={()=> navigate('/')} style={{objectFit: 'contain', width: '15%', cursor:'pointer'}} src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744194748/Artisan_ifmbb4.png" alt=""  sizes='30'/>
       
 
 
@@ -26,7 +26,7 @@ const Header = () => {
 
       <div className='Header-authentication'>
         <p>
-            <NavLink to="/signup" >Sign Up</NavLink>
+            <NavLink to="/authoption" >Sign Up</NavLink>
         </p>
         <p>
             <NavLink to="/login" >Login</NavLink>

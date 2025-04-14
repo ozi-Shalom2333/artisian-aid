@@ -1,172 +1,196 @@
 import React, { useState } from 'react';
-import '../styles/employerSignup.css';
-import { useNavigate } from 'react-router-dom'; 
+import '../styles/employerSignup.css'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const EmployerSignUp = () => {
-  const navigate = useNavigate(); 
-
-  const [formData, setFormData] = useState({
-    fullName: '',
-    phone: '',
+  const [form, setForm] = useState({
+    fullname: '',
     email: '',
+    phoneNumber: '',
     password: '',
     confirmPassword: ''
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const validateForm = () => {
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: '' });
+  };
+
+  const checkForm = () => {
     const newErrors = {};
-
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full Name is required.';
-    } else if (formData.fullName.trim().length < 3) {
-      newErrors.fullName = 'Full Name must be at least 3 characters.';
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+  
+    if (!form.fullname) newErrors.fullname = 'Full name is required';
+  
+    if (!form.phoneNumber) {
+      newErrors.phoneNumber = 'Phone number is required';
+    } else if (!/^\+?\d{7,15}$/.test(form.phoneNumber)) {
+      newErrors.phoneNumber = 'Enter a valid phone number';
     }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone Number is required.';
-    } else if (!/^0\d{10}$/.test(formData.phone)) {
-      newErrors.phone = 'Phone Number must be 11 digits starting with 0.';
+  
+    if (!form.email) newErrors.email = 'Email is required';
+  
+    if (!form.password) {
+      newErrors.password = 'Password is required';
+    } else if (!strongPasswordRegex.test(form.password)) {
+      newErrors.password =
+        'Password must be at least 8 characters and include one uppercase letter, one lowercase letter, and one special character';
     }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required.';
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = 'Email is invalid.';
+  
+    if (!form.confirmPassword) {
+      newErrors.confirmPassword = 'Confirm password is required';
+    } else if (form.password !== form.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
     }
-
-    if (!formData.password) {
-      newErrors.password = 'Password is required.';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters.';
-    }
-
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Confirm your password.';
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match.';
-    }
-
+  
     return newErrors;
   };
+  
 
-  const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-
-    setErrors(prev => ({
-      ...prev,
-      [e.target.name]: ''
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
+
+    const formErrors = checkForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
+      toast.error(Object.values(formErrors)[0]);
       return;
     }
 
-    alert('Account created successfully!');
-  };
+    const data = {
+      fullname: form.fullname,
+      email: form.email,
+      phoneNumber: form.phoneNumber,
+      password: form.password,
+      confirmPassword: form.confirmPassword,
+    };
+
+
+    try {
+      const response = await axios.post(
+        'https://artisanaid.onrender.com/v1/register/employer',
+        data,
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    
+      if (response.status === 200) {
+        toast.success('Account created!');
+        setForm({ fullname: '', phoneNumber: '', email: '', password: '', confirmPassword: '' });
+      } else {
+        toast.error(response.data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || 'Server error, try again later'
+      );
+    }
+  }    
 
   return (
-    <div className='signUpBody'>
-      <div className='signContainer'>
-        <aside className='signImage'>
+    <div className="employerSignUp__main">
+      <ToastContainer />
+      <div className="employerSignUp__container">
+        <aside className="employerSignUp__image">
           <img src="/Artisan.png" alt="Logo" />
         </aside>
 
-        <div className='signCard'>
-          <section className='signHeaderContainer'>
+        <div className="employerSignUp__card">
+          <section className="employerSignUp__header">
             <h2>Create Account</h2>
             <span>Enter the required information to create your account as an Employer.</span>
           </section>
 
-          <form onSubmit={handleSubmit} className='signForm'>
-            <div className='signUpRow'>
-              <div className='signInputGroup'>
+          <form onSubmit={handleSubmit} className="employerSignUp__form">
+            <div className="employerSignUp__row">
+              <div className="employerSignUp__inputGroup">
                 <p>Full Name</p>
                 <input
                   type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  placeholder='Type here'
+                  name="fullname"
+                  value={form.fullname}
+                  onChange={handleInput}
+                  placeholder="Your name"
                 />
-                {errors.fullName && <small className="inputError">{errors.fullName}</small>}
+                {errors.fullname && <small className="employerSignUp__error">{errors.fullname}</small>}
               </div>
-              <div className='signInputGroup'>
+              <div className="employerSignUp__inputGroup">
                 <p>Phone Number</p>
                 <input
                   type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder='080**********'
+                  name="phoneNumber"
+                  value={form.phoneNumber}
+                  onChange={handleInput}
+                  placeholder="080..."
                 />
-                {errors.phone && <small className="inputError">{errors.phone}</small>}
+                {errors.phoneNumber && <small className="employerSignUp__error">{errors.phoneNumber}</small>}
               </div>
             </div>
 
-            <div className='signRow'>
-              <div className='signInputGroup'>
+            <div className="employerSignUp__row">
+              <div className="employerSignUp__inputGroup">
                 <p>Email</p>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder='Type here'
+                  value={form.email}
+                  onChange={handleInput}
+                  placeholder="Your email"
                 />
-                {errors.email && <small className="inputError">{errors.email}</small>}
+                {errors.email && <small className="employerSignUp__error">{errors.email}</small>}
               </div>
-              <div className='signInputGroup'>
+              <div className="employerSignUp__inputGroup">
                 <p>Password</p>
                 <input
                   type="password"
                   name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder='Type here'
+                  value={form.password}
+                  onChange={handleInput}
+                  placeholder="Your password"
                 />
-                {errors.password && <small className="inputError">{errors.password}</small>}
+                {errors.password && <small className="employerSignUp__error">{errors.password}</small>}
               </div>
             </div>
 
-            <div className='signRowSingle'>
-              <div className='signInputGroup'>
+            <div className="employerSignUp__rowSingle">
+              <div className="employerSignUp__inputGroup">
                 <p>Confirm Password</p>
                 <input
                   type="password"
                   name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  placeholder='Type here'
+                  value={form.confirmPassword}
+                  onChange={handleInput}
+                  placeholder="Confirm password"
                 />
-                {errors.confirmPassword && <small className="inputError">{errors.confirmPassword}</small>}
+                {errors.confirmPassword && (
+                  <small className="employerSignUp__error">{errors.confirmPassword}</small>
+                )}
               </div>
             </div>
 
-            <div className='signTerms'>
-              <p>
-                By creating an account you automatically agree 
-              </p>
-              <p> to ArtisanAid <span>Terms and Condition</span></p>
+            <div className="employerSignUp__terms">
+              <p>By creating an account you automatically agree</p>
+              <p>to ArtisanAid <span className="employerSignUp__link">Terms and Condition</span></p>
             </div>
 
-            <button type="submit" className='signUpCreateAccountButton'>Create account</button>
+            <button type="submit" className="employerSignUp__submitBtn">
+              Create Account
+            </button>
 
-            <div className='signRouteToLogin'>
+            <div className="employerSignUp__redirect">
               <p>
                 Already have an account?{' '}
                 <span 
                   onClick={() => navigate('/login')} 
-                  style={{ cursor: 'pointer', color: '#007bff' }}
+                  className="employerSignUp__link"
                 >
                   Login
                 </span>

@@ -5,6 +5,7 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from '../components/Carousel';
+import Banner from '../components/Banner';
 
 const HomePage = () => {
   
@@ -100,7 +101,8 @@ const HomePage = () => {
             <h1>Hear from Our  <span style={{color:'#2F80ED'}}>Satisfied</span> <br /> Employers</h1>
             <Carousel/>
        </div>
-
+       {/* //media query for mobile view */}
+       
 
     </div>
   )

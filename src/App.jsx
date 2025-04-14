@@ -12,7 +12,9 @@ const App = () => {
       <div className="App">
         <Header />
         {/* <main style={{ height: 'calc(100vh - 200px)', backgroundColor: '#f0f0f0' }}> */}
-        <Outlet />
+         <main>
+         <Outlet />
+         </main>
         <Footer />
       </div>
     </>

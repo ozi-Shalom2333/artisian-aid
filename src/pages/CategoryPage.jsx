@@ -25,10 +25,6 @@ const CategoryPage = () => {
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/electrician-svgrepo-com_1_u0mzzu.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
-        <div className="category-item-box" onClick={()=> navigate('/category/painting')}>
-          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
-          <span className="category-label">Painting</span>
-        </div>
         <div className="category-item-box" onClick={()=> navigate('/category/gardening')}>
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" /> 
           <span className="category-label">Gardening</span>
@@ -50,10 +46,6 @@ const CategoryPage = () => {
         <span className="category-label">Painting</span>
         </div>
         <div className="category-item-box">
-          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" />
-          <span className="category-label">Gardening</span>
-        </div>
-        <div className="category-item-box">
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
         <span className="category-label">Laundry</span>
         </div>
@@ -61,10 +53,7 @@ const CategoryPage = () => {
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
         <span className="category-label">Painting</span>
         </div>
-        <div className="category-item-box">
-          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" />
-          <span className="category-label">Gardening</span>
-        </div>
+
         <div className="category-item-box">
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
         <span className="category-label">Laundry</span>

@@ -98,7 +98,7 @@
     width: 35%;
     display: flex;
     position: absolute;
-    top: -142px;
+    top: -240px;
     border-radius: 30px 30px 0 0;
     left: 100px;
     padding: 20px;
@@ -121,16 +121,20 @@
     bottom: 50px;
     cursor: pointer;
   }
-
+  .footerContainer_mobile{
+    display: none;
+  }
 
   @media screen and (max-width: 480px) {
-    .footer-top-section {
-      height: auto;
-      padding: 20px;
-      align-items: center;
-    }
+   .footerContainer_mobile_holder{
+    width: 100%;
+    height: fit-content;
+    margin: 20% 0 0 0;
+    background-color: yellow;
+
+   } 
   
-    .footerSub__content {
+    /* .footerSub__content {
       height: auto;
       flex-direction: column;
       align-items: center;
@@ -159,17 +163,17 @@
       right: auto;
       bottom: auto;
     }
-  
-    .Footer-container {
+   */
+   .Footer-container{
+    display: none;
+   }
+   .footerContainer{
+    display: none;
+   }
+    /* .Footer-container {
       padding: 20px 0;
     }
   
-    .Footer-section-lightblue {
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-    }
   
     .Footer-section-lightblue h2 {
       font-size: 20px;
@@ -185,45 +189,116 @@
       padding: 10px 30px;
       font-size: 14px;
     }
-  
-    .footer-select {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 20px;
+   */
+
+    .footerContainerMobileFull{
+      position: relative;
+      width: 100%;
+      height: autot;
+      background-color: #000435;
+      color: #ffff;
+      padding: 10px;
+      
     }
-  
-    .footer-select div {
-      width: 45%;
-      margin-bottom: 15px;
-      align-items: flex-start;
-    }
-  
-    .footer-select h3 {
-      font-size: 12px;
-    }
-  
-    .footer-select p {
-      font-size: 10px;
-    }
-  
-    .footer-bottom {
-      flex-direction: row;
+    .Footer-section-lightblue_mobile{
+      width: 100%;
+      height: fit-content;
+      background-color: #2F80ED;
+      padding: 5px 8px;
+      flex-direction: column;
       align-items: center;
-      padding: 20px;
-      justify-content: space-between;
-    }
-  
-    .footer-bottom p {
-      font-size: 10px;
-    }
-  
-    .footer-social {
       gap: 10px;
+      font-size: 14px;
+      margin-bottom: 15px;
     }
+    .Footer-section-lightblue_mobile div{
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      background-color: #000435;
+      padding: 10px 15px;
+      justify-content: center;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+
+   .footer-select_mobile{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+   }
+   .footer-select_mobile div{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+   }
+   .footer-select_mobile div h3{
+    font-size: 12px;
+   }
+   .footer-select_mobile div p{
+    font-size: 10px;
+   }
+   .footer-bottom_mobile{
+      display: flex;
+      width: 100%;
+      height: fit-content;
+      gap: 10px;
+      margin-bottom: 5%;
+      
+   }
+   .footer-bottom_mobile p{
+      font-size: 14px;
+   }
+   .footer-bottom_mobile div{
+   display: flex;
+   gap: 5px;;
+   }
+
   
-    .footer-social svg {
-      width: 20px;
-      height: 20px;
+
+    .footerContainer_mobile{
+      width: 80%;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      background-color: #000435;
+      color: #fff;
+      align-items: center;
+      position: absolute;
+      margin: 10% 0;
+      padding: 20px 0;
+      border-radius: 10px;
+      top: 220%;
+      left: 10%;
+      
+    }
+    .footerContainer_mobile h1{
+       font-size: 12px;
+       font-weight: 400;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+    .footerContainer_mobile div{
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      justify-content: center;
+      margin-top: 10%;
+    
+      
+    
+    }
+    .footerContainer_mobile div p{
+       width: fit-content;
+       height: fit-content;
+       background-size: cover;
+       padding: 10px;
+       border-radius: 10px;
+      background-image:  linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744194770/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning_ob30a8.jpg);
     }
   }

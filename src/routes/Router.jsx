@@ -24,7 +24,6 @@ import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMess
 
 const Router = createBrowserRouter([
     {
-        path: '/',
         element: <App />,
         children: [
             { path: '/', element: <HomePage /> },

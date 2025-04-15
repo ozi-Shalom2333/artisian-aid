@@ -393,8 +393,10 @@
     }
     .explore-artisans{
       display: flex;
+      border: 2px solid green;
       align-items: center;
     }
+
     .home-h2-d2{
       display: flex;
       flex-direction: row-reverse;

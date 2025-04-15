@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './../styles/carousel.css';
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BiRightArrowAlt } from "react-icons/bi";
@@ -62,10 +62,28 @@ const testimonialsData = [
   },
 ];
 
-const itemsPerPage = 2;
-
 const Carousel = () => {
+  const calculateItemsPerPage = useCallback(() => {
+    if (window.innerWidth <= 768) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }, []);
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(calculateItemsPerPage());
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [calculateItemsPerPage]);
 
   const goToPrevious = () => {
     const newIndex = (currentIndex - itemsPerPage + testimonialsData.length) % testimonialsData.length;

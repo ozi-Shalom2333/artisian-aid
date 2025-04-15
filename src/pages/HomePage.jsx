@@ -85,6 +85,48 @@ const HomePage = () => {
              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
           </div>
        </div>
+
+       {/* mobile responsiveness setup */}
+       
+       
+          <div className='homePage__hero2__mobile'>
+            <h1>Reliable. <span>Efficient.</span> Quality  <br /> Guaranteed.</h1>
+            <p>Find trusted artisans for all your home improvement needs as a busy professional.</p>
+            <section className='home-h2-d2' style={{border:'2px solid yellow'}}>
+               <aside className='sect-mobile'>
+               <section style={{border:'2px solid green'}} className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
+              <p>Explore Artisans</p>
+              <RiArrowDropRightLine size={25}/>
+              </section>
+              <div>
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt=""  />
+                <p>Efficient</p>
+              </div>
+              <div>
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="" />
+                <p>Flexible</p>
+              </div>
+              <div>
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="" />
+                <p>Trustworthy</p>
+              </div>
+
+               </aside>
+
+              <div className='homePage__hero2__img'>
+                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
+              </div>
+            </section>
+          </div>
+
+
+
+
+
+
+
+
+
        <div className='homePage__hero3'>
           <aside >
           <h1>Discover Our <span style={{color:'#FFA500'}}>Artisans</span> Categories</h1>

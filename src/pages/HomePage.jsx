@@ -92,9 +92,9 @@ const HomePage = () => {
           <div className='homePage__hero2__mobile'>
             <h1>Reliable. <span>Efficient.</span> Quality  <br /> Guaranteed.</h1>
             <p>Find trusted artisans for all your home improvement needs as a busy professional.</p>
-            <section className='home-h2-d2' style={{border:'2px solid yellow'}}>
-               <aside className='sect-mobile'>
-               <section style={{border:'2px solid green'}} className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
+            <section className='home-h2-d2' >
+            <aside className='sect-mobile'>
+               <section className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
               <p>Explore Artisans</p>
               <RiArrowDropRightLine size={25}/>
               </section>
@@ -111,19 +111,13 @@ const HomePage = () => {
                 <p>Trustworthy</p>
               </div>
 
-               </aside>
+            </aside>
 
               <div className='homePage__hero2__img'>
                 <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
               </div>
             </section>
           </div>
-
-
-
-
-
-
 
 
 
@@ -146,6 +140,51 @@ const HomePage = () => {
             <RiArrowDropRightLine size={25}/>
           </div>
        </div>
+
+       {/* mobile set up for categories */}
+       <div className='homePage__hero3_mobile'>
+          <aside >
+          <h1>Discover Our <span style={{color:'#FFA500'}}>Artisans</span> Categories</h1>
+          <h3>Browse our categories to find the perfect professional for your needs.</h3>
+          </aside>
+          <div className='homePage__hero3__category'>
+             {categoryListing.map((category, index) => (
+
+             <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
+                <img src={category.image} alt="" />
+                <p>{category.text}</p>
+            </div>
+         ))}
+          </div>
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        <div className='homePage__carousel'>
             <h3>Testimonials</h3>
             <h1>Hear from Our  <span style={{color:'#2F80ED'}}>Satisfied</span> <br /> Employers</h1>

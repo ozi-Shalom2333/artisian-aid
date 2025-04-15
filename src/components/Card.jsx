@@ -6,6 +6,7 @@ import { MdVerified } from "react-icons/md";
 
 function Card({data}) {
   return (
+  
     <div className="card">
       <div className="card-header">
         <div className="profile-info">

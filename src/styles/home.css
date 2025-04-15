@@ -136,6 +136,9 @@
     font-size: 56px;
     font-weight: 700;
 }
+.homePage__hero2__mobile{
+  display: none;
+}
 .homePage__hero3 > aside > p{
     font-size: 24px;
     font-weight: 700;
@@ -182,7 +185,9 @@
     justify-content: center;
     margin-top: 30px;
 }
-
+.homePage__hero3_mobile{
+  display: none;
+}
 .seeMore{
     width: 100%;
     height: fit-content;
@@ -236,13 +241,17 @@
     .homePage__hero1 > p {
       font-size: 14px;
     }
-  
+    .homePage__hero2__mobile{
+      display: none;
+    }
     .homePage__hero1__btns {
       width: 80%;
       flex-direction: column;
       gap: 15px;
     }
-  
+   .homePage__hero3_mobile{
+    display: none;
+   }
     .homePage__hero1__btns p {
       width: 100%;
       padding: 15px 20px;
@@ -339,7 +348,7 @@
   @media screen and (max-width: 480px) {
     .homePage__hero1{
       /* background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://ucarecdn.com/a7e92551-040b-4d26-b40f-b7202c1c26de/carpentercuttingmdfboardinsideworkshop3.jpg'); */
-      background-size: 115% 98%; 
+      background-size: 115% 100%; 
       background-position: center;
      background-repeat: no-repeat; 
     }
@@ -375,16 +384,20 @@
     .homePage__hero2{
       display: none;
     } 
-    .homePage__hero2-mobile{
+    .homePage__hero2__mobile{
        display: flex;
        flex-direction: column;
        padding: 20px;
+       gap: 10px;
     }
-    .homePage__hero2-mobile h1{
-       font-size: 28px;
-       border: 2px solid red;
+    .homePage__hero2__mobile h1{
+       font-size: 25px;
     }
-    .homePage__hero2-mobile h1 > span{
+    .homePage__hero2__mobile > p{
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .homePage__hero2__mobile h1 > span{
       color: #FFA500;
     }
     .homePage__hero2-mobile p{
@@ -395,6 +408,14 @@
       display: flex;
       border: 2px solid green;
       align-items: center;
+      justify-content: center;
+      width: 170px;
+      background-color: #000435;
+      height: fit-content;
+      font-size: 12px;
+      border-radius: 10px;
+      padding: 10px 5px;
+      color: #fff;
     }
 
     .home-h2-d2{
@@ -406,9 +427,18 @@
       display: flex;
       width: 100%;
       height: fit-content;
+      gap: 20px;
       flex-direction: column;
     }
-  
+    .sect-mobile div{
+      display: flex;
+      gap: 10px;
+    }
+    .sect-mobile div img{
+      width: 20px;
+      height: 20px;
+    }
+/*   
     .homePage__hero3 > aside > h1 {
       font-size: 28px;
     }
@@ -419,7 +449,42 @@
   
     .homePage__hero3__category > div > p {
       font-size: 20px;
-    }
+    } */
+   
+   .homePage__hero3 {
+    display: none;
+   } 
+   
+   .homePage__hero3_mobile h1{
+     font-size: 20px;
+     text-align: center;
+
+   }
+   .homePage__hero3_mobile h3{
+     font-size: 12px;
+     text-align: center;
+   }
+   .homePage__hero3_mobile{
+     display: flex;
+     padding: 15px;
+     flex-direction: column;
+     background-color: #D8E7F0;
+   }
+   .homePage__hero3__category{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+   }
+   .homePage__hero3__category div{
+    width: 45%;
+    padding: 10px 5px;
+    display: flex;
+    
+   }
+   .homePage__hero3__category div p{
+    font-size: 12px;
+   }
     .homePage__hero1__btns{
        display: flex;
        width: 100%;

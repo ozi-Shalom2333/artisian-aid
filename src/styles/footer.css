@@ -299,6 +299,8 @@
        background-size: cover;
        padding: 10px;
        border-radius: 10px;
+       font-weight: 700;
       background-image:  linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744194770/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning_ob30a8.jpg);
     }
   }
+  

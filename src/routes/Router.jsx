@@ -21,6 +21,7 @@ import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
 import EmployerDashBoard from '../dashboards/employer/EmployerDashBoard';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
+import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 
 const Router = createBrowserRouter([
     {
@@ -43,6 +44,7 @@ const Router = createBrowserRouter([
     { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
     { path: '/employerdashboard', element: <EmployerDashBoard/> },
+    {path: '/artisandashboard', element: <ArtisanDashoard/>},
     { path: '/authoption', element: <AuthOption /> },
     { path: '/forget', element: <ForgetPassword /> },
     { path: '/employersignup', element: <EmployerSignUp /> },

@@ -6,7 +6,6 @@ import "../../../styles/artisanUpload.css";
 const ArtisanUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false); 
 
   const handleFileChange = (event) => {
@@ -14,7 +13,6 @@ const ArtisanUpload = () => {
     if (file) {
       setSelectedFile(file);
 
-      
       const reader = new FileReader();
       reader.onload = () => {
         setImagePreview(reader.result);
@@ -42,21 +40,14 @@ const ArtisanUpload = () => {
     event.preventDefault();
   };
 
-  const handleDescriptionChange = (event) => {
-    if (event.target.value.length <= 250) {
-      setDescription(event.target.value);
-    }
-  };
-
   const handleUpload = async () => {
-    if (!selectedFile || !description) {
-      alert("Please select a file and provide a description.");
+    if (!selectedFile) {
+      alert("Please select a file.");
       return;
     }
 
     const formData = new FormData();
     formData.append("jobImage", selectedFile);
-    formData.append("description", description);
 
     try {
       setLoading(true); 
@@ -124,19 +115,6 @@ const ArtisanUpload = () => {
           </div>
         </div>
       )}
-
-      <div className="description-box">
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          value={description}
-          onChange={handleDescriptionChange}
-          placeholder="Write a brief description of the job post..."
-        />
-        <p className="word-count">
-          Character count: {description.length} / 250 words{" "}
-        </p>
-      </div>
 
       <button
         className="upload-post-button"

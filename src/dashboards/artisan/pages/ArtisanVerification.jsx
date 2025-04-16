@@ -11,6 +11,7 @@ const ArtisanVerification = () => {
   const [guarantorNumber, setGuarantorNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const baseUrl = "https://artisanaid.onrender.com";
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -24,7 +25,7 @@ const ArtisanVerification = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, token) => {
     e.preventDefault();
 
     if (!guarantorName || !guarantorNumber || !file) {
@@ -40,7 +41,7 @@ const ArtisanVerification = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "https://artisanaid.onrender.com/v1/account/verification",
+        `${baseUrl}/v1/account/verification`,
         formData,
         {
           headers: {
@@ -49,13 +50,12 @@ const ArtisanVerification = () => {
           },
         }
       );
-      
+
       console.log(res);
     } catch (error) {
       console.error(error);
       // console.log(error );
       setLoading(false);
-
     }
   };
 
@@ -66,7 +66,7 @@ const ArtisanVerification = () => {
         fill & Select relevant information to complete your Verification
       </p>
 
-      <form className="guarantor-form" onSubmit={handleSubmit}>
+      <form className="guarantor-form" onSubmit={(e)=>handleSubmit(e, token)}>
         <label>Guarantor’s name</label>
         <input
           type="text"

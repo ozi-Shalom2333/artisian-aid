@@ -83,16 +83,17 @@ const ArtisanInfo = () => {
 
       <form className="profile-form">
         <div className="form-row">
-          <input type="text" placeholder="Full Name" defaultValue="Adeaze Jane" />
-          <input type="text" placeholder="Business Name" defaultValue="Adeaze Jane" />
-          <input type="email" placeholder="Email Address" defaultValue="adeazejane025@gmail.com" />
+          <input type="text" placeholder="Full Name" defaultValue="Adeaze Jane" readOnly/>
+          <input type="text" placeholder="Business Name" defaultValue="Adeaze Jane" readOnly />
+          <input type="email" placeholder="Email Address" defaultValue="adeazejane025@gmail.com" readOnly />
         </div>
 
         <div className="form-row">
           <select>
             <option>Select L.G.A</option>
           </select>
-          <input type="text" placeholder="State" defaultValue="Lagos State" />
+          <input type="text" placeholder="State" defaultValue="Lagos State" readOnly />
+        
         </div>
 
         <div className="form-row">

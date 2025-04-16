@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaRegEyeSlash } from "react-icons/fa";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 import "../styles/login.css";
 
 const Login = () => {
@@ -10,6 +12,13 @@ const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showpassword, setShowPassword] = useState(false);
+
+
+ const togglePasswordVisibility = () => {
+    setShowPassword(!showpassword);
+ }
+
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,6 +62,7 @@ const Login = () => {
         localStorage.setItem('authToken', token);
         const userRole = response.data.role;
         toast.success(response.data.message || 'Login successful!');
+        
 
         toast.info('Redirecting...');
         if (userRole === 'Admin') {
@@ -94,7 +104,47 @@ const Login = () => {
   return (
     <div className='loginMainBody'>
       <ToastContainer position="top-right" autoClose={3000} />
-      <aside className='loginImageHeader' onClick={()=> navigate('/')}>
+      <div className='firstborn'  onClick={()=> navigate('/')}>
+        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="" />
+      </div>
+      <div className='lastborn'>
+          <h1>Log In</h1>
+          <p>Enter your details to get signed in into your account</p>
+          <div className='loginEmailInput'>
+            <span>
+              <p>Email/Phone number</p>
+            </span>
+            <input
+              type="text" 
+              placeholder='Type here'
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+            />
+          </div>
+          <div className='loginEmailPassword'>
+            <span>
+              <p>Password</p>
+            </span>
+           <div className='loginPasswordSection'>
+              <input
+                  type={showpassword ? 'text' : 'password'}
+                  placeholder='Type here'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                  <span className='showPassword' onClick={togglePasswordVisibility}>
+                        {showpassword ? <MdOutlineRemoveRedEye color='black'/>: <FaRegEyeSlash color='black'/>}
+                      </span>
+           </div>
+           <p className='forget'>Forgot Password?</p>
+          </div>
+          <button className='button' onClick={handleLogin} disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+          </button>
+      </div>
+      
+      {/* <ToastContainer position="top-right" autoClose={3000} />
+      <aside className='loginImageHeader'>
         <img src="/Artisan.png" alt="Artisan" />
       </aside>
       <div className='loginContainerBody'>
@@ -111,28 +161,29 @@ const Login = () => {
               <span>Email / Phone Number</span>
               <input
                 type="text"
-                placeholder='Type here'
-                value={identifier}
-                onChange={(e) => setIdentifier(e.target.value)}
+               
               />
             </section>
 
             <section className='loginPasswordSection'>
               <span>Password</span>
-              <input
-                type="password"
-                placeholder='Type here'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div>
+                  <input
+                    type=
+                    placeholder='Type here'
+                 
+                   
+                  />
+               
+              </div>
               <p className="forgot-password" onClick={handleForgotPassword}>
                 Forgot password?
               </p>
             </section>
 
             <div className='loginClick'>
-              <button onClick={handleLogin} disabled={loading}>
-                {loading ? 'Logging in...' : 'Login'}
+              <button>
+               
               </button>
             </div>
 
@@ -142,7 +193,7 @@ const Login = () => {
             </aside>
           </div>
         </main>
-      </div>
+      </div> */}
     </div>
   );
 };

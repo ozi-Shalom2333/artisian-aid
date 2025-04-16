@@ -30,7 +30,7 @@ const Router = createBrowserRouter([
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
             { path:'/category', element: <CategoryPage />},
-            { path:'/category/:category', element: <CategoryByFilter />},
+           
             { path:'/artisanpage' , element: <ArtisanPage/>},
             { path:'/employernotification', element: <EmployerNotification/>},
             { path: '/contact', element: <Contact /> },
@@ -38,6 +38,7 @@ const Router = createBrowserRouter([
     },
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
+    { path:'/category/:category', element: <CategoryByFilter />},
     { path: '/verify', element: <VerifyPassword /> },
     { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
@@ -47,7 +48,7 @@ const Router = createBrowserRouter([
     { path: '/employersignup', element: <EmployerSignUp /> },
     { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
     { path: '/resetmessage', element: <ResetPasswordMessage/>},
-    { path: '/verifyemail', element: <VerifyEmail /> },
+    { path: '/verifyemail/:token', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
 

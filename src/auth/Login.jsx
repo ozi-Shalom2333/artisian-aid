@@ -7,59 +7,82 @@ import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Validate Email
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Validate Phone Number
   const isValidPhoneNumber = (number) => {
-    const phoneRegex = /^0[789][01]\d{8}$/; 
+    const phoneRegex = /^0[789][01]\d{8}$/;
     return phoneRegex.test(number);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
-    if ((!email && !phoneNumber) || !password) {
+
+    if (!identifier || !password) {
       toast.error('Please fill in all the fields.');
       return;
     }
-  
-    const isEmailValid = isValidEmail(email);
-    const isPhoneValid = isValidPhoneNumber(phoneNumber);
-  
+
+    const isEmailValid = isValidEmail(identifier);
+    const isPhoneValid = isValidPhoneNumber(identifier);
+
     if (!isEmailValid && !isPhoneValid) {
       toast.error('Enter a valid email or Nigerian phone number.');
       return;
     }
-  
+
     const loginData = {
       password,
-      ...(email ? { email } : { phoneNumber })
+      ...(isEmailValid ? { email: identifier } : { phoneNumber: identifier })
     };
-  
+
     const baseUrl = 'https://artisanaid.onrender.com';
-  
+
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
-      toast.success('Login successful!');
-      setTimeout(() => navigate('/dashboard'), 1500); 
+        console.log(response);
+      if (response.status === 200) {
+        const token = response.data.token;
+        localStorage.setItem('authToken', token);
+        const userRole = response.data.role;
+        toast.success(response.data.message || 'Login successful!');
+
+        toast.info('Redirecting...');
+        if (userRole === 'Admin') {
+          navigate('../dashboards/admin/AdminDashboard.jsx');
+        } else if (userRole === 'Employer') {
+          navigate('../dashboards/employer/EmployerDash.jsx');
+
+          console.error('Unknown user role:', userRole);
+          // navigate('/dashboard'); 
+        }
+      } else {
+        toast.error('Login successful, but an unexpected response was received.');
+        // navigate('/dashboard');
+      }
     } catch (error) {
-      const message = error.response?.data?.message || 'Login failed';
-      toast.error(message);
+      const errorMessage = error.response?.data?.message;
+      const status = error.response?.status;
+
+      if (status === 400) {
+        toast.error(errorMessage || 'Incorrect password.');
+      } else if (status === 401) {
+        toast.error(errorMessage || 'Account not verified or is restricted.');
+      } else {
+        toast.error('Login failed. Please try again later.');
+        console.error("Login Error:", error);
+      }
     } finally {
       setLoading(false);
     }
   };
-  
 
   const handleForgotPassword = () => navigate('/forget');
   const handleSignUpRedirect = () => navigate('/signup');
@@ -67,7 +90,7 @@ const Login = () => {
   return (
     <div className='loginMainBody'>
       <ToastContainer position="top-right" autoClose={3000} />
-      <aside className='loginImageHeader'>
+      <aside className='loginImageHeader' onClick={()=> navigate('/')}>
         <img src="/Artisan.png" alt="Artisan" />
       </aside>
       <div className='loginContainerBody'>
@@ -85,17 +108,8 @@ const Login = () => {
               <input
                 type="text"
                 placeholder='Type here'
-                value={email || phoneNumber}  // use either email or phoneNumber
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (isValidEmail(value)) {
-                    setEmail(value);
-                    setPhoneNumber('');
-                  } else {
-                    setPhoneNumber(value);
-                    setEmail('');
-                  }
-                }}
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
               />
             </section>
 

@@ -406,6 +406,7 @@
     }
     .explore-artisans{
       display: flex;
+      border: 2px solid green;
       align-items: center;
       justify-content: center;
       width: 170px;

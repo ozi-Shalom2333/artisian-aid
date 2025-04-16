@@ -19,8 +19,9 @@ import AuthOption from '../pages/AuthOption';
 import VerificationMessage from '../pages/VerificationMessage'; 
 import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
-import EmployerDashBoard from '../dashboards/employer/EmployerDashBoard';
+
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
+import EmployerDash from '../dashboards/employer/EmployerDash';
 
 const Router = createBrowserRouter([
     {
@@ -36,12 +37,11 @@ const Router = createBrowserRouter([
         ],
     },
     { path: '/signup', element: <SignUp /> },
-    { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
     { path: '/verify', element: <VerifyPassword /> },
     { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
-    { path: '/employerdashboard', element: <EmployerDashBoard/> },
+    { path: '/employerdashboard', element: <EmployerDash/> },
     { path: '/authoption', element: <AuthOption /> },
     { path: '/forget', element: <ForgetPassword /> },
     { path: '/employersignup', element: <EmployerSignUp /> },

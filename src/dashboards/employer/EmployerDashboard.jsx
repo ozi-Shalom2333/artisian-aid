@@ -19,13 +19,14 @@ const EmployerDashboard = () => {
              <ul>
                <li className="admin-management-header">
                  <FaUser size={20}/>
-                 Account Settings
+                 Account Settings 2
+                 {/* <span></span> */}
                </li>
                <li
                  className={`nav-link ${activeTab === 'personal-info' ? 'nav-link-active' : ''}`}
                  onClick={() => handleTabClick('personal-info')}
                >
-                 Personal Information
+                 Personal Information     
                </li>
                <li
                  className={`nav-link ${activeTab === 'privacy' ? 'nav-link-active' : 'nav-link'}`}
@@ -36,7 +37,11 @@ const EmployerDashboard = () => {
              </ul>
            </nav>
            <div className="logout">
-             <p className="nav-link" onClick={() => console.log('Logout  functionality here')}> 
+
+             <p className="nav-link" onClick={() => console.log('Logout functionality here')}> 
+
+
+
                Log out.
              </p>
            </div>

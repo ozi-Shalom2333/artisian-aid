@@ -19,7 +19,7 @@ import AuthOption from '../pages/AuthOption';
 import VerificationMessage from '../pages/VerificationMessage'; 
 import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
-import EmployerDashBoard from '../dashboards/employer/EmployerDashBoard';
+import EmployerDashBoard from '../dashboards/employer/EmployerDashboard';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 
 const Router = createBrowserRouter([

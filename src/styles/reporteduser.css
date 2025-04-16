@@ -1,4 +1,4 @@
- .approved-users-container{
+.approved-users-containe{
     width: 100%;
     height: auto;
     min-height: 100vh;
@@ -6,11 +6,11 @@
     
 } 
 
-.approveHeader{
+.approveHeade{
     width: 1111px;
 height: 78px;
 
-   .headerHolder{
+   .headerHolde{
     width: 353.77px;
 height: 49.97px;
 /* background-color: aqua; */
@@ -38,7 +38,7 @@ color: #000435;
    }
 }
 
-.adminDashboard{
+.adminDashboar{
     width: 1046px;
 height: 1490px;
 /* background-color: chartreuse; */
@@ -48,7 +48,7 @@ align-items: center;
 flex-direction: column;
 }
 
-.pendingUser{
+.pendingUse{
     width: 1014px;
 height: 27px;
 /* background-color: #000435; */
@@ -61,7 +61,7 @@ display: flex;
 
 }
 
-.adminDashboardMainContainer{
+.adminDashboardMainContaine{
     width: 1000px;
 height: 1208px;
 background-color: #ffffff;
@@ -70,10 +70,11 @@ flex-direction: column;
 align-items: center;
 border-radius: 15px;
 margin-top: 10px;
+/* padding: 20px; */
 /* justify-content: center; */
 
 
-   .adaezeJane{
+   .adaezeJan{
     width: 926px;
 height: 76px;
 border-radius: 10px;
@@ -86,7 +87,7 @@ gap: 10px;
 justify-content: space-between;
 padding: 20px;
 
-.adaezeImage{
+.adaezeImag{
     width: 193px;
     height: 50px;
     gap: 13px;
@@ -121,7 +122,7 @@ align-items: center;
     }
 
 
-    .adaezeEmail{
+    .adaezeEmai{
         width: 262px;
 height: 26px;
 font-family: Montserrat;
@@ -133,7 +134,7 @@ color: #000000;
 
     }
 
-    .adaezeDetails{
+    .adaezeDetai{
         width: 123px;
 height: 26px;
 font-family: Montserrat;
@@ -149,7 +150,7 @@ color: #2F80ED;
 
     }
 
-    .adaStatus{
+    .adaStatu{
         width: 154px;
 height: 26px;
 font-family: Montserrat;
@@ -157,7 +158,7 @@ font-weight: 400;
 font-size: 18px;
 line-height: 25.2px;
 letter-spacing: 0%;
-color: #27AE60;
+color: #EB5757;
     }
     
    }

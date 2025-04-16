@@ -1,4 +1,4 @@
- .approved-users-container{
+.pproved-users-container{
     width: 100%;
     height: auto;
     min-height: 100vh;
@@ -6,11 +6,11 @@
     
 } 
 
-.approveHeader{
+.pproveHeader{
     width: 1111px;
 height: 78px;
 
-   .headerHolder{
+   .eaderHolder{
     width: 353.77px;
 height: 49.97px;
 /* background-color: aqua; */
@@ -38,7 +38,7 @@ color: #000435;
    }
 }
 
-.adminDashboard{
+.dminDashboard{
     width: 1046px;
 height: 1490px;
 /* background-color: chartreuse; */
@@ -48,7 +48,7 @@ align-items: center;
 flex-direction: column;
 }
 
-.pendingUser{
+.endingUser{
     width: 1014px;
 height: 27px;
 /* background-color: #000435; */
@@ -61,7 +61,7 @@ display: flex;
 
 }
 
-.adminDashboardMainContainer{
+.dminDashboardMainContainer{
     width: 1000px;
 height: 1208px;
 background-color: #ffffff;
@@ -73,7 +73,7 @@ margin-top: 10px;
 /* justify-content: center; */
 
 
-   .adaezeJane{
+   .daezeJane{
     width: 926px;
 height: 76px;
 border-radius: 10px;
@@ -86,7 +86,7 @@ gap: 10px;
 justify-content: space-between;
 padding: 20px;
 
-.adaezeImage{
+.daezeImage{
     width: 193px;
     height: 50px;
     gap: 13px;
@@ -121,7 +121,7 @@ align-items: center;
     }
 
 
-    .adaezeEmail{
+    .daezeEmail{
         width: 262px;
 height: 26px;
 font-family: Montserrat;
@@ -133,7 +133,7 @@ color: #000000;
 
     }
 
-    .adaezeDetails{
+    /* .adaezeDetails{
         width: 123px;
 height: 26px;
 font-family: Montserrat;
@@ -144,12 +144,12 @@ letter-spacing: 0%;
 text-decoration: underline;
 text-decoration-style: solid;
 /* text-decoration-offset: 0%; */
-text-decoration-thickness: 0%;
-color: #2F80ED;
+/* text-decoration-thickness: 0%; */
+/* color: #2F80ED; */
 
-    }
+    /* } */ 
 
-    .adaStatus{
+    .daStatus{
         width: 154px;
 height: 26px;
 font-family: Montserrat;
@@ -157,7 +157,7 @@ font-weight: 400;
 font-size: 18px;
 line-height: 25.2px;
 letter-spacing: 0%;
-color: #27AE60;
+color: #EB5757;
     }
     
    }

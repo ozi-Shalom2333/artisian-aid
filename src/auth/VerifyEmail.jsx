@@ -7,10 +7,10 @@ import { toast } from 'react-toastify';
 const VerifyEmail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true); // State for loading modal
-  const [isVerified, setIsVerified] = useState(false); // State to track verification success
+  const [isLoading, setIsLoading] = useState(true); 
+  const [isVerified, setIsVerified] = useState(false); 
 
-  // Extract token from URL parameters
+
   const token = new URLSearchParams(location.search).get('token');
 
   useEffect(() => {
@@ -18,18 +18,18 @@ const VerifyEmail = () => {
       try {
         const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
         toast.success(response.data.message || "Account verified successfully!");
-        setIsVerified(true); // Set verification success
+        setIsVerified(true); 
       } catch (error) {
         console.error(error);
         toast.error(
           "Invalid or missing token."
         );
-        // toast.error("Invalid or missing token.");
+        
         setTimeout(() => {
-          navigate('/error'); // Redirect after 3 seconds
+          navigate('/error'); 
         }, 3000);
       } finally {
-        setIsLoading(false); // Hide loading modal
+        setIsLoading(false); 
       }
     };
 
@@ -48,7 +48,7 @@ const VerifyEmail = () => {
   };
 
   if (isLoading) {
-    // Display loading modal while API call is in progress
+
     return (
       <div className="loadingModal">
         <p>Verifying your account...</p>
@@ -57,7 +57,6 @@ const VerifyEmail = () => {
   }
 
   if (!isVerified) {
-    // Prevent rendering the page if verification fails
     return null;
   }
 

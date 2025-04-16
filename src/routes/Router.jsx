@@ -19,38 +19,38 @@ import AuthOption from '../pages/AuthOption';
 import VerificationMessage from '../pages/VerificationMessage'; 
 import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
-import EmployerDashBoard from '../dashboards/employer/EmployerDashBoard';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
+import EmployerDash from '../dashboards/employer/EmployerDash';
+
 
 const Router = createBrowserRouter([
     {
-        path: '/',
         element: <App />,
         children: [
             { path: '/', element: <HomePage /> },
             { path: '/about', element: <AboutUs /> },
             { path:'/category', element: <CategoryPage />},
-            { path:'/category/:category', element: <CategoryByFilter />},
+           
             { path:'/artisanpage' , element: <ArtisanPage/>},
             { path:'/employernotification', element: <EmployerNotification/>},
             { path: '/contact', element: <Contact /> },
         ],
     },
     { path: '/signup', element: <SignUp /> },
-    { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
+    { path:'/category/:category', element: <CategoryByFilter />},
     { path: '/verify', element: <VerifyPassword /> },
     { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
-    { path: '/employerdashboard', element: <EmployerDashBoard/> },
     {path: '/artisandashboard', element: <ArtisanDashoard/>},
+    { path: '/employerdashboard', element: <EmployerDash/> },
     { path: '/authoption', element: <AuthOption /> },
     { path: '/forget', element: <ForgetPassword /> },
     { path: '/employersignup', element: <EmployerSignUp /> },
     { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
     { path: '/resetmessage', element: <ResetPasswordMessage/>},
-    { path: '/verifyemail', element: <VerifyEmail /> },
+    { path: '/verifyemail/:token', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
 

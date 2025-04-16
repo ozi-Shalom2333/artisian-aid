@@ -26,29 +26,30 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Check for empty fields
+  
     if ((!email && !phoneNumber) || !password) {
       toast.error('Please fill in all the fields.');
       return;
     }
-
-    // Validate email or phone number
+  
     const isEmailValid = isValidEmail(email);
     const isPhoneValid = isValidPhoneNumber(phoneNumber);
-
+  
     if (!isEmailValid && !isPhoneValid) {
       toast.error('Enter a valid email or Nigerian phone number.');
       return;
     }
-
-    const loginData = { email, phoneNumber, password };
-
-    const baseUrl = 'https://artisanaid.onrender.com/';
-
+  
+    const loginData = {
+      password,
+      ...(email ? { email } : { phoneNumber })
+    };
+  
+    const baseUrl = 'https://artisanaid.onrender.com';
+  
     try {
       setLoading(true);
-      const response = await axios.post(`${baseUrl}v1/login`, loginData);
+      const response = await axios.post(`${baseUrl}/v1/login`, loginData);
       toast.success('Login successful!');
       setTimeout(() => navigate('/dashboard'), 1500); 
     } catch (error) {
@@ -58,6 +59,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   const handleForgotPassword = () => navigate('/forget');
   const handleSignUpRedirect = () => navigate('/signup');

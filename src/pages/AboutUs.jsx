@@ -72,6 +72,30 @@ const AboutUs = () => {
         </section>
       </div>
 
+
+      <section className='aboutUsMeetTheTeam'>
+        <div className='aboutUsTheTeam'>
+          <h2>Meet The <span style={{color:`#2F80ED`}}>Team</span> Behind The Vision</h2>
+          </div>
+
+          <aside className='teamImages'>
+            <nav className='victoriaSection'>
+              <div className='aboutUsImageCard'></div>
+              <div className='aboutUsImageCard'></div>
+              <div className='aboutUsImageCard'></div>
+              <div className='aboutUsImageCard'></div>
+            </nav>
+
+
+            <nav className='victoriaSection'>
+              <div className='aboutUsImageCard'></div>
+              <div className='aboutUsImageCard'></div>
+              <div className='aboutUsImageCard'></div>
+              <div className='aboutUsImageCard'></div>
+            </nav>
+          </aside>
+      </section>
+
     </div>
   )
 }

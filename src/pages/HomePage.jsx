@@ -5,6 +5,8 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Carousel from '../components/Carousel';
+import Banner from '../components/Banner';
+import { toast } from 'react-toastify';
 
 
 const HomePage = () => {
@@ -18,11 +20,11 @@ const HomePage = () => {
       try {
         const response = await axios.get('https://artisanaid.onrender.com/v1/recommended/artisans');
         console.log(response.data.data);
-        // setData(response.data);
-        // setLoading(false);
+        setData(response.data.data)
+ 
       } catch (error) {
         console.log(error);
-        setError(error);
+         toast.error( error.response?.data?.message);
         setLoading(false);
       }
     };
@@ -156,6 +158,7 @@ const HomePage = () => {
             </div>
          ))}
           </div>
+          
        </div>
 
 

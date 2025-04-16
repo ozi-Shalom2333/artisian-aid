@@ -4,6 +4,7 @@ import '../../styles/admindashboard.css';
 import Privacy from './pages/Privacy';
 import PersonalInfo from './pages/PersonalInfo';
 
+
 const EmployerDash = () => {
    const [activeTab, setActiveTab] = useState('personal-info'); 
    
@@ -13,6 +14,7 @@ const EmployerDash = () => {
    
      return (
        <div className="dashboard-container">
+        
          <div className="sidebar">
            <div className="logo">ArtisanAid.</div>
            <nav>

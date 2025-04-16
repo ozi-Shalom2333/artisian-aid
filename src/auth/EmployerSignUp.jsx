@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/employerSignup.css'; 
-import { Link, useNavigate } from 'react-router-dom'; 
+import '../styles/employerSignup.css';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -15,6 +15,7 @@ const EmployerSignUp = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInput = (e) => {
@@ -26,33 +27,32 @@ const EmployerSignUp = () => {
   const checkForm = () => {
     const newErrors = {};
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
-  
+
     if (!form.fullname) newErrors.fullname = 'Full name is required';
-  
+
     if (!form.phoneNumber) {
       newErrors.phoneNumber = 'Phone number is required';
     } else if (!/^\+?\d{7,15}$/.test(form.phoneNumber)) {
       newErrors.phoneNumber = 'Enter a valid phone number';
     }
-  
+
     if (!form.email) newErrors.email = 'Email is required';
-  
+
     if (!form.password) {
       newErrors.password = 'Password is required';
     } else if (!strongPasswordRegex.test(form.password)) {
       newErrors.password =
         'Password must be at least 8 characters and include one uppercase letter, one lowercase letter, and one special character';
     }
-  
+
     if (!form.confirmPassword) {
       newErrors.confirmPassword = 'Confirm password is required';
     } else if (form.password !== form.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
-  
+
     return newErrors;
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,6 +72,7 @@ const EmployerSignUp = () => {
       confirmPassword: form.confirmPassword,
     };
 
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -81,19 +82,29 @@ const EmployerSignUp = () => {
           headers: { 'Content-Type': 'application/json' }
         }
       );
-    
-      if (response.status === 200) {
-        toast.success('Account created!');
-        setForm({ fullname: '', phoneNumber: '', email: '', password: '', confirmPassword: '' });
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success(response.data.message || "Signup successful!");
+        setTimeout(() => {
+          navigate("/verificationmessage");
+        }, 1000);
+        setForm({
+          fullname: '',
+          phoneNumber: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+
       } else {
         toast.error(response.data.message || 'Something went wrong');
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || 'Server error, try again later'
-      );
+      toast.error(error.response?.data?.message || 'Server error, try again later');
+    } finally {
+      setLoading(false);
     }
-  }    
+  };
 
   return (
     <div className="employerSignUp__main">
@@ -119,6 +130,7 @@ const EmployerSignUp = () => {
                   value={form.fullname}
                   onChange={handleInput}
                   placeholder="Your name"
+                  disabled={loading}
                 />
                 {errors.fullname && <small className="employerSignUp__error">{errors.fullname}</small>}
               </div>
@@ -130,6 +142,7 @@ const EmployerSignUp = () => {
                   value={form.phoneNumber}
                   onChange={handleInput}
                   placeholder="080..."
+                  disabled={loading}
                 />
                 {errors.phoneNumber && <small className="employerSignUp__error">{errors.phoneNumber}</small>}
               </div>
@@ -144,6 +157,7 @@ const EmployerSignUp = () => {
                   value={form.email}
                   onChange={handleInput}
                   placeholder="Your email"
+                  disabled={loading}
                 />
                 {errors.email && <small className="employerSignUp__error">{errors.email}</small>}
               </div>
@@ -155,6 +169,7 @@ const EmployerSignUp = () => {
                   value={form.password}
                   onChange={handleInput}
                   placeholder="Your password"
+                  disabled={loading}
                 />
                 {errors.password && <small className="employerSignUp__error">{errors.password}</small>}
               </div>
@@ -169,6 +184,7 @@ const EmployerSignUp = () => {
                   value={form.confirmPassword}
                   onChange={handleInput}
                   placeholder="Confirm password"
+                  disabled={loading}
                 />
                 {errors.confirmPassword && (
                   <small className="employerSignUp__error">{errors.confirmPassword}</small>
@@ -181,17 +197,32 @@ const EmployerSignUp = () => {
               <p>to ArtisanAid <span className="employerSignUp__link">Terms and Condition</span></p>
             </div>
 
-            <button type="submit" className="employerSignUp__submitBtn">
-              Create Account
+            <button
+              type="submit"
+              className={`employerSignUp__submitBtn` +
+                (form.fullname &&
+                form.phoneNumber &&
+                form.email &&
+                form.password &&
+                form.confirmPassword
+                  ? ' active'
+                  : '')}
+              disabled={
+                loading ||
+                !form.fullname ||
+                !form.phoneNumber ||
+                !form.email ||
+                !form.password ||
+                !form.confirmPassword
+              }
+            >
+              {loading ? 'Creating Account...' : 'Create Account'}
             </button>
 
             <div className="employerSignUp__redirect">
               <p>
                 Already have an account?{' '}
-                <span 
-                  onClick={() => navigate('/login')} 
-                  className="employerSignUp__link"
-                >
+                <span onClick={() => navigate('/login')} className="employerSignUp__link">
                   Login
                 </span>
               </p>

@@ -45,11 +45,11 @@ const Header = () => {
         {
           isOpen == true ? 
             <div className='dropdown' >
-              <p>Home</p>
-              <p>About Us</p>
-              <p>Contact Us</p>
-              <p>Login</p>
-              <p>Sign Up</p>
+              <p onClick={()=> navigate('/')}>Home</p>
+              <p onClick={()=> navigate('/about')}>About Us</p>
+              <p onClick={()=> navigate('/contact')}>Contact Us</p>
+              <p onClick={()=> navigate('/login')} >Login</p>
+              <p  onClick={()=> navigate('/authoption')}>Sign Up</p>
             </div> 
           : null
         }

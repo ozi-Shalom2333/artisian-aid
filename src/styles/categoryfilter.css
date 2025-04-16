@@ -33,9 +33,8 @@
 }
 .catfilter-card{
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
-    background: red;
     gap: 10px;
 }

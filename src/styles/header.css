@@ -29,14 +29,14 @@
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 20px;
     
 }
 .Header-authentication{
     display: flex;
     gap: 30px;
     font-family: "Montserrat", sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
 }
 .second-respon{

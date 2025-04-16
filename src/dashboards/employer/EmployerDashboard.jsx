@@ -36,7 +36,7 @@ const EmployerDashboard = () => {
              </ul>
            </nav>
            <div className="logout">
-             <p className="nav-link" onClick={() => console.log('Logout functionality here')}> 
+             <p className="nav-link" onClick={() => console.log('Logout  functionality here')}> 
                Log out.
              </p>
            </div>

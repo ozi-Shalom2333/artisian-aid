@@ -10,6 +10,7 @@ import ArtisanSecurity from './pages/ArtisanSecurity';
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ArtisanSubscription from './pages/ArtisanSubscription';
 import { CiLogout } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 
 const ArtisanDashoard = () => {
   const [activeTab, setActiveTab] = useState('personal-info');
@@ -17,11 +18,12 @@ const ArtisanDashoard = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+  const navigate = useNavigate()
 
   return (
     <div className="dashboard-container">
       <div className="sidebar">
-        <div className="logo">ArtisanAid.</div>
+        <div className="logo" onClick={()=> navigate('/')}>ArtisanAid.</div>
         <nav>
           <ul>
             <li className="admin-management-header">

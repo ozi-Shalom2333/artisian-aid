@@ -5,9 +5,11 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+// import { useAuth } from '../global/AuthContext';
 import "../styles/login.css";
 
 const Login = () => {
+  // const { login } = useAuth();
   const navigate = useNavigate();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
@@ -59,24 +61,33 @@ const Login = () => {
         console.log(response);
       if (response.status === 200) {
         const token = response.data.token;
-        localStorage.setItem('authToken', token);
-        const userRole = response.data.role;
-        toast.success(response.data.message || 'Login successful!');
+        const userId = response.data.data._id;
+        localStorage.setItem('authValues', JSON.stringify({ token, userId }));
+        // localStorage.setItem('token', token);
+        const userRole = response.data.data.role;
         
+        // const userData = {
+        //   token: response.data.token,
+        //   name: response.data.name,
+        //   email: response.data.email,
+        //   role: response.data.role,
+
+        // }
+        toast.success(response.data.message || 'Login successful!');
+       
 
         toast.info('Redirecting...');
         if (userRole === 'Admin') {
-          navigate('admindashboard');
+          navigate(`admindashboard/${userId}`);
         } else if (userRole === 'Employer') {
-          navigate('/employerdashboard');
+          navigate(`/employerdashboard/${userId}`);
         } else if (userRole === 'Artisan') {
-          navigate('/artisandashboard');
+          navigate(`/artisandashboard/${userId}`);
         }
-          console.error('Unknown user role:', userRole);{
-            toast.error('Unknown user role. Please contact support.');
-          }
-          // navigate('/dashboard'); 
-        
+        else {
+          console.error('Unknown user role:', userRole);
+          toast.error('Unknown user role. Please contact support.');
+        }        
       } else {
         toast.error('Login successful, but an unexpected response was received.');
         // navigate('/dashboard');
@@ -136,64 +147,13 @@ const Login = () => {
                         {showpassword ? <MdOutlineRemoveRedEye color='black'/>: <FaRegEyeSlash color='black'/>}
                       </span>
            </div>
-           <p className='forget'>Forgot Password?</p>
+           <p className='forget' onClick={()=> handleForgotPassword()}>Forgot Password?</p>
           </div>
           <button className='button' onClick={handleLogin} disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
           </button>
+          <p>Don't have an account?<span className='gosignUp'  onClick={()=> handleSignUpRedirect()}> SignUp</span></p>
       </div>
-      
-      {/* <ToastContainer position="top-right" autoClose={3000} />
-      <aside className='loginImageHeader'>
-        <img src="/Artisan.png" alt="Artisan" />
-      </aside>
-      <div className='loginContainerBody'>
-        <section className='loginInvisibleFrame'></section>
-        <main className='loginInputContainerBody'>
-          <div className='loginH2'>
-            <h2>Log In</h2>
-          </div>
-          <section className='loginParagraphLine'>
-            <p>Enter your details to get signed in to your account</p>
-          </section>
-          <div className='loginEmailInput'>
-            <section className='loginEmailSection'>
-              <span>Email / Phone Number</span>
-              <input
-                type="text"
-               
-              />
-            </section>
-
-            <section className='loginPasswordSection'>
-              <span>Password</span>
-              <div>
-                  <input
-                    type=
-                    placeholder='Type here'
-                 
-                   
-                  />
-               
-              </div>
-              <p className="forgot-password" onClick={handleForgotPassword}>
-                Forgot password?
-              </p>
-            </section>
-
-            <div className='loginClick'>
-              <button>
-               
-              </button>
-            </div>
-
-            <aside className='loginTextRouteToSignUp'>
-              <p>Don't have an account? </p>
-              <span onClick={handleSignUpRedirect}>Sign Up</span>
-            </aside>
-          </div>
-        </main>
-      </div> */}
     </div>
   );
 };

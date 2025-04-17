@@ -12,10 +12,15 @@
     display: flex;
  
 }
+.gosignUp{
+    color: #2F80ED;
+    font-weight: 700;
+}
 .firstborn img{
     width: 30%;
     height: 30%;
     padding: 20px ;
+    cursor: pointer;
     object-fit: contain;
 }
 .loginMainBody > div:last-child{

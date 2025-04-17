@@ -11,7 +11,7 @@ const EmployerDash = () => {
    const [activeTab, setActiveTab] = useState('personal-info'); 
    const navigate = useNavigate();
 
-    const {userId} = useParams()
+    
 
      const handleTabClick = (tab) => {
        setActiveTab(tab);

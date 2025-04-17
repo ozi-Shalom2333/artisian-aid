@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -55,18 +55,12 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
-
+      console.log(response)
       if (response.status === 200) {
         const token = response.data.token;
 
         localStorage.setItem('authToken', token);
-
-        const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
-
-        localStorage.setItem('userInfo', JSON.stringify(decodedToken));
-
-        const userRole = decodedToken.role;
+        const userRole = response.data.data.role;
 
         toast.success(response.data.message || 'Login successful!');
         toast.info('Redirecting...');

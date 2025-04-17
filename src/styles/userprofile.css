@@ -8,17 +8,6 @@
     overflow-x: hidden;
   }
   
-  a {
-    color: #ef4444;
-    text-decoration: underline;
-    font-weight: 500;
-    font-size: 0.875rem;
-  }
-  
-  a:hover {
-    opacity: 0.8;
-  }
-  
 
   .container {
     width: 100%;
@@ -72,6 +61,7 @@
   .top-left {
     flex: 1;
   }
+
   
   .user-name {
     font-weight: 900;
@@ -112,7 +102,7 @@
   .book-btn:hover {
     opacity: 0.9;
   }
-  
+   */
 
   .report-container {
     margin-top: 2rem;

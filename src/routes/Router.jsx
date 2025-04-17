@@ -51,7 +51,7 @@ const Router = createBrowserRouter([
     { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
     { path: '/resetmessage', element: <ResetPasswordMessage/>},
     {path: '/userprofile/:userId', element: <UserProfile />},
-    { path: '/verifyemail', element: <VerifyEmail /> },
+    { path: '/verifyemail/:token', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
 

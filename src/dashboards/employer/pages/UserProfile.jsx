@@ -13,13 +13,13 @@ const UserProfile = () => {
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
   const [reportSubmitted, setReportSubmitted] = useState(false);
 
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://artisanaid.onrender.com';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://artisanaid.onrender.com';
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/v1/user/${userId}`);
-        setUserData(response.data.data); 
+        setUserData(response.data.data);
       } catch (err) {
         if (err.response) {
           if (err.response.status === 404) {
@@ -84,9 +84,9 @@ const UserProfile = () => {
           </div>
 
           <div className="report-container">
-            <button 
+            <button
               onClick={() => setShowReportModal(true)}
-              className="report-link"
+              className="report-button"
               aria-label="Report this user"
             >
               Report user
@@ -98,7 +98,7 @@ const UserProfile = () => {
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 {!reportSubmitted ? (
                   <>
-                    <h2>Report User</h2>
+                    <h2 className='report-button'>Report User</h2>
                     <p>Describe why you are reporting this user</p>
                     <form onSubmit={handleReportSubmit}>
                       <textarea
@@ -113,12 +113,14 @@ const UserProfile = () => {
                           type="button"
                           onClick={() => setShowReportModal(false)}
                           disabled={isSubmittingReport}
+                          className="cancel-button"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={isSubmittingReport || !reportReason.trim()}
+                          className="submit-button"
                         >
                           {isSubmittingReport ? 'Submitting...' : 'Submit Report'}
                         </button>

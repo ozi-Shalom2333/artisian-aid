@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import '../../../styles/artisanInfo.css';
 import { MdVerified } from "react-icons/md";
-import { FaCamera } from "react-icons/fa";
+import { MdOutlineCameraAlt } from "react-icons/md";
 
 const ArtisanInfo = () => {
   const [profileImage, setProfileImage] = useState(null);
-  const [mainImage, setMainImage] = useState(null); // State for main-pic
+  const [mainImage, setMainImage] = useState(null);
 
   const handleProfileImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileImage(reader.result); // Set the uploaded profile image preview
+        setProfileImage(reader.result); 
       };
       reader.readAsDataURL(file);
     }
@@ -53,8 +53,8 @@ const ArtisanInfo = () => {
             alt="Profile Preview"
             className="profile-pic"
           />
-          <label htmlFor="profileImageInput" className="camera-icon">
-            <FaCamera size={20} />
+          <label htmlFor="profileImageInput" className="camera-icons">
+            < MdOutlineCameraAlt  size={30} color='white'o />
           </label>
           <input
             type="file"
@@ -69,8 +69,8 @@ const ArtisanInfo = () => {
             alt="Main Preview"
             className="main-pic"
           />
-          <label htmlFor="mainImageInput" className="camera-icon main-camera-icon">
-            <FaCamera size={20} />
+          <label htmlFor="mainImageInput" className="main-camera-icon">
+            < MdOutlineCameraAlt  size={30} color='white' />
           </label>
           <input
             type="file"

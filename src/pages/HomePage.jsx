@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/home.css'
-import categoryListing from '../components/categoryList';
+import Card from '../components/Card'
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import categoryListing from '../components/categoryList';
 import Carousel from '../components/Carousel';
-import Banner from '../components/Banner';
+
 import { toast } from 'react-toastify';
 
 
 const HomePage = () => {
   
-  const [data, setData] = useState([])  
+  const [artisans, setArtisans] = useState([])  
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
+ 
 
   useEffect(() => {
     const getRecommededArtisans = async () => {
       try {
         const response = await axios.get('https://artisanaid.onrender.com/v1/recommended/artisans');
         console.log(response.data.data);
-        setData(response.data.data)
+        setArtisans(response.data.data)
  
       } catch (error) {
         console.log(error);
@@ -86,6 +87,11 @@ const HomePage = () => {
           <div className='homePage__hero2__img'>
              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
           </div>
+          <div >
+        {artisans.map((data) => (
+          <Card data={data} />
+        ))}
+      </div>
        </div>
 
        {/* mobile responsiveness setup */}

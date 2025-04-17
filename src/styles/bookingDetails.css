@@ -1,0 +1,73 @@
+/* BookingDetails.css */
+
+.booking-details-container {
+    font-family: sans-serif;
+    max-width: 100%; /* Make it responsive within its container */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .booking-details-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .booking-details-description {
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  .booking-details-label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  
+  .booking-details-value {
+    color: #555;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  
+  
+  .booking-details-contact-container {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out label and number */
+    flex-wrap: wrap; /* Handle smaller screens */
+    gap: 10px;
+  }
+  
+  .booking-details-contact-label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+    margin-bottom: 0; /* Reset margin-bottom for flexbox layout */
+  }
+  
+  .booking-details-contact-number {
+    display: flex;
+    align-items: center;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 0; /* Reset margin-bottom for flexbox layout */
+  }
+  
+  .booking-details-phone-icon {
+    margin-right: 5px;
+    width: 16px; /* Consistent icon size */
+    height: 16px;
+  }
+  

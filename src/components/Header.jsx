@@ -6,23 +6,18 @@ import './../styles/header.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('authToken'));
   const navigate = useNavigate();
-
-  
-  useEffect(() => {
-    const token = localStorage.getItem('authToken'); 
-    setIsAuthenticated(!!token); 
-  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-    navigate('/');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userData');
+    navigate('/login');
   };
 
   return (
@@ -41,10 +36,15 @@ const Header = () => {
           <p><NavLink to="/about">About Us</NavLink></p>
           <p><NavLink to="/contact">Contact Us</NavLink></p>
         </div>
-        <div className='Header-authentication'>
-            <p><NavLink to="/authoption">Sign Up</NavLink></p>
-            <p><NavLink to="/login">Login</NavLink></p>
-        </div>
+
+        {
+          !token ? 
+            <div className='Header-authentication'>
+                <p><NavLink to="/authoption">Sign Up</NavLink></p>
+                <p><NavLink to="/login">Login</NavLink></p>
+            </div>
+          : <p onClick={handleLogout}>loggedin</p>
+        }
         
 
         <div className='second-respon' onClick={toggleDropdown}>

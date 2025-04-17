@@ -60,6 +60,7 @@ const Login = () => {
         const token = response.data.token;
 
         localStorage.setItem('authToken', token);
+        localStorage.setItem('userData', JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
 
         toast.success(response.data.message || 'Login successful!');

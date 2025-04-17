@@ -1,17 +1,17 @@
 .approved-users-containe{
     width: 100%;
     height: auto;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #D9E1FF;
     
 } 
 
 .approveHeade{
-    width: 1111px;
-height: 78px;
+    width: 100%;
+/* height: 78px; */
 
    .headerHolde{
-    width: 353.77px;
+    width: 100%;
 height: 49.97px;
 /* background-color: aqua; */
 display: flex;
@@ -39,8 +39,8 @@ color: #000435;
 }
 
 .adminDashboar{
-    width: 1046px;
-height: 1490px;
+    width: 100%;
+/* height: 1490px; */
 /* background-color: chartreuse; */
 display: flex;
 align-items: center;
@@ -49,7 +49,7 @@ flex-direction: column;
 }
 
 .pendingUse{
-    width: 1014px;
+    width: 100%;
 height: 27px;
 /* background-color: #000435; */
 font-family: Montserrat;
@@ -62,8 +62,8 @@ display: flex;
 }
 
 .adminDashboardMainContaine{
-    width: 1000px;
-height: 1208px;
+    width: 100%;
+/* height: 1208px; */
 background-color: #ffffff;
 display: flex;
 flex-direction: column;

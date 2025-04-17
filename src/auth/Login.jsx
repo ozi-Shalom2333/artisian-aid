@@ -50,8 +50,21 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
+      const token = response.data?.token;
+      const role = response.data?.data?.role; // Extract the role from the response
+  
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+  
       toast.success('Login successful!');
-      setTimeout(() => navigate('/dashboard'), 1500); 
+  
+      // Navigate based on the user's role
+      if (role === 'Admin') {
+        setTimeout(() => navigate('/admindashboard'), 1500);
+      } else {
+        setTimeout(() => navigate('/employerdashboard'), 1500);
+      }
     } catch (error) {
       const message = error.response?.data?.message || 'Login failed';
       toast.error(message);

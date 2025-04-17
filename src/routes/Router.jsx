@@ -21,6 +21,12 @@ import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
 import EmployerDashBoard from '../dashboards/employer/EmployerDashBoard';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
+import GetOnePendingUser from '../dashboards/admin/pages/GetOnePendingUser';
+import MeetTeam from '../pages/MeetTeam';
+import PendingVerification from '../dashboards/admin/pages/PendingVerification';
+import ApprovedUsers from '../dashboards/admin/pages/ApprovedUsers';
+import DeclinedUsers from '../dashboards/admin/pages/DeclinedUsers';
+import ReportedUsers from '../dashboards/admin/pages/ReportedUsers';
 
 const Router = createBrowserRouter([
     {
@@ -36,11 +42,24 @@ const Router = createBrowserRouter([
             { path: '/contact', element: <Contact /> },
         ],
     },
+    {
+        path: '/admindashboard',
+        element: <AdminDashboard />,
+        children: [
+          { index: true, element: <PendingVerification /> },
+          { path: 'pending-verification', element: <PendingVerification /> },
+          { path: 'onePendingUser', element: <GetOnePendingUser /> },
+          { path: 'approved-users', element: <ApprovedUsers /> },
+          { path: 'declined-users', element: <DeclinedUsers /> },
+          { path: 'reported-users', element: <ReportedUsers /> },
+        ]
+      },
     { path: '/signup', element: <SignUp /> },
     { path: '/employerdashboard', element: <EmployerDashBoard/>,},
     { path: '/login', element: <Login /> },
     { path: '/verify', element: <VerifyPassword /> },
-    { path:'/admindashboard', element:<AdminDashboard/>},
+    { path: '/onePendingUser', element: <GetOnePendingUser /> },
+    // { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
     { path: '/employerdashboard', element: <EmployerDashBoard/> },
     { path: '/authoption', element: <AuthOption /> },
@@ -49,6 +68,7 @@ const Router = createBrowserRouter([
     { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
     { path: '/resetmessage', element: <ResetPasswordMessage/>},
     { path: '/verifyemail', element: <VerifyEmail /> },
+    { path: '/meetTeam', element: <MeetTeam /> },
     { path: '*', element: <NotFound /> },
 ]);
 

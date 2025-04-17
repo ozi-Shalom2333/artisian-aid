@@ -4,12 +4,12 @@ import '../../../styles/reporteduser.css'
 const ApprovedUsers = () => {
   return (
     <div className='approved-users-containe'>
-      <aside className='approveHeade'>
+      {/* <aside className='approveHeade'>
         <nav className='headerHolde'>
           <h5>Welcome back, Admin</h5>
           <p>here is your dashboard</p>
         </nav>
-      </aside>
+      </aside> */}
 
       <section className='adminDashboar'>
         <div className='pendingUse'>

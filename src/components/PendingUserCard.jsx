@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const PendingUserCard = ({ user, onViewDetails }) => {
   return (
@@ -16,13 +15,5 @@ const PendingUserCard = ({ user, onViewDetails }) => {
   );
 };
 
-PendingUserCard.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
-  onViewDetails: PropTypes.func.isRequired,
-};
 
 export default PendingUserCard;

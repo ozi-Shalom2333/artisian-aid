@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #080d20; */
   background-image: url("https://res.cloudinary.com/dkxms3ctv/image/upload/v1744636288/SIgn_up_as_an_employer_wofarb.png");
   background-size: cover;
   background-position: 30% 40%;
@@ -102,7 +101,7 @@
   font-weight: 500;
   font-size: 0.95rem;
   color: #ffffff;
-  font-family: sans-serif Montserrat;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .employerSignUp__inputGroup input {
@@ -162,6 +161,7 @@
 
 .employerSignUp__submitBtn:hover {
   background: #1a40cc;
+  color: #fff;
 }
 
 .employerSignUp__submitBtn:disabled,
@@ -187,4 +187,101 @@
   font-weight: 600;
   margin-left: 5px;
   cursor: pointer;
+}
+
+/* ==== CUSTOM TOASTIFY STYLES ==== */
+.Toastify__toast--success {
+  background: #1a40cc !important;
+  color: #ffffff !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  border-radius: 8px !important;
+  padding: 16px !important;
+}
+
+.Toastify__toast--error {
+  background: #ff4d4f !important;
+  color: #ffffff !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  border-radius: 8px !important;
+  padding: 16px !important;
+}
+
+/* ==== RESPONSIVENESS ==== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .employerSignUp__container {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .employerSignUp__image {
+    position: static;
+    margin: 0 auto 1rem auto;
+    width: 160px;
+  }
+
+  .employerSignUp__card {
+    padding: 2rem;
+  }
+
+  .employerSignUp__row {
+    flex-direction: column;
+  }
+
+  .employerSignUp__inputGroup {
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .employerSignUp__card {
+    padding: 1.5rem;
+  }
+
+  .employerSignUp__header h2 {
+    font-size: 1.6rem;
+  }
+
+  .employerSignUp__header span {
+    font-size: 0.9rem;
+  }
+
+  .employerSignUp__submitBtn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .employerSignUp__inputGroup input {
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .employerSignUp__main {
+    background-position: center center;
+    padding: 1rem;
+  }
+
+  .employerSignUp__card {
+    padding: 1rem;
+  }
+
+  .employerSignUp__header h2 {
+    font-size: 1.4rem;
+  }
+
+  .employerSignUp__terms,
+  .employerSignUp__redirect {
+    font-size: 0.85rem;
+  }
+
+  .employerSignUp__submitBtn {
+    font-size: 0.95rem;
+  }
 }

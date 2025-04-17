@@ -22,6 +22,7 @@ import ResetPasswordMessage from '../pages/ResetPasswordMessage';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
+import UserProfile from '../dashboards/employer/pages/UserProfile';
 
 
 const Router = createBrowserRouter([
@@ -49,7 +50,8 @@ const Router = createBrowserRouter([
     { path: '/employersignup', element: <EmployerSignUp /> },
     { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
     { path: '/resetmessage', element: <ResetPasswordMessage/>},
-    { path: '/verifyemail/:token', element: <VerifyEmail /> },
+    {path: '/userprofile/:userId', element: <UserProfile />},
+    { path: '/verifyemail', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
 

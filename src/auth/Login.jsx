@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-// import { useAuth } from '../global/AuthContext';
 import "../styles/login.css";
 
 const Login = () => {
-  // const { login } = useAuth();
   const navigate = useNavigate();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [showpassword, setShowPassword] = useState(false);
 
-
- const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = () => {
     setShowPassword(!showpassword);
- }
-
+  };
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,38 +55,34 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
-        console.log(response);
+
       if (response.status === 200) {
         const token = response.data.token;
+
         localStorage.setItem('authToken', token);
-        // localStorage.setItem('token', token);
-        const userRole = response.data.role;
-        
-        // const userData = {
-        //   token: response.data.token,
-        //   name: response.data.name,
-        //   email: response.data.email,
-        //   role: response.data.role,
 
-        // }
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken);
+
+        localStorage.setItem('userInfo', JSON.stringify(decodedToken));
+
+        const userRole = decodedToken.role;
+
         toast.success(response.data.message || 'Login successful!');
-       
-
         toast.info('Redirecting...');
+
         if (userRole === 'Admin') {
-          navigate(`/admindashboard`);
+          navigate('/admindashboard');
         } else if (userRole === 'Employer') {
-          navigate(`/employerdashboard`);
+          navigate('/employerdashboard');
         } else if (userRole === 'Artisan') {
-          navigate(`/artisandashboard`);
-        }
-        else {
+          navigate('/artisandashboard');
+        } else {
           console.error('Unknown user role:', userRole);
           toast.error('Unknown user role. Please contact support.');
-        }        
+        }
       } else {
         toast.error('Login successful, but an unexpected response was received.');
-        // navigate('/dashboard');
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message;
@@ -114,44 +107,46 @@ const Login = () => {
   return (
     <div className='loginMainBody'>
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className='firstborn'  onClick={()=> navigate('/')}>
-        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="" />
+      <div className='firstborn' onClick={() => navigate('/')}>
+        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="Logo" />
       </div>
       <div className='lastborn'>
-          <h1>Log In</h1>
-          <p>Enter your details to get signed in into your account</p>
-          <div className='loginEmailInput'>
-            <span>
-              <p>Email/Phone number</p>
-            </span>
+        <h1>Log In</h1>
+        <p>Enter your details to get signed in into your account</p>
+        <div className='loginEmailInput'>
+          <span>
+            <p>Email/Phone number</p>
+          </span>
+          <input
+            type="text"
+            placeholder='Type here'
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
+          />
+        </div>
+        <div className='loginEmailPassword'>
+          <span>
+            <p>Password</p>
+          </span>
+          <div className='loginPasswordSection'>
             <input
-              type="text" 
+              type={showpassword ? 'text' : 'password'}
               placeholder='Type here'
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
-          <div className='loginEmailPassword'>
-            <span>
-              <p>Password</p>
+            <span className='showPassword' onClick={togglePasswordVisibility}>
+              {showpassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
             </span>
-           <div className='loginPasswordSection'>
-              <input
-                  type={showpassword ? 'text' : 'password'}
-                  placeholder='Type here'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                  <span className='showPassword' onClick={togglePasswordVisibility}>
-                        {showpassword ? <MdOutlineRemoveRedEye color='black'/>: <FaRegEyeSlash color='black'/>}
-                      </span>
-           </div>
-           <p className='forget' onClick={()=> handleForgotPassword()}>Forgot Password?</p>
           </div>
-          <button className='button' onClick={handleLogin} disabled={loading}>
+          <p className='forget' onClick={handleForgotPassword}>Forgot Password?</p>
+        </div>
+        <button className='button' onClick={handleLogin} disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
-          </button>
-          <p>Don't have an account?<span className='gosignUp'  onClick={()=> handleSignUpRedirect()}> SignUp</span></p>
+        </button>
+        <p>Don't have an account?
+          <span className='gosignUp' onClick={handleSignUpRedirect}> SignUp</span>
+        </p>
       </div>
     </div>
   );

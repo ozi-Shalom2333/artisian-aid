@@ -86,7 +86,7 @@ const UserProfile = () => {
           <div className="report-container">
             <button
               onClick={() => setShowReportModal(true)}
-              className="report-link"
+              className="report-button"
               aria-label="Report this user"
             >
               Report user
@@ -98,7 +98,7 @@ const UserProfile = () => {
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 {!reportSubmitted ? (
                   <>
-                    <h2>Report User</h2>
+                    <h2 className='report-button'>Report User</h2>
                     <p>Describe why you are reporting this user</p>
                     <form onSubmit={handleReportSubmit}>
                       <textarea
@@ -113,12 +113,14 @@ const UserProfile = () => {
                           type="button"
                           onClick={() => setShowReportModal(false)}
                           disabled={isSubmittingReport}
+                          className="cancel-button"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={isSubmittingReport || !reportReason.trim()}
+                          className="submit-button"
                         >
                           {isSubmittingReport ? 'Submitting...' : 'Submit Report'}
                         </button>

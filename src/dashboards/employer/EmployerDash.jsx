@@ -16,9 +16,6 @@ const EmployerDash = () => {
      const handleTabClick = (tab) => {
        setActiveTab(tab);
      };
-    
-  
-
      return (
        <div className="dashboard-container">
         

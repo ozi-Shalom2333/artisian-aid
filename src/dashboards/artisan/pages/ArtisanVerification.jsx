@@ -66,7 +66,7 @@ const ArtisanVerification = () => {
         fill & Select relevant information to complete your Verification
       </p>
 
-      <form className="guarantor-form" onSubmit={(e)=>handleSubmit(e, token)}>
+      <form className="guarantor-form" onSubmit={handleSubmit}>
         <label>Guarantor’s name</label>
         <input
           type="text"

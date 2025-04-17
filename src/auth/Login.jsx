@@ -63,7 +63,7 @@ const Login = () => {
         const token = response.data.token;
         localStorage.setItem('authToken', token);
         // localStorage.setItem('token', token);
-        const userRole = response.data.data.role;
+        const userRole = response.data.role;
         
         // const userData = {
         //   token: response.data.token,

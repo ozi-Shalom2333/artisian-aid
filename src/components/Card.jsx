@@ -6,8 +6,33 @@ import { MdVerified } from "react-icons/md";
 
 function Card({data}) {
   return (
-  
     <div className="card">
+      <h1>fgvbhjnmk,l;.</h1>
+      
+
+
+    </div>
+  );
+}
+
+export default Card;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
       <div className="card-header">
         <div className="profile-info">
           <div className="profile-image">
@@ -25,6 +50,8 @@ function Card({data}) {
           <FiUpload size={20} />
         </div>
       </div>
+
+
       <div className="card-image">
         
         <img src={data.jobPostId.jobImage.image_url}  alt="Painter" />
@@ -47,9 +74,4 @@ function Card({data}) {
           </div>
         </div>
         <button className="book-now-button">Book Now</button>
-      </div>
-    </div>
-  );
-}
-
-export default Card;
+      </div> */}

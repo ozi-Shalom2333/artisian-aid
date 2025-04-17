@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../styles/reporteduser.css'
 
-const ApprovedUsers = () => {
+const ReportedUser = () => {
   return (
     <div className='approved-users-containe'>
       {/* <aside className='approveHeade'>
@@ -42,4 +42,4 @@ const ApprovedUsers = () => {
   )
 }
 
-export default ApprovedUsers
+export default ReportedUser

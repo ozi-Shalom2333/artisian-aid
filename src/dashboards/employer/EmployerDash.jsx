@@ -16,39 +16,7 @@ const EmployerDash = () => {
      const handleTabClick = (tab) => {
        setActiveTab(tab);
      };
-     
-    //  const handleLogout = () => {
-    //   localStorage.removeItem('token');
-    //   navigate('/');
-    // };
-    useEffect(() => {
-      const fetchAdminData = async () => {
-        try {
-          
-  
-          const token = JSON.parse(localStorage.getItem('authValues'))?.token;
-  
-          const response = await axios.get(
-            `https://artisanaid.onrender.com/v1/user/${userId}`, 
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          console.log(response);
-          // setAdminData(response.data.data); 
-        } catch (err) {
-          console.error('Failed to fetch admin data:', err);
-          toast.error('Failed to load admin details.');
-        } 
-      };
-  
-      if (userId) {
-        fetchAdminData();
-      }
-    }, [userId]);
-  
+    
   
 
      return (

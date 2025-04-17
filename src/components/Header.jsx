@@ -41,27 +41,11 @@ const Header = () => {
           <p><NavLink to="/about">About Us</NavLink></p>
           <p><NavLink to="/contact">Contact Us</NavLink></p>
         </div>
-
         <div className='Header-authentication'>
-          {isAuthenticated ? (
-            <div className="user-profile" style={{display:'flex', gap:'20px', justifyContent:'center',alignItems:'center', }}>
-               <p>My Profie</p>
-              <NavLink to="/employerdashboard"><CgProfile size={40} color='rgb(255, 183, 51)'/></NavLink>
-              {/* <FiLogOut 
-                onClick={handleLogout} 
-                size={20}
-                color='red' 
-                style={{ cursor: 'pointer' }} 
-                title="Logout" 
-              /> */}
-            </div>
-          ) : (
-            <>
-              <p><NavLink to="/authoption">Sign Up</NavLink></p>
-              <p><NavLink to="/login">Login</NavLink></p>
-            </>
-          )}
+            <p><NavLink to="/authoption">Sign Up</NavLink></p>
+            <p><NavLink to="/login">Login</NavLink></p>
         </div>
+        
 
         <div className='second-respon' onClick={toggleDropdown}>
           <img 
@@ -100,3 +84,9 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
+
+

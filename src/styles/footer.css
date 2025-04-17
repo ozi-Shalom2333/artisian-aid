@@ -1,308 +1,315 @@
 .footer{
-    width: 100%;
-  }
-  .Footer-container{
-    width: 100%;
-    height: 80vh;
-    background-color: #000435;
-    padding: 40px 0px;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-  }
-  .Footer-section-lightblue{
-    width: 95%;
-    height: 35%;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 10px;
-    background-color: #2F80ED;
-    margin: 0 auto;
-    padding: 30px;
-  }
-  .Footer-section-lightblue h2{
-    font-size: 30px;
-    color: #ffff;
-    font-weight: 700;
-  }
-  .Footer-section-lightblue div{
-    height: 100%;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #ffff;
-  }
-  .Footer-section-lightblue div p{
-    background-color: #000435;
-    padding: 10px 40px;
-    border-radius: 10px;
-    font-weight: 600;
-  }
-  .footer-select{
-    display: flex;
-    color: #ffff;
-    width: 95%;
-    padding: 30px;
-    margin: 0 auto;
-    height: fit-content;
-    justify-content: space-between;
-  }
-  .footer-select div{
-    display: flex;
-    gap: 30px;
+  width: 100%;
+}
+.Footer-container{
+  width: 100%;
+  height: 80vh;
+  background-color: #000435;
+  padding: 40px 0px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+}
+.Footer-section-lightblue{
+  width: 95%;
+  height: 35%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: #2F80ED;
+  margin: 0 auto;
+  padding: 30px;
+}
+.Footer-section-lightblue h2{
+  font-size: 30px;
+  color: #ffff;
+  font-weight: 700;
+}
+.Footer-section-lightblue div{
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #ffff;
+}
+.Footer-section-lightblue div p{
+  background-color: #000435;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.footer-select{
+  display: flex;
+  color: #ffff;
+  width: 95%;
+  padding: 30px;
+  margin: 0 auto;
+  height: fit-content;
+  justify-content: space-between;
+}
+.footer-select div{
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+.footer-select h3{
+  cursor: pointer;
+  font-size: 14px;
+}
+.footer-select p{
+  font-size: 12px;
+  cursor: pointer;
+}
+.footer-bottom{
+  width: 95%;
+  height: fit-content;
+  display: flex;
+  padding: 30px 0;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.footer-bottom p{
+  color: #ffff;
+}
+.footer-social{
+  color: #98a2b3;
+  display: flex;
+  gap: 20px;
+}
+.footerContainer{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: last baseline;
+}
+.footerSub__content{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  position: relative;
+  border-radius: 20px;
+  background-color: #000435;
+}
+.footerSub__content > div{
+  height: 150%;
+  width: 35%;
+  display: flex;
+  position: absolute;
+  top: -240px;
+  border-radius: 30px 30px 0 0;
+  left: 100px;
+  padding: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744194770/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning_ob30a8.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.footerSub__content > div h1{
+  font-size: 48px;
+  font-weight: 700;
+}
+.footerSub__content > p{
+  color: #fff;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 150px;
+  bottom: 50px;
+  cursor: pointer;
+}
+.footerContainer_mobile{
+  display: none;
+}
+.footerContainer_mobile_holder{
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+ .footerContainer_mobile_holder{
+  width: 100%;
+  height: fit-content;
+  margin: 30% 0 0 0;
+  background-color: yellow;
+
+ } 
+
+  /* .footerSub__content {
+    height: auto;
     flex-direction: column;
-  }
-  .footer-select h3{
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .footer-select p{
-    font-size: 12px;
-    cursor: pointer;
-  }
-  .footer-bottom{
-    width: 95%;
-    height: fit-content;
-    display: flex;
-    padding: 30px 0;
-    margin: 0 auto;
-    justify-content: space-between;
-  }
-  .footer-bottom p{
-    color: #ffff;
-  }
-  .footer-social{
-    color: #98a2b3;
-    display: flex;
-    gap: 20px;
-  }
-  .footerContainer{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    align-items: last baseline;
-  }
-  .footerSub__content{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    position: relative;
-    border-radius: 20px;
-    background-color: #000435;
-  }
-  .footerSub__content > div{
-    height: 150%;
-    width: 35%;
-    display: flex;
-    position: absolute;
-    top: -240px;
-    border-radius: 30px 30px 0 0;
-    left: 100px;
-    padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744194770/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning_ob30a8.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-  }
-  .footerSub__content > div h1{
-    font-size: 48px;
-    font-weight: 700;
-  }
-  .footerSub__content > p{
-    color: #fff;
-    display: flex;
     align-items: center;
-    position: absolute;
-    right: 150px;
-    bottom: 50px;
-    cursor: pointer;
-  }
-  .footerContainer_mobile{
-    display: none;
+    padding: 20px;
+    border-radius: 10px;
   }
 
-  @media screen and (max-width: 480px) {
-   .footerContainer_mobile_holder{
+  .footerSub__content-image-container {
+    position: static;
+    width: 80%;
+    height: auto;
+    margin-top: 20px;
+    left: auto;
+    border-radius: 15px;
+  }
+
+  .footerSub__content-image-container h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .footerSub__content-explore-link {
+    position: static;
+    text-align: center;
+    margin-top: 15px;
+    right: auto;
+    bottom: auto;
+  }
+ */
+ .Footer-container{
+  display: none;
+ }
+ .footerContainer{
+  display: none;
+ }
+  /* .Footer-container {
+    padding: 20px 0;
+  }
+
+
+  .Footer-section-lightblue h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .Footer-section-lightblue div {
+    width: auto;
+    height: auto;
+  }
+
+  .Footer-section-lightblue div p {
+    padding: 10px 30px;
+    font-size: 14px;
+  }
+ */
+
+  .footerContainerMobileFull{
+    position: relative;
+    width: 100%;
+    height: autot;
+    background-color: #000435;
+    color: #ffff;
+    padding: 10px;
+    
+  }
+  .Footer-section-lightblue_mobile{
     width: 100%;
     height: fit-content;
+<<<<<<< HEAD
 
     margin: 30% 0 0 0;
 
     background-color: yellow;
+=======
+    background-color: #2F80ED;
+    padding: 5px 8px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  .Footer-section-lightblue_mobile div{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    background-color: #000435;
+    padding: 10px 15px;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+>>>>>>> 46de6a9468e17979e25510719f0fa5551781104b
 
-   } 
-  
-    /* .footerSub__content {
-      height: auto;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      border-radius: 10px;
-    }
-  
-    .footerSub__content-image-container {
-      position: static;
-      width: 80%;
-      height: auto;
-      margin-top: 20px;
-      left: auto;
-      border-radius: 15px;
-    }
-  
-    .footerSub__content-image-container h1 {
-      font-size: 24px;
-      text-align: center;
-    }
-  
-    .footerSub__content-explore-link {
-      position: static;
-      text-align: center;
-      margin-top: 15px;
-      right: auto;
-      bottom: auto;
-    }
-   */
-   .Footer-container{
-    display: none;
-   }
-   .footerContainer{
-    display: none;
-   }
-    /* .Footer-container {
-      padding: 20px 0;
-    }
-  
-  
-    .Footer-section-lightblue h2 {
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-  
-    .Footer-section-lightblue div {
-      width: auto;
-      height: auto;
-    }
-  
-    .Footer-section-lightblue div p {
-      padding: 10px 30px;
-      font-size: 14px;
-    }
-   */
-
-    .footerContainerMobileFull{
-      position: relative;
-      width: 100%;
-      height: autot;
-      background-color: #000435;
-      color: #ffff;
-      padding: 10px;
-      
-    }
-    .Footer-section-lightblue_mobile{
-      width: 100%;
-      height: fit-content;
-      background-color: #2F80ED;
-      padding: 5px 8px;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-    .Footer-section-lightblue_mobile div{
-      display: flex;
-      width: fit-content;
-      align-items: center;
-      background-color: #000435;
-      padding: 10px 15px;
-      justify-content: center;
-      border-radius: 10px;
-      margin: 10px 0;
-    }
-
-   .footer-select_mobile{
+ .footer-select_mobile{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+ }
+ .footer-select_mobile div{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+ }
+ .footer-select_mobile div h3{
+  font-size: 12px;
+ }
+ .footer-select_mobile div p{
+  font-size: 10px;
+ }
+ .footer-bottom_mobile{
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-   }
-   .footer-select_mobile div{
-    width: 40%;
+    height: fit-content;
+    gap: 10px;
+    margin-bottom: 5%;
+    
+ }
+ .footer-bottom_mobile p{
+    font-size: 14px;
+ }
+ .footer-bottom_mobile div{
+ display: flex;
+ gap: 5px;;
+ }
+
+
+
+  .footerContainer_mobile{
+    width: 80%;
+    height: 200px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    height: fit-content;
-   }
-   .footer-select_mobile div h3{
-    font-size: 12px;
-   }
-   .footer-select_mobile div p{
-    font-size: 10px;
-   }
-   .footer-bottom_mobile{
-      display: flex;
-      width: 100%;
-      height: fit-content;
-      gap: 10px;
-      margin-bottom: 5%;
-      
-   }
-   .footer-bottom_mobile p{
-      font-size: 14px;
-   }
-   .footer-bottom_mobile div{
-   display: flex;
-   gap: 5px;;
-   }
-
-  
-
-    .footerContainer_mobile{
-      width: 80%;
-      height: 200px;
-      display: flex;
-      flex-direction: column;
-      background-color: #000435;
-      color: #fff;
-      align-items: center;
-      position: absolute;
-      margin: 10% 0;
-      padding: 20px 0;
-      border-radius: 10px;
-      top: 220%;
-      left: 10%;
-      
-    }
-    .footerContainer_mobile h1{
-       font-size: 12px;
-       font-weight: 400;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-    }
-    .footerContainer_mobile div{
-      width: 100%;
-      height: fit-content;
-      display: flex;
-      justify-content: center;
-      margin-top: 10%;
+    background-color: #000435;
+    color: #fff;
+    align-items: center;
+    position: absolute;
+    margin: 10% 0;
+    padding: 20px 0;
+    border-radius: 10px;
+    top: 220%;
+    left: 10%;
     
-      
-    
-    }
-    .footerContainer_mobile div p{
-       width: fit-content;
-       height: fit-content;
-       background-size: cover;
-       padding: 10px;
-       border-radius: 10px;
-       font-weight: 700;
-      background-image:  linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744194770/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning_ob30a8.jpg);
-    }
   }
+  .footerContainer_mobile h1{
+     font-size: 12px;
+     font-weight: 400;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+  }
+  .footerContainer_mobile div{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
   
+    
+  
+  }
+  .footerContainer_mobile div p{
+     width: fit-content;
+     height: fit-content;
+     background-size: cover;
+     padding: 10px;
+     border-radius: 10px;
+     font-weight: 700;
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),url(https://res.cloudinary.com/djnowfvsk/image/upload/v1744194770/african-american-apprentice-informing-master-technician-phone-about-air-conditioner-parts-needing-be-replaced-mechanic-checking-maintenance-plan-after-finishing-air-filters-cleaning_ob30a8.jpg);
+  }
+}

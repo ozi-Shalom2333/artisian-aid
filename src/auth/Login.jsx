@@ -1,65 +1,105 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaRegEyeSlash } from "react-icons/fa";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showpassword, setShowPassword] = useState(false);
 
-  // Validate Email
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showpassword);
+  };
+
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Validate Phone Number
   const isValidPhoneNumber = (number) => {
-    const phoneRegex = /^0[789][01]\d{8}$/; 
+    const phoneRegex = /^0[789][01]\d{8}$/;
     return phoneRegex.test(number);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
-    if ((!email && !phoneNumber) || !password) {
+
+    if (!identifier || !password) {
       toast.error('Please fill in all the fields.');
       return;
     }
-  
-    const isEmailValid = isValidEmail(email);
-    const isPhoneValid = isValidPhoneNumber(phoneNumber);
-  
+
+    const isEmailValid = isValidEmail(identifier);
+    const isPhoneValid = isValidPhoneNumber(identifier);
+
     if (!isEmailValid && !isPhoneValid) {
       toast.error('Enter a valid email or Nigerian phone number.');
       return;
     }
-  
+
     const loginData = {
       password,
-      ...(email ? { email } : { phoneNumber })
+      ...(isEmailValid ? { email: identifier } : { phoneNumber: identifier })
     };
-  
+
     const baseUrl = 'https://artisanaid.onrender.com';
-  
+
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
-      toast.success('Login successful!');
-      setTimeout(() => navigate('/dashboard'), 1500); 
+
+      if (response.status === 200) {
+        const token = response.data.token;
+
+        localStorage.setItem('authToken', token);
+
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken);
+
+        localStorage.setItem('userInfo', JSON.stringify(decodedToken));
+
+        const userRole = decodedToken.role;
+
+        toast.success(response.data.message || 'Login successful!');
+        toast.info('Redirecting...');
+
+        if (userRole === 'Admin') {
+          navigate('/admindashboard');
+        } else if (userRole === 'Employer') {
+          navigate('/employerdashboard');
+        } else if (userRole === 'Artisan') {
+          navigate('/artisandashboard');
+        } else {
+          console.error('Unknown user role:', userRole);
+          toast.error('Unknown user role. Please contact support.');
+        }
+      } else {
+        toast.error('Login successful, but an unexpected response was received.');
+      }
     } catch (error) {
-      const message = error.response?.data?.message || 'Login failed';
-      toast.error(message);
+      const errorMessage = error.response?.data?.message;
+      const status = error.response?.status;
+
+      if (status === 400) {
+        toast.error(errorMessage || 'Incorrect password.');
+      } else if (status === 401) {
+        toast.error(errorMessage || 'Account not verified or is restricted.');
+      } else {
+        toast.error('Login failed. Please try again later.');
+        console.error("Login Error:", error);
+      }
     } finally {
       setLoading(false);
     }
   };
-  
 
   const handleForgotPassword = () => navigate('/forget');
   const handleSignUpRedirect = () => navigate('/signup');
@@ -67,63 +107,46 @@ const Login = () => {
   return (
     <div className='loginMainBody'>
       <ToastContainer position="top-right" autoClose={3000} />
-      <aside className='loginImageHeader'>
-        <img src="/Artisan.png" alt="Artisan" />
-      </aside>
-      <div className='loginContainerBody'>
-        <section className='loginInvisibleFrame'></section>
-        <main className='loginInputContainerBody'>
-          <div className='loginH2'>
-            <h2>Log In</h2>
+      <div className='firstborn' onClick={() => navigate('/')}>
+        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="Logo" />
+      </div>
+      <div className='lastborn'>
+        <h1>Log In</h1>
+        <p>Enter your details to get signed in into your account</p>
+        <div className='loginEmailInput'>
+          <span>
+            <p>Email/Phone number</p>
+          </span>
+          <input
+            type="text"
+            placeholder='Type here'
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
+          />
+        </div>
+        <div className='loginEmailPassword'>
+          <span>
+            <p>Password</p>
+          </span>
+          <div className='loginPasswordSection'>
+            <input
+              type={showpassword ? 'text' : 'password'}
+              placeholder='Type here'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span className='showPassword' onClick={togglePasswordVisibility}>
+              {showpassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
+            </span>
           </div>
-          <section className='loginParagraphLine'>
-            <p>Enter your details to get signed in to your account</p>
-          </section>
-          <div className='loginEmailInput'>
-            <section className='loginEmailSection'>
-              <span>Email / Phone Number</span>
-              <input
-                type="text"
-                placeholder='Type here'
-                value={email || phoneNumber}  // use either email or phoneNumber
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (isValidEmail(value)) {
-                    setEmail(value);
-                    setPhoneNumber('');
-                  } else {
-                    setPhoneNumber(value);
-                    setEmail('');
-                  }
-                }}
-              />
-            </section>
-
-            <section className='loginPasswordSection'>
-              <span>Password</span>
-              <input
-                type="password"
-                placeholder='Type here'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <p className="forgot-password" onClick={handleForgotPassword}>
-                Forgot password?
-              </p>
-            </section>
-
-            <div className='loginClick'>
-              <button onClick={handleLogin} disabled={loading}>
-                {loading ? 'Logging in...' : 'Login'}
-              </button>
-            </div>
-
-            <aside className='loginTextRouteToSignUp'>
-              <p>Don't have an account? </p>
-              <span onClick={handleSignUpRedirect}>Sign Up</span>
-            </aside>
-          </div>
-        </main>
+          <p className='forget' onClick={handleForgotPassword}>Forgot Password?</p>
+        </div>
+        <button className='button' onClick={handleLogin} disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+        <p>Don't have an account?
+          <span className='gosignUp' onClick={handleSignUpRedirect}> SignUp</span>
+        </p>
       </div>
     </div>
   );

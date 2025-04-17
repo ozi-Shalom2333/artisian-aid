@@ -1,206 +1,116 @@
 .loginMainBody{
     width: 100%;
-    height: 100vh;
-    background-color: rgb(32, 32, 55)
-}
-
-.loginImageHeader{
-    width: 100;
     height: fit-content;
-    
-
-}
-.loginImageHeader > img{
-    object-fit: contain;
-    width: 20%;
-    margin-top: 40px;
-}
-
-.loginContainerBody{
-    width: 100%;
-    height: 70vh;
     display: flex;
+    min-height: 100vh;
+    background: url('https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842644/bg_login_lt3rvx.jpg') no-repeat center center ;
 }
-
-.loginInvisibleFrame{
+.loginMainBody > div{
     width: 50%;
-    height: 100%;
-    
-}
-
-.loginInputContainerBody{
-    width: 45%;
-    height: 100%;
-    /* background: aqua; */
-}
-
-.loginH2{
-    width: 464;
-    height: 53;
+    height: fit-content;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    font-size: 25px;
+ 
+}
+.gosignUp{
+    color: #2F80ED;
     font-weight: 700;
-    margin-top: 50px;
-    color: #ffffff;
-    /* background-color: red; */
 }
-
-.loginParagraphLine{
-    width: 100%;
-    height: min-content(5%);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22.4px;
-    letter-spacing: 0%;
-    text-align: center;
-    color: #ffffff;
-    padding-top: 10px;
-    
+.firstborn img{
+    width: 30%;
+    height: 30%;
+    padding: 20px ;
+    cursor: pointer;
+    object-fit: contain;
 }
-
+.loginMainBody > div:last-child{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 70px 0 40px;
+    /* border: 2px solid green; */
+    gap: 20px;
+}
+.loginMainBody > div:last-child h1{
+    font-weight: 700;
+    font-size: 48px;
+}
 .loginEmailInput{
-width: 90%;
-height: 90%;
-/* background: forestgreen;  */
-margin-left: 30px;
-margin-top: 30px;
-}
-
-.loginEmailSection{
-    width: 60%;
-    height: 12vh;
+    width: 100%;
+    height: fit-content;
+    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
-
-}
-
-.loginEmailSection > input{
-width: 500px;
-height: 56px;
-min-width: 500px;
-max-width: 500px;
-gap: 10px;
-border-radius: 8px;
-border-width: 1px;
-margin-top: 5px;
-padding: 16px;
-border: 1px solid #BAB9C1
-}
-
-.loginEmailSection > span{
-width: 500px;
-height: 18px;
-font-family: Noto Sans;
-font-weight: 600;
-font-size: 12px;
-line-height: 18px;
-letter-spacing: 0%;
-color: #7C8B9D;
-}
-
-.loginPasswordSection{
-    width: 60%;
-    height: 12vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.loginPasswordSection > span{
-    width: 500px;
-    height: 18px;
-    font-family: Noto Sans;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0%;
-    color: #7C8B9D;
-    margin-top: 20px;
-    }
-
-    
-    .loginPasswordSection > input{
-    width: 500px;
-    height: 56px;
-    min-width: 500px;
-    max-width: 500px;
-    display: flex;
     gap: 10px;
-    border-radius: 8px;
-    border-width: 1px;
-    margin-top: 5px;
-    padding: 16px;
-    border: 1px solid #BAB9C1
-    }
-
-    .loginPasswordSection > p{
- width: 500px;
-height: 20px;
-font-weight: 700;
-font-size: 14px;
-line-height: 19.6px;
-letter-spacing: 0%;
-color: var(--info, #2F80ED);
-margin-top: 15px;
-    }
-
-  .loginClick{
-    width: 60%;
-    height: 12vh;
-    /* background: #000; */
-    display: flex;
-    margin-top: 80px;
-    text-align: center;
     
-  }  
-
-  .loginClick > button{
- width: 500px;
- height: 56px;
- min-width: 500px;
- max-width: 500px;
- display: flex;
-gap: 10px;
-display: flex;
-justify-content: center;
-border-radius: 8px;
-border-width: 1px;
- margin-top: 20px;
-padding: 16px;
-border: 1px solid #BAB9C1;        
-font-weight: 700;
-font-size: 16px;
-line-height: 22.4px;
-letter-spacing: 0%;
-color:  #000435;
-  }
-
-  .loginTextRouteToSignUp{
- width: 100%;
-height: 23px;
-color: #ffffff;
-margin-top: 30px;
-display: flex;
-justify-content: center;
-font-weight: 400;
-font-size: 16px;
-line-height: 22.4px;
-letter-spacing: 0%;
-text-align: center;
-  }
-
-  .loginTextRouteToSignUp > span{
-    color:  #2F80ED;
-font-weight: 700;
-font-size: 16px;
-line-height: 22.4px;
-letter-spacing: 0%;
-text-align: center;
-  }
-
-  .error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-  }
+       
+}
+.loginEmailInput span{
+    font-weight: 700;
+}
+.loginEmailInput input{
+    width: 100%;
+    padding: 20px;
+    outline: none;
+    border: none;
+}
+.loginEmailPassword{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    /* border: 2px solid orange; */
+    flex-direction: column;
+    gap: 10px;
   
+}
+.loginEmailPassword span{
+    font-weight: 700;
+}
+.loginEmailPassword input{
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 20px;
+}
+.loginPasswordSection{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-inline-end: 40px;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #fff;
+  
+}
+.loginPasswordSection > input{
+    width: 80%;
+    padding: 20px;
+    
+}
+.forget{
+    color: #2F80ED;
+    font-weight: 700;
+}
+.button{
+    width: 100%;
+    height: fit-content;
+    padding: 15px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.button {
+    font-weight: 700;
+    
+}
+.button:hover{
+    background-color: #2F80ED;
+    color: #fff;
+}

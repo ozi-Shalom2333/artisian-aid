@@ -1,11 +1,12 @@
 import React from 'react';
 import '../../../styles/employerDashboard.css';
-import { CgProfile } from 'react-icons/cg';
-import { MdLogout } from 'react-icons/md';
 import { FiCamera } from 'react-icons/fi';
 import { BiEdit } from 'react-icons/bi';
 
 const PersonalInfo = () => {
+
+      const BaseUrl = 'https://artisanaid.onrender.com';
+
     return (
         <div className="user-profile-container">
             <div className="pack">

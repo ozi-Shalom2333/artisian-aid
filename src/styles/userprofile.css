@@ -1,4 +1,5 @@
-html, body {
+
+.user-profile {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
@@ -7,13 +8,13 @@ html, body {
     overflow-x: hidden;
   }
   
-
   a {
     color: #ef4444;
     text-decoration: underline;
     font-weight: 500;
     font-size: 0.875rem;
   }
+  
   a:hover {
     opacity: 0.8;
   }
@@ -58,6 +59,7 @@ html, body {
     padding-left: 2rem;
     padding-right: 1rem;
   }
+  
 
   .top-section {
     display: flex;
@@ -71,28 +73,28 @@ html, body {
     flex: 1;
   }
   
-  h1 {
+  .user-name {
     font-weight: 900;
     font-size: 2rem;
     margin-bottom: 0.25rem;
     color: #111827;
   }
   
-  p.description {
+  .description {
     color: #374151;
     font-size: 1.5rem;
     line-height: 1.625;
     margin-bottom: 0.25rem;
   }
   
-  p.location {
+  .location {
     color: #9ca3af;
     font-size: 0.999rem;
     margin: 0;
   }
   
 
-  button.book-btn {
+  .book-btn {
     background-color: #000633;
     color: white;
     font-weight: 700;
@@ -107,7 +109,7 @@ html, body {
     max-width: 200px;
   }
   
-  button.book-btn:hover {
+  .book-btn:hover {
     opacity: 0.9;
   }
   
@@ -119,9 +121,15 @@ html, body {
     margin-right: 2rem;
   }
   
-  .report-container a {
+  .report-link {
     font-weight: 400;
     font-size: 1.3rem;
+    color: #ef4444;
+    text-decoration: underline;
+  }
+  
+  .report-link:hover {
+    opacity: 0.8;
   }
   
 
@@ -137,18 +145,18 @@ html, body {
     width: 100%;
     padding: 0 2rem;
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
   }
   
-  .bottom-section h2 {
+  .service-title {
     font-weight: 800;
     font-size: 2rem;
     margin-bottom: 0.10rem;
     color: #111827;
   }
   
-  .bottom-section p.company {
+  .company {
     color: #6b7280;
     margin-bottom: 0.70rem;
     font-size: 1.4rem;
@@ -158,10 +166,10 @@ html, body {
   
   .certificate-img {
     width: 100%;
-    max-width: 25rem; 
+    max-width: 25rem;
     height: auto;
     border-radius: 0.375rem;
-    margin-top: 1rem; 
+    margin-top: 1rem;
     display: block;
   }
   
@@ -173,7 +181,99 @@ html, body {
     margin-right: 8rem;
   }
   
- 
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .modal-content p {
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+  
+  .modal-content textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 1.5rem;
+    font-family: inherit;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .modal-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .modal-actions button:first-child {
+    background-color: #f0f0f0;
+  }
+  
+  .modal-actions button:last-child {
+    background-color: #ff4444;
+    color: white;
+  }
+  
+  .modal-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .submission-success {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .submission-success h3 {
+    color: #4CAF50;
+  }
+  
+  .report-link {
+    background: none;
+    border: none;
+    color: #666;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+  }
+  
+  .report-link:hover {
+    color: #333;
+  }
   @media (max-width: 768px) {
     .top-section {
       flex-direction: column;
@@ -185,7 +285,7 @@ html, body {
       bottom: -4.5rem;
     }
   
-    button.book-btn {
+    .book-btn {
       align-self: stretch;
       width: 100%;
       text-align: center;

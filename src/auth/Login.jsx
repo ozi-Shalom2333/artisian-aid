@@ -50,6 +50,8 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
+      console.log(response);
+      
       toast.success('Login successful!');
       setTimeout(() => navigate('/dashboard'), 1500); 
     } catch (error) {

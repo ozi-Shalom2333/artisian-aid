@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import '../../styles/admindashboard.css';
 import { MdCurrencyExchange } from "react-icons/md";
 import { RiHomeFill } from "react-icons/ri";
 import ArtisanInfo from './pages/ArtisanInfo';
 import ArtisanVerification from './pages/ArtisanVerification';
-import ArtisanUpload from './pages/ArtisanUpload ';
+// import ArtisanUpload from './pages/ArtisanUpload';
 import ArtisanNotification from './pages/ArtisanNotification';
 import ArtisanSecurity from './pages/ArtisanSecurity';
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ArtisanSubscription from './pages/ArtisanSubscription';
 import { CiLogout } from "react-icons/ci";
 
-const ArtisanDashoard = () => {
+const ArtisanDashboard = () => {
   const [activeTab, setActiveTab] = useState('personal-info');
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    setUserData(storedUserData);
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -22,7 +28,7 @@ const ArtisanDashoard = () => {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem('authToken'); 
+      const token = localStorage.getItem('token'); 
       const response = await axios.post(
         'https://artisanaid.onrender.com/v1/logout', 
         {},
@@ -35,7 +41,8 @@ const ArtisanDashoard = () => {
 
       if (response.status === 200) {
         alert('Logout successful!');
-        localStorage.removeItem('authToken'); 
+        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
         window.location.href = '/login'; 
       } else {
         alert('Failed to log out. Please try again.');
@@ -52,6 +59,16 @@ const ArtisanDashoard = () => {
     <div className="dashboard-container">
       <div className="sidebar">
         <div className="logo">ArtisanAid.</div>
+
+        {/* Optional: Show user's name and profile picture */}
+        {userData && (
+          <div className="user-profile">
+            <img src={userData.profilePic?.image_url} alt="Profile" className="profile-pic" />
+            <h4>{userData.fullname}</h4>
+            <p>{userData.category}</p>
+          </div>
+        )}
+
         <nav>
           <ul>
             <li className="admin-management-header">
@@ -98,11 +115,13 @@ const ArtisanDashoard = () => {
             </li>
           </ul>
         </nav>
+
         <div className="logout">
           <p 
-          className={`nav-link ${activeTab === 'security' ? 'nav-link-active' : ''}`}
-          onClick={() => handleTabClick('security')}
-          style={{ color: 'white', fontSize: '14px', fontWeight: '400', display: 'flex', alignItems: 'center', gap: '10px' }} >
+            className={`nav-link ${activeTab === 'security' ? 'nav-link-active' : ''}`}
+            onClick={() => handleTabClick('security')}
+            style={{ color: 'white', fontSize: '14px', fontWeight: '400', display: 'flex', alignItems: 'center', gap: '10px' }}
+          >
             <BsFillQuestionCircleFill size={20} />
             Security & Privacy
           </p>
@@ -116,6 +135,7 @@ const ArtisanDashoard = () => {
           </p>
         </div>
       </div>
+
       <div className="main-content">
         {activeTab === 'security' && <ArtisanSecurity />}
         {activeTab === 'personal-info' && <ArtisanInfo />}
@@ -124,6 +144,7 @@ const ArtisanDashoard = () => {
         {activeTab === 'notification' && <ArtisanNotification />}
         {activeTab === 'subscription' && <ArtisanSubscription />}
       </div>
+
       {showLogoutModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -144,4 +165,4 @@ const ArtisanDashoard = () => {
   );
 };
 
-export default ArtisanDashoard;
+export default ArtisanDashboard;

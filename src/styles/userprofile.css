@@ -8,14 +8,18 @@
     overflow-x: hidden;
   }
   
-  a {
+  .report-link {
     color: #ef4444;
     text-decoration: underline;
     font-weight: 500;
     font-size: 0.875rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
   
-  a:hover {
+  .report-link:hover {
     opacity: 0.8;
   }
   

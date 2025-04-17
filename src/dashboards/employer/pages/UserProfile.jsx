@@ -13,13 +13,13 @@ const UserProfile = () => {
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
   const [reportSubmitted, setReportSubmitted] = useState(false);
 
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://artisanaid.onrender.com';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://artisanaid.onrender.com';
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/v1/user/${userId}`);
-        setUserData(response.data.data); 
+        setUserData(response.data.data);
       } catch (err) {
         if (err.response) {
           if (err.response.status === 404) {
@@ -84,7 +84,7 @@ const UserProfile = () => {
           </div>
 
           <div className="report-container">
-            <button 
+            <button
               onClick={() => setShowReportModal(true)}
               className="report-link"
               aria-label="Report this user"

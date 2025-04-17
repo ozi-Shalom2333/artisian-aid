@@ -72,6 +72,7 @@ const Login = () => {
           navigate('/employerdashboard');
         } else if (userRole === 'Artisan') {
           navigate('/artisandashboard');
+          
         } else {
           console.error('Unknown user role:', userRole);
           toast.error('Unknown user role. Please contact support.');

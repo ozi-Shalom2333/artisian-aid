@@ -77,11 +77,11 @@ const Login = () => {
 
         toast.info('Redirecting...');
         if (userRole === 'Admin') {
-          navigate(`admindashboard/${userId}`);
+          navigate(`/admindashboard`);
         } else if (userRole === 'Employer') {
-          navigate(`/employerdashboard/${userId}`);
+          navigate(`/employerdashboard`);
         } else if (userRole === 'Artisan') {
-          navigate(`/artisandashboard/${userId}`);
+          navigate(`/artisandashboard`);
         }
         else {
           console.error('Unknown user role:', userRole);

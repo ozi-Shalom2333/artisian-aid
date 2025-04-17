@@ -60,6 +60,7 @@ const Login = () => {
         const token = response.data.token;
 
         localStorage.setItem('authToken', token);
+        localStorage.setItem('userData', JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
 
         toast.success(response.data.message || 'Login successful!');
@@ -71,6 +72,7 @@ const Login = () => {
           navigate('/employerdashboard');
         } else if (userRole === 'Artisan') {
           navigate('/artisandashboard');
+          
         } else {
           console.error('Unknown user role:', userRole);
           toast.error('Unknown user role. Please contact support.');

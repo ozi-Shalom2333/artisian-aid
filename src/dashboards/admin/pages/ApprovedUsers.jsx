@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../../styles/approvedusers.css";
+
+import DeclinedUserCard from "../../../components/DeclinedUserCard";
+
 import ApprovedUserCard from "../../../components/ApprovedUserCard";
 
 const ApprovedUsers = () => {
@@ -31,7 +34,9 @@ const ApprovedUsers = () => {
         setArtisans(response.data.data);
       } catch (err) {
         setError(
-          err.response?.data?.message || "Failed to fetch approved artisans."
+
+          error.response?.data?.message || "Failed to fetch approved artisans."
+
         );
       } finally {
         setLoading(false);
@@ -48,7 +53,6 @@ const ApprovedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-   
     <div className="pending-users-wrapper">
       <h2 className="title">Approved Artisans ({artisans.length})</h2>
       {loading ? (

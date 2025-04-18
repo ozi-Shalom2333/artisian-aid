@@ -133,13 +133,8 @@
   
   .form-row {
     display: flex;
-    justify-content: space-between;
-    font-weight: bolder;
+    gap: 1rem;
     flex-wrap: wrap;
-  }
-  .form-row p{
-    width: 30%;
-
   }
   
   input,

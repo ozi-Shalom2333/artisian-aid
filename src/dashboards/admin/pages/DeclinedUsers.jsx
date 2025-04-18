@@ -40,7 +40,6 @@ const DeclinedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-   
     <div className="pending-users-wrapper">
     <h2 className="title">Declined Users ({artisans.length})</h2>
     {loading ? (

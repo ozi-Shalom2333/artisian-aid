@@ -345,6 +345,7 @@ const SignUp = () => {
               <input
                 type="password"
                 id="confirmPassword"
+                style={{maxHeight:'7vh'}}
                 placeholder="Type here"
                 value={formData.confirmPassword}
                 onChange={(e) =>

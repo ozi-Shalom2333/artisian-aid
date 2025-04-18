@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../../styles/employerDashboard.css';
-import { CgProfile } from 'react-icons/cg';
-import { MdLogout } from 'react-icons/md';
 import { FiCamera } from 'react-icons/fi';
 import { BiEdit } from 'react-icons/bi';
+import axios from 'axios';
 
 const PersonalInfo = () => {
+
+      const BaseUrl = 'https://artisanaid.onrender.com';
+        const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')))
+ 
+        useEffect(() => {
+            const getUser = async () => {
+                try {
+                    const response = await axios.get(`${BaseUrl}/v1/user/${userData._id}`);
+                    setUserData(response.data.data);
+                    console.log(response);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            getUser();
+        },[])
+
+
     return (
         <div className="user-profile-container">
             <div className="pack">
@@ -16,7 +34,7 @@ const PersonalInfo = () => {
                     <div className="profile-section">
                         <div className="profile-image-container">
                             <div className="profile-image">
-                                <img src="" alt="" />
+                                <img src={userData.coverPhoto.image_url} alt="" />
                             </div>
                             <div className="camera-icon">< FiCamera size={29}/></div>
                         </div>
@@ -26,6 +44,7 @@ const PersonalInfo = () => {
                             Edit <BiEdit/>
                         </button>
                     </div>
+                  <hr />
                     <div className="info-section">
                         <div className="personal-info-card">
                             <div className="card-header">
@@ -34,34 +53,25 @@ const PersonalInfo = () => {
                             <div className="card-body">
                                 <div className="info-row">
                                     <div className="info-label">Full Name</div>
-                                    <div className="info-value">John Doe</div>
+                                    <div className="info-value">{userData.fullname}</div>
                                 </div>
                                 <div className="info-row">
                                     <div className="info-label">Email</div>
-                                    <div className="info-value">johndoe@example.com</div>
+                                    <div className="info-value">{userData.email}</div>
                                 </div>
                                 <div className="info-row">
                                     <div className="info-label">Phone</div>
-                                    <div className="info-value">09012345678</div>
+                                    <div className="info-value">{userData.phoneNumber}</div>
                                 </div>
+                                {/* <div className="edit-button-container">
+                                   <button className="edit-button">
+                                     Edit <BiEdit/>
+                                   </button>
+                                </div> */}
                             </div>
                         </div>
 
-                        <div className="location-card">
-                            <div className="card-header">
-                                <h4>Location</h4>
-                            </div>
-                            <div className="card-body">
-                                <div className="info-row">
-                                    <div className="info-label">LGA</div>
-                                    <div className="info-value">Ajeromi-Ifelodun</div>
-                                </div>
-                                <div className="info-row">
-                                    <div className="info-label">State</div>
-                                    <div className="info-value">Lagos</div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

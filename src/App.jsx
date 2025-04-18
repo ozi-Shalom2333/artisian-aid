@@ -2,18 +2,20 @@ import React from "react";
 import Header from "./components/Header";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from "../ScrollToTop";
 
 const App = () => {
+
   return (
     <>
+      <ScrollToTop/>
       <ToastContainer />
       <div className="App">
         <Header />
-        {/* <main style={{ height: 'calc(100vh - 200px)', backgroundColor: '#f0f0f0' }}> */}
          <main>
-         <Outlet />
+          <Outlet />
          </main>
         <Footer />
       </div>

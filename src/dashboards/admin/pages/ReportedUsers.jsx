@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ReportedUserCard from "../../../components/ReportedUserCard";
 
 const ReportedUser = () => {
+<<<<<<< HEAD
   const [artisans, setArtisans] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,6 +50,8 @@ const ReportedUser = () => {
 
   // if (loading) return <div className="loading">Loading Reported artisans...</div>;
   // if (error) return <div className="error">{error}</div>;
+=======
+>>>>>>> dc6e8143089d6057b36b506e897c4d5ec56ea431
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported User Verification</h2>
@@ -83,6 +86,7 @@ const ReportedUser = () => {
   );
 };
 
+<<<<<<< HEAD
 export default ReportedUser;
 
 
@@ -166,3 +170,6 @@ export default ReportedUser;
 // }
 
 // export default ReportedUser
+=======
+export default ReportedUser
+>>>>>>> dc6e8143089d6057b36b506e897c4d5ec56ea431

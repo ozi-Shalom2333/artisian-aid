@@ -6,6 +6,7 @@ import { MdVerified } from "react-icons/md";
 
 function Card({data}) {
   return (
+  
     <div className="card">
       <div className="card-header">
         <div className="profile-info">
@@ -26,7 +27,7 @@ function Card({data}) {
       </div>
       <div className="card-image">
         
-        <img src={data.coverPhoto.image_url}  alt="Painter" />
+        <img src={data.jobPostId.jobImage.image_url}  alt="Painter" />
       </div>
       <div className="card-footer">
         <div className="service-info">

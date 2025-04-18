@@ -39,7 +39,7 @@ const ArtisanPage = () => {
       const navigate = useNavigate();
 
 <div className="ozioma">
-  {artisans.map((data) => (
+  {artisans.map((data, onclick) => (
     <Card 
       key={data._id} 
       data={data} 

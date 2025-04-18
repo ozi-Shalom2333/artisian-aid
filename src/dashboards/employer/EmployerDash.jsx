@@ -18,8 +18,9 @@ const EmployerDash = () => {
      };
      return (
        <div className="dashboard-container">
+        
          <div className="sidebar">
-           <div className="logo" onClick={()=> navigate('/')}>ArtisanAid.</div>
+           <div className="logo">ArtisanAid.</div>
            <nav>
              <ul>
                <li className="admin-management-header">

@@ -10,7 +10,6 @@ import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -99,13 +98,13 @@ const Login = () => {
   };
 
   const handleForgotPassword = () => navigate('/forget');
-  const handleSignUpRedirect = () => navigate('/authoption');
+  const handleSignUpRedirect = () => navigate('/signup');
 
   return (
-    <div className='loginMainBody'>
+    <div className='loginMainBody1'>
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className='firstborn' onClick={() => navigate('/')}>
-        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="Logo" />
+      <div className='firstborn' >
+        <img onClick={() => navigate('/')} src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="Logo" />
       </div>
       <div className='lastborn'>
         <h1>Log In</h1>

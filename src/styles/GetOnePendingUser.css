@@ -1,5 +1,5 @@
 .pending-user-wrapper {
-    background-color: #e7ecff;
+    background-color: #010203;
     min-height: 100vh;
     padding: 40px;
     font-family: 'Inter', sans-serif;
@@ -10,6 +10,7 @@
     font-weight: 600;
     margin-bottom: 20px;
     color: #000;
+    background-color: #3164f4;
   }
   
   .user-box {

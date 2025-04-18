@@ -225,6 +225,30 @@
 .explore-artisans{
     cursor: pointer;
 }
+.recommendedart{
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #D8E7F0;
+  gap: 30px;
+}
+.recommendedart  > h1{
+   font-size: 40px;
+   font-weight: 700;
+   color: #282828;
+}
+.recommendedart > div{
+  width: fit-content;
+  margin: 0 auto;
+ 
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 
 
 

@@ -87,12 +87,7 @@ const HomePage = () => {
           <div className='homePage__hero2__img'>
              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
           </div>
-          <div >
-        {artisans.map((data) => (
-          <Card data={data} />
-        ))}
-      </div>
-       </div>
+            </div>
 
        {/* mobile responsiveness setup */}
        
@@ -148,6 +143,16 @@ const HomePage = () => {
             <RiArrowDropRightLine size={25}/>
           </div>
        </div>
+       <div className='recommendedart'>
+            <h1>Top Recommended Artisan <br /> Services</h1>
+            <div className='catfilter-card'>
+                    {
+                        artisans.map((e)=>(
+                            <Card data = {e}/>
+                        ))
+                    }
+            </div>
+          </div>
 
        {/* mobile set up for categories */}
        <div className='homePage__hero3_mobile'>
@@ -164,6 +169,7 @@ const HomePage = () => {
             </div>
          ))}
           </div>
+          
           
        </div>
 

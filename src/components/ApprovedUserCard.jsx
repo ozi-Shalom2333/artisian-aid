@@ -1,6 +1,5 @@
 import React from 'react'
 import { FcApproval } from "react-icons/fc";
-import '../styles/PendingUsers.css'
 
 const ApprovedUserCard = ({image,
     name,
@@ -19,7 +18,7 @@ const ApprovedUserCard = ({image,
            </div>
            <span className="user-name">{name}</span>
          </div>
-         <span className="user-email" style={{fontSize:15}}>{email}</span>
+         <span className="user-email">{email}</span>
          <button className="view-details view-details2" onClick={onViewDetails}>
            View Details
          </button>

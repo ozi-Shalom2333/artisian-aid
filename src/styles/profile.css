@@ -3,6 +3,7 @@
   height: 450px;
   max-height: 500px;
   border-radius: 10px;
+  background-color: #fff;
   border: 2px solid #eaeaea;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -19,6 +20,7 @@
    border-radius: 50%;
 
 }
+
 .card-header div:first-of-type{
   display: flex;
   gap: 10px;
@@ -63,6 +65,22 @@
 .recommended{
   font-size: 10px;
   font-weight: 400;
+}
+.card-price{
+  width: 140px;
+  height: fit-content;
+  background-color: #282828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 10px;
+ 
+}
+.card-price > p{
+  font-size: 16px;
+  font-weight: 700;
 }
 
   

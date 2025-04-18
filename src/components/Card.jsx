@@ -1,11 +1,16 @@
 import React from 'react';
-import './../styles/profile.css';
-import { AiFillStar } from 'react-icons/ai'; 
+import './../styles/profile.css'; 
 import { MdVerified } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
-function Card({data, onClick}) {
+function Card({data}) {
+   
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/userprofile/${data._id}`);
+  };
   return (
-    <div className="card" onClick={onclick}>
+    <div className="card">
      <section className='card-header'>
         <div>
           <header>
@@ -42,7 +47,7 @@ function Card({data, onClick}) {
         </div>
 
 
-        <div>
+        <div className='card-price' onClick={handleClick}>
           <p>Book Now</p>
         </div>
       </section>

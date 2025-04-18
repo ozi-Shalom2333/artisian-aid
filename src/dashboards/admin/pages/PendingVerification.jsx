@@ -22,10 +22,10 @@ const PendingVerification = () => {
       try {
         const response = await axios.get(
           "https://artisanaid.onrender.com/v1/pending/artisans",
-          {
+      {
             headers: {
               Authorization: `Bearer ${token}`,
-            }
+            },
           }
         );
 

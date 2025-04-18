@@ -15,7 +15,7 @@ const EmployerSignUp = () => {
     confirmPassword: ''
   });
 
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -24,7 +24,7 @@ const EmployerSignUp = () => {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: '' });
+    setError({ ...error, [name]: '' });
   };
 
   const togglePasswordVisibility = () => {
@@ -36,42 +36,42 @@ const EmployerSignUp = () => {
   };
 
   const checkForm = () => {
-    const newErrors = {};
+    const newError = {};
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
-    if (!form.fullname) newErrors.fullname = 'Full name is required';
+    if (!form.fullname) newError.fullname = 'Full name is required';
 
     if (!form.phoneNumber) {
-      newErrors.phoneNumber = 'Phone number is required';
+      newError.phoneNumber = 'Phone number is required';
     } else if (!/^\+?\d{7,15}$/.test(form.phoneNumber)) {
-      newErrors.phoneNumber = 'Enter a valid phone number';
+      newError.phoneNumber = 'Enter a valid phone number';
     }
 
-    if (!form.email) newErrors.email = 'Email is required';
+    if (!form.email) newError.email = 'Email is required';
 
     if (!form.password) {
-      newErrors.password = 'Password is required';
+      newError.password = 'Password is required';
     } else if (!strongPasswordRegex.test(form.password)) {
-      newErrors.password =
+      newError.password =
         'Password must be at least 8 characters and include one uppercase letter, one lowercase letter, and one special character';
     }
 
     if (!form.confirmPassword) {
-      newErrors.confirmPassword = 'Confirm password is required';
+      newError.confirmPassword = 'Confirm password is required';
     } else if (form.password !== form.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newError.confirmPassword = 'Passwords do not match';
     }
 
-    return newErrors;
+    return newError;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formErrors = checkForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      toast.error(Object.values(formErrors)[0]);
+    const formError = checkForm();
+    if (Object.keys(formError).length > 0) {
+      setError(formError);
+      toast.error(Object.values(formError)[0]);
       return;
     }
 
@@ -148,7 +148,7 @@ const EmployerSignUp = () => {
                   placeholder="Your name"
                   disabled={loading}
                 />
-                {errors.fullname && <small className="employerSignUp__error">{errors.fullname}</small>}
+                {error.fullname && <small className="employerSignUp__error">{error.fullname}</small>}
               </div>
               <div className="employerSignUp__inputGroup">
                 <p>Phone Number</p>
@@ -160,7 +160,7 @@ const EmployerSignUp = () => {
                   placeholder="080..."
                   disabled={loading}
                 />
-                {errors.phoneNumber && <small className="employerSignUp__error">{errors.phoneNumber}</small>}
+                {error.phoneNumber && <small className="employerSignUp__error">{error.phoneNumber}</small>}
               </div>
             </div>
 
@@ -175,7 +175,7 @@ const EmployerSignUp = () => {
                   placeholder="Your email"
                   disabled={loading}
                 />
-                {errors.email && <small className="employerSignUp__error">{errors.email}</small>}
+                {error.email && <small className="employerSignUp__error">{error.email}</small>}
               </div>
               <div className="employerSignUp__inputGroup">
                 <p>Password</p>
@@ -192,7 +192,7 @@ const EmployerSignUp = () => {
                     {showPassword ? <FiEyeOff /> : <FiEye />}
                   </span>
                 </div>
-                {errors.password && <small className="employerSignUp__error">{errors.password}</small>}
+                {error.password && <small className="employerSignUp__error">{error.password}</small>}
               </div>
             </div>
 
@@ -213,7 +213,7 @@ const EmployerSignUp = () => {
                   </span>
                 </div>
                 {errors.confirmPassword && (
-                  <small className="employerSignUp__error">{errors.confirmPassword}</small>
+                  <small className="employerSignUp__error">{error.confirmPassword}</small>
                 )}
               </div>
             </div>

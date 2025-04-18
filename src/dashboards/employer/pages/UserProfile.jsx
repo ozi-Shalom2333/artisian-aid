@@ -11,6 +11,9 @@ const UserProfile = () => {
   const [error, setError] = useState(null);
 
 
+ useEffect(() => {
+  console.log("this is user id",userId )
+ })
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportReason, setReportReason] = useState('');
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
@@ -250,18 +253,18 @@ const UserProfile = () => {
 
           
           {showBookingModal && (
-            <div className="modal-overlay" onClick={() => setShowBookingModal(false)}>
-              <div className="modal-content-1" onClick={(e) => e.stopPropagation()}>
-                <button className="close-modal-button" onClick={() => setShowBookingModal(false)}>
+            <div className="modal-overlay-booking" onClick={() => setShowBookingModal(false)}>
+              <div className="modal-content-1-booking" onClick={(e) => e.stopPropagation()}>
+                <button className="close-modal-button-booking" onClick={() => setShowBookingModal(false)}>
                   &times;
                 </button>
                 {!bookingSubmitted ? (
                   <>
-                    <h2 className="modal-title-1">Booking Details</h2>
-                    <p className="describe-7">Please provide the required details for your booking</p>
-                    {error && <div className="error-message">{error}</div>}
+                    <h2 className="modal-title-1-booking">Booking Details</h2>
+                    <p className="describe-7-booking">Please provide the required details for your booking</p>
+                    {error && <div className="error-message-booking">{error}</div>}
                     <form onSubmit={handleBookingSubmit}>
-                      <div className="form-group">
+                      <div className="form-group-booking">
                         <h4 className="input-title">Service Title</h4>
                         <input
                           type="text"
@@ -273,7 +276,7 @@ const UserProfile = () => {
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className="form-group-booking">
                         <h4 className="input-title">Phone Number</h4>
                         <input
                           type="tel"
@@ -285,7 +288,7 @@ const UserProfile = () => {
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className="form-group-booking">
                         <h4 className="input-title">Address</h4>
                         <input
                           type="text"
@@ -297,7 +300,7 @@ const UserProfile = () => {
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className="form-group-booking">
                         <h4 className="input-title">Service Description</h4>
                         <textarea
                           name="serviceDescription"
@@ -309,7 +312,7 @@ const UserProfile = () => {
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className="form-group-booking">
                         <button className='button-oh' type="submit" disabled={isSubmittingBooking}>
                           {isSubmittingBooking ? 'Booking...' : 'Book Now'}
                         </button>

@@ -63,7 +63,7 @@
   margin-top: 2rem;
 }
 
-.describe-7{
+.describe-7-booking{
   font-size: 1rem;
   color: #555;
   margin-bottom: 5rem;
@@ -197,7 +197,7 @@
 }
 
 
-.modal-overlay {
+.modal-overlay-booking {
   position: fixed;
   top: 0;
   left: 0;
@@ -211,7 +211,7 @@
 }
 
 
-.modal-content-1 {
+.modal-content-1-booking {
   background: #fff;
   padding: 4rem;
   border-radius: 12px;
@@ -236,7 +236,7 @@
 }
 
 
-.modal-actions-1 {
+.modal-actions-1-booking {
   display: flex;
   justify-content: flex-end;
   gap: 1.5rem;
@@ -251,7 +251,7 @@
 }
 
 
-.close-modal-button {
+.close-modal-button-booking {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -263,7 +263,7 @@
   transition: transform 0.3s ease;
 }
 
-.close-modal-button:hover {
+.close-modal-button-booking:hover {
   transform: scale(1.2);
 }
 .cancel-button {
@@ -375,7 +375,7 @@ input[type="tel"] {
   margin-top: 0.8rem;
 }
  
-.form-group {
+.form-group-booking {
   margin-bottom: 2.7rem;
   height: 60%;
 }

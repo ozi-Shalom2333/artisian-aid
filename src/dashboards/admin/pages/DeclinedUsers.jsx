@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../../styles/declineduser.css';
+import DeclinedUserCard from '../../../components/DeclinedUserCard';
 
 const DeclinedUsers = () => {
   const [artisans, setArtisans] = useState([]);
@@ -39,44 +40,60 @@ const DeclinedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-    <div className='pproved-users-container'>
-
-      <section className='dminDashboard'>
-        <div className='pendingUser'>
-          <h5>Declined Users ({artisans.length})</h5>
-        </div>
+    // <div className='pproved-users-container'>
+    //   <section className='dminDashboard'>
+    //     <div className='pendingUser'>
+    //       <h5>Declined Users ({artisans.length})</h5>
+    //     </div>
         
-        {artisans.length === 0 ? (
-          <div className="no-artisans">No declined artisans found.</div>
-        ) : (
-          <aside className='dminDashboardMainContainer'>
-            {artisans.map((artisan) => (
-              <nav key={artisan._id} className='daezeJane'>
-                <div className='daezeImage'>
-                  <img 
-                    src={artisan.profilePic?.image_url || '/default-profile.jpg'} 
-                    alt={artisan.fullname} 
-                  />
-                  <p>{artisan.fullname}</p>
-                </div>
+    //     {artisans.length === 0 ? (
+    //       <div className="no-artisans">No declined artisans found.</div>
+    //     ) : (
+    //       <aside className='dminDashboardMainContainer'>
+    //         {artisans.map((artisan) => (
+    //           <nav key={artisan._id} className='daezeJane'>
+    //             <div className='daezeImage'>
+    //               <img 
+    //                 src={artisan.profilePic?.image_url || '/default-profile.jpg'} 
+    //                 alt={artisan.fullname} 
+    //               />
+    //               <p>{artisan.fullname}</p>
+    //             </div>
                 
-                <div className='daezeEmail'>
-                  <p>{artisan.email}</p>
-                  {/* <p>Business: {artisan.businessName}</p>
-                  <p>Phone: {artisan.phoneNumber}</p> */}
-                </div>
+    //             <div className='daezeEmail'>
+    //               <p>{artisan.email}</p>
+    //             </div>
 
-                <div className='daStatus'>
-                  <p>Status: {artisan.verificationStatus}</p>
-                  {/* <p>Category: {artisan.category}</p>
-                  <p>Location: {artisan.location?.state}</p> */}
-                </div>
-              </nav>
-            ))}
-          </aside>
+    //             <div className='daStatus'>
+    //               <p>Status: {artisan.verificationStatus}</p>
+    //             </div>
+    //           </nav>
+    //         ))}
+    //       </aside>
+    //     )}
+    //   </section>
+    // </div>
+    <div className="pending-users-wrapper">
+    <h2 className="title">Declined Users ({artisans.length})</h2>
+    {loading ? (
+      <p>Loading...</p>
+    ) : (
+      <div className="users-container">
+        {artisans.length > 0 ? (
+          artisans.map((user) => (
+            <DeclinedUserCard
+              name= {user.fullname}
+              email= {user.email}
+              image= {user.profilePic.image_url}
+              status={user.verificationStatus}
+            />
+          ))
+        ) : (
+          <p>No Declined users at the moment.</p>
         )}
-      </section>
-    </div>
+      </div>
+    )}
+  </div>
   );
 };
 

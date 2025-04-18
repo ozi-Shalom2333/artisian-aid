@@ -57,11 +57,13 @@ const GetOnePendingUser = () => {
     const token = localStorage.getItem("token");
     try {
       await API.get(
-        `/v1/verification/reject/${verification._id}`,
+        `https://artisanaid.onrender.com/v1/reject/verification/${verification._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account verification has been rejected");
-      navigate("/admindashboard/pendingUsers");
+      setTimeout(() => {
+        navigate("/admindashboard/declined-users");
+      }, 1500);
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to reject verification");
     } finally {
@@ -76,11 +78,13 @@ const GetOnePendingUser = () => {
     const token = localStorage.getItem("token");
     try {
       await API.get(
-        `/accept/verification/${verification._id}`,
+        `https://artisanaid.onrender.com/accept/verification/${verification._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account has been verified successfully");
-      navigate("/admindashboard/pendingUsers");
+      setTimeout(() => {
+        navigate("/admindashboard/approved-users");
+      }, 1500);
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to approve verification");
     } finally {

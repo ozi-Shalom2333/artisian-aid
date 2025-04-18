@@ -113,6 +113,15 @@
   z-index: 1000;
 }
 
+.logout-text{
+  color: #EB5757;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+  cursor: pointer;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {

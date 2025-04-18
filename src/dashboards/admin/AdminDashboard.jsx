@@ -5,6 +5,7 @@ import '../../styles/admindashboard.css';
 import { RiHomeFill, RiMenuLine, RiCloseLine } from "react-icons/ri";
 import Logout from '../../components/modals/Logout';
 import { useNavigate } from 'react-router-dom';
+import { FiLogOut } from "react-icons/fi";
 
 
 const AdminDashboard = () => {
@@ -104,11 +105,12 @@ const AdminDashboard = () => {
         </nav>
         <div className="logout">
         <p 
-          className="nav-link" 
+          className="nav-link logout-text" 
           onClick={() => setShowLogoutModal(true)}
           style={{ cursor: 'pointer' }}
         >
-          Log out
+          <FiLogOut/>
+          <span>Log out</span>
         </p>
         </div>
       </div>

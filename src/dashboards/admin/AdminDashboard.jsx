@@ -5,6 +5,7 @@ import '../../styles/admindashboard.css';
 import { RiHomeFill, RiMenuLine, RiCloseLine } from "react-icons/ri";
 import Logout from '../../components/modals/Logout';
 import { useNavigate } from 'react-router-dom';
+import { FiLogOut } from "react-icons/fi";
 
 
 const AdminDashboard = () => {
@@ -17,7 +18,8 @@ const AdminDashboard = () => {
   // Check if path matches for active styling
   const isActive = (path) => {
     return location.pathname === `/admindashboard/${path}` || 
-           (location.pathname === '/admindashboard' && path === 'pending-verification');
+       (location.pathname === '/admindashboard' && path === 'pending-verification');
+
   };
 
   const handleLogout = () => {
@@ -60,7 +62,7 @@ const AdminDashboard = () => {
       </button>
 
       {/* Sidebar */}
-      <div className={`sidebar ${isSidebarOpen ? 'active' : ''}`}>
+      <div className={sidebar ${isSidebarOpen ? 'active' : ''}}>
         <div className="logo">ArtisanAid.</div>
         <nav>
           <ul>
@@ -71,7 +73,8 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="pending-verification"
-                className={`nav-link ${isActive('pending-verification') ? 'nav-link-active' : ''}`}
+               className={`nav-link ${isActive('pending-verification') ? 'nav-link-active' : ''}`}
+
               >
                 Pending User Verification
               </Link>
@@ -79,7 +82,7 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="approved-users"
-                className={`nav-link ${isActive('approved-users') ? 'nav-link-active' : ''}`}
+                className={nav-link ${isActive('approved-users') ? 'nav-link-active' : ''}}
               >
                 Approved Users
               </Link>
@@ -87,7 +90,7 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="declined-users"
-                className={`nav-link ${isActive('declined-users') ? 'nav-link-active' : ''}`}
+                className={nav-link ${isActive('declined-users') ? 'nav-link-active' : ''}}
               >
                 Declined Users
               </Link>
@@ -95,7 +98,7 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="reported-users"
-                className={`nav-link ${isActive('reported-users') ? 'nav-link-active' : ''}`}
+                className={nav-link ${isActive('reported-users') ? 'nav-link-active' : ''}}
               >
                 Reported Users
               </Link>
@@ -104,11 +107,12 @@ const AdminDashboard = () => {
         </nav>
         <div className="logout">
         <p 
-          className="nav-link" 
+          className="nav-link logout-text" 
           onClick={() => setShowLogoutModal(true)}
           style={{ cursor: 'pointer' }}
         >
-          Log out
+          <FiLogOut/>
+          <span>Log out</span>
         </p>
         </div>
       </div>
@@ -155,7 +159,7 @@ export default AdminDashboard;
 
 //   // Function to check if path matches
 //   const isActive = (path) => {
-//     return location.pathname === `/admindashboard/${path}` || 
+//     return location.pathname === /admindashboard/${path} || 
 //            (location.pathname === '/admindashboard' && path === 'pending-verification');
 //   };
 
@@ -173,7 +177,7 @@ export default AdminDashboard;
 //             <li>
 //               <Link
 //                 to="pending-verification"
-//                 className={`nav-link ${isActive('pending-verification') ? 'nav-link-active' : ''}`}
+//                 className={nav-link ${isActive('pending-verification') ? 'nav-link-active' : ''}}
 //               >
 //                 Pending User Verification
 //               </Link>
@@ -242,25 +246,25 @@ export default AdminDashboard;
 //               Admin Management
 //             </li>
 //             <li
-//               className={`nav-link ${activeTab === 'pending-verification' ? 'nav-link-active' : ''}`}
+//               className={nav-link ${activeTab === 'pending-verification' ? 'nav-link-active' : ''}}
 //               onClick={() => handleTabClick('pending-verification')}
 //             >
 //               Pending User Verification
 //             </li>
 //             <li
-//               className={`nav-link ${activeTab === 'approved-users' ? 'nav-link-active' : 'nav-link'}`}
+//               className={nav-link ${activeTab === 'approved-users' ? 'nav-link-active' : 'nav-link'}}
 //               onClick={() => handleTabClick('approved-users')}
 //             >
 //               Approved Users
 //             </li>
 //             <li
-//               className={`nav-link ${activeTab === 'declined-users' ? 'nav-link-active' : 'nav-link'}`}
+//               className={nav-link ${activeTab === 'declined-users' ? 'nav-link-active' : 'nav-link'}}
 //               onClick={() => handleTabClick('declined-users')}
 //             >
 //               Declined Users
 //             </li>
 //             <li
-//               className={`nav-link ${activeTab === 'reported-users' ? 'nav-link-active' : 'nav-link'}`}
+//               className={nav-link ${activeTab === 'reported-users' ? 'nav-link-active' : 'nav-link'}}
 //               onClick={() => handleTabClick('reported-users')}
 //             >
 //               Reported Users

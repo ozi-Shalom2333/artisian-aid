@@ -45,7 +45,6 @@ const Header = () => {
             </div>
           : <p onClick={handleLogout}>< FiLogOut/></p>
         }
-        
 
         <div className='second-respon' onClick={toggleDropdown}>
           <img 

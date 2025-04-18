@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/employerSignup.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -106,7 +106,6 @@ const EmployerSignUp = () => {
           password: '',
           confirmPassword: ''
         });
-
       } else {
         toast.error(response.data.message || 'Something went wrong');
       }
@@ -122,7 +121,13 @@ const EmployerSignUp = () => {
       <ToastContainer />
       <div className="employerSignUp__container">
         <aside className="employerSignUp__image">
-          <img src="https://res.cloudinary.com/dkxms3ctv/image/upload/v1744634401/Artisan_3_myrrpj.png" alt="Logo" />
+          <Link to="/">
+            <img
+              src="https://res.cloudinary.com/dkxms3ctv/image/upload/v1744634401/Artisan_3_myrrpj.png"
+              alt="Logo"
+              className="clickable-logo"
+            />
+          </Link>
         </aside>
 
         <div className="employerSignUp__card">

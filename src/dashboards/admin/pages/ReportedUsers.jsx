@@ -25,7 +25,7 @@ const ReportedUser = () => {
           "https://artisanaid.onrender.com/v1/reported/artisans",
           {
             headers: {
-              Authorization: Bearer ${token},
+              Authorization: Bearer `${token}`,
             },
           }
         );

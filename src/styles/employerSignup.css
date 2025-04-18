@@ -1,3 +1,4 @@
+/* ==== MAIN LAYOUT ==== */
 .employerSignUp__main {
   width: 100%;
   height: max-content;
@@ -7,7 +8,7 @@
   align-items: center;
   background-image: url("https://res.cloudinary.com/dkxms3ctv/image/upload/v1744636288/SIgn_up_as_an_employer_wofarb.png");
   background-size: cover;
-  background-position: 30% 40%;
+  background-position: center center; 
 }
 
 .employerSignUp__image {
@@ -28,10 +29,22 @@
 }
 
 .employerSignUp__image img {
+  pointer-events: none;
+  cursor: default;
   width: 220px;
   height: auto;
   object-fit: contain;
 }
+
+.clickable-logo {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable-logo:hover {
+  transform: scale(1.03);
+}
+
 
 .employerSignUp__container {
   display: flex;
@@ -44,7 +57,7 @@
 
 .employerSignUp__card {
   padding: 3rem;
-  max-width: 950px;
+  max-width: 1000px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,23 +94,20 @@
   justify-content: space-between;
 }
 
-.employerSignUp__rowSingle {
-  display: flex;
-  flex-direction: column;
-}
-
 .employerSignUp__inputGroup {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 38%;
-  max-width: 47%;
+  min-width: 42%;
+  width: 100%;
+  max-width: 49%;
   position: relative;
   margin-bottom: 1rem;
+  max-height: 30%;
 }
 
 .employerSignUp__inputGroup p {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.1rem;
   font-weight: 500;
   font-size: 0.95rem;
   color: #ffffff;
@@ -111,7 +121,6 @@
   font-size: 1rem;
   outline: none;
   background: #f9f9f9;
-  transition: 0.2s ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -133,7 +142,6 @@
   margin-top: 0.5rem;
   color: #ffffff;
 }
-
 
 .employerSignUp__terms span {
   color: #2d5bff;
@@ -201,6 +209,7 @@
   font-size: 1rem;
 }
 
+
 .employerSignUp__redirect {
   text-align: center;
   margin-top: 1rem;
@@ -214,7 +223,8 @@
   cursor: pointer;
 }
 
-/* ==== CUSTOM TOASTIFY STYLES ==== */
+
+
 .Toastify__toast--success {
   background: #1a40cc !important;
   color: #ffffff !important;
@@ -233,9 +243,7 @@
   padding: 16px !important;
 }
 
-/* ==== RESPONSIVENESS ==== */
 
-/* Tablets */
 @media (max-width: 1024px) {
   .employerSignUp__container {
     flex-direction: column;
@@ -262,7 +270,7 @@
   }
 }
 
-/* Mobile Devices */
+
 @media (max-width: 768px) {
   .employerSignUp__card {
     padding: 1.5rem;
@@ -286,7 +294,7 @@
   }
 }
 
-/* Extra Small Devices */
+
 @media (max-width: 480px) {
   .employerSignUp__main {
     background-position: center center;

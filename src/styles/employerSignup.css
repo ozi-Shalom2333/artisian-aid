@@ -123,6 +123,7 @@
   background: #f9f9f9;
   width: 100%;
   box-sizing: border-box;
+  height: auto;
 }
 
 .employerSignUp__inputGroup input:focus {
@@ -152,16 +153,19 @@
 .employerSignUp__passwordWrapper {
   position: relative;
   display: flex;
+  height: 6vh;
   align-items: center;
 }
 
 .employerSignUp__passwordWrapper input {
   width: 100%;
   padding-right: 2.5rem;
+  height: 100%;
 }
 
 .employerSignUp__toggleEye {
   position: absolute;
+  top: 20px;
   right: 10px;
   cursor: pointer;
   color: #999;

@@ -112,6 +112,95 @@
   border-radius: 4px;
   z-index: 1000;
 }
+/* Modal Overlay */
+.modal-overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Modal Box */
+.modal1 {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out; /* Optional fade-in animation */
+}
+
+/* Modal Heading */
+.modal1 h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Modal Text */
+.modal1 p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Modal Actions (Buttons) */
+.modal-actions1 {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Cancel Button */
+.cancel-btn1 {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn1:hover {
+  background-color: #bbb;
+}
+
+/* Logout Button */
+.logout-btn1 {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn1:hover {
+  background-color: #c9302c;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {

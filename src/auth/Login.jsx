@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  
-  const [identifier, setIdentifier] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showpassword, setShowPassword] = useState(false);
 
@@ -34,7 +34,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!identifier || !password) {
-      toast.error('Please fill in all the fields.');
+      toast.error("Please fill in all the fields.");
       return;
     }
 
@@ -42,55 +42,56 @@ const Login = () => {
     const isPhoneValid = isValidPhoneNumber(identifier);
 
     if (!isEmailValid && !isPhoneValid) {
-      toast.error('Enter a valid email or Nigerian phone number.');
+      toast.error("Enter a valid email or Nigerian phone number.");
       return;
     }
 
     const loginData = {
       password,
-      ...(isEmailValid ? { email: identifier } : { phoneNumber: identifier })
+      ...(isEmailValid ? { email: identifier } : { phoneNumber: identifier }),
     };
 
-    const baseUrl = 'https://artisanaid.onrender.com';
+    const baseUrl = "https://artisanaid.onrender.com";
 
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
-      console.log(response)
+      console.log(response);
       if (response.status === 200) {
         const token = response.data.token;
 
-        localStorage.setItem('authToken', token);
-        localStorage.setItem('userData', JSON.stringify(response.data.data));
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("userData", JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
 
-        toast.success(response.data.message || 'Login successful!');
-        toast.info('Redirecting...');
+        toast.success(response.data.message || "Login successful!");
+        toast.info("Redirecting...");
 
-        if (userRole === 'Admin') {
-          navigate('/admindashboard');
-        } else if (userRole === 'Employer') {
-          navigate('/employerdashboard');
-        } else if (userRole === 'Artisan') {
-          navigate('/artisandashboard');
-          
+        if (userRole === "Admin") {
+          navigate("/admindashboard");
+        } else if (userRole === "Employer") {
+          navigate("/employerdashboard");
+        } else if (userRole === "Artisan") {
+          navigate("/artisandashboard");
         } else {
-          console.error('Unknown user role:', userRole);
-          toast.error('Unknown user role. Please contact support.');
+          console.error("Unknown user role:", userRole);
+          toast.error("Unknown user role. Please contact support.");
         }
       } else {
-        toast.error('Login successful, but an unexpected response was received.');
+        toast.error(
+          "Login successful, but an unexpected response was received."
+        );
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message;
       const status = error.response?.status;
 
       if (status === 400) {
-        toast.error(errorMessage || 'Incorrect password.');
+        toast.error(errorMessage || "Incorrect password.");
       } else if (status === 401) {
-        toast.error(errorMessage || 'Account not verified or is restricted.');
+        toast.error(errorMessage || "Account not verified or is restricted.");
       } else {
-        toast.error('Login failed. Please try again later.');
+        toast.error("Login failed. Please try again later.");
         console.error("Login Error:", error);
       }
     } finally {
@@ -98,51 +99,64 @@ const Login = () => {
     }
   };
 
-  const handleForgotPassword = () => navigate('/forget');
-  const handleSignUpRedirect = () => navigate('/signup');
+  const handleForgotPassword = () => navigate("/forget");
+  const handleSignUpRedirect = () => navigate("/signup");
 
   return (
-    <div className='loginMainBody'>
+    <div className="loginMainBody">
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className='firstborn' onClick={() => navigate('/')}>
-        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png" alt="Logo" />
+      <div className="firstborn" onClick={() => navigate("/")}>
+        <img
+          src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842325/Artisan_qs4cex.png"
+          alt="Logo"
+        />
       </div>
-      <div className='lastborn'>
+      <div className="lastborn">
         <h1>Log In</h1>
         <p>Enter your details to get signed in into your account</p>
-        <div className='loginEmailInput'>
+        <div className="loginEmailInput">
           <span>
             <p>Email/Phone number</p>
           </span>
           <input
             type="text"
-            placeholder='Type here'
+            placeholder="Type here"
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
           />
         </div>
-        <div className='loginEmailPassword'>
+        <div className="loginEmailPassword">
           <span>
             <p>Password</p>
           </span>
-          <div className='loginPasswordSection'>
+          <div className="loginPasswordSection">
             <input
-              type={showpassword ? 'text' : 'password'}
-              placeholder='Type here'
+              type={showpassword ? "text" : "password"}
+              placeholder="Type here"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <span className='showPassword' onClick={togglePasswordVisibility}>
-              {showpassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
+            <span className="showPassword" onClick={togglePasswordVisibility}>
+              {showpassword ? (
+                <MdOutlineRemoveRedEye color="black" />
+              ) : (
+                <FaRegEyeSlash color="black" />
+              )}
             </span>
           </div>
-          <p className='forget' onClick={handleForgotPassword}>Forgot Password?</p>
+          <p className="forget" onClick={handleForgotPassword}>
+            Forgot Password?
+          </p>
         </div>
-        <button className='button' onClick={handleLogin} disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
+        <button className="button" onClick={handleLogin} disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
         </button>
-        <p>Don't have an account?
-          <span className='gosignUp' onClick={handleSignUpRedirect}> SignUp</span>
+        <p>
+          Don't have an account?
+          <span className="gosignUp" onClick={handleSignUpRedirect}>
+            {" "}
+            SignUp
+          </span>
         </p>
       </div>
     </div>

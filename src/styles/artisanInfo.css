@@ -133,8 +133,20 @@
   
   .form-row {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    font-weight: bolder;
     flex-wrap: wrap;
+  }
+  .form-row p{
+    width: 30%;
+
+  }
+  .lcg{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: medium;
+    margin-left: 20%;
   }
   
   input,

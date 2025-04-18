@@ -32,6 +32,7 @@ import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
 
 
+
 const Router = createBrowserRouter([
     {
         element: <App />,
@@ -60,6 +61,7 @@ const Router = createBrowserRouter([
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
     { path:'/category/:category', element: <CategoryByFilter />},
+    { path: '/verify', element: <VerifyPassword /> },
     { path: '/resetpassword/:token', element: <ResetPassword /> },
     { path: '/onePendingUser', element: <GetOnePendingUser /> },
     // { path:'/admindashboard', element:<AdminDashboard/>},

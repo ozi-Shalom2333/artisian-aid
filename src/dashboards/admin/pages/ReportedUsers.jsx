@@ -64,4 +64,3 @@ const ReportedUser = () => {
   );
 };
 export default ReportedUser;
-

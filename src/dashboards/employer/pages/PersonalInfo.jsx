@@ -34,7 +34,7 @@ const PersonalInfo = () => {
                     <div className="profile-section">
                         <div className="profile-image-container">
                             <div className="profile-image">
-                                <img src={userData.coverPhoto.image_url} alt="" />
+                                <img src={userData.profilePic.image_url} alt="" />
                             </div>
                             <div className="camera-icon">< FiCamera size={29}/></div>
                         </div>

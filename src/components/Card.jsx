@@ -6,8 +6,66 @@ import { MdVerified } from "react-icons/md";
 
 function Card({data}) {
   return (
-  
     <div className="card">
+     
+
+
+
+     <section className='card-header'>
+        <div>
+          <header>
+            <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744935876/Frame_4_ke3z11.png" alt="" />
+          </header>
+          <aside>
+            <h3>
+              Adaeze Jane
+              <MdVerified size={20} color='blue'/>
+            </h3>
+            <p>view profile</p>
+          </aside>
+        </div>
+        <div>
+          <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744935818/Vector_1_elrf0x.png" alt="" />
+        </div>
+      </section>
+
+
+
+
+
+
+
+      <section>
+        <img src="" alt="" />
+      </section>
+      <section>
+        <div></div>
+        <div></div>
+      </section>
+
+
+    </div>
+  );
+}
+
+export default Card;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
       <div className="card-header">
         <div className="profile-info">
           <div className="profile-image">
@@ -25,6 +83,8 @@ function Card({data}) {
           <FiUpload size={20} />
         </div>
       </div>
+
+
       <div className="card-image">
         
         <img src={data.jobPostId.jobImage.image_url}  alt="Painter" />
@@ -47,9 +107,4 @@ function Card({data}) {
           </div>
         </div>
         <button className="book-now-button">Book Now</button>
-      </div>
-    </div>
-  );
-}
-
-export default Card;
+      </div> */}

@@ -24,7 +24,7 @@ const ApprovedUsers = () => {
           "https://artisanaid.onrender.com/v1/approved/artisans",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: Bearer ${token},
             },
           }
         );
@@ -105,7 +105,7 @@ const ApprovedUsers = () => {
                 image={user.profilePic?.image_url || '/default-profile.jpg'}
                 onViewDetails={handleViewDetails}
                 // status={""}
-                verified={`Status: ${user.verificationStatus}`}
+                verified={Status: ${user.verificationStatus}}
               />
             ))
           ) : (
@@ -118,73 +118,3 @@ const ApprovedUsers = () => {
 };
 
 export default ApprovedUsers;
-
-// import React from 'react'
-// import '../../../styles/approvedusers.css'
-
-// const ApprovedUsers = () => {
-//   const [artisans, setArtisans] = useState([]);
-//   const [error, setError] = useState('');
-//   const [loading, setLoading] = useState(false); // Added loading state
-
-//   useEffect(() => {
-//     const fetchApprovedArtisans = async () => {
-//       setLoading(true); // Start loading
-//       setError(''); // Clear any previous errors
-
-//       try {
-//         const token = localStorage.getItem('token'); // Retrieve token from localStorage
-//         if (!token) {
-//           throw new Error('Authentication token is missing.');
-//         }
-
-//         const response = await axios.get('https://artisanaid.onrender.com/v1/approved/artisans', {
-//           headers: {
-//             Authorization: `Bearer ${token}`, // Add token to headers
-//           },
-//         });
-
-//         setArtisans(response.data.data);
-//       } catch (err) {
-//         setError(err.response?.data?.message || 'Failed to fetch approved artisans.');
-//       } finally {
-//         setLoading(false); // Stop loading
-//       }
-//     };
-
-//     fetchApprovedArtisans();
-//   }, []);
-//   return (
-//     <div className='approved-users-container'>
-//       <section className='adminDashboard'>
-//         <div className='pendingUser'>
-//           <h5>Pending User Verification</h5>
-//         </div>
-//         <aside className='adminDashboardMainContainer'>
-//           <nav className='adaezeJane'>
-//             <div className='adaezeImage'>
-//               <img src="/fine girl.jpg" alt="" />
-//               <p>Adaeze Jane</p>
-//             </div>
-
-//             <div className='adaezeEmail'>
-//               <p>Adaezejane2025@gmail.com</p>
-//             </div>
-//             <div className='adaezeDetails'>
-//               <span>View details</span>
-//             </div>
-
-//             <div className='adaStatus'>
-//               <p>Status: Approved</p>
-
-//             </div>
-//           </nav>
-//         </aside>
-
-//       </section>
-
-//     </div>
-//   )
-// }
-
-// export default ApprovedUsers

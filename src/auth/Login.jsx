@@ -10,6 +10,7 @@ import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -98,7 +99,7 @@ const Login = () => {
   };
 
   const handleForgotPassword = () => navigate('/forget');
-  const handleSignUpRedirect = () => navigate('/signup');
+  const handleSignUpRedirect = () => navigate('/authoption');
 
   return (
     <div className='loginMainBody'>

@@ -26,15 +26,12 @@ import PendingVerification from '../dashboards/admin/pages/PendingVerification';
 import ApprovedUsers from '../dashboards/admin/pages/ApprovedUsers';
 import DeclinedUsers from '../dashboards/admin/pages/DeclinedUsers';
 import ReportedUsers from '../dashboards/admin/pages/ReportedUsers';
-<<<<<<< HEAD
 import GetOneReported from '../dashboards/admin/pages/GetOneReported';
-=======
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
 
 
->>>>>>> dc6e8143089d6057b36b506e897c4d5ec56ea431
 
 const Router = createBrowserRouter([
     {

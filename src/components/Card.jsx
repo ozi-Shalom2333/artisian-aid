@@ -1,15 +1,18 @@
 import React from 'react';
-import './../styles/profile.css';
-import { FiUpload } from 'react-icons/fi'; 
-import { AiFillStar } from 'react-icons/ai'; 
+import './../styles/profile.css'; 
 import { MdVerified } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
-const Card = ({ data, onClick }) => {
+function Card({data}) {
+   
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/userprofile/${data._id}`);
+  };
   return (
-    <div className="card" onClick={onClick}>
-      
-      <section className='card-header'>
-        <div className="profile-info">
+    <div className="card">
+     <section className='card-header'>
+        <div>
           <header>
             <img 
               src={data.profilePic?.image_url || "https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744935876/Frame_4_ke3z11.png"} 
@@ -49,8 +52,13 @@ const Card = ({ data, onClick }) => {
             <span className="recommended">Recommended</span>
           </div>
         </div>
-        <button className="book-now-button">Book Now</button>
-      </div>
+
+
+        <div className='card-price' onClick={handleClick}>
+          <p>Book Now</p>
+        </div>
+      </section>
+
 
     </div>
   );

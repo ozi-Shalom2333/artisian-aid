@@ -26,6 +26,7 @@ import PendingVerification from '../dashboards/admin/pages/PendingVerification';
 import ApprovedUsers from '../dashboards/admin/pages/ApprovedUsers';
 import DeclinedUsers from '../dashboards/admin/pages/DeclinedUsers';
 import ReportedUsers from '../dashboards/admin/pages/ReportedUsers';
+import GetOneReported from '../dashboards/admin/pages/GetOneReported';
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
@@ -51,6 +52,7 @@ const Router = createBrowserRouter([
           { index: true, element: <PendingVerification /> },
           { path: 'pending-verification', element: <PendingVerification /> },
           { path: 'onePendingUser', element: <GetOnePendingUser /> },
+          { path: 'getOneReported', element: <GetOneReported /> },
           { path: 'approved-users', element: <ApprovedUsers /> },
           { path: 'declined-users', element: <DeclinedUsers /> },
           { path: 'reported-users', element: <ReportedUsers /> },

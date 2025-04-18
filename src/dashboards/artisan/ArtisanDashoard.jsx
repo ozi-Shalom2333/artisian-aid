@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios'; 
 import '../../styles/admindashboard.css';
 import { MdCurrencyExchange } from "react-icons/md";
 import { RiHomeFill } from "react-icons/ri";
 import ArtisanInfo from './pages/ArtisanInfo';
 import ArtisanVerification from './pages/ArtisanVerification';
-import ArtisanUpload from './pages/ArtisanUpload '
+import ArtisanUpload from './pages/ArtisanUpload ';
 import ArtisanNotification from './pages/ArtisanNotification';
 import ArtisanSecurity from './pages/ArtisanSecurity';
 import { BsFillQuestionCircleFill } from "react-icons/bs";
@@ -14,11 +15,40 @@ import { useNavigate } from 'react-router-dom';
 
 const ArtisanDashoard = () => {
   const [activeTab, setActiveTab] = useState('personal-info');
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
   const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('authToken'); 
+      const response = await axios.post(
+        'https://artisanaid.onrender.com/v1/logout', 
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        alert('Logout successful!');
+        localStorage.removeItem('authToken'); 
+        window.location.href = '/login'; 
+      } else {
+        alert('Failed to log out. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert('An error occurred while logging out. Please try again.');
+    } finally {
+      setShowLogoutModal(false); 
+    }
+  };
 
   return (
     <div className="dashboard-container">
@@ -78,20 +108,40 @@ const ArtisanDashoard = () => {
             <BsFillQuestionCircleFill size={20} />
             Security & Privacy
           </p>
-          <p className="nav-link" style={{ display: 'flex', alignItems: 'center', color: 'red', gap: '10px' }} onClick={() => console.log('Logout functionality here')}>
+          <p
+            className="nav-link"
+            style={{ display: 'flex', alignItems: 'center', color: 'red', gap: '10px' }}
+            onClick={() => setShowLogoutModal(true)} 
+          >
             <CiLogout size={20} />
             Log out
           </p>
         </div>
       </div>
       <div className="main-content">
-        { activeTab === 'security' && <ArtisanSecurity /> } 
+        {activeTab === 'security' && <ArtisanSecurity />}
         {activeTab === 'personal-info' && <ArtisanInfo />}
         {activeTab === 'account' && <ArtisanVerification />}
         {activeTab === 'job-post' && <ArtisanUpload />}
         {activeTab === 'notification' && <ArtisanNotification />}
         {activeTab === 'subscription' && <ArtisanSubscription />}
       </div>
+      {showLogoutModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to log out?</p>
+            <div className="modal-actions">
+              <button onClick={() => setShowLogoutModal(false)} className="cancel-btn">
+                Cancel
+              </button>
+              <button onClick={handleLogout} className="logout-btn">
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

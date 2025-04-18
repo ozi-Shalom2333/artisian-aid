@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -10,6 +10,7 @@ import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -55,18 +56,13 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(`${baseUrl}/v1/login`, loginData);
-
+      console.log(response)
       if (response.status === 200) {
         const token = response.data.token;
 
         localStorage.setItem('authToken', token);
-
-        const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
-
-        localStorage.setItem('userInfo', JSON.stringify(decodedToken));
-
-        const userRole = decodedToken.role;
+        localStorage.setItem('userData', JSON.stringify(response.data.data));
+        const userRole = response.data.data.role;
 
         toast.success(response.data.message || 'Login successful!');
         toast.info('Redirecting...');
@@ -77,6 +73,7 @@ const Login = () => {
           navigate('/employerdashboard');
         } else if (userRole === 'Artisan') {
           navigate('/artisandashboard');
+          
         } else {
           console.error('Unknown user role:', userRole);
           toast.error('Unknown user role. Please contact support.');
@@ -102,7 +99,7 @@ const Login = () => {
   };
 
   const handleForgotPassword = () => navigate('/forget');
-  const handleSignUpRedirect = () => navigate('/signup');
+  const handleSignUpRedirect = () => navigate('/authoption');
 
   return (
     <div className='loginMainBody'>

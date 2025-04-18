@@ -1,15 +1,21 @@
+.sec{
+height: 100%;
+margin-top: 20px;
+
+h4 {
+    font-size: 34px;
+    color: #0d0d52;
+    margin-bottom: 5px;
+  }
+  
+}
 .password-container {
     max-width: 500px;
     margin: 50px auto;
     padding: 30px 20px;
     background-color: #fff;
     font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .password-container h4 {
-    font-size: 14px;
-    color: #0d0d52;
-    margin-bottom: 5px;
+    
   }
   
   .password-container h2 {

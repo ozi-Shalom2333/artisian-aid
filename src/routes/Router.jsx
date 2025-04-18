@@ -20,9 +20,16 @@ import VerificationMessage from '../pages/VerificationMessage';
 import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
+import GetOnePendingUser from '../dashboards/admin/pages/GetOnePendingUser';
+import MeetTeam from '../pages/MeetTeam';
+import PendingVerification from '../dashboards/admin/pages/PendingVerification';
+import ApprovedUsers from '../dashboards/admin/pages/ApprovedUsers';
+import DeclinedUsers from '../dashboards/admin/pages/DeclinedUsers';
+import ReportedUsers from '../dashboards/admin/pages/ReportedUsers';
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
+
 
 
 const Router = createBrowserRouter([
@@ -37,11 +44,24 @@ const Router = createBrowserRouter([
             { path: '/contact', element: <Contact /> },
         ],
     },
+    {
+        path: '/admindashboard',
+        element: <AdminDashboard />,
+        children: [
+          { index: true, element: <PendingVerification /> },
+          { path: 'pending-verification', element: <PendingVerification /> },
+          { path: 'onePendingUser', element: <GetOnePendingUser /> },
+          { path: 'approved-users', element: <ApprovedUsers /> },
+          { path: 'declined-users', element: <DeclinedUsers /> },
+          { path: 'reported-users', element: <ReportedUsers /> },
+        ]
+      },
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
     { path:'/category/:category', element: <CategoryByFilter />},
     { path: '/verify', element: <VerifyPassword /> },
-    { path:'/admindashboard', element:<AdminDashboard/>},
+    { path: '/onePendingUser', element: <GetOnePendingUser /> },
+    // { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
     {path: '/artisandashboard', element: <ArtisanDashoard/>},
     { path: '/employerdashboard', element: <EmployerDash/> },
@@ -50,8 +70,9 @@ const Router = createBrowserRouter([
     { path: '/employersignup', element: <EmployerSignUp /> },
     { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
     { path: '/resetmessage', element: <ResetPasswordMessage/>},
+    { path: '/meetTeam', element: <MeetTeam /> },
     {path: '/userprofile/:userId', element: <UserProfile />},
-    { path: '/verifyemail', element: <VerifyEmail /> },
+    { path: '/verifyemail/:token', element: <VerifyEmail /> },
     { path: '*', element: <NotFound /> },
 ]);
 

@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import '../../../styles/artisanInfo.css';
 import { MdVerified } from "react-icons/md";
-import { FaCamera } from "react-icons/fa";
+import { MdOutlineCameraAlt } from "react-icons/md";
+import axios from 'axios';
 
 const ArtisanInfo = () => {
   const [profileImage, setProfileImage] = useState(null);
-  const [mainImage, setMainImage] = useState(null); // State for main-pic
+  const [mainImage, setMainImage] = useState(null);
+    const BaseUrl = 'https://artisanaid.onrender.com';
+          const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')))
+   
+          useEffect(() => {
+              const getUser = async () => {
+                  try {
+                      const response = await axios.get(`${BaseUrl}/v1/user/${userData._id}`);
+                      setUserData(response.data.data);
+                      console.log(response);
+                  } catch (error) {
+                      console.error(error);
+                  }
+              }
+  
+              getUser();
+          },[])
+  
 
-  const handleProfileImageChange = (event) => {
+  const handleProfileImageChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileImage(reader.result); // Set the uploaded profile image preview
+        setProfileImage(reader.result); 
       };
       reader.readAsDataURL(file);
     }
@@ -23,7 +41,7 @@ const ArtisanInfo = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setMainImage(reader.result); // Set the uploaded main image preview
+        setMainImage(reader.result); 
       };
       reader.readAsDataURL(file);
     }
@@ -49,12 +67,12 @@ const ArtisanInfo = () => {
       <div className="profile-banner">
         <div className="profile-pic-container">
           <img
-            src={profileImage || ""}
+            src={userData?.profilePic?.image_url}
             alt="Profile Preview"
             className="profile-pic"
           />
-          <label htmlFor="profileImageInput" className="camera-icon">
-            <FaCamera size={20} />
+          <label htmlFor="profileImageInput" className="camera-icons">
+            < MdOutlineCameraAlt  size={30} color='white'o />
           </label>
           <input
             type="file"
@@ -65,12 +83,12 @@ const ArtisanInfo = () => {
         </div>
         <div className="main-pic-container">
           <img
-            src={mainImage || ""}
+            src={userData?.coverPhoto?.image_url}
             alt="Main Preview"
             className="main-pic"
           />
-          <label htmlFor="mainImageInput" className="camera-icon main-camera-icon">
-            <FaCamera size={20} />
+          <label htmlFor="mainImageInput" className="main-camera-icon">
+            < MdOutlineCameraAlt  size={30} color='white' />
           </label>
           <input
             type="file"
@@ -83,17 +101,36 @@ const ArtisanInfo = () => {
 
       <form className="profile-form">
         <div className="form-row">
-          <input type="text" placeholder="Full Name" defaultValue="Adeaze Jane" readOnly/>
-          <input type="text" placeholder="Business Name" defaultValue="Adeaze Jane" readOnly />
-          <input type="email" placeholder="Email Address" defaultValue="adeazejane025@gmail.com" readOnly />
+          <p>{userData?.fullname}</p>
+          <p>{userData?.businessName}</p>
+          <p>{userData?.email}</p>
         </div>
 
         <div className="form-row">
-          <select>
-            <option>Select L.G.A</option>
-          </select>
-          <input type="text" placeholder="State" defaultValue="Lagos State" readOnly />
-        
+        <select>
+  <option>Select L.G.A</option>
+  <option value="Agege">Agege</option>
+  <option value="Ajeromi-Ifelodun">Ajeromi-Ifelodun</option>
+  <option value="Alimosho">Alimosho</option>
+  <option value="Amuwo-Odofin">Amuwo-Odofin</option>
+  <option value="Apapa">Apapa</option>
+  <option value="Badagry">Badagry</option>
+  <option value="Epe">Epe</option>
+  <option value="Eti-Osa">Eti-Osa</option>
+  <option value="Ibeju-Lekki">Ibeju-Lekki</option>
+  <option value="Ifako-Ijaiye">Ifako-Ijaiye</option>
+  <option value="Ikeja">Ikeja</option>
+  <option value="Ikorodu">Ikorodu</option>
+  <option value="Kosofe">Kosofe</option>
+  <option value="Lagos Island">Lagos Island</option>
+  <option value="Lagos Mainland">Lagos Mainland</option>
+  <option value="Mushin">Mushin</option>
+  <option value="Ojo">Ojo</option>
+  <option value="Oshodi-Isolo">Oshodi-Isolo</option>
+  <option value="Shomolu">Shomolu</option>
+  <option value="Surulere">Surulere</option>
+</select>
+         <input type="text" placeholder='...' readOnly  />
         </div>
 
         <div className="form-row">

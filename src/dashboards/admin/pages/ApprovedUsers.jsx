@@ -5,11 +5,13 @@ import "../../../styles/approvedusers.css";
 import DeclinedUserCard from "../../../components/DeclinedUserCard";
 
 import ApprovedUserCard from "../../../components/ApprovedUserCard";
+import { useNavigate } from "react-router-dom";
 
 const ApprovedUsers = () => {
   const [artisans, setArtisans] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchApprovedArtisans = async () => {
@@ -46,10 +48,11 @@ const ApprovedUsers = () => {
     fetchApprovedArtisans();
   }, []);
 
- const handleViewDetails = ()=>{}
+  const handleViewDetails = (id) => {
+    navigate(`/admindashboard/artisan/${id}`);
+  };
 
-  if (loading)
-    return <div className="loading">Loading approved artisans...</div>;
+  if (loading) return <div className="loading">Loading approved artisans...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (

@@ -1,4 +1,5 @@
 /* ==== MAIN LAYOUT ==== */
+/* ==== MAIN LAYOUT ==== */
 .employerSignUp__main {
   width: 100%;
   height: max-content;
@@ -8,6 +9,7 @@
   align-items: center;
   background-image: url("https://res.cloudinary.com/dkxms3ctv/image/upload/v1744636288/SIgn_up_as_an_employer_wofarb.png");
   background-size: cover;
+  background-position: center center; 
   background-position: center center; 
 }
 
@@ -31,10 +33,22 @@
 .employerSignUp__image img {
   pointer-events: none;
   cursor: default;
+  pointer-events: none;
+  cursor: default;
   width: 220px;
   height: auto;
   object-fit: contain;
 }
+
+.clickable-logo {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable-logo:hover {
+  transform: scale(1.03);
+}
+
 
 .clickable-logo {
   cursor: pointer;
@@ -57,6 +71,7 @@
 
 .employerSignUp__card {
   padding: 3rem;
+  max-width: 1000px;
   max-width: 1000px;
   width: 100%;
   display: flex;
@@ -101,12 +116,17 @@
   min-width: 42%;
   width: 100%;
   max-width: 49%;
+  min-width: 42%;
+  width: 100%;
+  max-width: 49%;
   position: relative;
   margin-bottom: 1rem;
+  max-height: 30%;
   max-height: 30%;
 }
 
 .employerSignUp__inputGroup p {
+  margin-bottom: 0.1rem;
   margin-bottom: 0.1rem;
   font-weight: 500;
   font-size: 0.95rem;
@@ -123,6 +143,7 @@
   background: #f9f9f9;
   width: 100%;
   box-sizing: border-box;
+  height: auto;
 }
 
 .employerSignUp__inputGroup input:focus {
@@ -152,16 +173,19 @@
 .employerSignUp__passwordWrapper {
   position: relative;
   display: flex;
+  height: 6vh;
   align-items: center;
 }
 
 .employerSignUp__passwordWrapper input {
   width: 100%;
   padding-right: 2.5rem;
+  height: 100%;
 }
 
 .employerSignUp__toggleEye {
   position: absolute;
+  top: 20px;
   right: 10px;
   cursor: pointer;
   color: #999;
@@ -210,6 +234,7 @@
 }
 
 
+
 .employerSignUp__redirect {
   text-align: center;
   margin-top: 1rem;
@@ -222,6 +247,8 @@
   margin-left: 5px;
   cursor: pointer;
 }
+
+
 
 
 
@@ -271,6 +298,7 @@
 }
 
 
+
 @media (max-width: 768px) {
   .employerSignUp__card {
     padding: 1.5rem;
@@ -293,6 +321,7 @@
     font-size: 0.95rem;
   }
 }
+
 
 
 @media (max-width: 480px) {

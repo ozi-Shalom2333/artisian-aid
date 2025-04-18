@@ -7,11 +7,12 @@ import ArtisanInfo from "./pages/ArtisanInfo";
 import ArtisanVerification from "./pages/ArtisanVerification";
 import ArtisanUpload from "./pages/ArtisanUpload ";
 import ArtisanNotification from "./pages/ArtisanNotification";
-import ArtisanSecurity from "./pages/ArtisanSecurity";
+// import ArtisanSecurity from "./pages/ArtisanSecurity";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ArtisanSubscription from "./pages/ArtisanSubscription";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ArtisanDashoard = () => {
   const [activeTab, setActiveTab] = useState("personal-info");
@@ -27,9 +28,8 @@ const ArtisanDashoard = () => {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      const response = await axios.post(
+      const response = await axios.get(
         "https://artisanaid.onrender.com/v1/logout",
-        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -37,17 +37,17 @@ const ArtisanDashoard = () => {
         }
       );
 
-      if (response.status === 200) {
-        alert("Logout successful!");
+      if (response.status === 200) { 
+        toast.success("Logout successful!");
         localStorage.removeItem("authToken");
         window.location.href = "/login";
       } else {
-        alert("Failed to log out. Please try again.");
+        toast.error("Failed to log out. Please try again.");
       }
       console.log("this is", token);
     } catch (error) {
       console.error("Error during logout:", error);
-      alert("An error occurred while logging out. Please try again.");
+      toast.error("An error occurred while logging out. Please try again.");
     } finally {
       setShowLogoutModal(false);
     }
@@ -116,7 +116,7 @@ const ArtisanDashoard = () => {
           </ul>
         </nav>
         <div className="logout">
-          <p
+          {/* <p
             className={`nav-link ${
               activeTab === "security" ? "nav-link-active" : ""
             }`}
@@ -132,7 +132,7 @@ const ArtisanDashoard = () => {
           >
             <BsFillQuestionCircleFill size={20} />
             Security & Privacy
-          </p>
+          </p> */}
           <p
             className="nav-link"
             style={{
@@ -149,7 +149,7 @@ const ArtisanDashoard = () => {
         </div>
       </div>
       <div className="main-content">
-        {activeTab === "security" && <ArtisanSecurity />}
+        {/* {activeTab === "security" && <ArtisanSecurity />} */}
         {activeTab === "personal-info" && <ArtisanInfo />}
         {activeTab === "account" && <ArtisanVerification />}
         {activeTab === "job-post" && <ArtisanUpload />}

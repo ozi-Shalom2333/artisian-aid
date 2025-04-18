@@ -3,10 +3,15 @@ import "../../../styles/artisanInfo.css";
 import { MdVerified } from "react-icons/md";
 import { MdOutlineCameraAlt } from "react-icons/md";
 import axios from "axios";
+import { use } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const ArtisanInfo = () => {
   const [profileImage, setProfileImage] = useState(null);
-  const [mainImage, setMainImage] = useState(null);
+  const [profileFile, setProfileFile] = useState(null);
+  const [mainImage, setMainImage] = useState(null); 
+  const [mainFile, setMainFile] = useState(null); 
   const BaseUrl = "https://artisanaid.onrender.com";
   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")));
 
@@ -18,71 +23,131 @@ const ArtisanInfo = () => {
         console.log("User data fetched:", response.data.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        toast.error("Failed to fetch user data.");
       }
     };
 
     getUser();
   }, []);
 
-  const handleProfileImageChange = async (event) => {
+  
+  const handleProfileImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        console.log("Profile image loaded:", reader.result);
-        setProfileImage(reader.result); // Set the preview image
+        setProfileFile(file); 
+        setProfileImage(reader.result)
       };
       reader.readAsDataURL(file);
 
-      // Upload the image to the server
-      const formData = new FormData();
-      formData.append("profileImage", file);
+      
+      
+      
+    }
+  };
+  console.log(profileImage)
 
-      try {
-        const myToken = localStorage.getItem("authToken");
-        console.log(myToken) // Retrieve the token from localStorage
-        const response = await axios.post(
-          `${BaseUrl}/v1/update/profile`, 
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${myToken}`, 
-            },
-          }
-        );
-
-        if (response.status === 200) {
-          alert("Profile picture updated successfully!");
-          // Update the user data with the new profile image URL
-          setUserData((prev) => ({
-            ...prev,
-            profilePic: { image_url: response.data.image_url },
-          }));
-        } else {
-          alert("Failed to update profile picture. Please try again.");
+  const submitPic = async()=> {
+    const formData = new FormData();
+      formData.append("profilePic", profileFile);
+    try {
+      const myToken = localStorage.getItem("authToken" );
+      console.log(myToken) 
+      const response = await axios.put(
+        `${BaseUrl}/v1/update/profile`, 
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${myToken}`, 
+          },
         }
-      } catch (error) {
-        console.error("Error updating profile picture:", error);
-        alert("An error occurred while updating the profile picture.");
+      );
+
+      if (response.status === 200) {
+        toast.success("Profile picture updated successfully!");
+      
+        setUserData((prev) => ({
+          ...prev,
+          profilePic: { image_url: response.data.image_url },
+        }));
+      } else {
+        toast.error("Failed to update profile picture. Please try again.");
       }
+    } catch (error) {
+      console.error("Error updating profile picture:", error);
+      toast.error("An error occurred while updating the profile picture.");
     }
   };
 
-  const handleMainImageChange = (event) => {
+
+
+  const handleMainImageChange = async (event) => {
     const file = event.target.files[0];
+
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         console.log("Main image loaded:", reader.result);
-        setMainImage(reader.result);
+        setMainImage(reader.result); 
+        setMainFile(file);
       };
       reader.readAsDataURL(file);
+  
+    
+      const formData = new FormData();
+      formData.append("mainImage", file);
+  
+
     }
   };
 
+  const submitMainPic = async()=> {
+    const formData = new FormData();
+      formData.append("coverPhoto", mainFile);
+    try {
+      const myToken = localStorage.getItem("authToken" );
+      console.log(myToken) 
+      const response = await axios.put(
+        `${BaseUrl}/v1/update/cover`, 
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${myToken}`, 
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        toast.success("Main picture updated successfully!");
+      
+        setUserData((prev) => ({
+          ...prev,
+          coverPhoto: { image_url: response.data.image_url },
+        }));
+      } else {
+       toast.error("Failed to update main picture. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error updating main picture:", error);
+      toast.error("An error occurred while updating the main picture.");
+    }
+  }
+
+  useEffect(() => {
+    if(profileImage) {
+      submitPic();
+    }
+    if(mainImage) {
+      submitMainPic();
+    }
+  },[profileImage,mainImage])
+
   return (
     <div className="profile-container">
+      <ToastContainer /> 
       <div className="profile-warning">
         <div className="warning-header">
           <MdVerified size={20} color="blue" /> ATTENTION REQUIRED
@@ -164,16 +229,13 @@ const ArtisanInfo = () => {
             <option value="Shomolu">Shomolu</option>
             <option value="Surulere">Surulere</option>
           </select>
-          <input type="text" placeholder="..." readOnly />
+          <input type="text" placeholder="lagos"/>
         </div>
 
         <div className="form-row">
           <input type="text" placeholder="Social Media URL" />
         </div>
 
-        <div className="form-row">
-          <input type="text" placeholder="Tag" />
-        </div>
 
         <div className="form-row">
           <textarea placeholder="Type here"></textarea>

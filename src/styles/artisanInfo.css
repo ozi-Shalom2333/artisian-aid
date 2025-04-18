@@ -141,6 +141,13 @@
     width: 30%;
 
   }
+  .lcg{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: medium;
+    margin-left: 20%;
+  }
   
   input,
   select,

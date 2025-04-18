@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../../styles/approvedusers.css";
 import ApprovedUserCard from "../../../components/ApprovedUserCard";
-import { useNavigate } from "react-router-dom";
 
 const ApprovedUsers = () => {
   const [artisans, setArtisans] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchApprovedArtisans = async () => {
@@ -43,32 +41,37 @@ const ApprovedUsers = () => {
     fetchApprovedArtisans();
   }, []);
 
-  const handleViewDetails = (id) => {
-    navigate(`/admindashboard/artisan/${id}`);
-  };
+ const handleViewDetails = ()=>{}
 
-  if (loading) return <div className="loading">Loading approved artisans...</div>;
+  if (loading)
+    return <div className="loading">Loading approved artisans...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
+   
     <div className="pending-users-wrapper">
       <h2 className="title">Approved Artisans ({artisans.length})</h2>
-      <div className="users-container">
-        {artisans.length > 0 ? (
-          artisans.map((user) => (
-            <ApprovedUserCard
-              key={user._id}
-              name={user.fullname}
-              email={user.email}
-              image={user.profilePic?.image_url || "/default-profile.jpg"}
-              onViewDetails={() => handleViewDetails(user._id)}
-              verified={user.verificationStatus}
-            />
-          ))
-        ) : (
-          <p>No approved artisans at the moment.</p>
-        )}
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="users-container">
+          {artisans.length > 0 ? (
+            artisans.map((user) => (
+              <ApprovedUserCard
+                // key={user.id}
+                name={user.fullname}
+                email={user.email}
+                image={user.profilePic?.image_url || '/default-profile.jpg'}
+                onViewDetails={handleViewDetails}
+                // status={""}
+                verified={`Status: ${user.verificationStatus}`}
+              />
+            ))
+          ) : (
+            <p>No Declined users at the moment.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ function Card({data}) {
               Adaeze Jane
               <MdVerified size={20} color='blue'/>
             </h3>
-            <p>view profile</p>
+            <p><u>view profile</u></p>
           </aside>
         </div>
         <div>
@@ -35,12 +35,32 @@ function Card({data}) {
 
 
 
-      <section>
-        <img src="" alt="" />
+      <section className='coverpic'>
+        <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744947459/Card_pics_1_to10t1.png" alt="" />
       </section>
-      <section>
-        <div></div>
-        <div></div>
+
+
+
+
+      <section className='fancy'>
+        <div>
+        <h1>Carpenter Service</h1>
+        <div className="service-details">
+           <span className="rating">
+           <AiFillStar size={10}  color='yellow'/>
+           <AiFillStar size={10} color='yellow'/>
+           <AiFillStar size={10} color='yellow'/>
+           <AiFillStar size={10} color='yellow'/>
+           <AiFillStar size={10} color='yellow'/>
+         </span>
+         <span className="recommended">Recommended</span> 
+        </div>
+        </div>
+
+
+        <div>
+          <p>Book Now</p>
+        </div>
       </section>
 
 
@@ -92,19 +112,7 @@ export default Card;
       <div className="card-footer">
         <div className="service-info">
           <div className="service-name">{data.category}</div>
-          <div className="service-details">
-           
-             <span className="rating">
-             <AiFillStar size={16} />
-             <AiFillStar size={16} />
-             <AiFillStar size={16} />
-             <AiFillStar size={16} />
-             <AiFillStar size={16} />
-           </span>
-            
-           <span className="recommended">Recommended</span> 
-           
-          </div>
+        
         </div>
         <button className="book-now-button">Book Now</button>
       </div> */}

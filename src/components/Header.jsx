@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { IoLogOut } from 'react-icons/io5';
-
+import { CgProfile } from "react-icons/cg";
+import { FiLogOut } from 'react-icons/fi';
 import './../styles/header.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('authToken'));
-
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
@@ -20,16 +20,14 @@ const Header = () => {
     navigate('/login');
   };
 
-  const isAuthenticated = !!token;
-
   return (
     <div className='Header-container'>
       <section className='Header-section'>
         <div className='responsive-image'>
-          <img
-            onClick={() => navigate('/')}
-            src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652328/Artisan_4_tzas3g.png"
-            alt="logo"
+          <img 
+            onClick={() => navigate('/')} 
+            src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652328/Artisan_4_tzas3g.png" 
+            alt="logo" 
           />
         </div>
 
@@ -40,19 +38,19 @@ const Header = () => {
         </div>
 
         {
-          !isAuthenticated ?
+          !token ? 
             <div className='Header-authentication'>
                 <p><NavLink to="/authoption">Sign Up</NavLink></p>
                 <p><NavLink to="/login">Login</NavLink></p>
             </div>
-          : <p onClick={handleLogout} style={{ cursor: 'pointer' }}><IoLogOut /></p>
+          : <p onClick={handleLogout}>< FiLogOut/></p>
         }
-
+        
 
         <div className='second-respon' onClick={toggleDropdown}>
-          <img
-            src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652397/Component_64_vvm2yd.png"
-            alt="menu"
+          <img 
+            src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652397/Component_64_vvm2yd.png" 
+            alt="menu" 
           />
         </div>
 
@@ -61,15 +59,14 @@ const Header = () => {
             <NavLink to="/" onClick={toggleDropdown} end>Home</NavLink>
             <NavLink to="/about" onClick={toggleDropdown}>About Us</NavLink>
             <NavLink to="/contact" onClick={toggleDropdown}>Contact Us</NavLink>
-            {
-              isAuthenticated ? (
+            {isAuthenticated ? (
               <>
                 <NavLink to="/dashboard" onClick={toggleDropdown}>My Profile</NavLink>
-                <div
-                  onClick={() => { handleLogout(); toggleDropdown(); }}
+                <div 
+                  onClick={() => { handleLogout(); toggleDropdown(); }} 
                   style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', padding: '10px 0' }}
                 >
-                  <IoLogOut />
+                  <FiLogOut />
                   Logout
                 </div>
               </>
@@ -87,3 +84,9 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
+
+

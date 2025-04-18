@@ -21,7 +21,7 @@ const DeclinedUsers = () => {
 
         const response = await axios.get('https://artisanaid.onrender.com/v1/declined/artisans', {
           headers: {
-            Authorization: Bearer `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -40,6 +40,7 @@ const DeclinedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
+   
     <div className="pending-users-wrapper">
     <h2 className="title">Declined Users ({artisans.length})</h2>
     {loading ? (
@@ -65,3 +66,4 @@ const DeclinedUsers = () => {
 };
 
 export default DeclinedUsers;
+

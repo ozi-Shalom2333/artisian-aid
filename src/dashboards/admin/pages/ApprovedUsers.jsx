@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../../styles/approvedusers.css";
-// import DeclinedUserCard from "../../../components/DeclinedUserCard";
 import ApprovedUserCard from "../../../components/ApprovedUserCard";
 
 const ApprovedUsers = () => {
@@ -49,6 +48,7 @@ const ApprovedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
+   
     <div className="pending-users-wrapper">
       <h2 className="title">Approved Artisans ({artisans.length})</h2>
       {loading ? (
@@ -58,10 +58,12 @@ const ApprovedUsers = () => {
           {artisans.length > 0 ? (
             artisans.map((user) => (
               <ApprovedUserCard
+                // key={user.id}
                 name={user.fullname}
                 email={user.email}
                 image={user.profilePic?.image_url || '/default-profile.jpg'}
                 onViewDetails={handleViewDetails}
+                // status={""}
                 verified={`Status: ${user.verificationStatus}`}
               />
             ))

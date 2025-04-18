@@ -24,7 +24,7 @@ const PendingVerification = () => {
           "https://artisanaid.onrender.com/v1/pending/artisans",
           {
             headers: {
-              Authorization: Bearer ${token}
+              Authorization: `Bearer ${token}`
             }
           }
         );
@@ -75,3 +75,42 @@ const PendingVerification = () => {
 };
 
 export default PendingVerification;
+
+// import React from "react";
+// import { useNavigate } from "react-router-dom";
+// import "../../../styles/PendingUsers.css";
+// import PendingUserCard from "../../../components/PendingUserCard";
+
+// const users = [
+//   {
+//     name: "Adaeze Jane",
+//     email: "Adaezejane2025@gmail.com",
+//     image: "/images/adaeze.jpg", // Replace with correct local path or URL
+//   },
+//   {
+//     name: "David Odi",
+//     email: "Davidodi2025@gmail.com",
+//     image: "/images/david.jpg", // Replace with correct local path or URL
+//   },
+// ];
+
+// const PendingVerification = () => {
+//   const navigate = useNavigate();
+
+//   const handleViewDetails = () => {
+//     navigate("/onePendingUser");
+//   };
+
+//   return (
+//     <div className="pending-users-wrapper">
+//       <h2 className="title">Pending User Verification</h2>
+//       <div className="users-container">
+//         {users.map((user, idx) => (
+//           <PendingUserCard key={idx} user={user} onViewDetails={handleViewDetails} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PendingVerification;

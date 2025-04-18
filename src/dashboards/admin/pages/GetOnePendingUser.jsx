@@ -52,46 +52,46 @@ const GetOnePendingUser = () => {
   const handleCancelApprove = () => setShowApproveModal(false);
 
   // Reject verification
-const handleConfirmDelete = async () => {
-  setLoadingAction(true);
-  const token = localStorage.getItem("token");
-  try {
-    await API.get(
-      `https://artisanaid.onrender.com/v1/reject/verification/${verification._id}`, // Added backticks
-      { headers: { Authorization: `Bearer ${token}` } } // Added backticks
-    );
-    toast.success("Account verification has been rejected");
-    setTimeout(() => {
-      navigate("/admindashboard/declined-users");
-    }, 1500);
-  } catch (error) {
-    toast.error(error.response?.data?.message || "Failed to reject verification");
-  } finally {
-    setLoadingAction(false);
-    setShowDeleteModal(false);
-  }
-};
+  const handleConfirmDelete = async () => {
+    setLoadingAction(true);
+    const token = localStorage.getItem("token");
+    try {
+      await API.get(
+        `https://artisanaid.onrender.com/v1/reject/verification/${verification._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success("Account verification has been rejected");
+      setTimeout(() => {
+        navigate("/admindashboard/declined-users");
+      }, 1500);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to reject verification");
+    } finally {
+      setLoadingAction(false);
+      setShowDeleteModal(false);
+    }
+  };
 
   // Approve verification
- const handleConfirmApprove = async () => {
-  setLoadingAction(true);
-  const token = localStorage.getItem("token");
-  try {
-    await API.get(
-      `https://artisanaid.onrender.com/accept/verification/${verification._id}`, // Added backticks
-      { headers: { Authorization: `Bearer ${token}` } } // Added backticks
-    );
-    toast.success("Account has been verified successfully");
-    setTimeout(() => {
-      navigate("/admindashboard/approved-users");
-    }, 1500);
-  } catch (error) {
-    toast.error(error.response?.data?.message || "Failed to approve verification");
-  } finally {
-    setLoadingAction(false);
-    setShowApproveModal(false);
-  }
-};
+  const handleConfirmApprove = async () => {
+    setLoadingAction(true);
+    const token = localStorage.getItem("token");
+    try {
+      await API.get(
+        `https://artisanaid.onrender.com/accept/verification/${verification._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success("Account has been verified successfully");
+      setTimeout(() => {
+        navigate("/admindashboard/approved-users");
+      }, 1500);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to approve verification");
+    } finally {
+      setLoadingAction(false);
+      setShowApproveModal(false);
+    }
+  };
 
   return (
     <div className="pending-user-wrapper">
@@ -169,3 +169,22 @@ const handleConfirmDelete = async () => {
 };
 
 export default GetOnePendingUser;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

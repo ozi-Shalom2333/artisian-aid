@@ -98,7 +98,7 @@ const Login = () => {
   };
 
   const handleForgotPassword = () => navigate('/forget');
-  const handleSignUpRedirect = () => navigate('/signup');
+  const handleSignUpRedirect = () => navigate('/authoption');
 
   return (
     <div className='loginMainBody'>

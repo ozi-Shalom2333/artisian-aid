@@ -7,8 +7,41 @@ import { MdVerified } from "react-icons/md";
 function Card({data}) {
   return (
     <div className="card">
-      <h1>fgvbhjnmk,l;.</h1>
-      
+     
+
+
+
+     <section className='card-header'>
+        <div>
+          <header>
+            <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744935876/Frame_4_ke3z11.png" alt="" />
+          </header>
+          <aside>
+            <h3>
+              Adaeze Jane
+              <MdVerified size={20} color='blue'/>
+            </h3>
+            <p>view profile</p>
+          </aside>
+        </div>
+        <div>
+          <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744935818/Vector_1_elrf0x.png" alt="" />
+        </div>
+      </section>
+
+
+
+
+
+
+
+      <section>
+        <img src="" alt="" />
+      </section>
+      <section>
+        <div></div>
+        <div></div>
+      </section>
 
 
     </div>

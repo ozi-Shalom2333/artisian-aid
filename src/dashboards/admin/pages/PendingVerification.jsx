@@ -11,21 +11,21 @@ const PendingVerification = () => {
   const [loading, setLoading] = useState(false);
 
   const handleViewDetails = (user) => {
-    navigate("/admindashboard/onePendingUser", { state: { user } });
+    navigate("/admindashboard/onePendingUser", { state: { user } }); 
   };
 
   useEffect(() => {
     const fetchPendingUsers = async () => {
       setLoading(true);
       const token = localStorage.getItem("token");
-
+      
       try {
         const response = await axios.get(
           "https://artisanaid.onrender.com/v1/pending/artisans",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
-            },
+              Authorization: `Bearer ${token}`
+            }
           }
         );
 
@@ -60,7 +60,7 @@ const PendingVerification = () => {
                 user={{
                   name: user.fullname,
                   email: user.email,
-                  image: user.profilePic?.image_url,
+                  image: user.profilePic.image_url, 
                 }}
                 onViewDetails={() => handleViewDetails(user)}
               />
@@ -75,3 +75,4 @@ const PendingVerification = () => {
 };
 
 export default PendingVerification;
+

@@ -32,7 +32,7 @@ const ApprovedUsers = () => {
         setArtisans(response.data.data);
       } catch (err) {
         setError(
-          err.response?.data?.message || "Failed to fetch approved artisans."
+          error.response?.data?.message || "Failed to fetch approved artisans."
         );
       } finally {
         setLoading(false);

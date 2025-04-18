@@ -16,7 +16,7 @@ const DeclinedUserCard = ({image,name,email,status}) => {
               </div>
       <span className="user-name">{name}</span>
     </div>
-    <span className="user-email">{email}</span>
+    <span className="user-email" style={{fontSize:18}}v>{email}</span>
     <p className="user-card__status">Status:{status}</p>
   </div>
   )

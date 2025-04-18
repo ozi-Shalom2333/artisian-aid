@@ -8,7 +8,7 @@ import CategoryByFilter from '../pages/CategoryByFilter';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
-import VerifyPassword from '../auth/VerifyPassword';
+import ResetPassword from '../auth/ResetPassword';
 import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
 import ArtisanPage from '../pages/ArtisanPage';
@@ -26,15 +26,11 @@ import PendingVerification from '../dashboards/admin/pages/PendingVerification';
 import ApprovedUsers from '../dashboards/admin/pages/ApprovedUsers';
 import DeclinedUsers from '../dashboards/admin/pages/DeclinedUsers';
 import ReportedUsers from '../dashboards/admin/pages/ReportedUsers';
-<<<<<<< HEAD
 import GetOneReported from '../dashboards/admin/pages/GetOneReported';
-=======
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
 
-
->>>>>>> dc6e8143089d6057b36b506e897c4d5ec56ea431
 
 const Router = createBrowserRouter([
     {
@@ -64,7 +60,7 @@ const Router = createBrowserRouter([
     { path: '/signup', element: <SignUp /> },
     { path: '/login', element: <Login /> },
     { path:'/category/:category', element: <CategoryByFilter />},
-    { path: '/verify', element: <VerifyPassword /> },
+    { path: '/resetpassword/:token', element: <ResetPassword /> },
     { path: '/onePendingUser', element: <GetOnePendingUser /> },
     // { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 

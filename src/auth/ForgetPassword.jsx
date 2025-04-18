@@ -5,20 +5,20 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ForgetPassword = () => {
-  const [email, setEmail] = useState(""); // State to store the email input
-  const [isLoading, setIsLoading] = useState(false); // State for loading effect
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
 
-  // base URL
+  
   const baseURL = 'https://artisanaid.onrender.com/v1';
 
-  // Function to handle password reset request
+  
   const handlePasswordReset = async () => {
     if (!email.trim()) {
       toast.error("Please enter your email address.");
       return;
     }
 
-    setIsLoading(true); // Set loading state to true
+    setIsLoading(true); 
     try {
       const response = await axios.post(`${baseURL}/forgot/password`, { email });
       toast.success(response.data.message || "Password reset link sent!");
@@ -28,7 +28,7 @@ const ForgetPassword = () => {
         error.response?.data?.message || "Failed to send password reset link."
       );
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false); 
     }
   };
 

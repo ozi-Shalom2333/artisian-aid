@@ -47,9 +47,6 @@ const ReportedUser = () => {
     navigate("/admindashboard/getOneReported");
   }
 
-  // if (loading) return <div className="loading">Loading Reported artisans...</div>;
-  // if (error) return <div className="error">{error}</div>;
-
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported User Verification</h2>
@@ -63,23 +60,6 @@ const ReportedUser = () => {
                 status={'Declined'}
               />
         </div>
-
-      {/* <div className="users-container">
-          {users.length > 0 ? (
-            users.map((user) => (
-              <ReportedUserCard
-                key={user.id}
-                name= "Victoria Trust"
-                email= "Text@gmail.com"
-                image= ""
-                onViewDetails={() => handleViewDetails(user)}
-                status={'Declined'}
-              />
-            ))
-          ) : (
-            <p>No Reported users at the moment.</p>
-          )}
-        </div> */}
     </div>
   );
 };

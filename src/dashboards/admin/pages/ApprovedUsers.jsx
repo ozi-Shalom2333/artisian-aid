@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../../styles/approvedusers.css";
-import DeclinedUserCard from "../../../components/DeclinedUserCard";
+// import DeclinedUserCard from "../../../components/DeclinedUserCard";
 import ApprovedUserCard from "../../../components/ApprovedUserCard";
 
 const ApprovedUsers = () => {
@@ -24,7 +24,7 @@ const ApprovedUsers = () => {
           "https://artisanaid.onrender.com/v1/approved/artisans",
           {
             headers: {
-              Authorization: Bearer ${token},
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -49,47 +49,6 @@ const ApprovedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-    // <div className='approved-users-container'>
-    //   <section className='adminDashboard'>
-    //     <div className='pendingUser'>
-    //       <h5>Approved Artisans ({artisans.length})</h5>
-    //     </div>
-
-    //     {artisans.length === 0 ? (
-    //       <div className="no-artisans">No approved artisans found.</div>
-    //     ) : (
-    //       <aside className='adminDashboardMainContainer'>
-    //         {artisans.map((artisan) => (
-    //           <nav key={artisan._id} className='adaezeJane'>
-    //             <div className='adaezeImage'>
-    //               <img
-    //                 src={artisan.profilePic?.image_url || '/default-profile.jpg'}
-    //                 alt={artisan.fullname}
-    //               />
-    //               <p>{artisan.fullname}</p>
-    //             </div>
-
-    //             <div className='adaezeEmail'>
-    //               <p>{artisan.email}</p>
-    //               {/* <p>Business: {artisan.businessName}</p> */}
-    //             </div>
-
-    //             <div className='adaezeDetails'>
-    //               <span>View details</span>
-    //               {/* <p>Category: {artisan.category}</p>
-    //               <p>Location: {artisan.location?.state}</p> */}
-    //             </div>
-
-    //             <div className='adaStatus'>
-    //               <p>Status: {artisan.verificationStatus}</p>
-    //               {/* <p>Rating: {artisan.rating}/5</p> */}
-    //             </div>
-    //           </nav>
-    //         ))}
-    //       </aside>
-    //     )}
-    //   </section>
-    // </div>
     <div className="pending-users-wrapper">
       <h2 className="title">Approved Artisans ({artisans.length})</h2>
       {loading ? (
@@ -99,13 +58,11 @@ const ApprovedUsers = () => {
           {artisans.length > 0 ? (
             artisans.map((user) => (
               <ApprovedUserCard
-                // key={user.id}
                 name={user.fullname}
                 email={user.email}
                 image={user.profilePic?.image_url || '/default-profile.jpg'}
                 onViewDetails={handleViewDetails}
-                // status={""}
-                verified={Status: ${user.verificationStatus}}
+                verified={`Status: ${user.verificationStatus}`}
               />
             ))
           ) : (

@@ -1,16 +1,12 @@
 import React from 'react';
 import './../styles/profile.css'
-import { FiUpload } from 'react-icons/fi'; 
+imp
 import { AiFillStar } from 'react-icons/ai'; 
 import { MdVerified } from "react-icons/md";
 
 function Card({data}) {
   return (
     <div className="card">
-     
-
-
-
      <section className='card-header'>
         <div>
           <header>
@@ -28,20 +24,9 @@ function Card({data}) {
           <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744935818/Vector_1_elrf0x.png" alt="" />
         </div>
       </section>
-
-
-
-
-
-
-
       <section className='coverpic'>
         <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744947459/Card_pics_1_to10t1.png" alt="" />
       </section>
-
-
-
-
       <section className='fancy'>
         <div>
         <h1>Carpenter Service</h1>

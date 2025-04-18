@@ -21,7 +21,7 @@ const DeclinedUsers = () => {
 
         const response = await axios.get('https://artisanaid.onrender.com/v1/declined/artisans', {
           headers: {
-            Authorization: Bearer ${token},
+            Authorization: Bearer `${token}`,
           },
         });
 
@@ -40,39 +40,6 @@ const DeclinedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-    // <div className='pproved-users-container'>
-    //   <section className='dminDashboard'>
-    //     <div className='pendingUser'>
-    //       <h5>Declined Users ({artisans.length})</h5>
-    //     </div>
-        
-    //     {artisans.length === 0 ? (
-    //       <div className="no-artisans">No declined artisans found.</div>
-    //     ) : (
-    //       <aside className='dminDashboardMainContainer'>
-    //         {artisans.map((artisan) => (
-    //           <nav key={artisan._id} className='daezeJane'>
-    //             <div className='daezeImage'>
-    //               <img 
-    //                 src={artisan.profilePic?.image_url || '/default-profile.jpg'} 
-    //                 alt={artisan.fullname} 
-    //               />
-    //               <p>{artisan.fullname}</p>
-    //             </div>
-                
-    //             <div className='daezeEmail'>
-    //               <p>{artisan.email}</p>
-    //             </div>
-
-    //             <div className='daStatus'>
-    //               <p>Status: {artisan.verificationStatus}</p>
-    //             </div>
-    //           </nav>
-    //         ))}
-    //       </aside>
-    //     )}
-    //   </section>
-    // </div>
     <div className="pending-users-wrapper">
     <h2 className="title">Declined Users ({artisans.length})</h2>
     {loading ? (

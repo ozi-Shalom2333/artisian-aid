@@ -70,18 +70,18 @@
   
   .profile-pic-container {
     position: absolute;
-    bottom: 80px; /* Adjust the vertical position */
-    left: 50px; /* Adjust the horizontal position */
-    width: 80px;
-    height: 80px;
+    bottom: 30px; /* Adjust the vertical position */
+    left: 90px; /* Adjust the horizontal position */
+    width: 150px;
+    height: 150px;
     z-index: 10; 
     transform: translateX(-50%); 
   }
   
   .camera-icons {
     position: absolute;
-    bottom: -60px;
-    right: -55px;
+    bottom: 0px;
+    right: 11px;
     background-color: #1827f3;
     border-radius: 50%;
     padding: 5px;
@@ -95,7 +95,7 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid white;
-    background-color: #f0f0f0;
+    background-color: #d12525;
   }
   
   
@@ -140,6 +140,13 @@
   .form-row p{
     width: 30%;
 
+  }
+  .lcg{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: medium;
+    margin-left: 20%;
   }
   
   input,

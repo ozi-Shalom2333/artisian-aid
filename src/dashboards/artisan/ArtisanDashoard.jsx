@@ -12,6 +12,7 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ArtisanSubscription from "./pages/ArtisanSubscription";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ArtisanDashoard = () => {
   const [activeTab, setActiveTab] = useState("personal-info");
@@ -37,15 +38,15 @@ const ArtisanDashoard = () => {
       );
       console.log(response);
       if (response.status === 200) {
-        alert("Logout successful!");
+        toast.success("Logout successful!");
         localStorage.removeItem("authToken");
         window.location.href = "/";
       } else {
-        alert("Failed to log out. Please try again.");
+        toast.error("Failed to log out. Please try again.");
       }
     } catch (error) {
       console.error("Error during logout:", error);
-      alert("An error occurred while logging out. Please try again.");
+      toast.error("An error occurred while logging out. Please try again.");
     } finally {
       setShowLogoutModal(false);
     }

@@ -144,7 +144,7 @@ const HomePage = () => {
           </div>
        </div>
        <div className='recommendedart'>
-            <h1>Top Recommended Artisan Services</h1>
+            <h1>Top Recommended Artisan <br /> Services</h1>
             <div className='catfilter-card'>
                     {
                         artisans.map((e)=>(

@@ -17,8 +17,9 @@ const AdminDashboard = () => {
 
   // Check if path matches for active styling
   const isActive = (path) => {
-    return location.pathname === /admindashboard/${path} || 
-           (location.pathname === '/admindashboard' && path === 'pending-verification');
+    return location.pathname === `/admindashboard/${path}` || 
+       (location.pathname === '/admindashboard' && path === 'pending-verification');
+
   };
 
   const handleLogout = () => {
@@ -72,7 +73,8 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="pending-verification"
-                className={nav-link ${isActive('pending-verification') ? 'nav-link-active' : ''}}
+               className={`nav-link ${isActive('pending-verification') ? 'nav-link-active' : ''}`}
+
               >
                 Pending User Verification
               </Link>

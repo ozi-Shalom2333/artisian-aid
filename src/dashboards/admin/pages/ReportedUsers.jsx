@@ -47,8 +47,6 @@ const ReportedUser = () => {
     navigate("/admindashboard/getOneReported");
   }
 
-  // if (loading) return <div className="loading">Loading Reported artisans...</div>;
-  // if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="pending-users-wrapper">

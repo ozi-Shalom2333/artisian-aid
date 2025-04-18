@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/employerSignup.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const EmployerSignUp = () => {
   const [form, setForm] = useState({
@@ -14,53 +15,63 @@ const EmployerSignUp = () => {
     confirmPassword: ''
   });
 
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: '' });
+    setError({ ...error, [name]: '' });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prev) => !prev);
   };
 
   const checkForm = () => {
-    const newErrors = {};
+    const newError = {};
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
-    if (!form.fullname) newErrors.fullname = 'Full name is required';
+    if (!form.fullname) newError.fullname = 'Full name is required';
 
     if (!form.phoneNumber) {
-      newErrors.phoneNumber = 'Phone number is required';
+      newError.phoneNumber = 'Phone number is required';
     } else if (!/^\+?\d{7,15}$/.test(form.phoneNumber)) {
-      newErrors.phoneNumber = 'Enter a valid phone number';
+      newError.phoneNumber = 'Enter a valid phone number';
     }
 
-    if (!form.email) newErrors.email = 'Email is required';
+    if (!form.email) newError.email = 'Email is required';
 
     if (!form.password) {
-      newErrors.password = 'Password is required';
+      newError.password = 'Password is required';
     } else if (!strongPasswordRegex.test(form.password)) {
-      newErrors.password =
+      newError.password =
         'Password must be at least 8 characters and include one uppercase letter, one lowercase letter, and one special character';
     }
 
     if (!form.confirmPassword) {
-      newErrors.confirmPassword = 'Confirm password is required';
+      newError.confirmPassword = 'Confirm password is required';
     } else if (form.password !== form.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newError.confirmPassword = 'Passwords do not match';
     }
 
-    return newErrors;
+    return newError;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formErrors = checkForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      toast.error(Object.values(formErrors)[0]);
+    const formError = checkForm();
+    if (Object.keys(formError).length > 0) {
+      setError(formError);
+      toast.error(Object.values(formError)[0]);
       return;
     }
 
@@ -95,7 +106,6 @@ const EmployerSignUp = () => {
           password: '',
           confirmPassword: ''
         });
-
       } else {
         toast.error(response.data.message || 'Something went wrong');
       }
@@ -111,7 +121,13 @@ const EmployerSignUp = () => {
       <ToastContainer />
       <div className="employerSignUp__container">
         <aside className="employerSignUp__image">
-          <img src="https://res.cloudinary.com/dkxms3ctv/image/upload/v1744634401/Artisan_3_myrrpj.png" alt="Logo" />
+          <Link to="/">
+            <img
+              src="https://res.cloudinary.com/dkxms3ctv/image/upload/v1744634401/Artisan_3_myrrpj.png"
+              alt="Logo"
+              className="clickable-logo"
+            />
+          </Link>
         </aside>
 
         <div className="employerSignUp__card">
@@ -132,7 +148,7 @@ const EmployerSignUp = () => {
                   placeholder="Your name"
                   disabled={loading}
                 />
-                {errors.fullname && <small className="employerSignUp__error">{errors.fullname}</small>}
+                {error.fullname && <small className="employerSignUp__error">{error.fullname}</small>}
               </div>
               <div className="employerSignUp__inputGroup">
                 <p>Phone Number</p>
@@ -144,7 +160,7 @@ const EmployerSignUp = () => {
                   placeholder="080..."
                   disabled={loading}
                 />
-                {errors.phoneNumber && <small className="employerSignUp__error">{errors.phoneNumber}</small>}
+                {error.phoneNumber && <small className="employerSignUp__error">{error.phoneNumber}</small>}
               </div>
             </div>
 
@@ -159,35 +175,45 @@ const EmployerSignUp = () => {
                   placeholder="Your email"
                   disabled={loading}
                 />
-                {errors.email && <small className="employerSignUp__error">{errors.email}</small>}
+                {error.email && <small className="employerSignUp__error">{error.email}</small>}
               </div>
               <div className="employerSignUp__inputGroup">
                 <p>Password</p>
-                <input
-                  type="password"
-                  name="password"
-                  value={form.password}
-                  onChange={handleInput}
-                  placeholder="Your password"
-                  disabled={loading}
-                />
-                {errors.password && <small className="employerSignUp__error">{errors.password}</small>}
+                <div className="employerSignUp__passwordWrapper">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={form.password}
+                    onChange={handleInput}
+                    placeholder="Your password"
+                    disabled={loading}
+                  />
+                  <span className="employerSignUp__toggleEye" onClick={togglePasswordVisibility}>
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </span>
+                </div>
+                {error.password && <small className="employerSignUp__error">{error.password}</small>}
               </div>
             </div>
 
             <div className="employerSignUp__rowSingle">
               <div className="employerSignUp__inputGroup">
                 <p>Confirm Password</p>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  onChange={handleInput}
-                  placeholder="Confirm password"
-                  disabled={loading}
-                />
+                <div className="employerSignUp__passwordWrapper">
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleInput}
+                    placeholder="Confirm password"
+                    disabled={loading}
+                  />
+                  <span className="employerSignUp__toggleEye" onClick={toggleConfirmPasswordVisibility}>
+                    {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                  </span>
+                </div>
                 {errors.confirmPassword && (
-                  <small className="employerSignUp__error">{errors.confirmPassword}</small>
+                  <small className="employerSignUp__error">{error.confirmPassword}</small>
                 )}
               </div>
             </div>

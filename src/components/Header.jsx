@@ -43,9 +43,8 @@ const Header = () => {
                 <p><NavLink to="/authoption">Sign Up</NavLink></p>
                 <p><NavLink to="/login">Login</NavLink></p>
             </div>
-          : <p onClick={handleLogout}>loggedin</p>
+          : <p onClick={handleLogout}>< FiLogOut/></p>
         }
-        
 
         <div className='second-respon' onClick={toggleDropdown}>
           <img 

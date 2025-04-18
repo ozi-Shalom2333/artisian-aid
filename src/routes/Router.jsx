@@ -8,7 +8,7 @@ import CategoryByFilter from '../pages/CategoryByFilter';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
-import VerifyPassword from '../auth/VerifyPassword';
+import ResetPassword from '../auth/ResetPassword';
 import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
 import ArtisanPage from '../pages/ArtisanPage';
@@ -26,6 +26,7 @@ import PendingVerification from '../dashboards/admin/pages/PendingVerification';
 import ApprovedUsers from '../dashboards/admin/pages/ApprovedUsers';
 import DeclinedUsers from '../dashboards/admin/pages/DeclinedUsers';
 import ReportedUsers from '../dashboards/admin/pages/ReportedUsers';
+import GetOneReported from '../dashboards/admin/pages/GetOneReported';
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
@@ -51,6 +52,7 @@ const Router = createBrowserRouter([
           { index: true, element: <PendingVerification /> },
           { path: 'pending-verification', element: <PendingVerification /> },
           { path: 'onePendingUser', element: <GetOnePendingUser /> },
+          { path: 'getOneReported', element: <GetOneReported /> },
           { path: 'approved-users', element: <ApprovedUsers /> },
           { path: 'declined-users', element: <DeclinedUsers /> },
           { path: 'reported-users', element: <ReportedUsers /> },
@@ -60,6 +62,7 @@ const Router = createBrowserRouter([
     { path: '/login', element: <Login /> },
     { path:'/category/:category', element: <CategoryByFilter />},
     { path: '/verify', element: <VerifyPassword /> },
+    { path: '/resetpassword/:token', element: <ResetPassword /> },
     { path: '/onePendingUser', element: <GetOnePendingUser /> },
     // { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 

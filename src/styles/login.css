@@ -1,11 +1,12 @@
-.loginMainBody{
+.loginMainBody1{
+    max-width: 100%;
     width: 100%;
     height: fit-content;
     display: flex;
     min-height: 100vh;
     background: url('https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744842644/bg_login_lt3rvx.jpg') no-repeat center center ;
 }
-.loginMainBody > div{
+.loginMainBody1 > div{
     width: 50%;
     height: fit-content;
     min-height: 100vh;
@@ -23,7 +24,7 @@
     cursor: pointer;
     object-fit: contain;
 }
-.loginMainBody > div:last-child{
+.loginMainBody1 > div:last-child{
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -33,7 +34,7 @@
     /* border: 2px solid green; */
     gap: 20px;
 }
-.loginMainBody > div:last-child h1{
+.loginMainBody1 > div:last-child h1{
     font-weight: 700;
     font-size: 48px;
 }

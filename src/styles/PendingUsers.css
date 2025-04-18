@@ -15,7 +15,7 @@
   
   .users-container {
     background-color: white;
-    height: max-content;
+    min-height: 100vh;
     border-radius: 16px;
     padding: 20px;
     display: flex;
@@ -32,6 +32,16 @@
     gap: 20px;
     justify-content: space-between;
   }
+
+  #reported-card {
+    background-color: #e4ebfe;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 20px;
+    /* justify-content: center; */
+  }
   
   #user-info {
     display: flex;
@@ -39,12 +49,29 @@
     gap: 12px;
     flex: 1;
   }
+
+  #reported-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* flex: 1; */
+  }
   
   .user-avatar {
     width: 45px;
     height: 45px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  .reported-avatar{
+    position: relative;
+  }
+  .labels-sticks{
+    position: absolute;
+    font-size: 16px;
+    bottom: -2px;
+    right: -5px;
   }
   
   .user-name {
@@ -54,8 +81,14 @@
   
   .user-email {
     flex: 1;
-    font-size: 15px;
+    font-size: 10px;
     color: #000;
+  }
+
+  .user-purpose{
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   
   .view-details {
@@ -66,8 +99,22 @@
     cursor: pointer;
     text-decoration: underline;
   }
+
+  .view-details2 {
+    flex: 1;
+  }
   
   .view-details:hover {
     text-decoration: none;
+  }
+
+  .user-card__status{
+    /* flex: 1; */
+    color: #EB5757;
+  }
+  
+  .user-card__verified{
+    /* flex: 1; */
+    color: #27AE60;
   }
   

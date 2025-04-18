@@ -11,16 +11,13 @@ const PendingVerification = () => {
   const [loading, setLoading] = useState(false);
 
   const handleViewDetails = (user) => {
-    navigate("/admindashboard/onePendingUser", { state: { user } }); // Pass user data
+    navigate("/admindashboard/onePendingUser", { state: { user } }); 
   };
 
   useEffect(() => {
     const fetchPendingUsers = async () => {
       setLoading(true);
       const token = localStorage.getItem("token");
-      // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmZmMjYwNWE0NDI0YWUzYjY5Mzc3MiIsInJvbGUiOiJBcnRpc2FuIiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNzQ0ODk0NDA0LCJleHAiOjE3NDQ5ODA4MDR9.H78t0xFtdlbz5SM1I0OGkWy9y8wWN6ny1MZ9TSC5jTI";
-      // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmZmMDNjNWE0NDI0YWUzYjY5Mzc0YSIsInJvbGUiOiJBZG1pbiIsImlzTG9nZ2VkSW4iOnRydWUsImlhdCI6MTc0NDg4MTEwOSwiZXhwIjoxNzQ0OTY3NTA5fQ.uCiCpZDG5EQ8xMcHeAPCBUmqC3uq_RLq2prVwY-DoY4"
-      console.log(token);
       
       try {
         const response = await axios.get(
@@ -63,7 +60,7 @@ const PendingVerification = () => {
                 user={{
                   name: user.fullname,
                   email: user.email,
-                  image: user.profilePic.image_url, // Fallback image if not available
+                  image: user.profilePic.image_url, 
                 }}
                 onViewDetails={() => handleViewDetails(user)}
               />
@@ -79,41 +76,4 @@ const PendingVerification = () => {
 
 export default PendingVerification;
 
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import "../../../styles/PendingUsers.css";
-// import PendingUserCard from "../../../components/PendingUserCard";
 
-// const users = [
-//   {
-//     name: "Adaeze Jane",
-//     email: "Adaezejane2025@gmail.com",
-//     image: "/images/adaeze.jpg", // Replace with correct local path or URL
-//   },
-//   {
-//     name: "David Odi",
-//     email: "Davidodi2025@gmail.com",
-//     image: "/images/david.jpg", // Replace with correct local path or URL
-//   },
-// ];
-
-// const PendingVerification = () => {
-//   const navigate = useNavigate();
-
-//   const handleViewDetails = () => {
-//     navigate("/onePendingUser");
-//   };
-
-//   return (
-//     <div className="pending-users-wrapper">
-//       <h2 className="title">Pending User Verification</h2>
-//       <div className="users-container">
-//         {users.map((user, idx) => (
-//           <PendingUserCard key={idx} user={user} onViewDetails={handleViewDetails} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PendingVerification;

@@ -5,7 +5,6 @@ import { RouterProvider } from "react-router-dom";
 import Router from "./routes/Router";
 import Index from "./context/Index";
 import { ToastContainer } from "react-toastify";
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ToastContainer/>
@@ -13,4 +12,3 @@ createRoot(document.getElementById("root")).render(
       <RouterProvider router={Router} />
     </Index>
   </StrictMode>
-);

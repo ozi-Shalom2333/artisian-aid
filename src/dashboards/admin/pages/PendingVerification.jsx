@@ -24,7 +24,7 @@ const PendingVerification = () => {
           "https://artisanaid.onrender.com/v1/pending/artisans",
           {
             headers: {
-              Authorization: Bearer `${token}`
+              Authorization: `Bearer ${token}`
             }
           }
         );
@@ -75,3 +75,5 @@ const PendingVerification = () => {
 };
 
 export default PendingVerification;
+
+

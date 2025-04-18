@@ -51,24 +51,30 @@ const ApprovedUsers = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
+   
     <div className="pending-users-wrapper">
       <h2 className="title">Approved Artisans ({artisans.length})</h2>
-      <div className="users-container">
-        {artisans.length > 0 ? (
-          artisans.map((user) => (
-            <ApprovedUserCard
-              key={user._id}
-              name={user.fullname}
-              email={user.email}
-              image={user.profilePic?.image_url || "/default-profile.jpg"}
-              onViewDetails={() => handleViewDetails(user._id)}
-              verified={user.verificationStatus}
-            />
-          ))
-        ) : (
-          <p>No approved artisans at the moment.</p>
-        )}
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="users-container">
+          {artisans.length > 0 ? (
+            artisans.map((user) => (
+              <ApprovedUserCard
+                // key={user.id}
+                name={user.fullname}
+                email={user.email}
+                image={user.profilePic?.image_url || '/default-profile.jpg'}
+                onViewDetails={handleViewDetails}
+                // status={""}
+                verified={`Status: ${user.verificationStatus}`}
+              />
+            ))
+          ) : (
+            <p>No Declined users at the moment.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

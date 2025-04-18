@@ -1,13 +1,13 @@
-.resetPasswordMessageBody{
+.verificationBody{
     width: 100%;
-    height: 100vh;
+    max-height: 100vh;
     /* background-color: aqua; */
 }
 
-.resetPasswordMessageHeaderImage{
+.verificationHeaderImage{
     width: 100%;
     height: 15vh;
-    /* background-color: blue; */
+    background-color: blue;
     display: flex;
     justify-content: center;
     padding-top: 20px;
@@ -24,24 +24,25 @@ text-align: center;
     }
 }
 
-.resetPasswordMessageImage{
-    width: 100%;
-height: 50vh;
-/* background-color: aqua; */
+.verificationImage{
+    width: 400px;
+height: 305px;
+
+background-color: aqua;
 display: flex;
 justify-content: center;
 padding-bottom: 30px;
 
 & img{
-    width: 400px;
-    height:305px;
+    width: 100%;
+    height:100%;
 }
 }
 
-.resetPasswordMessage{
+.verificationMessage{
     width: 100%;
     height: 20vh;
-    /* background-color: blueviolet; */
+    background-color: blueviolet;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,11 +50,11 @@ padding-bottom: 30px;
     
 }
 
-.resetPasswordMessage{
+.verificationLinkMessage{
     width: 100%;
     height: 25%;
     /* gap: 20px; */
-    /* background-color: aqua; */
+    background-color: aqua;
     font-family: Montserrat;
 font-weight: 700;
 font-size: 34.19px;
@@ -65,10 +66,10 @@ justify-content: center;
 
 }
 
-.resetPasswordMessageSent{
+.verificationSent{
     width: 100%;
     height: 40%;
-    /* background: red; */
+    background: red;
     gap: 5px;
     display: flex;
     flex-direction: column;
@@ -84,7 +85,7 @@ margin-top: 15px;
 
 }
 
-.resetPasswordMessageResendLink{
+.verificationResendLink{
     width: 100%;
     height: 10%;
     display: flex;

@@ -11,16 +11,15 @@ const EmployerDash = () => {
    const [activeTab, setActiveTab] = useState('personal-info'); 
    const navigate = useNavigate();
 
-    
+    localStorage.getItem('userData')
 
      const handleTabClick = (tab) => {
        setActiveTab(tab);
      };
      return (
        <div className="dashboard-container">
-        
          <div className="sidebar">
-           <div className="logo">ArtisanAid.</div>
+           <div className="logo" onClick={()=> navigate('/')}>ArtisanAid.</div>
            <nav>
              <ul>
                <li className="admin-management-header">

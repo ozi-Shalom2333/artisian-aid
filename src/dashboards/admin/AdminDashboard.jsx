@@ -62,7 +62,7 @@ const AdminDashboard = () => {
       </button>
 
       {/* Sidebar */}
-      <div className={sidebar ${isSidebarOpen ? 'active' : ''}}>
+      <div className={sidebar ` ${isSidebarOpen ? 'active' : ''}`}>
         <div className="logo">ArtisanAid.</div>
         <nav>
           <ul>
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="approved-users"
-                className={nav-link ${isActive('approved-users') ? 'nav-link-active' : ''}}
+                className={nav-link `${isActive('approved-users') ? 'nav-link-active' : ''}`}
               >
                 Approved Users
               </Link>
@@ -90,7 +90,7 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="declined-users"
-                className={nav-link ${isActive('declined-users') ? 'nav-link-active' : ''}}
+                className={nav-link `${isActive('declined-users') ? 'nav-link-active' : ''}`}
               >
                 Declined Users
               </Link>
@@ -98,7 +98,7 @@ const AdminDashboard = () => {
             <li>
               <Link
                 to="reported-users"
-                className={nav-link ${isActive('reported-users') ? 'nav-link-active' : ''}}
+                className={nav-link `${isActive('reported-users') ? 'nav-link-active' : ''}`}
               >
                 Reported Users
               </Link>

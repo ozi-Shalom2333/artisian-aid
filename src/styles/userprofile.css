@@ -108,13 +108,13 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
-  background: #007bff;
+  background: #060b43;
   color: #fff;
   padding: 0.7rem 1.4rem;
 }
 
 .connect-button:hover {
-  background: #0056b3;
+  background: #000435;
 }
 
 .report-link {

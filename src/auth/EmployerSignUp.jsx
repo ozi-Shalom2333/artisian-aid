@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const EmployerSignUp = () => {
   const [form, setForm] = useState({
@@ -16,12 +17,22 @@ const EmployerSignUp = () => {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
     setErrors({ ...errors, [name]: '' });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prev) => !prev);
   };
 
   const checkForm = () => {
@@ -163,14 +174,19 @@ const EmployerSignUp = () => {
               </div>
               <div className="employerSignUp__inputGroup">
                 <p>Password</p>
-                <input
-                  type="password"
-                  name="password"
-                  value={form.password}
-                  onChange={handleInput}
-                  placeholder="Your password"
-                  disabled={loading}
-                />
+                <div className="employerSignUp__passwordWrapper">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={form.password}
+                    onChange={handleInput}
+                    placeholder="Your password"
+                    disabled={loading}
+                  />
+                  <span className="employerSignUp__toggleEye" onClick={togglePasswordVisibility}>
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </span>
+                </div>
                 {errors.password && <small className="employerSignUp__error">{errors.password}</small>}
               </div>
             </div>
@@ -178,14 +194,19 @@ const EmployerSignUp = () => {
             <div className="employerSignUp__rowSingle">
               <div className="employerSignUp__inputGroup">
                 <p>Confirm Password</p>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  onChange={handleInput}
-                  placeholder="Confirm password"
-                  disabled={loading}
-                />
+                <div className="employerSignUp__passwordWrapper">
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleInput}
+                    placeholder="Confirm password"
+                    disabled={loading}
+                  />
+                  <span className="employerSignUp__toggleEye" onClick={toggleConfirmPasswordVisibility}>
+                    {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                  </span>
+                </div>
                 {errors.confirmPassword && (
                   <small className="employerSignUp__error">{errors.confirmPassword}</small>
                 )}

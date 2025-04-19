@@ -224,7 +224,7 @@ const SignUp = () => {
   return (
     <>
       <div className="signup-container">
-        <div className="overlay"></div>
+        {/* <div className="overlay"></div> */}
 
         {/* Header / Branding */}
         <header className="signup-header">
@@ -242,120 +242,120 @@ const SignUp = () => {
 
           <form className="signup-form" onSubmit={handleSubmit}>
             {/* Full Name */}
-            <div className="form-group">
-              <label htmlFor="fullName">Full Name</label>
-              <input
-                type="text"
-                id="fullName"
-                placeholder="Type here"
-                value={formData.fullName}
-                onChange={(e) => handleChange("fullName", e.target.value)}
-                required
-              />
-              {errors.fullName && (
-                <p className="error-text">{errors.fullName}</p>
-              )}
+            <div className="form_input_container">
+              <div className="form_input">
+                <label htmlFor="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  placeholder="Type here"
+                  value={formData.fullName}
+                  onChange={(e) => handleChange("fullName", e.target.value)}
+                  required
+                />
+                {errors.fullName && (
+                  <p className="error-text">{errors.fullName}</p>
+                )}
+              </div>
+              <div className="form_input">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  id="email"
+                  placeholder="Type here"
+                  value={formData.email}
+                  onChange={(e) => handleChange("email", e.target.value)}
+                  required
+                />
+                {errors.email && (
+                  <p className="error-text">{errors.email}</p>
+                )}
+              </div>
             </div>
 
-            {/* Email */}
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Type here"
-                value={formData.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                required
-              />
-              {errors.email && <p className="error-text">{errors.email}</p>}
+            <div className="form_input_container">
+              <div className="form_input">
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  placeholder="08012345678"
+                  value={formData.phoneNumber}
+                  onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                  required
+                />
+                {errors.phoneNumber && (
+                  <p className="error-text">{errors.phoneNumber}</p>
+                )}
+              </div>
+              <div className="form_input">
+                <label htmlFor="businessName">Business Name</label>
+                <input
+                  type="text"
+                  id="businessName"
+                  placeholder="Type here"
+                  value={formData.businessName}
+                  onChange={(e) =>
+                    handleChange("businessName", e.target.value)
+                  }
+                  required
+                />
+                {errors.businessName && (
+                  <p className="error-text">{errors.businessName}</p>
+                )}
+              </div>
             </div>
 
-            {/* Phone Number */}
-            <div className="form-group">
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                placeholder="08012345678"
-                value={formData.phoneNumber}
-                onChange={(e) => handleChange("phoneNumber", e.target.value)}
-                required
-              />
-              {errors.phoneNumber && (
-                <p className="error-text">{errors.phoneNumber}</p>
-              )}
-            </div>
-
-            {/* Business Name */}
-            <div className="form-group">
-              <label htmlFor="businessName">Business Name</label>
-              <input
-                type="text"
-                id="businessName"
-                placeholder="Type here"
-                value={formData.businessName}
-                onChange={(e) =>
-                  handleChange("businessName", e.target.value)
-                }
-                required
-              />
-              {errors.businessName && (
-                <p className="error-text">{errors.businessName}</p>
-              )}
-            </div>
-
-            {/* Password */}
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Type here"
-                value={formData.password}
-                onChange={(e) => handleChange("password", e.target.value)}
-                onFocus={() => setTouched(true)}
-                required
-              />
-              {touched && formData.password && (
-                <ul className="password-requirements">
-                  {passwordRequirements.map((req, index) => {
-                    const isValid = req.regex.test(formData.password);
-                    return (
-                      <li
-                        key={index}
-                        className={`requirement ${
-                          isValid ? "valid" : "invalid"
-                        }`}
-                      >
-                        {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-              {errors.password && (
-                <p className="error-text">{errors.password}</p>
-              )}
-            </div>
-
-            {/* Confirm Password */}
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                style={{maxHeight:'7vh'}}
-                placeholder="Type here"
-                value={formData.confirmPassword}
-                onChange={(e) =>
-                  handleChange("confirmPassword", e.target.value)
-                }
-                required
-              />
-              {errors.confirmPassword && (
-                <p className="error-text">{errors.confirmPassword}</p>
-              )}
+            <div className="form_input_container">
+              <div className="form_input">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Type here"
+                  value={formData.password}
+                  onChange={(e) => handleChange("password", e.target.value)}
+                  onFocus={() => setTouched(true)}
+                  required
+                />
+                {touched && formData.password && (
+                  <ul className="password-requirements">
+                    {passwordRequirements.map((req, index) => {
+                      const isValid = req.regex.test(formData.password);
+                      return (
+                        <li
+                          key={index}
+                          className={`requirement ${
+                            isValid ? "valid" : "invalid"
+                          }`}
+                        >
+                          {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+                {errors.password && (
+                  <p className="error-text">{errors.password}</p>
+                )}
+              </div>
+              <div className="form_input">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  style={{maxHeight:'7vh'}}
+                  placeholder="Type here"
+                  value={formData.confirmPassword}
+                  onChange={(e) =>
+                    handleChange("confirmPassword", e.target.value)
+                  }
+                  required
+                />
+                {errors.confirmPassword && (
+                  <p className="error-text">{errors.confirmPassword}</p>
+                )}
+              </div>
             </div>
 
             {/* Custom Category Dropdown with dynamic icons */}
@@ -410,21 +410,25 @@ const SignUp = () => {
             </div>
 
             {/* Terms and Conditions */}
-            <p className="signup-terms">
-              By creating an account you automatically agree to ArtisanAid{" "}
-              <a href="#terms" className="terms-link">
-                Terms and Conditions
-              </a>
-            </p>
+            <div className="terms_condition">
+              <p className="signup-terms">
+                By creating an account you automatically agree to ArtisanAid{" "}
+                <a href="#terms" className="terms-link">
+                  Terms and Conditions
+                </a>
+              </p>
+            </div>
 
             {/* Create Account Button */}
-            <button
-              type="submit"
-              className={`signup-button ${!isFormValid ? "disabled" : ""}`}
-              disabled={!isFormValid || isLoading}
-            >
-              {isLoading ? "Please wait..." : "Create Account"}
-            </button>
+            <div className="form_btn">
+              <button
+                type="submit"
+                className={`signup-button ${!isFormValid ? "disabled" : ""}`}
+                disabled={!isFormValid || isLoading}
+              >
+                {isLoading ? "Please wait..." : "Create Account"}
+              </button>
+            </div>
 
             {/* Already have an account link */}
             <p className="signup-login-text">

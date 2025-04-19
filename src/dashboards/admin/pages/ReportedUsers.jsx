@@ -16,7 +16,7 @@ const ReportedUser = () => {
       setError("");
 
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("authToken");
         if (!token) {
           throw new Error("Authentication token is missing.");
         }
@@ -43,24 +43,27 @@ const ReportedUser = () => {
     fetchDeclinedArtisans();
   }, []);
 
-  const handleViewDetails = ()=>{
+  const handleViewDetails = () => {
     navigate("/admindashboard/getOneReported");
-  }
+  };
 
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported User Verification</h2>
       <div className="users-container">
-      <ReportedUserCard
-                // key={user.id}
-                name= "Victoria Trust"
-                email= "Text@gmail.com"
-                image= ""
-                onViewDetails={handleViewDetails}
-                status={'Declined'}
-              />
-        </div>
+        {artisans.map((item) => (
+          <ReportedUserCard
+            // key={user.id}
+            name="Victoria Trust"
+            email="Text@gmail.com"
+            image=""
+            onViewDetails={handleViewDetails}
+            status={"Declined"}
+          />
+        ))}
+      </div>
     </div>
   );
 };
+
 export default ReportedUser;

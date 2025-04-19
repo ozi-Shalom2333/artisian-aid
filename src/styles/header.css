@@ -12,11 +12,12 @@
     display: flex;
     width:100%;
     background-color: #ffff;
+    height: max-content;
     align-items: center;
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 0 auto;
-    padding: 10px 60px ;
+    padding: 25px 60px ;
     justify-content: space-between;
     position: relative;
 
@@ -24,11 +25,6 @@
 .Header-Pages{
     display: flex;
     gap: 55px;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-size: 16px;
-    
 }
 .Header-authentication{
     display: flex;
@@ -37,6 +33,39 @@
     font-size: 16px;
     font-weight: 600;
 }
+
+.active, .notActive{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    padding: 6px 0;
+}
+
+.notActive:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #FFA500;
+    transition: all 350ms ease-in-out;
+}
+
+.notActive:hover:before{
+    width: 100%;
+}
+
+.active{
+    color: #FFA500;
+}
+
+.notActive{
+    color: #000;
+}
+
 .Header-authentication > p:first-of-type{
     border: 2px solid #FFA500;
     padding: 15px 25px;

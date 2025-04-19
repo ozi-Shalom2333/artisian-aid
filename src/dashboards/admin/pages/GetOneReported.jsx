@@ -4,7 +4,6 @@ import UserReportCard from "../../../components/UserReportCard";
 
 const GetOneReported = () => {
   const handleViewDetails = () => {
-    
   };
   return (
     <div className="pending-users-wrapper">

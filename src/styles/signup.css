@@ -8,7 +8,6 @@
   overflow-x: hidden;
 }
 
-
 .signup-container .overlay {
   position: absolute;
   top: 0;
@@ -65,6 +64,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+.signup-input{
+  /* height: 40px; */
+  max-height: 40px;
 }
 
 /* On smaller screens, collapse the grid */

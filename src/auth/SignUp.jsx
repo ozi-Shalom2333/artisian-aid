@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { 
-  MdCheckCircle, 
-  MdCancel, 
-  MdKeyboardArrowDown, 
+import {
+  MdCheckCircle,
+  MdCancel,
+  MdKeyboardArrowDown,
   MdKeyboardArrowUp,
-  MdClose 
+  MdClose,
 } from "react-icons/md";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -31,7 +31,7 @@ const SignUp = () => {
     businessName: "",
     category: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({
@@ -41,7 +41,7 @@ const SignUp = () => {
     businessName: "",
     category: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +57,7 @@ const SignUp = () => {
     { label: "At least one uppercase letter", regex: /[A-Z]/ },
     { label: "At least one lowercase letter", regex: /[a-z]/ },
     { label: "At least one number", regex: /[0-9]/ },
-    { label: "At least one special character (!@#$%^&*)", regex: /[!@#$%^&*]/ }
+    { label: "At least one special character (!@#$%^&*)", regex: /[!@#$%^&*]/ },
   ];
 
   // Filter categories based on search term
@@ -200,7 +200,7 @@ const SignUp = () => {
       phoneNumber: formData.phoneNumber.trim(),
       category: formData.category.trim(),
       password: formData.password,
-      confirmPassword: formData.confirmPassword
+      confirmPassword: formData.confirmPassword,
     };
 
     try {
@@ -247,6 +247,7 @@ const SignUp = () => {
               <input
                 type="text"
                 id="fullName"
+                className="signup-input"
                 placeholder="Type here"
                 value={formData.fullName}
                 onChange={(e) => handleChange("fullName", e.target.value)}
@@ -264,6 +265,7 @@ const SignUp = () => {
                 type="email"
                 id="email"
                 placeholder="Type here"
+                className="signup-input"
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
                 required
@@ -273,10 +275,13 @@ const SignUp = () => {
 
             {/* Phone Number */}
             <div className="form-group">
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <label htmlFor="phoneNumber" style={{ maxHeight: `5vh` }}>
+                Phone Number
+              </label>
               <input
                 type="tel"
                 id="phoneNumber"
+                className="signup-input"
                 placeholder="08012345678"
                 value={formData.phoneNumber}
                 onChange={(e) => handleChange("phoneNumber", e.target.value)}
@@ -289,15 +294,16 @@ const SignUp = () => {
 
             {/* Business Name */}
             <div className="form-group">
-              <label htmlFor="businessName">Business Name</label>
+              <label htmlFor="businessName" style={{ maxHeight: `5vh` }}>
+                Business Name
+              </label>
               <input
                 type="text"
                 id="businessName"
+                className="signup-input"
                 placeholder="Type here"
                 value={formData.businessName}
-                onChange={(e) =>
-                  handleChange("businessName", e.target.value)
-                }
+                onChange={(e) => handleChange("businessName", e.target.value)}
                 required
               />
               {errors.businessName && (
@@ -307,17 +313,20 @@ const SignUp = () => {
 
             {/* Password */}
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" style={{ maxHeight: `5vh` }}>
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
+                className="signup-input"
                 placeholder="Type here"
                 value={formData.password}
                 onChange={(e) => handleChange("password", e.target.value)}
                 onFocus={() => setTouched(true)}
                 required
               />
-              {touched && formData.password && (
+              {touched && formData.password && !validatePassword(formData.password) && (
                 <ul className="password-requirements">
                   {passwordRequirements.map((req, index) => {
                     const isValid = req.regex.test(formData.password);
@@ -341,11 +350,14 @@ const SignUp = () => {
 
             {/* Confirm Password */}
             <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
+              <label htmlFor="confirmPassword" style={{ maxHeight: `5vh` }}>
+                Confirm Password
+              </label>
               <input
                 type="password"
                 id="confirmPassword"
-                style={{maxHeight:'7vh'}}
+                className="signup-input"
+                style={{ maxHeight: "7vh" }}
                 placeholder="Type here"
                 value={formData.confirmPassword}
                 onChange={(e) =>
@@ -363,16 +375,14 @@ const SignUp = () => {
               <label>Category</label>
               <div className="custom-dropdown">
                 {/* Dropdown Header */}
-                <div 
-                  className="dropdown-header" 
+                <div
+                  className="dropdown-header"
                   onClick={handleDropdownHeaderClick}
                 >
                   {/* Show either the category or placeholder */}
                   {formData.category || "Select Category"}
                   {/* Icon on the right */}
-                  <span className="dropdown-arrow">
-                    {getDropdownIcon()}
-                  </span>
+                  <span className="dropdown-arrow">{getDropdownIcon()}</span>
                 </div>
 
                 {/* Dropdown Body */}

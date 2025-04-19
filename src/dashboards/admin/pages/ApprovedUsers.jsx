@@ -19,9 +19,10 @@ const ApprovedUsers = () => {
       setError("");
 
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("authToken");
         if (!token) {
-          throw new Error("Authentication token is missing.");
+          // throw new Error("Authentication token is missing.");
+          setError("Authentication token is missing.");
         }
 
         const response = await axios.get(
@@ -33,12 +34,13 @@ const ApprovedUsers = () => {
           }
         );
 
+        console.log(response);
+
         setArtisans(response.data.data);
       } catch (err) {
+        console.log(err);
         setError(
-
-          error.response?.data?.message || "Failed to fetch approved artisans."
-
+          error.response.message
         );
       } finally {
         setLoading(false);
@@ -48,39 +50,12 @@ const ApprovedUsers = () => {
     fetchApprovedArtisans();
   }, []);
 
-  const handleViewDetails = (id) => {
-    navigate(`/admindashboard/artisan/${id}`);
+  const handleViewDetails = () => {
+    
   };
 
-  if (loading) return <div className="loading">Loading approved artisans...</div>;
+  if (loading)
+    return <div className="loading">Loading approved artisans...</div>;
   if (error) return <div className="error">{error}</div>;
-
-  return (
-    <div className="pending-users-wrapper">
-      <h2 className="title">Approved Artisans ({artisans.length})</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="users-container">
-          {artisans.length > 0 ? (
-            artisans.map((user) => (
-              <ApprovedUserCard
-                // key={user.id}
-                name={user.fullname}
-                email={user.email}
-                image={user.profilePic?.image_url || '/default-profile.jpg'}
-                onViewDetails={handleViewDetails}
-                // status={""}
-                verified={`Status: ${user.verificationStatus}`}
-              />
-            ))
-          ) : (
-            <p>No Declined users at the moment.</p>
-          )}
-        </div>
-      )}
-    </div>
-  );
 };
-
 export default ApprovedUsers;

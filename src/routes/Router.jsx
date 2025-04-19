@@ -52,7 +52,7 @@ const Router = createBrowserRouter([
           { index: true, element: <PendingVerification /> },
           { path: 'pending-verification', element: <PendingVerification /> },
           { path: 'onePendingUser', element: <GetOnePendingUser /> },
-          { path: 'getOneReported', element: <GetOneReported /> },
+          { path: 'getOneReported/:id', element: <GetOneReported /> },
           { path: 'approved-users', element: <ApprovedUsers /> },
           { path: 'declined-users', element: <DeclinedUsers /> },
           { path: 'reported-users', element: <ReportedUsers /> },

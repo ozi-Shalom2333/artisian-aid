@@ -1,30 +1,28 @@
-/* artisanNotification.css */
-
 .container {
   font-family: sans-serif;
-  max-width: 700px; /* Increased max-width for better spacing */
-  margin: 20px auto; /* Added some top/bottom margin */
+  max-width: 700px; 
+  margin: 20px auto; 
   padding: 20px;
-  background-color: #fff; /* Added a white background */
-  border-radius: 8px; /* Slightly more rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added a subtle shadow */
+  background-color: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tab-bar {
   display: flex;
-  margin-bottom: 25px; /* Increased margin below tabs */
-  border-bottom: 2px solid #eee; /* Slightly thicker and lighter border */
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
 }
 
 .tab-button {
   background-color: transparent;
   border: none;
-  padding: 12px 20px; /* Increased padding */
+  padding: 12px 20px;
   cursor: pointer;
   color: #555;
-  font-size: 1.1em; /* Slightly larger font size */
-  font-weight: 500; /* Slightly bolder font weight */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .tab-button:focus {
@@ -32,44 +30,42 @@
 }
 
 .tab-button:hover {
-  color: #333; /* Darken text on hover */
+  color: #333;
 }
 
 .tab-button.active {
-  color: black; /* Primary blue color for active tab */
+  color: black;
   font-weight: bold;
-  border-bottom: 3px solid black; /* Highlight for active tab */
+  border-bottom: 3px solid black;
 }
 
-
-
 .list-item {
-  background-color: #f9f9f9; /* Light gray background for list items */
+  background-color: #f9f9f9;
   padding: 15px;
-  border-radius: 6px; /* Slightly more rounded corners for list items */
-  margin-bottom: 15px; /* Increased margin between list items */
+  border-radius: 6px;
+  margin-bottom: 15px;
   display: grid;
-  grid-template-columns: auto 1fr 1fr auto; /* Adjusted grid columns for better alignment */
+  grid-template-columns: auto 1fr 1fr auto;
   align-items: center;
-  gap: 15px; /* Increased gap */
-  border: 1px solid #eee; /* Added a light border */
+  gap: 15px;
+  border: 1px solid #eee;
 }
 
 .profile-icon {
-  width: 40px; /* Slightly larger profile icon */
-  height: 40px; /* Slightly larger profile icon */
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ddd;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
 }
 
 .profile-icon svg {
-  width: 24px; /* Slightly larger icon inside */
-  height: 24px; /* Slightly larger icon inside */
+  width: 24px;
+  height: 24px;
   color: #777;
 }
 
@@ -91,17 +87,16 @@
 }
 
 .status {
-  color: #28a745; /* Green color for positive status */
+  color: #28a745;
   font-weight: bold;
   font-size: 1em;
-  text-align: right; /* Align status to the right */
+  text-align: right;
 }
 
-/* Specific styling for different statuses */
 .status.Confirmation {
-  color: #007bff; /* Blue for confirmation needed */
+  color: #007bff;
 }
 
 .status.Rejected {
-  color: #dc3545; /* Red for rejected */
+  color: #dc3545;
 }

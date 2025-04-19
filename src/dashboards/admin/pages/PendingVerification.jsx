@@ -17,7 +17,7 @@ const PendingVerification = () => {
   useEffect(() => {
     const fetchPendingUsers = async () => {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("authToken");
       
       try {
         const response = await axios.get(

@@ -12,25 +12,14 @@ const ArtisanInfo = () => {
   const [mainImage, setMainImage] = useState(null);
   const [mainFile, setMainFile] = useState(null);
   const BaseUrl = "https://artisanaid.onrender.com";
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-  );
-  const [bio, setBio] = useState("");
-  const [socialLink, setSocialLink] = useState("");
-  const [lga, setLga] = useState("");
-  const [profileImageNow, setProfileImageNow] = useState(null);
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")));
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const response = await axios.get(`${BaseUrl}/v1/user/${userData._id}`);
-        const user = response.data.data;
-        setUserData(user);
-        setBio(user.bio || "");
-        setSocialLink(user.socialMediaLink || "");
-        setLga(user.location.lga || "");
-        setProfileImageNow(user.profilePic.image_url || "");
-        console.log("User data fetched:", user);
+        setUserData(response.data.data);
+        console.log("User data fetched:", response.data.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to fetch user data.");
@@ -55,17 +44,19 @@ const ArtisanInfo = () => {
     const formData = new FormData();
     formData.append("profilePic", profileFile);
     try {
-      const myToken = localStorage.getItem("authToken");
+      const myToken = localStorage.getItem("authToken" );
+      console.log(myToken) 
       const response = await axios.put(
-        `${BaseUrl}/v1/update/profilepic`,
+        `${BaseUrl}/v1/update/profile`, 
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${myToken}`,
+            Authorization: `Bearer ${myToken}`, 
           },
         }
       );
+
       if (response.status === 200) {
         toast.success("Profile picture updated successfully!");
         setUserData((prev) => ({
@@ -120,46 +111,13 @@ const ArtisanInfo = () => {
   };
 
   useEffect(() => {
-    if (profileImage) submitPic();
-    if (mainImage) submitMainPic();
-  }, [profileImage, mainImage]);
-  const handleUpdateProfile = async () => {
-    try {
-      const myToken = localStorage.getItem("authToken");
-      const updateData = {
-        bio,
-        lga,
-        socialMediaLink: socialLink,
-      };
-
-      const response = await axios.put(
-        `${BaseUrl}/v1/update/profile`,
-        updateData,
-        {
-          headers: {
-            Authorization: `Bearer ${myToken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        toast.success("Profile updated successfully!");
-        // Optionally update local userData
-        setUserData((prev) => ({
-          ...prev,
-          bio,
-          lga,
-          socialMediaLink: socialLink,
-        }));
-      } else {
-        toast.error("Failed to update profile.");
-      }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-      toast.error("Something went wrong while updating your profile.");
+    if(profileImage) {
+      submitPic();
     }
-  };
+    if(mainImage) {
+      submitMainPic();
+    }
+  },[profileImage,mainImage])
 
   return (
     <div className="profile-container">
@@ -179,7 +137,7 @@ const ArtisanInfo = () => {
         <button className="verify">Complete Verification</button>
       </div>
 
-      <h2>Your Personal Information</h2>
+      <h2 className="verifyh2">Your Personal Information</h2>
 
       <div className="profile-banner">
         <div className="profile-pic-container">
@@ -194,6 +152,7 @@ const ArtisanInfo = () => {
           <input
             type="file"
             id="profileImageInput"
+            className="profile-image-input"
             onChange={handleProfileImageChange}
             style={{ display: "none" }}
           />
@@ -214,6 +173,7 @@ const ArtisanInfo = () => {
           <input
             type="file"
             id="mainImageInput"
+            className="profile-image-input"
             onChange={handleMainImageChange}
             style={{ display: "none" }}
           />
@@ -268,30 +228,16 @@ const ArtisanInfo = () => {
           </select>
         </div>
 
-        <div className="social-row">
-          <input
-            type="text"
-            placeholder="Enter your social media link"
-            value={socialLink}
-            onChange={(e) => setSocialLink(e.target.value)}
-          />
+        <div className="form-row">
+          <input type="text" placeholder="Social Media URL" />
         </div>
 
-        <div className="bio-row">
-          <textarea
-            placeholder="Enter your bio"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
+
+        <div className="form-row">
+          <textarea placeholder="Type here"></textarea>
         </div>
 
-        <button
-          className="save-btn"
-          type="button"
-          onClick={handleUpdateProfile}
-        >
-          Save Changes
-        </button>
+        <button className="save-btn">Save Changes</button>
       </form>
     </div>
   );

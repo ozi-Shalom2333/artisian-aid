@@ -36,7 +36,6 @@ const ArtisanPage = () => {
         <h1 className="Ahero-title">"Uncover <span style={{color:'rgba(47, 128, 237, 1)'}}>Unique</span> Talents and{" "}<br />Exceptional Skills"</h1>
         <p className="Ahero-description">Explore the Artisan Community: Where Creativity Thrives</p>
       </div>
-      const navigate = useNavigate();
 
 <div className="ozioma">
   {artisans.map((data, onclick) => (

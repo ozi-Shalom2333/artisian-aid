@@ -40,12 +40,7 @@ const PersonalInfo = () => {
                         </div>
                     </div>
 
-                    <div className="edit-button-container">
-                        <button className="edit-button">
-                            Edit <BiEdit/>
-                        </button>
-                    </div>
-                  <hr />
+                           <hr />
                     <div className="info-section">
                         <div className="personal-info-card">
                             <div className="card-header">

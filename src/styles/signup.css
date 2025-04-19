@@ -1,14 +1,14 @@
 /* Container and Background */
 .signup-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
-  background: url('/bgImage.jpg') no-repeat center center;
+  background: url("https://res.cloudinary.com/djnowfvsk/image/upload/v1745000339/bg_1_sign_up_ms70kc.jpg") no-repeat center center;
   background-size: cover;
   overflow-x: hidden;
 }
 
-/* Overlay to darken the background */
+
 .signup-container .overlay {
   position: absolute;
   top: 0;
@@ -30,7 +30,7 @@
 }
 
 .logo img {
-  max-height: 30px;
+  height: 30px;
   width: auto;
 }
 
@@ -40,7 +40,7 @@
   z-index: 2;
   max-width: 700px;
   margin: 2rem auto;
-  background-color: rgba(255, 255, 255, 0.15);
+  /* background-color: rgba(255, 255, 255, 0.15); */
   backdrop-filter: blur(5px);
   border-radius: 8px;
   padding: 2rem;
@@ -51,6 +51,7 @@
   font-size: 2rem;
   margin-bottom: 0.5rem;
   text-align: center;
+  color: #ffffff;
 }
 
 .signup-subtitle {
@@ -184,7 +185,6 @@
 
 /* ---------- End Custom Dropdown Styles ---------- */
 
-
 /* ---------- Password Requirements ---------- */
 .password-requirements {
   margin-top: 0.5rem;
@@ -214,7 +214,6 @@
   margin-top: 0.25rem;
 }
 
-
 .signup-terms {
   grid-column: 1 / -1;
   font-size: 0.85rem;
@@ -223,10 +222,9 @@
 }
 
 .terms-link {
-  color: #2F80ED;
+  color: #2f80ed;
   text-decoration: underline;
 }
-
 
 .signup-button {
   grid-column: 1 / -1;
@@ -249,7 +247,6 @@
   cursor: not-allowed;
 }
 
-
 .signup-login-text {
   grid-column: 1 / -1;
   text-align: center;
@@ -257,20 +254,18 @@
 }
 
 .login-link {
-  color: #2F80ED;
+  color: #2f80ed;
   text-decoration: underline;
   font-weight: 600;
 }
-
 
 @media (max-width: 768px) {
   .signup-content {
     margin: 2rem 1rem;
     padding: 1.5rem;
   }
-  
+
   .signup-title {
     font-size: 1.75rem;
   }
 }
-

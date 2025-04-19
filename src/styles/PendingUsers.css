@@ -81,7 +81,7 @@
   
   .user-email {
     flex: 1;
-    font-size: 15px;
+    font-size: 10px;
     color: #000;
   }
 
@@ -117,3 +117,4 @@
     /* flex: 1; */
     color: #27AE60;
   }
+  

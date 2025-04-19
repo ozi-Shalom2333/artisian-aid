@@ -2,6 +2,8 @@ import "../../../styles/artisanVerification.css";
 import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ArtisanVerification = () => {
   const [fileName, setFileName] = useState("");
@@ -12,6 +14,7 @@ const ArtisanVerification = () => {
   const [loading, setLoading] = useState(false);
 
   const baseUrl = "https://artisanaid.onrender.com";
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -25,11 +28,11 @@ const ArtisanVerification = () => {
     }
   };
 
-  const handleSubmit = async (e, token) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!guarantorName || !guarantorNumber || !file) {
-      alert("Please complete all fields and upload a file.");
+      toast.error("Please complete all fields and upload a file.");
       return;
     }
 
@@ -37,6 +40,13 @@ const ArtisanVerification = () => {
     formData.append("guarantorName", guarantorName);
     formData.append("guarantorPhoneNumber", guarantorNumber);
     formData.append("workCertificate", file);
+    const myToken = localStorage.getItem("authToken");
+    console.log(myToken)
+
+    if (!myToken) {
+      toast.error("Authentication token not found.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -46,15 +56,28 @@ const ArtisanVerification = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${myToken}`,
+            Accept: "application/json",
           },
         }
       );
 
-      console.log(res);
+      const resData = res.data;
+      toast.success(resData.message || "Verification submitted successfully!");
+
+      // Reset form
+      setGuarantorName("");
+      setGuarantorNumber("");
+      setFile(null);
+      setFileName("");
+      setImagePreview(null);
     } catch (error) {
-      console.error(error);
-      // console.log(error );
+      if (error.response) {
+        toast.error(error.response.data.message || "Submission failed.");
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    } finally {
       setLoading(false);
     }
   };
@@ -63,7 +86,7 @@ const ArtisanVerification = () => {
     <div className="guarantor-container">
       <h2>Please Fill & Upload necessary Information for verification</h2>
       <p className="subtitle">
-        fill & Select relevant information to complete your Verification
+        Fill & Select relevant information to complete your verification
       </p>
 
       <form className="guarantor-form" onSubmit={handleSubmit}>
@@ -99,6 +122,7 @@ const ArtisanVerification = () => {
             <input
               id="fileInput"
               type="file"
+              accept="image/*,application/pdf"
               onChange={handleFileChange}
               hidden
             />
@@ -122,6 +146,9 @@ const ArtisanVerification = () => {
           {loading ? "Submitting..." : "Verify"}
         </button>
       </form>
+
+      {/* Toast Notifications */}
+      <ToastContainer position="top-right" autoClose={4000} />
     </div>
   );
 };

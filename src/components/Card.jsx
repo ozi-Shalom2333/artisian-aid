@@ -1,17 +1,19 @@
 import React from 'react';
 import './../styles/profile.css'; 
 import { MdVerified } from "react-icons/md";
+import { FiUpload } from "react-icons/fi";
+import { AiFillStar } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 
-function Card({data}) {
-   
+function Card({ data }) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/userprofile/${data._id}`);
   };
+
   return (
     <div className="card">
-     <section className='card-header'>
+      <section className="card-header">
         <div>
           <header>
             <img 
@@ -53,15 +55,12 @@ function Card({data}) {
           </div>
         </div>
 
-
         <div className='card-price' onClick={handleClick}>
           <p>Book Now</p>
         </div>
-      </section>
-
-
+      </div>
     </div>
   );
-};
+}
 
 export default Card;

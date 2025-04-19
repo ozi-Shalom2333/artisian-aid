@@ -19,6 +19,7 @@
 .authArrowIcon{
 width: 15%;
 height: 220px;
+cursor: pointer;
 /* border-radius: 100px; */
 /* background-color: blue; */
 display: flex;
@@ -28,7 +29,7 @@ align-items: center;
 img{
   width: 70px;
 height: 70px;
-top: 107px;
+/* top: 107px; */
 /* left: 48px; */
 /* border-radius: 100px; */
 
@@ -124,7 +125,7 @@ justify-content: center;
 
 .authOptionArtisan{
   width: 60%;
-height:35%;
+height:30%;
 border-radius: 10px;
 border-width: 1px;
 background-color: #ffffff;
@@ -155,7 +156,7 @@ img{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 3px;
 
   h2{
       width: 344px;

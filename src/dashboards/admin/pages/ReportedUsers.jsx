@@ -47,7 +47,6 @@ const ReportedUser = () => {
     navigate("/admindashboard/getOneReported");
   }
 
-
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported User Verification</h2>
@@ -61,25 +60,7 @@ const ReportedUser = () => {
                 status={'Declined'}
               />
         </div>
-
-      {/* <div className="users-container">
-          {users.length > 0 ? (
-            users.map((user) => (
-              <ReportedUserCard
-                key={user.id}
-                name= "Victoria Trust"
-                email= "Text@gmail.com"
-                image= ""
-                onViewDetails={() => handleViewDetails(user)}
-                status={'Declined'}
-              />
-            ))
-          ) : (
-            <p>No Reported users at the moment.</p>
-          )}
-        </div> */}
     </div>
   );
 };
 export default ReportedUser;
-

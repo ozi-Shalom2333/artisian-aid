@@ -173,33 +173,6 @@ const HomePage = () => {
           
        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
        <div className='homePage__carousel'>
             <h3>Testimonials</h3>
             <h1>Hear from Our  <span style={{color:'#2F80ED'}}>Satisfied</span> <br /> Employers</h1>

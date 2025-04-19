@@ -8,7 +8,7 @@ import CategoryByFilter from '../pages/CategoryByFilter';
 import SignUp from '../auth/SignUp';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
-import VerifyPassword from '../auth/VerifyPassword';
+import ResetPassword from '../auth/ResetPassword';
 import ForgetPassword from '../auth/ForgetPassword';
 import CategoryPage from '../pages/CategoryPage';
 import ArtisanPage from '../pages/ArtisanPage';
@@ -62,6 +62,7 @@ const Router = createBrowserRouter([
     { path: '/login', element: <Login /> },
     { path:'/category/:category', element: <CategoryByFilter />},
     { path: '/verify', element: <VerifyPassword /> },
+    { path: '/resetpassword/:token', element: <ResetPassword /> },
     { path: '/onePendingUser', element: <GetOnePendingUser /> },
     // { path:'/admindashboard', element:<AdminDashboard/>},
     { path: '/verificationmessage', element: <VerificationMessage /> }, 

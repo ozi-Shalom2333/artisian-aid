@@ -20,6 +20,9 @@
    border-radius: 50%;
 
 }
+.card-header header > img{
+   border-radius: 50%;
+}
 
 .card-header div:first-of-type{
   display: flex;

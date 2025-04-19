@@ -3,15 +3,12 @@ import ReportedUserCard from "../../../components/ReportedUserCard";
 import UserReportCard from "../../../components/UserReportCard";
 
 const GetOneReported = () => {
-  const handleViewDetails = () => {
-    // navigate("/admindashboard/getOneReported");
-  };
+  
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported Details</h2>
       <div className="users-container">
         <ReportedUserCard
-          // key={user.id}
           name="Victoria Trust"
           email="Text@gmail.com"
           image=""
@@ -34,17 +31,11 @@ const GetOneReported = () => {
 
 <div className="button-group">
           <button
-            className="approve-btn"
-            // onClick={handleApprove}
-            // disabled={loadingAction}
-          >
+            className="approve-btn">
             Restrict User
           </button>
           <button
-            className="decline-btn"
-            // onClick={handleDecline}
-            // disabled={loadingAction}
-          >
+            className="decline-btn">
            Delete User
           </button>
         </div>

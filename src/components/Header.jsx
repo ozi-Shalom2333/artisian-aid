@@ -32,9 +32,9 @@ const Header = () => {
         </div>
 
         <div className='Header-Pages'>
-          <p><NavLink to="/" end>Home</NavLink></p>
-          <p><NavLink to="/about">About Us</NavLink></p>
-          <p><NavLink to="/contact">Contact Us</NavLink></p>
+          <NavLink to="/" end className={({ isActive })=> isActive ? 'active' : 'notActive'}>Home</NavLink>
+          <NavLink to="/about" className={({ isActive })=> isActive ? 'active' : 'notActive'}>About Us</NavLink>
+          <NavLink to="/contact" className={({ isActive })=> isActive ? 'active' : 'notActive'}>Contact Us</NavLink>
         </div>
 
         {
@@ -45,7 +45,6 @@ const Header = () => {
             </div>
           : <p onClick={handleLogout}>< FiLogOut/></p>
         }
-
         <div className='second-respon' onClick={toggleDropdown}>
           <img 
             src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652397/Component_64_vvm2yd.png" 

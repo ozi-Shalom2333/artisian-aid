@@ -27,7 +27,7 @@ const Footer = () => {
       <div className='Footer-container'>
         <div className='Footer-section-lightblue'>
           <h2>"Unlock New Opportunities -  Get <br />Started <span style={{ color: '#FFA500' }}>Now!</span></h2>
-          <div>
+          <div onClick={()=> navigate('/authoption')}>
             <p>Get Started</p>
           </div>
         </div>

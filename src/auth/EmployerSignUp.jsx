@@ -212,7 +212,9 @@ const EmployerSignUp = () => {
                     {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                   </span>
                 </div>
-                {errors.confirmPassword && (
+
+                {error.confirmPassword && (
+
                   <small className="employerSignUp__error">{error.confirmPassword}</small>
                 )}
               </div>

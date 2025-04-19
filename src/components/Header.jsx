@@ -41,7 +41,7 @@ const Header = () => {
           !token ? 
             <div className='Header-authentication'>
                 <p><NavLink to="/authoption">Sign Up</NavLink></p>
-                <p><NavLink to="/login">Login</NavLink></p>
+                <p><NavLink to="/login" style={{color:'white'}}>Login</NavLink></p>
             </div>
           : <p onClick={handleLogout}>< FiLogOut/></p>
         }

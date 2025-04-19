@@ -38,14 +38,19 @@
     font-weight: 600;
 }
 .Header-authentication > p:first-of-type{
-    border: 2px solid red;
-    padding: 10px;
+    border: 2px solid #FFA500;
+    padding: 15px 25px;
+    width: 150px;
+    border-radius: 10px;
+    text-align: center;
 }
 .Header-authentication > p:last-of-type{
-    border: 2px solid blue;
-    padding: 10px 20px ;
+    border-radius: 10px;
+    padding: 15px 25px ;
     background-color: #000435;
-    color: #ffff;
+    width: 150px;
+    text-align: center;
+    
 }
 .second-respon{
     display: none;

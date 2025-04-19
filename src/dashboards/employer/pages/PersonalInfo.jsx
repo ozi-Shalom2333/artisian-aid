@@ -39,7 +39,7 @@ const PersonalInfo = () => {
                             <div className="camera-icon">< FiCamera size={29}/></div>
                         </div>
                     </div>
-                    
+
                     <div className="edit-button-container">
                         <button className="edit-button">
                             Edit <BiEdit/>
@@ -64,11 +64,7 @@ const PersonalInfo = () => {
                                     <div className="info-label">Phone</div>
                                     <div className="info-value">{userData.phoneNumber}</div>
                                 </div>
-                                {/* <div className="edit-button-container">
-                                   <button className="edit-button">
-                                     Edit <BiEdit/>
-                                   </button>
-                                </div> */}
+                             
                             </div>
                         </div>
 

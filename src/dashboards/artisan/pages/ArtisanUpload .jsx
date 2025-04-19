@@ -27,7 +27,6 @@ const ArtisanUpload = () => {
     if (file) {
       setSelectedFile(file);
 
-      // Generate image preview
       const reader = new FileReader();
       reader.onload = () => {
         setImagePreview(reader.result);
@@ -51,20 +50,30 @@ const ArtisanUpload = () => {
 
     try {
       setLoading(true); 
+      const token = localStorage.getItem("authToken");
+
       const response = await axios.post(
         "https://artisanaid.onrender.com/v1/upload/job",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
+
+      const imageUrl = response.data?.imageUrl; // assuming backend returns imageUrl
+      if (imageUrl) {
+        setImagePreview(imageUrl);
+      }
+
       alert("Job uploaded successfully!");
       console.log("Response:", response.data);
     } catch (error) {
-      console.error("Error uploading job:", error);
-      alert("Failed to upload job. Please try again.");
+      const msg = error.response?.data?.message || "Something went wrong.";
+      console.error("Error uploading job:", error.response?.data || error);
+      alert(`Upload failed: ${msg}`);
     } finally {
       setLoading(false);
     }

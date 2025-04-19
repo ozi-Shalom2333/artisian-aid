@@ -7,7 +7,7 @@ import ArtisanInfo from "./pages/ArtisanInfo";
 import ArtisanVerification from "./pages/ArtisanVerification";
 import ArtisanUpload from "./pages/ArtisanUpload ";
 import ArtisanNotification from "./pages/ArtisanNotification";
-// import ArtisanSecurity from "./pages/ArtisanSecurity";
+import ArtisanSecurity from "./pages/ArtisanSecurity";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import ArtisanSubscription from "./pages/ArtisanSubscription";
 import { CiLogout } from "react-icons/ci";
@@ -17,8 +17,6 @@ import { toast } from "react-toastify";
 const ArtisanDashoard = () => {
   const [activeTab, setActiveTab] = useState("personal-info");
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const myToken = localStorage.getItem("authToken");
-  console.log(myToken)
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -28,7 +26,9 @@ const ArtisanDashoard = () => {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("authToken");
+      console.log(token)
       const response = await axios.get(
+
         "https://artisanaid.onrender.com/v1/logout",
         {
           headers: {
@@ -36,15 +36,14 @@ const ArtisanDashoard = () => {
           },
         }
       );
-
-      if (response.status === 200) { 
+      console.log(response);
+      if (response.status === 200) {
         toast.success("Logout successful!");
         localStorage.removeItem("authToken");
-        window.location.href = "/login";
+        window.location.href = "/";
       } else {
         toast.error("Failed to log out. Please try again.");
       }
-      console.log("this is", token);
     } catch (error) {
       console.error("Error during logout:", error);
       toast.error("An error occurred while logging out. Please try again.");
@@ -116,23 +115,6 @@ const ArtisanDashoard = () => {
           </ul>
         </nav>
         <div className="logout">
-          {/* <p
-            className={`nav-link ${
-              activeTab === "security" ? "nav-link-active" : ""
-            }`}
-            onClick={() => handleTabClick("security")}
-            style={{
-              color: "white",
-              fontSize: "14px",
-              fontWeight: "400",
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
-            <BsFillQuestionCircleFill size={20} />
-            Security & Privacy
-          </p> */}
           <p
             className="nav-link"
             style={{
@@ -149,7 +131,7 @@ const ArtisanDashoard = () => {
         </div>
       </div>
       <div className="main-content">
-        {/* {activeTab === "security" && <ArtisanSecurity />} */}
+        {activeTab === "security" && <ArtisanSecurity />}
         {activeTab === "personal-info" && <ArtisanInfo />}
         {activeTab === "account" && <ArtisanVerification />}
         {activeTab === "job-post" && <ArtisanUpload />}
@@ -157,18 +139,21 @@ const ArtisanDashoard = () => {
         {activeTab === "subscription" && <ArtisanSubscription />}
       </div>
       {showLogoutModal && (
-        <div className="modal-overlay1">
-          <div className="modal1">
+        <div className="modal-overlay-logout">
+          <div className="modal-logout">
             <h3>Confirm Logout</h3>
             <p>Are you sure you want to log out?</p>
-            <div className="modal-actions1">
+            <div className="modal-actions-logout">
               <button
                 onClick={() => setShowLogoutModal(false)}
-                className="cancel-btn1"
+                className="cancel-btn-logout"
               >
                 Cancel
               </button>
-              <button onClick={handleLogout} className="logout-btn1">
+              <button
+                onClick={() => handleLogout()}
+                className="logout-btn-logout"
+              >
                 Logout
               </button>
             </div>

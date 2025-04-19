@@ -3,77 +3,69 @@ import "../../../styles/artisanInfo.css";
 import { MdVerified } from "react-icons/md";
 import { MdOutlineCameraAlt } from "react-icons/md";
 import axios from "axios";
-import { use } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 
 const ArtisanInfo = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [profileFile, setProfileFile] = useState(null);
-  const [mainImage, setMainImage] = useState(null); 
-  const [mainFile, setMainFile] = useState(null); 
+  const [mainImage, setMainImage] = useState(null);
+  const [mainFile, setMainFile] = useState(null);
   const BaseUrl = "https://artisanaid.onrender.com";
   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")));
+  const [bio, setBio] = useState("");
+  const [socialLink, setSocialLink] = useState("");
+  const [lga, setLga] = useState("");
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const response = await axios.get(`${BaseUrl}/v1/user/${userData._id}`);
-        setUserData(response.data.data);
-        console.log("User data fetched:", response.data.data);
+        const user = response.data.data;
+        setUserData(user);
+        setBio(user.bio || "");
+        setSocialLink(user.socialMediaLink || "");
+        setLga(user.location.lga || "");
+        console.log("User data fetched:", user);
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to fetch user data.");
       }
     };
-
     getUser();
   }, []);
 
-  
   const handleProfileImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileFile(file); 
-        setProfileImage(reader.result)
+        setProfileFile(file);
+        setProfileImage(reader.result);
       };
       reader.readAsDataURL(file);
-
-      
-      
-      
     }
   };
-  console.log(profileImage)
 
-  const submitPic = async()=> {
+  const submitPic = async () => {
     const formData = new FormData();
-      formData.append("profilePic", profileFile);
+    formData.append("profilePic", profileFile);
     try {
-      const myToken = localStorage.getItem("authToken" );
-      console.log(myToken) 
-      const response = await axios.put(
-        `${BaseUrl}/v1/update/profile`, 
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${myToken}`, 
-          },
-        }
-      );
-
+      const myToken = localStorage.getItem("authToken");
+      const response = await axios.put(`${BaseUrl}/v1/update/profile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${myToken}`,
+        },
+      });
       if (response.status === 200) {
         toast.success("Profile picture updated successfully!");
-      
         setUserData((prev) => ({
           ...prev,
           profilePic: { image_url: response.data.image_url },
         }));
       } else {
-        toast.error("Failed to update profile picture. Please try again.");
+        toast.error("Failed to update profile picture.");
       }
     } catch (error) {
       console.error("Error updating profile picture:", error);
@@ -81,73 +73,86 @@ const ArtisanInfo = () => {
     }
   };
 
-
-
   const handleMainImageChange = async (event) => {
     const file = event.target.files[0];
-
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        console.log("Main image loaded:", reader.result);
-        setMainImage(reader.result); 
+        setMainImage(reader.result);
         setMainFile(file);
       };
       reader.readAsDataURL(file);
-  
-    
-      const formData = new FormData();
-      formData.append("mainImage", file);
-  
-
     }
   };
 
-  const submitMainPic = async()=> {
+  const submitMainPic = async () => {
     const formData = new FormData();
-      formData.append("coverPhoto", mainFile);
+    formData.append("coverPhoto", mainFile);
     try {
-      const myToken = localStorage.getItem("authToken" );
-      console.log(myToken) 
-      const response = await axios.put(
-        `${BaseUrl}/v1/update/cover`, 
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${myToken}`, 
-          },
-        }
-      );
-
+      const myToken = localStorage.getItem("authToken");
+      const response = await axios.put(`${BaseUrl}/v1/update/cover`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${myToken}`,
+        },
+      });
       if (response.status === 200) {
         toast.success("Main picture updated successfully!");
-      
         setUserData((prev) => ({
           ...prev,
           coverPhoto: { image_url: response.data.image_url },
         }));
       } else {
-       toast.error("Failed to update main picture. Please try again.");
+        toast.error("Failed to update main picture.");
       }
     } catch (error) {
       console.error("Error updating main picture:", error);
       toast.error("An error occurred while updating the main picture.");
     }
-  }
+  };
 
   useEffect(() => {
-    if(profileImage) {
-      submitPic();
+    if (profileImage) submitPic();
+    if (mainImage) submitMainPic();
+  }, [profileImage, mainImage]);
+  const handleUpdateProfile = async () => {
+    try {
+      const myToken = localStorage.getItem("authToken");
+      const updateData = {
+        bio,
+        lga,
+        socialMediaLink: socialLink, 
+      };
+  
+      const response = await axios.put(`${BaseUrl}/v1/update/profile`, updateData, {
+        headers: {
+          Authorization: `Bearer ${myToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.status === 200) {
+        toast.success("Profile updated successfully!");
+        // Optionally update local userData
+        setUserData((prev) => ({
+          ...prev,
+          bio,
+          lga,
+          socialMediaLink: socialLink,
+        }));
+      } else {
+        toast.error("Failed to update profile.");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      toast.error("Something went wrong while updating your profile.");
     }
-    if(mainImage) {
-      submitMainPic();
-    }
-  },[profileImage,mainImage])
+  };
+  
 
   return (
     <div className="profile-container">
-      <ToastContainer /> 
+      <ToastContainer />
       <div className="profile-warning">
         <div className="warning-header">
           <MdVerified size={20} color="blue" /> ATTENTION REQUIRED
@@ -206,7 +211,7 @@ const ArtisanInfo = () => {
         </div>
 
         <div className="form-row">
-          <select>
+          <select value={lga} onChange={(e) => setLga(e.target.value)}>
             <option>Select L.G.A</option>
             <option value="Agege">Agege</option>
             <option value="Ajeromi-Ifelodun">Ajeromi-Ifelodun</option>
@@ -229,19 +234,28 @@ const ArtisanInfo = () => {
             <option value="Shomolu">Shomolu</option>
             <option value="Surulere">Surulere</option>
           </select>
-          <input type="text" placeholder="lagos"/>
         </div>
 
         <div className="form-row">
-          <input type="text" placeholder="Social Media URL" />
+          <input
+            type="text"
+            placeholder="Social Media URL"
+            value={socialLink}
+            onChange={(e) => setSocialLink(e.target.value)}
+          />
         </div>
-
 
         <div className="form-row">
-          <textarea placeholder="Type here"></textarea>
+          <textarea
+            placeholder="bio"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+          />
         </div>
 
-        <button className="save-btn">Save Changes</button>
+        <button className="save-btn" type="button" onClick={handleUpdateProfile}>
+          Save Changes
+        </button>
       </form>
     </div>
   );

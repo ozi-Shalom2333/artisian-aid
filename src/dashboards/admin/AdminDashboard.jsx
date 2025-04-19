@@ -11,6 +11,7 @@ import { FiLogOut } from "react-icons/fi";
 const AdminDashboard = () => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const [isMobile, setIsMobile] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();

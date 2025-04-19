@@ -32,9 +32,6 @@ const HomePage = () => {
 
     getRecommededArtisans();
   }, []);
-
-
-
   const navigate = useNavigate();
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);

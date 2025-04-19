@@ -37,7 +37,7 @@
   
   .premium-plan {
     background-color: #1b1b79;
-    color: #fff;
+    color: black;
     position: relative;
   }
   
@@ -64,7 +64,7 @@
   .plan h2 {
     font-size: 24px;
     margin: 0.5rem 0;
-    color: #fff;
+    color: black;
   }
   
   .plan h2 span {
@@ -74,7 +74,7 @@
   
   .plan p {
     font-size: 13px;
-    color: #fffdfd;
+    color: black;
     margin-bottom: 1rem;
   }
   

@@ -30,29 +30,42 @@
 .homePage__hero1__btns{
     display: flex;
     width: 30%;
-    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
    
     
 }
-.homePage__hero1__btns p{
-    width: 46%;
-    padding: 10px 20px;
+.homePage__hero1__btns button{
+    width: max-content;
+    
     text-align: center;
     color: #fff;
+    height: max-content;
     font-weight: 700;
     line-height: 1.75;
+    border: none;
+
+    
 }
-.homePage__hero1__btns p:first-child{
+.homePage__hero1__btns button:first-child{
     background-color: #000435;
     border-radius: 5px;
+    padding: 10px 20px;
+    width: max-content;
+    height: max-content;
+
 }
-.homePage__hero1__btns p:last-child{
+.homePage__hero1__btns button:last-child{
     border: 2px solid #FFA500;
     border-radius: 9px;
+    background-color: transparent;
+    padding: 8px 36px;
+
 }
 .homePage__hero2{
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     gap: 10px;
     margin: 100px 0;
@@ -79,11 +92,11 @@
    border-radius: 9px;
 }
 .homePage__hero2 > div:first-child > h1{
-    font-size: 56px;
+    font-size: 40px;
     font-weight: 700;
  }
 .homePage__hero2 > div:first-child > p{
-   font-size: 24px;
+   font-size: 20px;
    font-weight: 700;
 }
 .homePage__hero2 > div:first-child section:last-of-type{
@@ -100,6 +113,9 @@
     gap: 20px;
     align-items: center;
     height: fit-content;
+}
+.homePage__hero2 > div:first-child section:last-of-type div p{
+  font-weight: 700;
 }
 .homePage__hero2 > div:first-child section:last-of-type div > img{
   object-fit: contain;
@@ -139,10 +155,11 @@
 .homePage__hero2__mobile{
   display: none;
 }
-.homePage__hero3 > aside > p{
-    font-size: 24px;
+/* .homePage__hero3 > aside > p{
+    font-size: 20px;
+    background-color: #FFA500;
     font-weight: 700;
-}
+} */
 .homePage__hero3__category{
     width: 100%;
     height: fit-content;
@@ -170,7 +187,7 @@
     width: 18%;
 }
 .homePage__hero3__category > div > p{
-    font-size: 32px;
+    font-size: 25px;
     font-weight: 700;
 }
 .homePage__hero3__categories{
@@ -252,8 +269,8 @@
 
 
 
-/* Tablet View (max-width: 768px) */
-@media screen and (max-width: 768px) {
+
+/* @media screen and (max-width: 768px) {
     .homePage__hero1 {
       height: auto;
       padding: 50px 20px;
@@ -357,7 +374,7 @@
     .homePage__carousel {
       height: auto;
       padding: 20px;
-      /* margin-bottom: 10%; */
+      /* margin-bottom: 10%; 
     }
   
     .homePage__carousel > h1 {
@@ -367,7 +384,7 @@
     .homePage__carousel > h3 {
       font-size: 16px;
     }
-  }
+  } */
   
   /* Mobile View (max-width: 480px) */
   @media screen and (max-width: 480px) {
@@ -511,14 +528,17 @@
     font-size: 12px;
    }
     .homePage__hero1__btns{
-       display: flex;
+       
        width: 100%;
-       flex-direction: row;
-       height: auto;
+       background-color: #FFA500;
+       height: max-content;
     }
-    .homePage__hero1__btns p{
-      padding: 10px 8px;
-      display: flex;
+    .homePage__hero1__btns button{
+      /* padding: 10px 8px; */
+      /* display: inline; */
+      height: max-content;
+      width: max-content;
+      font-size: 10px;
       justify-content: center;
       align-items: center;
 

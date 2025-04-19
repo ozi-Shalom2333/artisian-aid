@@ -1,10 +1,8 @@
-/* Container and Background */
 .signup-container {
   width: 100%;
   height: 100vh;
   position: relative;
-  background: url("https://res.cloudinary.com/djnowfvsk/image/upload/v1745000339/bg_1_sign_up_ms70kc.jpg")
-    no-repeat center center;
+  background: url("https://res.cloudinary.com/djnowfvsk/image/upload/v1745000339/bg_1_sign_up_ms70kc.jpg") no-repeat center center;
   background-size: cover;
   background-repeat: no-repeat;
   overflow: auto;
@@ -23,7 +21,6 @@
   z-index: 1;
 }
 
-/* Header & Logo */
 .signup-header {
   width: 100%;
   position: relative;
@@ -32,7 +29,6 @@
   justify-content: flex-start;
   align-items: center;
   padding: 1rem 2rem;
-  /* background-color: red; */
 }
 
 .logo img {
@@ -40,13 +36,10 @@
   width: auto;
 }
 
-/* Main Form Content Container */
 .signup-content {
   position: relative;
   z-index: 2;
   max-width: 700px;
-  /* margin: 2rem auto; */
-  /* background-color: yellow; */
   backdrop-filter: blur(20px);
   border-radius: 10px;
   padding: 2rem;
@@ -58,7 +51,6 @@
   margin-bottom: 0.5rem;
   text-align: center;
   color: #ffffff;
-  /* background-color: #e68a00; */
 }
 
 .signup-subtitle {
@@ -67,10 +59,8 @@
   margin-bottom: 1.5rem;
 }
 
-/* Form Grid Layout */
 .signup-form {
   gap: 1rem;
-  /* background-color: chartreuse; */
 }
 
 .form_input_container {
@@ -84,7 +74,6 @@
 .form_input {
   width: 48%;
   height: auto;
-  /* background-color: red; */
 }
 
 .form_input label {
@@ -125,16 +114,12 @@
   color: #333;
 }
 
-/* ---------- Custom Dropdown Styles ---------- */
-
-/* Custom dropdown wrapping group */
 .custom-dropdown-group {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-/* Main dropdown container; mimic input field style */
 .custom-dropdown {
   position: relative;
   background-color: #fff;
@@ -146,21 +131,18 @@
   height: 40px;
 }
 
-/* Dropdown header displays selected value or placeholder */
 .dropdown-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Icon (arrow or close) on the right */
 .dropdown-arrow {
-  margin-left: auto; /* ensures icon is on the far right */
+  margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-/* Dropdown body with search box and list */
 .dropdown-body {
   position: absolute;
   top: 100%;
@@ -174,7 +156,6 @@
   padding: 0.5rem 0;
 }
 
-/* Search input within dropdown */
 .dropdown-search {
   width: 90%;
   margin: 0.5rem auto;
@@ -186,13 +167,11 @@
   outline: none;
 }
 
-/* Scrollable list container */
 .dropdown-list {
   max-height: 100px;
   overflow-y: auto;
 }
 
-/* Dropdown list items */
 .dropdown-item {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
@@ -204,16 +183,12 @@
   background-color: #f0f0f0;
 }
 
-/* Show text when no items match search */
 .dropdown-item.no-match {
   cursor: default;
   color: #999;
   text-align: center;
 }
 
-/* ---------- End Custom Dropdown Styles ---------- */
-
-/* ---------- Password Requirements ---------- */
 .password-requirements {
   margin-top: 0.5rem;
   padding-left: 1.25rem;
@@ -235,7 +210,6 @@
   color: #ccc;
 }
 
-/* ---------- Error Text ---------- */
 .error-text {
   color: red;
   font-size: 0.85rem;

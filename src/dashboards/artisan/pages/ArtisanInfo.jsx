@@ -166,7 +166,7 @@ const ArtisanInfo = () => {
         <button className="verify">Complete Verification</button>
       </div>
 
-      <h2>Your Personal Information</h2>
+      <h2 className="verifyh2">Your Personal Information</h2>
 
       <div className="profile-banner">
         <div className="profile-pic-container">
@@ -181,6 +181,7 @@ const ArtisanInfo = () => {
           <input
             type="file"
             id="profileImageInput"
+            className="profile-image-input"
             onChange={handleProfileImageChange}
             style={{ display: "none" }}
           />
@@ -197,6 +198,7 @@ const ArtisanInfo = () => {
           <input
             type="file"
             id="mainImageInput"
+            className="profile-image-input"
             onChange={handleMainImageChange}
             style={{ display: "none" }}
           />
@@ -211,7 +213,7 @@ const ArtisanInfo = () => {
         </div>
 
         <div className="form-row">
-          <select value={lga} onChange={(e) => setLga(e.target.value)}>
+          <select value={lga} className="selector" onChange={(e) => setLga(e.target.value)}>
             <option>Select L.G.A</option>
             <option value="Agege">Agege</option>
             <option value="Ajeromi-Ifelodun">Ajeromi-Ifelodun</option>
@@ -240,6 +242,7 @@ const ArtisanInfo = () => {
           <input
             type="text"
             placeholder="Social Media URL"
+            className="profile-image-input"
             value={socialLink}
             onChange={(e) => setSocialLink(e.target.value)}
           />
@@ -247,6 +250,7 @@ const ArtisanInfo = () => {
 
         <div className="form-row">
           <textarea
+            className="bio-textarea"
             placeholder="bio"
             value={bio}
             onChange={(e) => setBio(e.target.value)}

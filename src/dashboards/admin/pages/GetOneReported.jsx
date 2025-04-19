@@ -3,8 +3,10 @@ import ReportedUserCard from "../../../components/ReportedUserCard";
 import UserReportCard from "../../../components/UserReportCard";
 
 const GetOneReported = () => {
+
   const handleViewDetails = () => {
   };
+  
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported Details</h2>
@@ -31,16 +33,17 @@ const GetOneReported = () => {
         />
 
 <div className="button-group">
-          <button
-            className="approve-btn"
-            
-          >
+          <button className="approve-btn">
             Restrict User
           </button>
-          <button
-            className="decline-btn"
-            
-          >
+          {/* <button className="decline-btn">
+
+            </button>
+
+           <button className="approve-btn">
+            Restrict User
+          </button> */}
+          <button className="decline-btn">
            Delete User
           </button>
         </div>

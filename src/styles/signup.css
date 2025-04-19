@@ -1,13 +1,17 @@
 /* Container and Background */
 .signup-container {
-  position: relative;
   width: 100%;
-  min-height: 100vh;
-  background: url("https://res.cloudinary.com/djnowfvsk/image/upload/v1745000339/bg_1_sign_up_ms70kc.jpg") no-repeat center center;
+  height: 100vh;
+  position: relative;
+  background: url("https://res.cloudinary.com/djnowfvsk/image/upload/v1745000339/bg_1_sign_up_ms70kc.jpg")
+    no-repeat center center;
   background-size: cover;
-  overflow-x: hidden;
+  background-repeat: no-repeat;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 
 .signup-container .overlay {
   position: absolute;
@@ -21,16 +25,18 @@
 
 /* Header & Logo */
 .signup-header {
+  width: 100%;
   position: relative;
   z-index: 2;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 1rem 2rem;
+  /* background-color: red; */
 }
 
 .logo img {
-  height: 30px;
+  height: 20px;
   width: auto;
 }
 
@@ -39,10 +45,10 @@
   position: relative;
   z-index: 2;
   max-width: 700px;
-  margin: 2rem auto;
-  /* background-color: rgba(255, 255, 255, 0.15); */
-  backdrop-filter: blur(5px);
-  border-radius: 8px;
+  /* margin: 2rem auto; */
+  /* background-color: yellow; */
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
   padding: 2rem;
   color: #fff;
 }
@@ -52,6 +58,7 @@
   margin-bottom: 0.5rem;
   text-align: center;
   color: #ffffff;
+  /* background-color: #e68a00; */
 }
 
 .signup-subtitle {
@@ -62,32 +69,52 @@
 
 /* Form Grid Layout */
 .signup-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  /* background-color: chartreuse; */
 }
 
-/* On smaller screens, collapse the grid */
-@media (max-width: 768px) {
-  .signup-form {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Form Group and Label */
-.form-group {
+.form_input_container {
+  width: 100%;
+  height: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form_input {
+  width: 48%;
+  height: auto;
+  /* background-color: red; */
+}
+
+.form_input label {
+  color: #fff;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  margin: 2px 0;
+}
+
+.form_input input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid lightgrey;
+  padding: 10px !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  outline: none;
+}
+
+.form-group {
+  width: 48%;
 }
 
 .form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #fff;
+  margin: 4px 0;
 }
 
-/* Text inputs and select styling */
-.form-group input,
 .form-group select {
   padding: 0.75rem;
   border: 1px solid #ddd;
@@ -116,6 +143,7 @@
   cursor: pointer;
   color: #333;
   padding: 0.75rem;
+  height: 40px;
 }
 
 /* Dropdown header displays selected value or placeholder */
@@ -214,10 +242,18 @@
   margin-top: 0.25rem;
 }
 
+.terms_condition {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
 .signup-terms {
-  grid-column: 1 / -1;
+  width: 60%;
+  height: max-content;
+  text-align: center;
   font-size: 0.85rem;
-  margin-top: 0.5rem;
   color: #fff;
 }
 
@@ -226,9 +262,17 @@
   text-decoration: underline;
 }
 
+.form_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .signup-button {
-  grid-column: 1 / -1;
-  padding: 0.75rem 2rem;
+  width: 100%;
+  height: max-content;
+  padding: 12px 30px;
   background-color: #fff;
   border: none;
   border-radius: 4px;

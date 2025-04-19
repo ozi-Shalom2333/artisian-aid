@@ -63,10 +63,10 @@
   margin-top: 2rem;
 }
 
-.describe-7-booking{
+.describe-7{
   font-size: 1rem;
   color: #555;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 .description-2 {
   font-size: 1rem;
@@ -108,7 +108,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
-  background: #060b43;
+  background: #070b39;
   color: #fff;
   padding: 0.7rem 1.4rem;
 }
@@ -197,7 +197,7 @@
 }
 
 
-.modal-overlay-booking {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -210,22 +210,35 @@
   justify-content: center;
 }
 
+.modal-overlay-g {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.modal-content-1-booking {
+.modal-content-1 {
   background: #fff;
-  padding: 4rem;
+  padding: 2rem;
   border-radius: 12px;
-  width: 85%;
-  max-width: 800px;
-  height: auto;
-  min-height: 500px;
+  width: 50%;
+  max-width: 700px;
+  height: 100%;
+  min-height: 200px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   position: relative;
+  overflow: auto;
 }
 
 .modal-content-2 {
   background: #fff;
-  padding: 4rem;
+  padding: 1rem;
   border-radius: 12px;
   width: 85%;
   max-width: 800px;
@@ -236,10 +249,10 @@
 }
 
 
-.modal-actions-1-booking {
+.modal-actions-1 {
   display: flex;
   justify-content: flex-end;
-  gap: 1.5rem;
+  gap: 1.2rem;
   margin-top: 2rem;
 }
 
@@ -251,7 +264,7 @@
 }
 
 
-.close-modal-button-booking {
+.close-modal-button {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -263,7 +276,7 @@
   transition: transform 0.3s ease;
 }
 
-.close-modal-button-booking:hover {
+.close-modal-button:hover {
   transform: scale(1.2);
 }
 .cancel-button {
@@ -324,12 +337,12 @@
 
 
 .button-oh {
-  width: 40%;
-  height: 40px;
-  background-color: #000435;
+  width: 20%;
+  height: 50px;
+  background-color: #262845;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1.2rem;
   font-weight: 600;
   display: flex;
@@ -337,12 +350,12 @@
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin-left: 23rem;
+  margin-left: 32rem;
   margin-top: 1.7rem;
 }
 
 .button-oh:hover {
-  background-color: #0056b3;
+  background-color: #000435;
 }
 
 .button-oh:disabled {
@@ -375,9 +388,9 @@ input[type="tel"] {
   margin-top: 0.8rem;
 }
  
-.form-group-booking {
-  margin-bottom: 2.7rem;
-  height: 60%;
+.form-group-71 {
+  margin-bottom: 2rem;
+  height: 40%;
 }
 
 

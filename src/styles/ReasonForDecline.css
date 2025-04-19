@@ -1,4 +1,4 @@
-.modal-overlay {
+.modal-overlay1 {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,7 @@
     z-index: 999;
   }
   
-  .modal-container {
+  .modal-container1 {
     background-color: white;
     padding: 40px 30px;
     border-radius: 20px;
@@ -20,7 +20,7 @@
     box-sizing: border-box;
   }
   
-  .modal-title {
+  .modal-title1 {
     text-align: center;
     font-size: 24px;
     color: #333;
@@ -28,7 +28,7 @@
     font-weight: 500;
   }
   
-  .modal-textarea {
+  .modal-textarea1 {
     width: 100%;
     height: 160px;
     padding: 15px;
@@ -41,7 +41,7 @@
     box-sizing: border-box;
   }
   
-  .modal-submit-btn {
+  .modal-submit-btn1 {
     width: 100%;
     margin-top: 25px;
     background-color: #2f80ed;
@@ -55,7 +55,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .modal-submit-btn:hover {
+  .modal-submit-btn1:hover {
     background-color: #196fde;
   }
   

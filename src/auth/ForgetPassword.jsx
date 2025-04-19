@@ -36,7 +36,7 @@ const ForgetPassword = () => {
     <div className='forgetBody'>
       <main className='forgetMainContainer'>
         <section className='forgetImage'>
-          <img src="/Forgot password-bro 1 (1).png" alt="" />
+          <img src="{verification_message_image}" alt="" />
         </section>
 
         <aside className='forgetPasswordContainer'>

@@ -21,40 +21,40 @@ const CategoryPage = () => {
 
      
       <div className="category-item-boxes">
-        <div className="category-item-box" onClick={()=> navigate('/category/electrician')}>
+        <div className="category-item-box-G" onClick={()=> navigate('/category/electrician')}>
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/electrician-svgrepo-com_1_u0mzzu.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
-        <div className="category-item-box" onClick={()=> navigate('/category/gardening')}>
+        <div className="category-item-box-G" onClick={()=> navigate('/category/gardening')}>
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220126/gardening-tools-equipment-svgrepo-com_1_1_sebwge.png" className="category-icon" /> 
           <span className="category-label">Gardening</span>
         </div>
-        <div className="category-item-box" onClick={()=> navigate('/category/laundry')}>
+        <div className="category-item-box-G" onClick={()=> navigate('/category/laundry')}>
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
           <span className="category-label">Laundry</span>
         </div>
-        <div className="category-item-box" onClick={()=> navigate('/category/home cleaning')}> 
+        <div className="category-item-box-G" onClick={()=> navigate('/category/home cleaning')}> 
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220513/cleaner-broom-svgrepo-com_1_bcq4ca.png" className="category-icon" /> 
           <span className="category-label">Home Cleaning</span>
         </div>
-        <div className="category-item-box" onClick={()=> navigate('/category/electrician')}>
+        <div className="category-item-box-G" onClick={()=> navigate('/category/electrician')}>
           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/electrician-svgrepo-com_1_u0mzzu.png" className="category-icon" /> 
           <span className="category-label">Electrician</span>
         </div>
-        <div className="category-item-box" onClick={()=> navigate('/category/pain')}>
+        <div className="category-item-box-G" onClick={()=> navigate('/category/pain')}>
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
         <span className="category-label">Painting</span>
         </div>
-        <div className="category-item-box">
+        <div className="category-item-box-G">
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
         <span className="category-label">Laundry</span>
         </div>
-        <div className="category-item-box">
+        <div className="category-item-box-G">
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220129/painter-with-roller-and-paint-bucket-svgrepo-com_1_aaeeep.png" className="category-icon" />
         <span className="category-label">Painting</span>
         </div>
 
-        <div className="category-item-box">
+        <div className="category-item-box-G">
         <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220130/Vector_2_zcermi.png" className="category-icon" /> 
         <span className="category-label">Laundry</span>
         </div>

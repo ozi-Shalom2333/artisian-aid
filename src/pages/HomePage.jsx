@@ -32,9 +32,6 @@ const HomePage = () => {
 
     getRecommededArtisans();
   }, []);
-
-
-
   const navigate = useNavigate();
   const handleCategoryClick = (category) => {
     navigate(`/category/${category}`);
@@ -49,21 +46,21 @@ const HomePage = () => {
            <b> Sign up now and <br /> start building your success story!"
            </b></p>
            <div className='homePage__hero1__btns'>
-            <p>
+            <button>
               <NavLink to="/authoption" style={{textDecoration:'none', color:'white'}}>
               Get Started Now
               </NavLink>
-              </p>
-            <p>
+              </button>
+            <button>
               <NavLink to="/category" style={{textDecoration:'none', color:'white'}}>
               Book Now
               </NavLink>
-              </p>
+              </button>
            </div>
         </div>
        <div className='homePage__hero2'>
           <div>
-            <h1>Reliable. <span style={{color:' #FFA500'}}>Efficient.</span> <br /> Quality Guaranteed.</h1>
+            <h1>Reliable. <span style={{color:' #FFA500'}}>Efficient.</span>  Quality <br /> Guaranteed.</h1>
             <p>Find trusted artisans for all your home improvement <br /> needs as a busy professional.</p>
             <section className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
             <p>Explore Artisans</p>

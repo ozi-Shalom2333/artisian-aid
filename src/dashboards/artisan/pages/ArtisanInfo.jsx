@@ -12,10 +12,13 @@ const ArtisanInfo = () => {
   const [mainImage, setMainImage] = useState(null);
   const [mainFile, setMainFile] = useState(null);
   const BaseUrl = "https://artisanaid.onrender.com";
-  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData")));
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userData"))
+  );
   const [bio, setBio] = useState("");
   const [socialLink, setSocialLink] = useState("");
   const [lga, setLga] = useState("");
+  const [profileImageNow, setProfileImageNow] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,6 +29,7 @@ const ArtisanInfo = () => {
         setBio(user.bio || "");
         setSocialLink(user.socialMediaLink || "");
         setLga(user.location.lga || "");
+        setProfileImageNow(user.profilePic.image_url || "");
         console.log("User data fetched:", user);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -52,12 +56,16 @@ const ArtisanInfo = () => {
     formData.append("profilePic", profileFile);
     try {
       const myToken = localStorage.getItem("authToken");
-      const response = await axios.put(`${BaseUrl}/v1/update/profile`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${myToken}`,
-        },
-      });
+      const response = await axios.put(
+        `${BaseUrl}/v1/update/profilepic`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${myToken}`,
+          },
+        }
+      );
       if (response.status === 200) {
         toast.success("Profile picture updated successfully!");
         setUserData((prev) => ({
@@ -121,16 +129,20 @@ const ArtisanInfo = () => {
       const updateData = {
         bio,
         lga,
-        socialMediaLink: socialLink, 
+        socialMediaLink: socialLink,
       };
-  
-      const response = await axios.put(`${BaseUrl}/v1/update/profile`, updateData, {
-        headers: {
-          Authorization: `Bearer ${myToken}`,
-          "Content-Type": "application/json",
-        },
-      });
-  
+
+      const response = await axios.put(
+        `${BaseUrl}/v1/update/profile`,
+        updateData,
+        {
+          headers: {
+            Authorization: `Bearer ${myToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       if (response.status === 200) {
         toast.success("Profile updated successfully!");
         // Optionally update local userData
@@ -148,7 +160,6 @@ const ArtisanInfo = () => {
       toast.error("Something went wrong while updating your profile.");
     }
   };
-  
 
   return (
     <div className="profile-container">
@@ -160,7 +171,9 @@ const ArtisanInfo = () => {
         <div className="warning-text">
           <strong>Complete Profile Verification</strong>
           <p>
-            Your profile is currently hidden from potential employers. Complete verification to make your profile visible and start receiving job requests.
+            Your profile is currently hidden from potential employers. Complete
+            verification to make your profile visible and start receiving job
+            requests.
           </p>
         </div>
         <button className="verify">Complete Verification</button>
@@ -171,7 +184,7 @@ const ArtisanInfo = () => {
       <div className="profile-banner">
         <div className="profile-pic-container">
           <img
-            src={profileImage || userData?.profilePic?.image_url || "/default-profile.png"}
+            src={profileImage || profileImageNow || "/default-profile.png"}
             alt="Profile Preview"
             className="profile-pic"
           />
@@ -187,7 +200,11 @@ const ArtisanInfo = () => {
         </div>
         <div className="main-pic-container">
           <img
-            src={mainImage || userData?.coverPhoto?.image_url || "/default-cover.png"}
+            src={
+              mainImage ||
+              userData?.coverPhoto?.image_url ||
+              "/default-cover.png"
+            }
             alt="Main Preview"
             className="main-pic"
           />
@@ -205,55 +222,74 @@ const ArtisanInfo = () => {
 
       <form className="profile-form">
         <div className="form-row">
-          <p>{userData?.fullname || "Full Name"}</p>
+          <label htmlFor="">fullname</label>
+        <input
+        className=" lga-input"
+      type="text"
+      value={userData?.fullname || "Full Name"}
+      readOnly
+   />
           <p>{userData?.businessName || "Business Name"}</p>
           <p>{userData?.email || "Email Address"}</p>
         </div>
 
-        <div className="form-row">
-          <select value={lga} onChange={(e) => setLga(e.target.value)}>
-            <option>Select L.G.A</option>
-            <option value="Agege">Agege</option>
-            <option value="Ajeromi-Ifelodun">Ajeromi-Ifelodun</option>
-            <option value="Alimosho">Alimosho</option>
-            <option value="Amuwo-Odofin">Amuwo-Odofin</option>
-            <option value="Apapa">Apapa</option>
-            <option value="Badagry">Badagry</option>
-            <option value="Epe">Epe</option>
-            <option value="Eti-Osa">Eti-Osa</option>
-            <option value="Ibeju-Lekki">Ibeju-Lekki</option>
-            <option value="Ifako-Ijaiye">Ifako-Ijaiye</option>
-            <option value="Ikeja">Ikeja</option>
-            <option value="Ikorodu">Ikorodu</option>
-            <option value="Kosofe">Kosofe</option>
-            <option value="Lagos Island">Lagos Island</option>
-            <option value="Lagos Mainland">Lagos Mainland</option>
-            <option value="Mushin">Mushin</option>
-            <option value="Ojo">Ojo</option>
-            <option value="Oshodi-Isolo">Oshodi-Isolo</option>
-            <option value="Shomolu">Shomolu</option>
-            <option value="Surulere">Surulere</option>
+        <div className="lga-row-wrapper">
+          <div className="lga-row">
+            <select
+              className="lga-select"
+              value={lga}
+              onChange={(e) => setLga(e.target.value)}
+            >
+              <option>Select L.G.A</option>
+              <option value="Agege">Agege</option>
+              <option value="Ajeromi-Ifelodun">Ajeromi-Ifelodun</option>
+              <option value="Alimosho">Alimosho</option>
+              <option value="Amuwo-Odofin">Amuwo-Odofin</option>
+              <option value="Apapa">Apapa</option>
+              <option value="Badagry">Badagry</option>
+              <option value="Epe">Epe</option>
+              <option value="Eti-Osa">Eti-Osa</option>
+              <option value="Ibeju-Lekki">Ibeju-Lekki</option>
+              <option value="Ifako-Ijaiye">Ifako-Ijaiye</option>
+              <option value="Ikeja">Ikeja</option>
+              <option value="Ikorodu">Ikorodu</option>
+              <option value="Kosofe">Kosofe</option>
+              <option value="Lagos Island">Lagos Island</option>
+              <option value="Lagos Mainland">Lagos Mainland</option>
+              <option value="Mushin">Mushin</option>
+              <option value="Ojo">Ojo</option>
+              <option value="Oshodi-Isolo">Oshodi-Isolo</option>
+              <option value="Shomolu">Shomolu</option>
+              <option value="Surulere">Surulere</option>
+            </select>
+          </div>
+          <select className="lag">
+            <option value="Lagos">Lagos</option>
           </select>
         </div>
 
-        <div className="form-row">
+        <div className="social-row">
           <input
             type="text"
-            placeholder="Social Media URL"
+            placeholder="Enter your social media link"
             value={socialLink}
             onChange={(e) => setSocialLink(e.target.value)}
           />
         </div>
 
-        <div className="form-row">
+        <div className="bio-row">
           <textarea
-            placeholder="bio"
+            placeholder="Enter your bio"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           />
         </div>
 
-        <button className="save-btn" type="button" onClick={handleUpdateProfile}>
+        <button
+          className="save-btn"
+          type="button"
+          onClick={handleUpdateProfile}
+        >
           Save Changes
         </button>
       </form>

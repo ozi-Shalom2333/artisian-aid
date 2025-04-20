@@ -96,7 +96,7 @@ const ArtisanUpload = () => {
         </div>
         <p className="drag-drop-text">Drag & drop files here</p>
         <p className="file-types-text">
-          (PDF, DOC, DOCX, TXT, or image files are allowed)
+          (PDF or image files are allowed)
         </p>
         <input
           type="file"

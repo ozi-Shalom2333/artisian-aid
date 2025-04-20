@@ -177,13 +177,13 @@ const ArtisanVerification = () => {
         </div>
         : 
         verificationStatus === "Declined" ? 
-        <div className="pending-verification">
+        <div className="declined-verification">
           <h2>Verification Declined</h2>
           <p>We've review your submitted document and your verfication has been decline .</p>
         </div>
         : 
         verificationStatus === "Approved" ? 
-        <div className="pending-verification">
+        <div className="approved-verification">
           <h2>Verification Approved</h2>
           <p>We've review your submitted document and your verfication has been approved.</p>
         </div>

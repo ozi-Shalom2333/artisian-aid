@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 
-.verifyh2 {
+h2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -194,7 +194,7 @@ height: 50px;
   /* background-color: #000428; */
 }
 
-.bio-textarea {
+textarea {
   height: 100px;
   resize: none;
 }

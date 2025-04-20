@@ -63,6 +63,7 @@ const Login = () => {
         localStorage.setItem('authToken', token);
         localStorage.setItem('userData', JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
+        localStorage.setItem('userRole', userRole);
 
         toast.success(response.data.message || 'Login successful!');
         toast.info('Redirecting...');

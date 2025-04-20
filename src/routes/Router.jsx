@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import App from '../App';
 import AboutUs from '../pages/AboutUs';
@@ -31,22 +31,25 @@ import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
 import SubscriptionVerification from '../dashboards/employer/pages/SubscriptionVerification';
-
-
+import PrivateRoute from './PrivateRoute';
 
 const Router = createBrowserRouter([
-    {
-        element: <App />,
-        children: [
-            { path: '/', element: <HomePage /> },
-            { path: '/about', element: <AboutUs /> },
-            { path:'/category', element: <CategoryPage />},
-            { path:'/artisanpage' , element: <ArtisanPage/>},
-            { path:'/employernotification', element: <EmployerNotification/>},
-            { path: '/contact', element: <Contact /> },
-        ],
-    },
-    {
+  {
+    element: <App />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/about', element: <AboutUs /> },
+      { path: '/category', element: <CategoryPage /> },
+      { path: '/artisanpage', element: <ArtisanPage /> },
+      { path: '/employernotification', element: <EmployerNotification /> },
+      { path: '/contact', element: <Contact /> },
+      { path: '/meetTeam', element: <MeetTeam /> },
+    ],
+  },
+  {
+    element: <PrivateRoute allowedRoles={['Admin']} />,
+    children: [
+      {
         path: '/admindashboard',
         element: <AdminDashboard />,
         children: [
@@ -57,28 +60,37 @@ const Router = createBrowserRouter([
           { path: 'approved-users', element: <ApprovedUsers /> },
           { path: 'declined-users', element: <DeclinedUsers /> },
           { path: 'reported-users', element: <ReportedUsers /> },
-        ]
+        ],
       },
-    { path: '/signup', element: <SignUp /> },
-    { path: '/login', element: <Login /> },
-    { path:'/category/:category', element: <CategoryByFilter />},
-    { path: '/resetpassword/:token', element: <ResetPassword /> },
-    { path: '/onePendingUser', element: <GetOnePendingUser /> },
-    { path: '/subscriptionverified', element: <SubscriptionVerification /> },
-    { path: '/verificationmessage', element: <VerificationMessage /> }, 
-    {path: '/artisandashboard', element: <ArtisanDashoard/>},
-    { path: '/employerdashboard', element: <EmployerDash/> },
-    { path: '/authoption', element: <AuthOption /> },
-    { path: '/forget', element: <ForgetPassword /> },
-    { path: '/employersignup', element: <EmployerSignUp /> },
-    { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage/>},
-    { path: '/resetmessage', element: <ResetPasswordMessage/>},
-    { path: '/meetTeam', element: <MeetTeam /> },
-    {path: '/userprofile/:userId', element: <UserProfile />},
-    { path: '/verifyemail/:token', element: <VerifyEmail /> },
-    { path: '*', element: <NotFound /> },
+      { path: '/onePendingUser', element: <GetOnePendingUser /> },
+    ],
+  },
+  {
+    element: <PrivateRoute allowedRoles={['Artisan']} />,
+    children: [
+      { path: '/artisandashboard', element: <ArtisanDashoard /> },
+    ],
+  },
+  {
+    element: <PrivateRoute allowedRoles={['Employer']} />,
+    children: [
+      { path: '/employerdashboard', element: <EmployerDash /> },
+      { path: '/userprofile/:userId', element: <UserProfile /> },
+      { path: '/subscriptionverified', element: <SubscriptionVerification /> },
+    ],
+  },
+  { path: '/signup', element: <SignUp /> },
+  { path: '/login', element: <Login /> },
+  { path: '/category/:category', element: <CategoryByFilter /> },
+  { path: '/resetpassword/:token', element: <ResetPassword /> },
+  { path: '/verificationmessage', element: <VerificationMessage /> }, 
+  { path: '/authoption', element: <AuthOption /> },
+  { path: '/forget', element: <ForgetPassword /> },
+  { path: '/employersignup', element: <EmployerSignUp /> },
+  { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage /> },
+  { path: '/resetmessage', element: <ResetPasswordMessage /> },
+  { path: '/verifyemail/:token', element: localStorage.getItem('authToken') ? <VerifyEmail /> : <Navigate to="/login" replace /> },
+  { path: '*', element: <NotFound /> },
 ]);
 
 export default Router;
-
-

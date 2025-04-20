@@ -86,8 +86,6 @@ const ArtisanSubscription = () => {
                 <span>/{plan.duration}</span>
               </h2>
               <p>{plan.description}</p>
-              
-              {/* ✅ Hooked up with plan._id */}
               <button className="choose-btn" onClick={() => initialisePayment(plan._id)}>
                 Choose Plan
               </button>

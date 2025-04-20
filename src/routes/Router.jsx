@@ -30,6 +30,7 @@ import GetOneReported from '../dashboards/admin/pages/GetOneReported';
 import ArtisanDashoard from '../dashboards/artisan/ArtisanDashoard';
 import EmployerDash from '../dashboards/employer/EmployerDash';
 import UserProfile from '../dashboards/employer/pages/UserProfile';
+import SubscriptionVerification from '../dashboards/employer/pages/SubscriptionVerification';
 
 
 
@@ -63,7 +64,7 @@ const Router = createBrowserRouter([
     { path:'/category/:category', element: <CategoryByFilter />},
     { path: '/resetpassword/:token', element: <ResetPassword /> },
     { path: '/onePendingUser', element: <GetOnePendingUser /> },
-    // { path:'/admindashboard', element:<AdminDashboard/>},
+    { path: '/subscriptionverified', element: <SubscriptionVerification /> },
     { path: '/verificationmessage', element: <VerificationMessage /> }, 
     {path: '/artisandashboard', element: <ArtisanDashoard/>},
     { path: '/employerdashboard', element: <EmployerDash/> },

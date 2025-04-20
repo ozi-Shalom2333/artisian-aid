@@ -3,8 +3,13 @@ import "../styles/forget.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../../public/Frame 1000006356.png"
+import { useNavigate } from 'react-router-dom';
 
 const ForgetPassword = () => {
+  const navigate = useNavigate();
+
+
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false); 
 
@@ -36,14 +41,13 @@ const ForgetPassword = () => {
     <div className='forgetBody'>
       <main className='forgetMainContainer'>
         <section className='forgetImage'>
-          <img src="{verification_message_image}" alt="" />
+          <img src="/Frame 1000006356.png" alt="" />
         </section>
 
-        <aside className='forgetPasswordContainer'>
-          <div className='forgetPasswordH1'><h2>Forgot Password?</h2></div>
+        <section className='forgetPasswordContainer'>
+          <h2>Reset Password?</h2>
           <div className='forgetPasswordText'>
-            <p>Enter the email address you used to create the account, and we will</p>
-            <span>email you instructions to reset your password.</span>
+            <p>Enter the email address you used to create the account, and we will<br/> email you instructions to reset your password.</p>
           </div>
           <div className='forgetPasswordInput'>
             <p>Email</p>
@@ -64,7 +68,7 @@ const ForgetPassword = () => {
           <section className='forgetRemember'>
             <p>Remember your password?</p> <span>Login</span>
           </section>
-        </aside>
+        </section>
       </main>
       <ToastContainer />
     </div>

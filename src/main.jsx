@@ -7,6 +7,7 @@ import Index from "./context/Index";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
 
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ToastContainer />

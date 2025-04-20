@@ -9,7 +9,6 @@
 
 .profile-warning {
   background-color: #f0f4ff;
-  /* border-left: 5px solid #ff0000;> */
   padding: 1rem;
   margin-bottom: 2rem;
   border-radius: 8px;
@@ -22,6 +21,7 @@
   margin-bottom: 0.5rem;
   text-transform: uppercase;
 }
+
 
 .warning-text strong {
   display: block;
@@ -54,7 +54,7 @@
 }
 
 .profile-banner {
-  position: relative; /* Set relative positioning for the banner */
+  position: relative; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,8 +70,8 @@
 
 .profile-pic-container {
   position: absolute;
-  bottom: 30px; /* Adjust the vertical position */
-  left: 90px; /* Adjust the horizontal position */
+  bottom: 30px;
+  left: 90px; 
   width: 150px;
   height: 150px;
   z-index: 10; 
@@ -103,6 +103,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
+  overflow: hidden;
 }
 
 .main-camera-icon {
@@ -113,14 +114,11 @@
   border-radius: 50%;
   padding: 5px;
   cursor: pointer;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
 }
 
 .main-pic {
   width: 100%;
   max-height: 200px;
-  /* border-radius: 10px; */
-  /* flex: 1; */
   object-fit: cover;
   background-color: #f0f0f0;
 }
@@ -129,6 +127,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: max-content;
 }
 
 .form-row {
@@ -137,28 +136,62 @@
   font-weight: bolder;
   flex-wrap: wrap;
 }
-.form-row p{
+
+.lga-input{
+  width: 26%;
+  /* background-color: #000428; */
+ }
+/* .form-row p{
   width: 30%;
-
-}
-.lcg{
+} */
+.lga-row {
   display: flex;
-  align-items: center;
-  font-weight: bold;
-  font-size: medium;
-  margin-left: 20%;
+  justify-content: space-between;
+  font-weight: bolder;
+  flex-wrap: wrap;
+  border: 1px solid grey;
+  border-radius:6px ;
+  padding-right: 18px;
+  width: 50%;
+  height: 0%;
+  
 }
+.lga-row-wrapper{
+  /* background-color: #d12525; */
+  display: flex;
+  justify-content: space-between;
+}
+.lag{
+  /* background: #1827f3; */
+  width:30%;
+  font-size: larger;
+  border-radius: 8px;
 
-.profile-image-input,
-.selector,
-.bio-textarea {
+}
+.lga-select{
   flex: 1;
   padding: 0.6rem;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  background-color: transparent;
   width: 100%;
   box-sizing: border-box;
+  border: none;
+  outline: none;
+  /* height: 50px; */
+}
+.social-row{
+/* background-color: #1827f3; */
+
+}
+.social-row input{
+/* background-color: #000428; */
+height: 50px;
+}
+
+.bio-row{
+  /* background-color: #000428; */
 }
 
 .bio-textarea {

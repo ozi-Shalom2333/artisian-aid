@@ -189,8 +189,6 @@ const ArtisanVerification = () => {
         </div>
         : null
         }
-
-      {/* Toast Notifications */}
       <ToastContainer position="top-right" autoClose={4000} />
     </div>
   );

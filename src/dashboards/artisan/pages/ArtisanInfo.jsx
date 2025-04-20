@@ -11,6 +11,8 @@ const ArtisanInfo = () => {
   const [profileFile, setProfileFile] = useState(null);
   const [mainImage, setMainImage] = useState(null);
   const [mainFile, setMainFile] = useState(null);
+  const [isVerified, setIsVerified] = useState(false); 
+  const[isEditing, setIsEditing] = useState(false);
   const BaseUrl = "https://artisanaid.onrender.com";
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
@@ -31,6 +33,7 @@ const ArtisanInfo = () => {
         setLga(user.location.lga || "");
         setProfileImageNow(user.profilePic.image_url || "");
         console.log("User data fetched:", user);
+        setIsVerified(user.isVerified || false); 
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to fetch user data.");
@@ -38,6 +41,20 @@ const ArtisanInfo = () => {
     };
     getUser();
   }, []);
+  const handleEditClick = () => {
+    setIsEditing(true); // Enable edit mode
+  };
+
+  const handleSaveClick = async () => {
+    setIsEditing(false); // Disable edit mode after saving
+    await handleUpdateProfile(); // Call the save function
+  };
+  
+  const handleVerificationApproval = () => {
+    // Simulate verification approval
+    setIsVerified(true);
+    toast.success("Verification approved!");
+  };
 
 
   const handleProfileImageChange = (event) => {
@@ -77,7 +94,7 @@ const ArtisanInfo = () => {
         }));
       } else {
         toast.error("Failed to update profile picture.");
-        toast.error("Failed to update profile picture.");
+        // toast.error("Failed to update profile picture.");
       }
     } catch (error) {
       console.error("Error updating profile picture:", error);
@@ -138,7 +155,7 @@ const ArtisanInfo = () => {
       };
 
       const response = await axios.put(
-        `${BaseUrl}/v1/update/profilepic`,
+        `${BaseUrl}/v1/update/profile`,
         updateData,
         {
           headers: {
@@ -168,7 +185,8 @@ const ArtisanInfo = () => {
 
   return (
     <div className="profile-container">
-      <ToastContainer />
+    <ToastContainer />
+    {!isVerified && (
       <div className="profile-warning">
         <div className="warning-header">
           <MdVerified size={20} color="blue" /> ATTENTION REQUIRED
@@ -176,13 +194,19 @@ const ArtisanInfo = () => {
         <div className="warning-text">
           <strong>Complete Profile Verification</strong>
           <p>
-            Your profile is currently hidden from potential employers. Complete
-            verification to make your profile visible and start receiving job
-            requests.
+            Your profile is currently hidden from potential employers.
+            Complete verification to make your profile visible and start
+            receiving job requests.
           </p>
         </div>
-        <button className="verify">Complete Verification</button>
+        <button
+          className="verify"
+          onClick={handleVerificationApproval} // Simulate approval
+        >
+          Complete Verification
+        </button>
       </div>
+    )}
 
       <h2 className="verifyh2">Your Personal Information</h2>
 
@@ -240,6 +264,7 @@ const ArtisanInfo = () => {
               className="lga-select"
               value={lga}
               onChange={(e) => setLga(e.target.value)}
+              disabled={!isEditing}
             >
               <option>Select L.G.A</option>
               <option value="Agege">Agege</option>
@@ -275,6 +300,7 @@ const ArtisanInfo = () => {
             placeholder="Enter your social media link"
             value={socialLink}
             onChange={(e) => setSocialLink(e.target.value)}
+            disabled={!isEditing}
           />
         </div>
 
@@ -283,16 +309,29 @@ const ArtisanInfo = () => {
             placeholder="Enter your bio"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
+            disabled={!isEditing}
           />
         </div>
 
-        <button
-          className="save-btn"
-          type="button"
-          onClick={handleUpdateProfile}
-        >
-          Save Changes
-        </button>
+        {!isEditing && (
+          <button
+            className="edit-btn"
+            type="button"
+            onClick={handleEditClick} // Show edit button
+          >
+            Edit
+          </button>
+        )}
+
+        {isEditing && (
+          <button
+            className="save-btn"
+            type="button"
+            onClick={handleSaveClick} // Show save button
+          >
+            Save Changes
+          </button>
+        )}
       </form>
     </div>
   );

@@ -1,9 +1,10 @@
 import "../../../styles/artisanVerification.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const ArtisanVerification = () => {
   const [fileName, setFileName] = useState("");
@@ -12,8 +13,25 @@ const ArtisanVerification = () => {
   const [guarantorName, setGuarantorName] = useState("");
   const [guarantorNumber, setGuarantorNumber] = useState("");
   const [loading, setLoading] = useState(false);
+  const [verificationStatus, setVerificationStatus] = useState(""); 
+    const [userData, setUserData] = useState(
+      JSON.parse(localStorage.getItem("userData"))
+    );
 
   const baseUrl = "https://artisanaid.onrender.com";
+
+  useEffect(() => {
+      const getUser = async () => {
+        try {
+          const response = await axios.get(`${baseUrl}/v1/user/${userData._id}`);
+          setVerificationStatus(response.data.data.verificationStatus);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          toast.error("Failed to fetch user data.");
+        }
+      };
+      getUser();
+    }, []);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -41,7 +59,6 @@ const ArtisanVerification = () => {
     formData.append("guarantorPhoneNumber", guarantorNumber);
     formData.append("workCertificate", file);
     const myToken = localStorage.getItem("authToken");
-    console.log(myToken)
 
     if (!myToken) {
       toast.error("Authentication token not found.");
@@ -65,7 +82,10 @@ const ArtisanVerification = () => {
       const resData = res.data;
       toast.success(resData.message || "Verification submitted successfully!");
 
-      // Reset form
+    
+      setVerificationStatus("pending");
+
+    
       setGuarantorName("");
       setGuarantorNumber("");
       setFile(null);
@@ -84,68 +104,91 @@ const ArtisanVerification = () => {
 
   return (
     <div className="guarantor-container">
-      <h2>Please Fill & Upload necessary Information for verification</h2>
-      <p className="subtitle">
-        Fill & Select relevant information to complete your verification
-      </p>
-
-      <form className="guarantor-form" onSubmit={handleSubmit}>
-        <label>Guarantor’s name</label>
-        <input
-          type="text"
-          placeholder="Guarantor’s name"
-          value={guarantorName}
-          onChange={(e) => setGuarantorName(e.target.value)}
-        />
-
-        <label>Guarantor’s number</label>
-        <input
-          type="text"
-          placeholder="080*******"
-          value={guarantorNumber}
-          onChange={(e) => setGuarantorNumber(e.target.value)}
-        />
-
-        <div className="file-upload">
-          <div className="upload-box">
-            <span className="upload-instruction">
-              Select a file or drag and drop here
-              <br />
-              <small>
-                <AiOutlineCloudUpload size={50} color="#888" /> JPG, PNG or PDF,
-                file size no more than 10MB
-              </small>
-            </span>
-            <label htmlFor="fileInput" className="file-label">
-              SELECT FILE
-            </label>
-            <input
-              id="fileInput"
-              type="file"
-              accept="image/*,application/pdf"
-              onChange={handleFileChange}
-              hidden
-            />
-          </div>
-          <p className="file-name">
-            {fileName ? `File added: ${fileName}` : ""}
+      {verificationStatus === "Unverified" ?
+        <>
+          <h2>Please Fill & Upload necessary Information for verification</h2>
+          <p className="subtitle">
+            Fill & Select relevant information to complete your verification
           </p>
-          {imagePreview && (
-            <div className="image-preview">
-              <p>Image Preview:</p>
-              <img
-                src={imagePreview}
-                alt="Uploaded Preview"
-                className="preview-img"
-              />
-            </div>
-          )}
-        </div>
 
-        <button type="submit" className="verify-btn" disabled={loading}>
-          {loading ? "Submitting..." : "Verify"}
-        </button>
-      </form>
+          <form className="guarantor-form" onSubmit={handleSubmit}>
+            <label>Guarantor’s name</label>
+            <input
+              type="text"
+              placeholder="Guarantor’s name"
+              value={guarantorName}
+              onChange={(e) => setGuarantorName(e.target.value)}
+            />
+
+            <label>Guarantor’s number</label>
+            <input
+              type="text"
+              placeholder="080*******"
+              value={guarantorNumber}
+              onChange={(e) => setGuarantorNumber(e.target.value)}
+            />
+
+            <div className="file-upload">
+              <div className="upload-box">
+                <span className="upload-instruction">
+                  Select a file or drag and drop here
+                  <br />
+                  <small>
+                    <AiOutlineCloudUpload size={50} color="#888" /> JPG, PNG or
+                    PDF, file size no more than 10MB
+                  </small>
+                </span>
+                <label htmlFor="fileInput" className="file-label">
+                  SELECT FILE
+                </label>
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/*,application/pdf"
+                  onChange={handleFileChange}
+                  hidden
+                />
+              </div>
+              <p className="file-name">
+                {fileName ? `File added: ${fileName}` : ""}
+              </p>
+              {imagePreview && (
+                <div className="image-preview">
+                  <p>Image Preview:</p>
+                  <img
+                    src={imagePreview}
+                    alt="Uploaded Preview"
+                    className="preview-img"
+                  />
+                </div>
+              )}
+            </div>
+
+            <button type="submit" className="verify-btn" disabled={loading}>
+              {loading ? "Submitting..." : "Verify"}
+            </button>
+          </form>
+        </>
+        :
+        verificationStatus === "Pending" ?
+        <div className="pending-verification">
+          <h2>Verification Pending</h2>
+          <p>Your verification is currently under review. Please check back later.</p>
+        </div>
+        : 
+        verificationStatus === "Declined" ? 
+        <div className="declined-verification">
+          <h2>Verification Declined</h2>
+          <p>We've review your submitted document and your verfication has been decline .</p>
+        </div>
+        : 
+        verificationStatus === "Approved" ? 
+        <div className="approved-verification">
+          <h2>Verification Approved</h2>
+          <p>We've review your submitted document and your verfication has been approved.</p>
+        </div>
+        : null
+        }
 
       {/* Toast Notifications */}
       <ToastContainer position="top-right" autoClose={4000} />

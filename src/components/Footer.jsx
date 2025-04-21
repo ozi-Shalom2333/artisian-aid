@@ -89,7 +89,7 @@ const Footer = () => {
             </div>
             <div className='footer-select_mobile'>
               <div>
-                <h3>Artisans</h3>
+                <h3 onClick={handleExploreArtisans}>Artisans</h3>
                 <p>Create Profile</p>
               </div>
               <div>

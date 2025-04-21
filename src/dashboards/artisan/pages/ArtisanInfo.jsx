@@ -201,7 +201,7 @@ const ArtisanInfo = () => {
         </div>
         <button
           className="verify"
-          onClick={handleVerificationApproval} // Simulate approval
+          onClick={handleVerificationApproval} 
         >
           Complete Verification
         </button>
@@ -259,7 +259,7 @@ const ArtisanInfo = () => {
         </div>
 
         <div className="lga-row-wrapper">
-          <div className="lga-row">
+          <div className="lga-row"> 
             <select
               className="lga-select"
               value={lga}
@@ -310,6 +310,7 @@ const ArtisanInfo = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             disabled={!isEditing}
+            className="bio-textarea"
           />
         </div>
 

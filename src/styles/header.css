@@ -181,16 +181,19 @@ a {
     }
 
     .second-respon {
-        width: 10%;
-        height: 100%;
+        /* width: 10%; */
+        /* height: 100%; */
+        font-size: 20px;
         display: flex;
     }
 
     .dropdown {
         display: flex;
+        height: 100vh;
+        width: 100%;
         flex-direction: column;
-        gap: 10%;
         overflow-y: auto;
+        gap: 3%;
     }
 
     .dropdown a,
@@ -199,7 +202,7 @@ a {
         height: fit-content;
         font-size: 20px;
         font-weight: 700;
-        padding: 15px 20px;
+        padding: 20px 20px;
         color: #000;
     }
 
@@ -223,41 +226,41 @@ a {
     }
 
     .responsive-image {
-        width: 15%; /* Slightly larger logo for tablets */
+        width: 15%; 
     }
 
     .Header-Pages {
-        gap: 30px; /* Reduced gap between navigation links */
+        gap: 30px; 
     }
 
     .Header-Pages a {
-        font-size: 14px; /* Slightly smaller font size for better fit */
+        font-size: 14px; 
     }
 
     .Header-authentication {
-        gap: 20px; /* Reduced gap between Sign Up and Login */
+        gap: 20px; 
     }
 
     .Header-authentication > p {
-        width: 120px; /* Reduced width of buttons */
-        padding: 10px 15px; /* Reduced padding */
-        font-size: 14px; /* Smaller font size */
+        width: 120px; 
+        padding: 10px 15px; 
+        font-size: 14px; 
     }
 
     .Header-buttons {
-        gap: 20px; /* Reduced gap between My Profile and Logout */
+        gap: 20px; 
     }
 
     .Header-buttons button {
-        padding: 10px 15px; /* Reduced padding */
-        font-size: 14px; /* Smaller font size */
+        padding: 10px 15px; 
+        font-size: 14px; 
     }
 
     .second-respon {
-        display: none; /* Keep dropdown toggle hidden on tablets */
+        display: none; 
     }
 
     .dropdown {
-        display: none; /* Keep dropdown hidden on tablets */
+        display: none; 
     }
 }

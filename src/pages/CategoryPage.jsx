@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/categorypage.css"
+import Header from "../components/Header";
 
 const CategoryPage = () => {
   
@@ -10,6 +11,7 @@ const CategoryPage = () => {
 
   return (
     <div className="category-page-container">  
+    <Header/>
       <div className="category-title-section">
         <h1 className="category-title">
           Discover Our <span className="highlight-text">Artisans</span> Categories

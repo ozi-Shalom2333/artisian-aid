@@ -48,6 +48,7 @@ const VerifyEmail = () => {
     navigate('/login');
   };
 
+
   if (!isVerified) return null;
 
 

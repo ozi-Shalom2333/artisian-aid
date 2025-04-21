@@ -49,6 +49,16 @@ const VerifyEmail = () => {
   };
 
 
+  if (isLoading) {
+    return (
+      <div className="loadingModal">
+        <p>Verifying your account...</p>
+      </div>
+    );
+  } else{
+    null
+  }
+
   if (!isVerified) return null;
 
 

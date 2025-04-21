@@ -10,25 +10,23 @@ const EmployerDash = () => {
    const [activeTab, setActiveTab] = useState('personal-info'); 
    const navigate = useNavigate();
 
-   // Handle tab click
+   
    const handleTabClick = (tab) => {
      setActiveTab(tab);
    };
 
-   // Handle logout
+   
    const handleLogout = () => {
-     // Clear user data from localStorage or any other storage
-     localStorage.removeItem('userData'); // Example of clearing user data
-     toast.success('You have successfully logged out!'); // Show a toast message
+     localStorage.removeItem('userData');
+     toast.success('You have successfully logged out!'); 
      
-     // Redirect to the login page or home page after logout
-     navigate('/login'); // Replace with the route where users should be redirected
+     navigate('/login'); 
    };
 
    return (
      <div className="dashboard-container">
        <div className="sidebar">
-         <div className="logo">ArtisanAid.</div>
+         <div className="logo" onClick={()=> navigate('/')}>ArtisanAid.</div>
          <nav>
            <ul>
              <li className="admin-management-header">

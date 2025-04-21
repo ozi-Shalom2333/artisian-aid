@@ -289,11 +289,8 @@ const ArtisanInfo = () => {
               <option value="Surulere">Surulere</option>
             </select>
           </div>
-          <select className="lag">
-            <option value="Lagos">Lagos</option>
-          </select>
+        <h3 className="lag">Lagos</h3>
         </div>
-
         <div className="social-row">
           <input
             type="text"

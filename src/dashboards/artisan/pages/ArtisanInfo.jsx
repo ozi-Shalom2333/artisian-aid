@@ -259,7 +259,7 @@ const ArtisanInfo = () => {
         </div>
 
         <div className="lga-row-wrapper">
-          <div className="lga-row">
+          <div className="lga-row"> 
             <select
               className="lga-select"
               value={lga}

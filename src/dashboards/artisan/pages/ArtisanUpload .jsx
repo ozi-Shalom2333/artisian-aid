@@ -9,7 +9,7 @@ const ArtisanUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(true);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
@@ -20,7 +20,7 @@ const ArtisanUpload = () => {
     const getUser = async () => {
       try {
         const response = await axios.get(`${baseUrl}/v1/user/${userData._id}`);
-        setJobPosts(response.data.data.jobPosts || []);
+        setJobPosts(response.data.data.jobPost || []);
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to fetch user data.");
@@ -147,7 +147,7 @@ const ArtisanUpload = () => {
     }
   };
 
-  if (uploadSuccess) {
+  if (uploadSuccess || jobPosts) {
     return (
       <div className="job-post-container">
         <h1>Job Post</h1>
@@ -161,13 +161,12 @@ const ArtisanUpload = () => {
           </div>
         )}
         <div className="job-post-list">
-          {jobPosts.map((post) => (
-            <div key={post._id} className="job-post-item">
-              <img src={post.imageUrl} alt="Job" className="preview-img" />
-              <button onClick={() => handleEditPost(post._id)}>Edit</button>
-              <button onClick={() => handleDeletePost(post._id)}>Delete</button>
+            <div className="job-post-item">
+              <img src={jobPosts.image_url} alt="Job" className="preview-img" />
+
             </div>
-          ))}
+            <button className="edit-post-button">Edit</button>
+              <button className="delete-post-button">Delete</button>
         </div>
       </div>
     );

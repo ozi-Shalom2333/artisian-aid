@@ -161,3 +161,102 @@
   color: #2F80ED;
   font-size: 30px;
 }
+@media screen and (max-width: 480px) {
+  .authOptionBody {
+    padding: 1rem;
+    height: auto;
+  }
+
+  .authWelcomeContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .authArrowIcon {
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    padding-left: 1rem;
+  }
+
+  .authArrowIcon img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .authWelcomeH2 {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .authWelcomeH2 nav {
+    width: 100%;
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
+  }
+
+  .authWelcomeH2 nav h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    width: auto;
+  }
+
+  .authWelcomeH2 nav img {
+    width: 120px;
+    height: auto;
+  }
+
+  .authWelcomeH2 span {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    width: 90%;
+  }
+
+  .authInputContainer {
+    width: 100%;
+    height: auto;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .authOptionArtisan {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .authOptionArtisan img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .authOptionsConnect {
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .authOptionsConnect h2 {
+    font-size: 1.25rem;
+    height: auto;
+    width: auto;
+  }
+
+  .authOptionsConnect p {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    padding: 0 1rem;
+  }
+
+  .authRightArrow {
+    font-size: 1.5rem;
+    width: auto;
+  }
+}
+

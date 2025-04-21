@@ -17,8 +17,9 @@ const ResetPasswordMessage= () => {
       <section className="verificationMessage">
         <div className="verificationLinkMessage">
           <h3>Reset Password Email Sent</h3>
-          <p>Check your inbox for the password reset link,if you dont</p>
-          <span>see it soon check your spam folder</span>
+          <p>Check your inbox for the password reset link. If you don’t see it soon,</p>
+<span>please check your spam folder.</span>
+
         </div>
       </section>
       <div className="verificationResendLink">

@@ -54,8 +54,20 @@ const ApprovedUsers = () => {
     
   };
 
-  if (loading)
-    return <div className="loading">Loading approved artisans...</div>;
-  if (error) return <div className="error">{error}</div>;
+  return(
+    <>
+      {
+        loading ? <div className="loading">Loading approved artisans...</div> : 
+        <div>
+          {
+            artisans?.map((item)=>'')
+          }
+        </div>
+      }
+      {
+        error &&  <div className="error">{error}</div>
+      }
+    </>
+  )
 };
 export default ApprovedUsers;

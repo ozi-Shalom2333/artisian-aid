@@ -15,7 +15,6 @@ const ResetPassword = () => {
 
   const baseURL = 'https://artisanaid.onrender.com'; 
 
-  
   const handleResetPassword = async () => {
     if (!password || !confirmPassword) {
       setErrorMessage('Please fill in both password fields.');
@@ -28,26 +27,28 @@ const ResetPassword = () => {
     }
 
     setIsLoading(true);
-    setErrorMessage('');  
+    setErrorMessage('');
 
     try {
-      
       const response = await axios.post(
-        `${baseURL}/v1/reset/password/${token}`, 
+        `${baseURL}/v1/reset/password/${token}`,
         { password }
       );
 
-      
       toast.success(response.data.message || 'Password reset successful!');
-      navigate('/login');  
+
+      // Wait 2.5 seconds before redirecting to login
+      setTimeout(() => {
+        navigate('/login');
+      }, 2500);
+
     } catch (error) {
-      
       console.error(error);
       toast.error(
         error.response?.data?.message || 'Failed to reset password. Please try again.'
       );
     } finally {
-      setIsLoading(false);  
+      setIsLoading(false);
     }
   };
 

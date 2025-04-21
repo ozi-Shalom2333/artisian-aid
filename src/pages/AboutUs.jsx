@@ -86,9 +86,10 @@ const AboutUs = () => {
                   <p>Jehoshaphat</p>
                   <span>Team lead/ Designer</span>
                  </nav>
-
-                 {/* <img src="../../public/Prince.png" alt="" className='img1' /> */}
+               
               </div>
+
+
               <div className='aboutUsImageCard'>
                  <nav className='aboutUsTeamName'>
                   <article>Prince</article>

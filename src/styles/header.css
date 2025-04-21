@@ -1,32 +1,32 @@
-.Header-container{
+.Header-container {
     width: 100%;
     height: 13vh;
     position: fixed;
     display: flex;
     justify-content: center;
     z-index: 3;
-    
-
 }
-.Header-section{
+
+.Header-section {
     display: flex;
-    width:100%;
+    width: 100%;
     background-color: #ffff;
     height: max-content;
     align-items: center;
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 0 auto;
-    padding: 25px 60px ;
+    padding: 25px 60px;
     justify-content: space-between;
     position: relative;
-
 }
-.Header-Pages{
+
+.Header-Pages {
     display: flex;
     gap: 55px;
 }
-.Header-authentication{
+
+.Header-authentication {
     display: flex;
     gap: 30px;
     font-family: "Montserrat", sans-serif;
@@ -34,7 +34,45 @@
     font-weight: 600;
 }
 
-.active, .notActive{
+.Header-buttons {
+    display: flex;
+    gap: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Header-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px 25px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.Header-buttons button:first-of-type {
+    color: #000;
+}
+
+.Header-buttons button:first-of-type:hover,
+.Header-buttons button:first-of-type:focus {
+    background-color: #f0f0f0;
+}
+
+.Header-buttons button:last-of-type {
+    color: #000435;
+}
+
+.Header-buttons button:last-of-type:hover,
+.Header-buttons button:last-of-type:focus {
+    background-color: #e0e0e0;
+}
+
+.active,
+.notActive {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -43,7 +81,7 @@
     padding: 6px 0;
 }
 
-.notActive:before{
+.notActive:before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -54,110 +92,172 @@
     transition: all 350ms ease-in-out;
 }
 
-.notActive:hover:before{
+.notActive:hover:before {
     width: 100%;
 }
 
-.active{
+.active {
     color: #FFA500;
 }
 
-.notActive{
+.notActive {
     color: #000;
 }
 
-.Header-authentication > p:first-of-type{
+.Header-authentication > p:first-of-type {
     border: 2px solid #FFA500;
     padding: 15px 25px;
     width: 150px;
     border-radius: 10px;
     text-align: center;
 }
-.Header-authentication > p:last-of-type{
+
+.Header-authentication > p:last-of-type {
     border-radius: 10px;
-    padding: 15px 25px ;
+    padding: 15px 25px;
     background-color: #000435;
     width: 150px;
     text-align: center;
-    
 }
-.second-respon{
+
+.second-respon {
     display: none;
 }
-.responsive-image{
-    width: 10% !important;
-    height: 100%; 
 
-    
+.responsive-image {
+    width: 10%;
+    height: 100%;
 }
-.responsive-image, img{
+
+.responsive-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-a{
+
+a {
     text-decoration: none;
-    /* color: black; */
 }
 
-.dropdown{
+.dropdown {
     width: 100%;
     height: 300px;
     background-color: #ffff;
     position: absolute;
-    top: 10vh;
+    top: 13vh;
     left: 0;
     display: none;
 }
 
+/* Mobile Styles (Existing) */
+@media screen and (max-width: 768px) {
+    .Header-Pages {
+        display: none;
+    }
 
-@media screen and (max-width:768px) {
-    .Header-Pages{
+    .Header-authentication {
         display: none;
     }
-    .Header-authentication{
+
+    .Header-buttons {
         display: none;
     }
-    .Header-container{
+
+    .Header-container {
         top: 0;
     }
-    .Header-section{
+
+    .Header-section {
         width: 100%;
         border-radius: 30px;
         background-color: #ffff;
         padding: 10px 16px;
         border-radius: 0%;
     }
-    .responsive-image{
-        width: 30% !important;
+
+    .responsive-image {
+        width: 30%;
         height: 100%;
-        /* background-color: red;      */
     }
-    .second-respon{
+
+    .second-respon {
         width: 10%;
         height: 100%;
         display: flex;
     }
-    .dropdown{
+
+    .dropdown {
         display: flex;
         flex-direction: column;
         gap: 10%;
         overflow-y: auto;
     }
-    .dropdown p{
+
+    .dropdown a,
+    .dropdown div {
         width: 100%;
         height: fit-content;
         font-size: 20px;
         font-weight: 700;
-        align-items: center;
         padding: 15px 20px;
+        color: #000;
     }
-    .dropdown p:hover{
+
+    .dropdown a:hover,
+    .dropdown div:hover,
+    .dropdown a:focus,
+    .dropdown div:focus {
         background-color: #BDBDBD;
-        
     }
-    .dropdown p:last-of-type{
+
+    .dropdown a:last-of-type {
         background-color: #000435;
         color: #ffff;
+    }
+}
+
+/* Tablet Styles (New) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .Header-section {
+        padding: 15px 30px; 
+    }
+
+    .responsive-image {
+        width: 15%; /* Slightly larger logo for tablets */
+    }
+
+    .Header-Pages {
+        gap: 30px; /* Reduced gap between navigation links */
+    }
+
+    .Header-Pages a {
+        font-size: 14px; /* Slightly smaller font size for better fit */
+    }
+
+    .Header-authentication {
+        gap: 20px; /* Reduced gap between Sign Up and Login */
+    }
+
+    .Header-authentication > p {
+        width: 120px; /* Reduced width of buttons */
+        padding: 10px 15px; /* Reduced padding */
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .Header-buttons {
+        gap: 20px; /* Reduced gap between My Profile and Logout */
+    }
+
+    .Header-buttons button {
+        padding: 10px 15px; /* Reduced padding */
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .second-respon {
+        display: none; /* Keep dropdown toggle hidden on tablets */
+    }
+
+    .dropdown {
+        display: none; /* Keep dropdown hidden on tablets */
     }
 }

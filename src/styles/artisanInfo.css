@@ -47,11 +47,11 @@
   cursor: pointer;
 }
 
-h2 {
+.verifyh2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #222;
+  color: red;
 }
 
 .profile-banner {
@@ -195,7 +195,7 @@ height: 50px;
   /* background-color: #000428; */
 }
 
-textarea {
+.bio-textarea {
   height: 100px;
   resize: none;
 }

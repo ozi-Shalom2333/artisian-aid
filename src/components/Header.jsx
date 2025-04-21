@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from 'react-icons/fi';
 import './../styles/header.css';
-
+import { TbMenu3 } from "react-icons/tb";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('authToken'));
@@ -71,10 +71,12 @@ const Header = () => {
         )}
 
         <div className='second-respon' onClick={toggleDropdown} role="button" tabIndex={0}>
-          <img 
+          {/* <img 
             src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652397/Component_64_vvm2yd.png" 
             alt="menu icon" 
-          />
+          /> */}
+
+          <TbMenu3 /> 
         </div>
 
         {isOpen && (

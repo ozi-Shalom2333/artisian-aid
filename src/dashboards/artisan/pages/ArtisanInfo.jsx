@@ -201,7 +201,7 @@ const ArtisanInfo = () => {
         </div>
         <button
           className="verify"
-          onClick={handleVerificationApproval} // Simulate approval
+          onClick={handleVerificationApproval} 
         >
           Complete Verification
         </button>
@@ -310,6 +310,7 @@ const ArtisanInfo = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             disabled={!isEditing}
+            className="bio-textarea"
           />
         </div>
 

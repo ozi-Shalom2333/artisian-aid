@@ -1,7 +1,11 @@
 import React from 'react'
 import '../styles/reset-password-success-message.css'
+import { useNavigate } from 'react-router-dom'
 
 const ResetPasswordSuccessfulMessage = () => {
+  
+  const navigate = useNavigate()
+
   return (
     <div className='resetSuccessMessageBody'>
       <main className='resetSuccessMessageImage'>
@@ -16,7 +20,7 @@ const ResetPasswordSuccessfulMessage = () => {
         <p>login with your new password</p>
       </div>
       <section className='resetSuccessMessageLoginButton'>
-        <button>Login</button>
+        <button onClick={()=> navigate('/login')}>Login</button>
       </section>
       
     </div>

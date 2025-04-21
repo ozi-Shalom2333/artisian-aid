@@ -16,7 +16,7 @@ import EmployerNotification from '../pages/EmployerNotification';
 import EmployerSignUp from '../auth/EmployerSignUp';
 import VerifyEmail from '../auth/VerifyEmail';
 import AuthOption from '../pages/AuthOption';
-import VerificationMessage from '../pages/VerificationMessage'; 
+import VerificationMessage from '../pages/VerificationMessage';
 import AdminDashboard from '../dashboards/admin/AdminDashboard';
 import ResetPasswordMessage from '../pages/ResetPasswordMessage';
 import ResetPasswordSuccessfulMessage from '../pages/ResetPasswordSuccessfulMessage';
@@ -83,13 +83,13 @@ const Router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path: '/category/:category', element: <CategoryByFilter /> },
   { path: '/resetpassword/:token', element: <ResetPassword /> },
-  { path: '/verificationmessage', element: <VerificationMessage /> }, 
+  { path: '/verificationmessage', element: <VerificationMessage /> },
   { path: '/authoption', element: <AuthOption /> },
   { path: '/forget', element: <ForgetPassword /> },
   { path: '/employersignup', element: <EmployerSignUp /> },
   { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage /> },
   { path: '/resetmessage', element: <ResetPasswordMessage /> },
-  { path: '/verifyemail/:token', element: localStorage.getItem('authToken') ? <VerifyEmail /> : <Navigate to="/login" replace /> },
+  { path: '/verifyemail/:token', element: <VerifyEmail /> },
   { path: '*', element: <NotFound /> },
 ]);
 

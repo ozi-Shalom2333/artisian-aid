@@ -1,149 +1,151 @@
 .forgetBody {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    background-color: #D8E7F0;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
 }
 
 .forgetMainContainer {
     width: 100%;
-    height: 100vh;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
 .forgetImage {
-    width: 100%;
-    height: 35vh;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 30px;
-    align-items: center;
+    width: 200px;
+    height: 150px;
 }
 
 .forgetImage img {
-    width: 328px;
-    height: 300px;
-    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .forgetPasswordContainer {
     width: 100%;
-    height: 70vh;
-    gap: 28px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding-bottom: 90px;
-}
-
-.forgetPasswordH1 {
-    width: 100%;
-    height: 62px;
-    color: #000435;
-    display: flex;
-    justify-content: center;
-    font-family: Montserrat;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 61.6px;
-    letter-spacing: 0%;
-    text-align: center;
-    vertical-align: middle;
-    padding-top: 20px;
-}
-
-.forgetPasswordText {
-    width: 100%;
-    height: 17%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 15px;
     align-items: center;
-    font-family: Montserrat;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 22px;
-    letter-spacing: 0%;
     text-align: center;
-    vertical-align: middle;
+}
+
+.forgetPasswordContainer h2 {
+    color: #000435;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.forgetPasswordText p {
     color: #333333;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .forgetPasswordInput {
     width: 100%;
-    height: 12vh;
-    gap: 10px;
+    max-width: 450px;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    gap: 10px;
 }
 
 .forgetPasswordInput p {
-    width: 500px;
-    height: 10px;
-    font-family: Noto Sans;
+    color: #7C8B9D;
+    font-family: Noto Sans, sans-serif;
     font-weight: 600;
     font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0%;
-    color: #7C8B9D;
 }
 
 .forgetPasswordInput input {
-    width: 500px;
-    height: 55px;
-    gap: 10px;
+    width: 100%;
+    height: 45px;
     border-radius: 8px;
-    border-width: 1px;
-    padding: 16px;
+    border: 1px solid #ccc;
+    padding: 12px 16px;
+    font-size: 14px;
     background-color: #FFFFFF;
-    color: #BAB9C1;
+    color: #000435;
 }
 
 .forgetPasswordSendEmail {
     width: 100%;
-    height: 12vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .forgetPasswordSendEmail button {
-    width: 500px;
-    height: 55px;
+    width: 100%;
+    max-width: 450px;
+    height: 45px;
     border-radius: 8px;
     background-color: #000435;
     color: #FFFFFF;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.forgetPasswordSendEmail button:hover {
+    background-color: #2F80ED;
 }
 
 .forgetRemember {
-    width: 100%;
-    height: 23px;
-    display: flex;
-    justify-content: center;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .forgetRemember p {
-    width: 222px;
-    height: 23px;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-weight: 400;
     font-size: 16px;
-    line-height: 22.4px;
-    letter-spacing: 0%;
-    text-align: center;
     color: #000435;
 }
 
 .forgetRemember span {
-    width: 64px;
-    height: 23px;
-    gap: 12px;
-    font-family: Montserrat;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22.4px;
-    letter-spacing: 0%;
-    text-align: center;
     color: #2F80ED;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* 🔽 Responsive Design */
+@media (max-width: 768px) {
+    .forgetMainContainer {
+        padding: 0 20px;
+    }
+
+    .forgetPasswordInput,
+    .forgetPasswordSendEmail button {
+        width: 100%;
+    }
+
+    .forgetPasswordContainer h2 {
+        font-size: 22px;
+    }
+
+    .forgetPasswordText p {
+        font-size: 13px;
+    }
+
+    .forgetPasswordSendEmail {
+        margin-top: 20px;
+    }
+
+    .forgetRemember p {
+        font-size: 14px;
+    }
+    
 }

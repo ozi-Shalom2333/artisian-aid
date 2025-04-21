@@ -15,7 +15,6 @@ const ResetPassword = () => {
 
   const baseURL = 'https://artisanaid.onrender.com'; 
 
-  
   const handleResetPassword = async () => {
     if (!password || !confirmPassword) {
       setErrorMessage('Please fill in both password fields.');
@@ -28,26 +27,29 @@ const ResetPassword = () => {
     }
 
     setIsLoading(true);
-    setErrorMessage('');  
+    setErrorMessage('');
 
     try {
-      
       const response = await axios.post(
-        `${baseURL}/v1/reset/password/${token}`, 
-        { password }
+        `${baseURL}/v1/reset/password/${token}`,
+        { Password: password, confirmPassword }
       );
-
-      
+      console.log(password, confirmPassword)
       toast.success(response.data.message || 'Password reset successful!');
-      navigate('/login');  
+
+      // Wait 2.5 seconds before redirecting to login
+      setTimeout(() => {
+        navigate('/login');
+      }, 2500);
+
     } catch (error) {
-      
       console.error(error);
+      console.log(password, confirmPassword)
       toast.error(
         error.response?.data?.message || 'Failed to reset password. Please try again.'
       );
     } finally {
-      setIsLoading(false);  
+      setIsLoading(false);
     }
   };
 
@@ -59,7 +61,7 @@ const ResetPassword = () => {
         </aside>
 
         <section className='verifyPasswordImage'>
-          <img src='/Reset password-rafiki 1.png' alt='Password reset illustration' />
+          <img src="/Frame 1000006356.png" alt="Illustration" />
         </section>
 
         <div className='verifyPasswordH2'>
@@ -87,7 +89,7 @@ const ResetPassword = () => {
             />
           </div>
 
-          {errorMessage && <p className='error-message'>{errorMessage}</p>}
+          {errorMessage && <p className='the_message'>{errorMessage}</p>}
 
           <div className='verifyPasswordButton'>
             <button onClick={handleResetPassword} disabled={isLoading}>

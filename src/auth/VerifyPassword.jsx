@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';  // Import toast
+import { toast, ToastContainer } from 'react-toastify';  
 import 'react-toastify/dist/ReactToastify.css';  // Import toast styles
 import '../styles/verify.css';
 
 const VerifyPassword = () => {
-  const { token } = useParams();  // Extract the token from the URL
-  const navigate = useNavigate();  // For redirecting to login after success
+  const { token } = useParams();  
+  const navigate = useNavigate();  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const baseURL = 'https://artisanaid.onrender.com'; // Base URL for the API
+  const baseURL = 'https://artisanaid.onrender.com'; 
 
   // Function to handle password reset
   const handleResetPassword = async () => {

@@ -226,7 +226,7 @@
 .aboutUsTeamName {
   width: 240.69px;
   padding: 10px;
-  background-color: aqua;
+  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -246,4 +246,10 @@
   font-size: 15.93px;
   line-height: 22.3px;
   color: #ffffff;
+}
+
+.aboustUsImageDiv{
+  background-color: aqua;
+  width: 20%;
+  height: 477.85px;
 }

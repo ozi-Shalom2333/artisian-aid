@@ -19,11 +19,11 @@ const ApprovedUserCard = ({image,
            <span className="user-name">{name}</span>
          </div>
          <span className="user-email">{email}</span>
-         <button className="view-details view-details2" onClick={onViewDetails}>
+         {/* <button className="view-details view-details2" onClick={onViewDetails}>
            View Details
-         </button>
-         <p className="user-card__status">{status}</p>
-         <p className="user-card__verified">{verified}</p>
+         </button> */}
+         <p className="user-card__status"style={{color: "green"}}>status: {status}</p>
+         {/* <p className="user-card__verified">{verified}</p> */}
        </div>
   )
 }

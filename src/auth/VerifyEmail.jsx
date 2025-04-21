@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const VerifyEmail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const {token} = useParams()
 
@@ -67,12 +67,12 @@ const VerifyEmail = () => {
           <img src="/Clip path group.png" alt="" />
         </main>
         <aside className='verifyEmailH2'>
-          <h2>Success</h2>
-          <p>Your password has been reset</p>
+          {/* <h2>Success</h2> */}
+          <p>Your email has been verified</p>
         </aside>
         <div className='verifyEmailSpanSection'>
-          <span>Your email has been successfully verified, we appreciate you</span>
-          <p>taking the time, click on the link below to login</p>
+          <span>You are set to continue</span>
+          {/* <p>taking the time, click on the link below to login</p> */}
         </div>
         <section className='verifyEmailLoginButton'>
           <button onClick={handleClick}>Login</button>

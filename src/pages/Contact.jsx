@@ -78,9 +78,9 @@ const Contact = () => {
       <div className="overlay" />
 
       <div className="content">
-        <p className="subtitle">Explore Artisans</p>
-        <h1 className="title">
-          "Your <span className="highlight">Feedback</span> is Valued -<br /> Contact Us Here!"
+        <p className="subtitle-1">Explore Artisans</p>
+        <h1 className="title-1">
+          "Your <span className="highlight-9">Feedback</span> is Valued -<br /> Contact Us Here!"
         </h1>
         <p className="description">
           "Have a Question or Suggestion? We'd Love to Hear It"

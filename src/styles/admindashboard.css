@@ -15,7 +15,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: -0px;
   transition: transform 0.3s ease;
   z-index: 100;
 }
@@ -24,6 +24,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 100px;
+  cursor: pointer;
 }
 
 .sidebar nav ul {
@@ -33,7 +34,7 @@
 }
 
 .sidebar nav ul li {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 0.77rem;
 }
 
@@ -43,6 +44,7 @@
   color: #cbd5e0;
   text-decoration: none;
   padding: 10px 15px;
+  cursor: pointer;
   border-radius: 5px;
 }
 
@@ -66,17 +68,16 @@
   border-top: 1px solid #4a5568;
 }
 
-/* Main Content Area */
 .main-content {
   flex-grow: 1;
   width: 80%;
   height: fit-content;
   overflow-y: auto;
   margin-left: 20%;
-  background-color: #f7fafc;
+  /* background-color: #f7fafc; */
 }
 
-/* Modal Overlay */
+
 .modal-overlay-logout {
   position: fixed;
   top: 0;
@@ -90,7 +91,6 @@
   z-index: 1000;
 }
 
-/* Modal Box */
 .modal-logout {
   background-color: #fff;
   padding: 20px;
@@ -148,8 +148,6 @@
 .logout-btn-logout:hover {
   background-color: #c9302c;
 }
-
-/* Fade-in Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -161,7 +159,7 @@
   }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);

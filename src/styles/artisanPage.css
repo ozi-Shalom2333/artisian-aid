@@ -44,6 +44,58 @@
     align-items: center;
     gap: 20px;
 
+  }/* For screens smaller than 768px (tablets and phones) */
+@media (max-width: 768px) {
+  .Ahero-section {
+    height: 70vh; /* Reduce height for smaller screens */
+    padding: 20px; /* Add padding for better spacing */
+    background-size: cover;
   }
+
+  .Ahero-section > h1 {
+    font-size: 36px; /* Reduce font size for the heading */
+    line-height: 1.2; /* Adjust line height */
+  }
+
+  .Ahero-subtitle {
+    font-size: 16px; /* Reduce subtitle font size */
+  }
+
+  .Ahero-description {
+    font-size: 16px; /* Reduce description font size */
+    text-align: center; /* Center-align text for better readability */
+  }
+
+  .ozioma {
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Reduce gap between items */
+    padding: 10px; /* Adjust padding */
+  }
+}
+
+/* For screens smaller than 480px (phones) */
+@media (max-width: 393px) {
+  .Ahero-section {
+    height: 60vh; /* Further reduce height for very small screens */
+    padding: 15px;
+  }
+
+  .Ahero-section > h1 {
+    font-size: 28px; /* Further reduce heading font size */
+  }
+
+  .Ahero-subtitle {
+    font-size: 14px; /* Smaller subtitle font size */
+  }
+
+  .Ahero-description {
+    font-size: 14px; /* Smaller description font size */
+  }
+
+  .ozioma {
+    padding: 5px; /* Reduce padding */
+    gap: 5px; /* Reduce gap between items */
+  }
+}
  
   

@@ -104,7 +104,7 @@ const ArtisanVerification = () => {
 
   return (
     <div className="guarantor-container">
-      {verificationStatus === "Unverified" ?
+      {verificationStatus === "Declined" ?
         <>
           <h2>Please Fill & Upload necessary Information for verification</h2>
           <p className="subtitle">

@@ -54,7 +54,7 @@ const GetOnePendingUser = () => {
   // Reject verification
   const handleConfirmDelete = async () => {
     setLoadingAction(true);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("authToken");
     try {
       await API.get(
         `https://artisanaid.onrender.com/v1/reject/verification/${verification._id}`,
@@ -75,10 +75,10 @@ const GetOnePendingUser = () => {
   // Approve verification
   const handleConfirmApprove = async () => {
     setLoadingAction(true);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("authToken");
     try {
       await API.get(
-        `https://artisanaid.onrender.com/accept/verification/${verification._id}`,
+        `https://artisanaid.onrender.com/v1/accept/verification/${verification._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account has been verified successfully");
@@ -169,22 +169,3 @@ const GetOnePendingUser = () => {
 };
 
 export default GetOnePendingUser;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

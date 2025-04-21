@@ -10,19 +10,26 @@ const ArtisanNotification = () => {
   const [pendingConfirmations, setPendingConfirmations] = useState([]);
   const [confirmedBookings, setConfirmedBookings] = useState([]);
   const [rejectedBookings, setRejectedBookings] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchBookings = async () => {
       try {
+        setLoading(true);
         const [pendingRes, confirmedRes, rejectedRes] = await Promise.all([
           axios.get("https://artisanaid.onrender.com/v1/pending/job"),
-          axios.get("https://artisanaid.onrender.com/v1/confirmed/job"),  
+          axios.get("https://artisanaid.onrender.com/v1/confimed/job"),
           axios.get("https://artisanaid.onrender.com/v1/rejected/job"),
         ]);
+        setLoading(false);
 
-        setPendingConfirmations(pendingRes.data);
-        setConfirmedBookings(confirmedRes.data);
-        setRejectedBookings(rejectedRes.data);
+        console.log(pendingRes);
+        console.log(confirmedRes);
+        console.log(rejectedRes);
+
+        setPendingConfirmations(pendingRes.data.data);
+        setConfirmedBookings(confirmedRes.data.data);
+        setRejectedBookings(rejectedRes.data.data);
       } catch (err) {
         console.error("Failed to fetch bookings", err);
       }
@@ -31,8 +38,14 @@ const ArtisanNotification = () => {
     fetchBookings();
   }, []);
 
+  const [openBookingDetails, setOpenBookingDetails] = useState(false);
+
   const handleConfirmedBookingClick = (booking) => {
     setSelectedBooking(booking);
+  };
+
+  const handleOpenBookingDetails = (bookingId) => {
+    setOpenBookingDetails(bookingId);
   };
 
   const handleCloseBookingDetails = () => {
@@ -71,59 +84,144 @@ const ArtisanNotification = () => {
         </button>
       </div>
       <div className="list-container">
-        {activeTab === "Pending" &&
-          pendingConfirmations.map((item) => (
-            <div key={item.id} className="list-item">
-              <div className="profile-icon">
-                {item.profileImage ? (
-                  <img src={item.profileImage} alt={item.name} className="profile-image" />
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            {activeTab === "Pending" && (
+              <>
+                {pendingConfirmations.length == 0 ? (
+                  <p>There is no pending job request</p>
                 ) : (
-                  <FaUserCircle size={30} color="#777" />
+                  pendingConfirmations.map((item) => (
+                    <div className="list_body">
+                      <div
+                        key={item._id}
+                        className="list-item"
+                        onClick={() =>
+                          handleOpenBookingDetails(
+                            openBookingDetails == item._id ? false : item._id
+                          )
+                        }
+                      >
+                        <div className="profile-icon">
+                          {item.employerId.profilePic ? (
+                            <img
+                              src={item.employerId.profilePic.image_url}
+                              alt={item.employerId.fullname}
+                              className="profile-image"
+                            />
+                          ) : (
+                            <FaUserCircle size={30} color="#777" />
+                          )}
+                        </div>
+                        <div className="name">{item.employerId.fullname}</div>
+                        <div className="skill">{item.employerId.role}</div>
+                        <div className="status Pending">{item.status}</div>
+                      </div>
+                      {openBookingDetails == item._id ? (
+                        <BookingDetails booking={item} />
+                      ) : null}
+                    </div>
+                  ))
                 )}
-              </div>
-              <div className="name">{item.name}</div>
-              <div className="skill">{item.skill}</div>
-              <div className="status Confirmation">{item.status}</div>
-            </div>
-          ))}
+              </>
+            )}
 
-        {activeTab === "Confirmed" &&
-          confirmedBookings.map((item) => (
-            <div key={item.id} className="list-item" onClick={() => handleConfirmedBookingClick(item)}>
-              <div className="profile-icon">
-                {item.profileImage ? (
-                  <img src={item.profileImage} alt={item.name} className="profile-image" />
+            {activeTab === "Confirmed" && (
+              <>
+                {confirmedBookings.length == 0 ? (
+                  <p>There is no Confirmed job request</p>
                 ) : (
-                  <FaUserCircle size={30} color="#777" />
+                  confirmedBookings.map((item) => (
+                    <div className="list_body">
+                      <div
+                        key={item.id}
+                        className="list-item"
+                        onClick={() =>
+                          handleOpenBookingDetails(
+                            openBookingDetails == item._id ? false : item._id
+                          )
+                        }
+                      >
+                        <div className="profile-icon">
+                          {item.employerId.profilePic ? (
+                            <img
+                              src={item.employerId.profilePic.image_url}
+                              alt={item.employerId.fullname}
+                              className="profile-image"
+                            />
+                          ) : (
+                            <FaUserCircle size={30} color="#777" />
+                          )}
+                        </div>
+                        <div className="name">{item.employerId.fullname}</div>
+                        <div className="skill">{item.employerId.role}</div>
+                        <div className="status BookingAccepted">
+                          {item.status}
+                        </div>
+                      </div>
+                      {openBookingDetails == item._id ? (
+                        <BookingDetails booking={item} />
+                      ) : null}
+                    </div>
+                  ))
                 )}
-              </div>
-              <div className="name">{item.name}</div>
-              <div className="skill">{item.skill}</div>
-              <div className="status BookingAccepted">{item.status}</div>
-            </div>
-          ))}
+              </>
+            )}
 
-        {activeTab === "Rejected" &&
-          rejectedBookings.map((item) => (
-            <div key={item.id} className="list-item" onClick={() => handleConfirmedBookingClick(item)}>
-              <div className="profile-icon">
-                {item.profileImage ? (
-                  <img src={item.profileImage} alt={item.name} className="profile-image" />
+            {activeTab === "Rejected" && (
+              <>
+                {rejectedBookings.length == 0 ? (
+                  <p>There is no Rejected job request</p>
                 ) : (
-                  <FaUserCircle size={30} color="#777" />
+                  rejectedBookings.map((item) => (
+                    <div className="list_body">
+                      <div
+                        key={item.id}
+                        className="list-item"
+                        onClick={() =>
+                          handleOpenBookingDetails(
+                            openBookingDetails == item._id ? false : item._id
+                          )
+                        }
+                      >
+                        <div className="profile-icon">
+                          {item.employerId.profilePic ? (
+                            <img
+                              src={item.employerId.profilePic.image_url}
+                              alt={item.employerId.fullname}
+                              className="profile-image"
+                            />
+                          ) : (
+                            <FaUserCircle size={30} color="#777" />
+                          )}
+                        </div>
+                        <div className="name">{item.employerId.fullname}</div>
+                        <div className="skill">{item.employerId.role}</div>
+                        <div className="status Rejected">{item.status}</div>
+                      </div>
+                      {openBookingDetails == item._id ? (
+                        <BookingDetails booking={item} />
+                      ) : null}
+                    </div>
+                  ))
                 )}
-              </div>
-              <div className="name">{item.name}</div>
-              <div className="skill">{item.skill}</div>
-              <div className="status Rejected">{item.status}</div>
-            </div>
-          ))}
+              </>
+            )}
+          </>
+        )}
       </div>
 
-      {selectedBooking && activeTab === "Confirmed" && (
+      {/* '{selectedBooking && activeTab === "Confirmed" && (
         <div className="booking-details-overlay">
           <div className="booking-details-modal">
-            <button className="close-button" onClick={handleCloseBookingDetails}>X</button>
+            <button
+              className="close-button"
+              onClick={handleCloseBookingDetails}
+            >
+              X
+            </button>
             <BookingDetails booking={selectedBooking} />
           </div>
         </div>
@@ -132,11 +230,16 @@ const ArtisanNotification = () => {
       {selectedBooking && activeTab === "Rejected" && (
         <div className="booking-details-overlay">
           <div className="booking-details-modal">
-            <button className="close-button" onClick={handleCloseBookingDetails}>X</button>
+            <button
+              className="close-button"
+              onClick={handleCloseBookingDetails}
+            >
+              X
+            </button>
             <BookingDetails booking={selectedBooking} />
           </div>
         </div>
-      )}
+      )}' */}
     </div>
   );
 };

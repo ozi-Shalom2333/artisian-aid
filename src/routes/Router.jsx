@@ -89,7 +89,7 @@ const Router = createBrowserRouter([
   { path: '/employersignup', element: <EmployerSignUp /> },
   { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage /> },
   { path: '/resetmessage', element: <ResetPasswordMessage /> },
-  { path: '/verifyemail/:token', element: localStorage.getItem('authToken') ? <VerifyEmail /> : <Navigate to="/login" replace /> },
+{ path: '/verifyemail/:token', element: <VerifyEmail />},
   { path: '*', element: <NotFound /> },
 ]);
 

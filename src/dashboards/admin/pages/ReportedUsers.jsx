@@ -3,11 +3,13 @@ import axios from "axios";
 import "../../../styles/reporteduser.css";
 import { useNavigate } from "react-router-dom";
 import ReportedUserCard from "../../../components/ReportedUserCard";
+import UserReportCard from "../../../components/UserReportCard";
 
 const ReportedUser = () => {
   const [artisans, setArtisans] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showUserReport, setShowUserReport] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,14 +54,30 @@ const ReportedUser = () => {
       <h2 className="title">Reported User Verification</h2>
       <div className="users-container">
         {artisans.map((item) => (
-          <ReportedUserCard
-            // key={user.id}
-            name="Victoria Trust"
-            email="Text@gmail.com"
-            image=""
-            onViewDetails={handleViewDetails}
-            status={"Declined"}
-          />
+          <div className="reported_card_details">
+            <ReportedUserCard
+              // key={user.id}
+              name="Victoria Trust"
+              email="Text@gmail.com"
+              image=""
+              setShowUserReport={setShowUserReport}
+              status={"Declined"}
+            />
+            {
+              showUserReport == "item" ? 
+                <div className='user_report_card_body'>
+                  <h3>User Reports</h3>
+                  <div className="user_report_card_container">
+                    <UserReportCard/>
+                  </div>
+                  <div className="user_report_card_button">
+                    <button>Restrict user</button>
+                    <button>Delete user</button>
+                  </div>
+                </div>
+              : null
+            }
+          </div>
         ))}
       </div>
     </div>

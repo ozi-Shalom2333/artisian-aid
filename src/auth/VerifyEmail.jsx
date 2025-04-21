@@ -12,36 +12,36 @@ const VerifyEmail = () => {
   const [isVerified, setIsVerified] = useState(false);
   const {token} = useParams()
 
-  useEffect(() => {
-    const verifyAccount = async () => {
-      try {
-        const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
-        toast.success(response.data.message || "Account verified successfully!");
-        setIsVerified(true);
-        setTimeout(() => {
-          navigate('/login');
-        }, 3000);
-      } catch (error) {
-        console.error(error);
-        toast.error("Invalid or missing token.");
-        setTimeout(() => {
-          navigate('/error');
-        }, 3000);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const verifyAccount = async () => {
+  //     try {
+  //       const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
+  //       toast.success(response.data.message || "Account verified successfully!");
+  //       setIsVerified(true);
+  //       setTimeout(() => {
+  //         navigate('/login');
+  //       }, 3000);
+  //     } catch (error) {
+  //       console.error(error);
+  //       toast.error("Invalid or missing token.");
+  //       setTimeout(() => {
+  //         navigate('/error');
+  //       }, 3000);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    if (token) {
-      verifyAccount();
-    } else {
-      toast.error("Invalid or missing token.");
-      setTimeout(() => {
-        navigate('/error');
-      }, 3000);
-      setIsLoading(false); 
-    }
-  }, [token, navigate]);
+  //   if (token) {
+  //     verifyAccount();
+  //   } else {
+  //     toast.error("Invalid or missing token.");
+  //     setTimeout(() => {
+  //       navigate('/error');
+  //     }, 3000);
+  //     setIsLoading(false); 
+  //   }
+  // }, [token, navigate]);
 
   const handleClick = () => {
     navigate('/login');

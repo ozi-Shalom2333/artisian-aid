@@ -27,6 +27,7 @@
   display: block;
   font-size: 18px;
   margin-bottom: 0.25rem;
+  
 }
 
 .warning-text p {
@@ -227,4 +228,28 @@ textarea {
 .edit-btn:hover {
   background-color: #000a68; 
 }
+@media (max-width: 393px){
+  
+  .form-row {
+    font-size: 10px; 
+    flex-direction: row;
+    gap: 0.25rem;
+  }
 
+  .form-row p {
+    font-size: 3px;
+    width: 100%; 
+    text-align: left; 
+  }
+}
+@media (max-width: 768px) {
+  .form-row {
+    font-size: 12px; 
+    gap: 0.5rem; 
+  }
+
+  .form-row p {
+    margin: 0;
+    font-size: 12px;
+  }
+}

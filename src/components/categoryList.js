@@ -1,7 +1,7 @@
 const categoryListing = [
     {
       image: 'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/material-symbols_carpenter_1_xkmkcs.png',
-      text:'carpentary'
+      text:'carpentry'
     },
     {
         image:'https://res.cloudinary.com/djnowfvsk/image/upload/v1744220513/cleaner-broom-svgrepo-com_1_bcq4ca.png',

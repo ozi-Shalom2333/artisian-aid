@@ -19,7 +19,7 @@ const CATEGORIES = [
   "Electrical Services",
   "Painting Services",
   "Gardening Services",
-  "Laundary Services",
+  "Laudary Services",
 ];
 
 const SignUp = () => {
@@ -228,7 +228,7 @@ const SignUp = () => {
 
         {/* Header / Branding */}
         <header className="signup-header">
-          <div className="logo">
+          <div className="logo" onClick={() => navigate("/")}>
             <img src="/Artisan.png" alt="ArtisanAid Logo" />
           </div>
         </header>

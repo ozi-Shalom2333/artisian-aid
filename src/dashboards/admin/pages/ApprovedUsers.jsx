@@ -58,10 +58,23 @@ const ApprovedUsers = () => {
     <>
       {
         loading ? <div className="loading">Loading approved artisans...</div> : 
-        <div>
-          {
-            artisans?.map((item)=>'')
-          }
+        <div className="pending-users-wrapper">
+          <h2 className="title">Approved Users ({artisans.length})</h2>
+          <div className="users-container">
+            {
+              artisans?.map((item)=>(
+                <ApprovedUserCard
+                  key={item._id}
+                  image={item.image}
+                  name={item.fullname}
+                  onViewDetails={handleViewDetails}
+                  status={item.verificationStatus}
+                  email={item.email}
+                  verified={item.verified}
+                />
+              ))
+            }
+          </div>
         </div>
       }
       {

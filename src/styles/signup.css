@@ -257,7 +257,7 @@
 }
 
 .signup-button:hover {
-  background-color: #e68a00;
+  background-color: #2f80ed;
 }
 
 .signup-button.disabled,
@@ -276,4 +276,64 @@
   text-decoration: underline;
   font-weight: 600;
 }
+@media screen and (max-width:480px) {
+   
+}
 
+@media screen and (max-width: 480px) {
+  .signup-container {
+    padding: 1rem;
+    align-items: stretch;
+  }
+
+  .signup-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .logo img {
+    height: 16px;
+  }
+
+  .signup-content {
+    padding: 1.5rem 1rem;
+    width: 100%;
+  }
+
+  .signup-title {
+    font-size: 1.5rem;
+  }
+
+  .signup-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .form_input_container {
+    flex-direction: column;
+  }
+
+  .form_input,
+  .form-group {
+    width: 100%;
+  }
+
+  .custom-dropdown {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .signup-terms {
+    width: 100%;
+    font-size: 0.75rem;
+    padding: 0 1rem;
+  }
+
+  .signup-button {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  .signup-login-text {
+    font-size: 0.85rem;
+    padding: 0 1rem;
+  }
+}

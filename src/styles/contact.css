@@ -86,11 +86,12 @@
   justify-content: flex-start;
 }
 
-.form-heading {
+.form-heading-white {
   font-size: 3.3rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   margin-top: 2.5rem;
+  color: #ffffff;
 }
 
 .contact-detail {

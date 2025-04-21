@@ -89,7 +89,7 @@ const Contact = () => {
 
       <div className="form-section">
         <div className="form-left">
-          <h2 className="form-heading">"Get in Touch - We're Here to Help!"</h2>
+          <h2 className="form-heading-white">"Get in Touch - We're Here to Help!"</h2>
           <div className="contact-detail">
             <FaPhoneAlt className="icon" />
             <span>+23499041835740</span>

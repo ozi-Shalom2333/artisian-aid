@@ -15,6 +15,7 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verifyAccount = async () => {
       try {
+        setIsLoading(true)
         const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
         toast.success(response.data.message || "Account verified successfully!");
         setIsVerified(true);
@@ -72,7 +73,6 @@ const VerifyEmail = () => {
         </aside>
         <div className='verifyEmailSpanSection'>
           <span>You are set to continue</span>
-          {/* <p>taking the time, click on the link below to login</p> */}
         </div>
         <section className='verifyEmailLoginButton'>
           <button onClick={handleClick}>Login</button>

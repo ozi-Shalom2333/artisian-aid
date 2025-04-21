@@ -54,13 +54,11 @@ const VerifyEmail = () => {
         <p>Verifying your account...</p>
       </div>
     );
+  } else{
+    null
   }
 
-  if (!isVerified) {
-    toast.error('User not verified')
-    return null;
-  }
-
+ 
   return (
     <>
       <div className='verifyEmailBody'>

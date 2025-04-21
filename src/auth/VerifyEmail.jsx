@@ -50,8 +50,6 @@ const VerifyEmail = () => {
 
   if (!isVerified) return null;
 
-
- 
   return (
     <>
       <div className='verifyEmailBody'>

@@ -28,16 +28,12 @@
   background-color: #d7e1fc;
   color: #000;
 
-  && h2 {
-      font-size: 24px;
-      margin: 0.5rem 0;
-      color:black;
-    }
+  
 }
 
 .premium-plan {
   background-color: #1b1b79;
-  color: black;
+  color: white;
   position: relative;
 }
 

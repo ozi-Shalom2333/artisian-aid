@@ -63,6 +63,7 @@ const Login = () => {
         localStorage.setItem('authToken', token);
         localStorage.setItem('userData', JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
+        localStorage.setItem('userRole', userRole);
 
         toast.success(response.data.message || 'Login successful!');
         toast.info('Redirecting...');
@@ -125,11 +126,13 @@ const Login = () => {
           <span>
             <p>Password</p>
           </span>
-          <div className='loginPasswordSection'>
+          <div className='loginPasswordSection' >
             <input
+              style={{border: 'none',borderRadius:'10px', outline: 'none'}}
               type={showpassword ? 'text' : 'password'}
               placeholder='Type here'
               value={password}
+              
               onChange={(e) => setPassword(e.target.value)}
             />
             <span className='showPassword' onClick={togglePasswordVisibility}>

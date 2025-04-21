@@ -29,7 +29,7 @@ function Card({data}) {
         </div>
       </section>
       <section className='coverpic'>
-        <img src={data.jobPostId.jobImage?. Image_url || "https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744947459/Card_pics_1_to10t1.png"} alt="" />
+        <img src={data.jobPost.image_url || "https://res.cloudinary.com/dd1aj3hvn/image/upload/v1744947459/Card_pics_1_to10t1.png"} alt="" />
       </section>
       <section className='fancy'>
         <div>

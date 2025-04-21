@@ -100,3 +100,96 @@ border-radius: 5px;
   margin-top: 2rem;
   cursor: pointer;
 }
+.pending-verification {
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pending-verification h2 {
+  font-size: 24px;
+  color: #ff9800; 
+  margin-bottom: 10px;
+}
+
+
+.pending-verification p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+.pending-verification::before {
+  content: "⏳"; 
+  font-size: 40px;
+  color: #ff9800;
+  display: block;
+  margin-bottom: 10px;
+}
+.approved-verification {
+  text-align: center;
+  background-color: #e6ffe6; 
+  border: 1px solid #4caf50; 
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.approved-verification h2 {
+  font-size: 24px;
+  color: #4caf50; 
+  margin-bottom: 10px;
+}
+
+.approved-verification p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.approved-verification::before {
+  content: "✅"; 
+  font-size: 40px;
+  color: #4caf50;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.declined-verification {
+  text-align: center;
+  background-color: #ffe6e6; 
+  border: 1px solid #f44336; 
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.declined-verification h2 {
+  font-size: 24px;
+  color: #f44336; 
+  margin-bottom: 10px;
+}
+
+.declined-verification p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.declined-verification::before {
+  content: "❌"; 
+  font-size: 40px;
+  color: #f44336;
+  display: block;
+  margin-bottom: 10px;
+}

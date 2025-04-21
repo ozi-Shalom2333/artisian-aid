@@ -83,12 +83,16 @@
     padding-inline-end: 40px;
     align-items: center;
     border-radius: 10px;
+    border: none;
+    outline: none;
     background-color: #fff;
   
 }
 .loginPasswordSection > input{
     width: 80%;
     padding: 20px;
+    border: none;
+    outline: none;
     
 }
 .forget{
@@ -114,4 +118,7 @@
 .button:hover{
     background-color: #2F80ED;
     color: #fff;
+}
+.loginPasswordInput{
+    outline: none;
 }

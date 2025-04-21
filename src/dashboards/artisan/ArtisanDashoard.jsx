@@ -9,6 +9,7 @@ import ArtisanUpload from "./pages/ArtisanUpload ";
 import ArtisanNotification from "./pages/ArtisanNotification";
 import ArtisanSecurity from "./pages/ArtisanSecurity";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
 import ArtisanSubscription from "./pages/ArtisanSubscription";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
@@ -26,9 +27,8 @@ const ArtisanDashoard = () => {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      console.log(token)
+      console.log(token);
       const response = await axios.get(
-
         "https://artisanaid.onrender.com/v1/logout",
         {
           headers: {
@@ -61,7 +61,7 @@ const ArtisanDashoard = () => {
         <nav>
           <ul>
             <li className="admin-management-header">
-              <RiHomeFill size={20} />
+              <FaUser size={20} />
               My Profile
             </li>
             <li
@@ -79,6 +79,14 @@ const ArtisanDashoard = () => {
               onClick={() => handleTabClick("account")}
             >
               Account Verification
+            </li>
+            <li
+              className={`nav-link ${
+                activeTab === "security" ? "nav-link-active" : "nav-link"
+              }`}
+              onClick={() => handleTabClick("security")}
+            >
+              Privacy & Security
             </li>
             <li className="admin-management-header">
               <RiHomeFill size={20} />
@@ -100,6 +108,7 @@ const ArtisanDashoard = () => {
             >
               Job Notification
             </li>
+          
             <li className="admin-management-header">
               <MdCurrencyExchange size={20} />
               Subscription

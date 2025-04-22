@@ -141,3 +141,10 @@
     letter-spacing: 0%;
     color: #EB5757;
 }
+
+.reported_card_details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}

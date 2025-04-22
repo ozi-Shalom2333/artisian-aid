@@ -1,5 +1,5 @@
 .pending-users-wrapper {
-    background-color: #e7ecff;
+    background-color: #e7ecff !important;
     width: 100%;
     min-height: 100vh;
     padding: 40px;
@@ -24,7 +24,7 @@
   }
   
   .user-card {
-    background-color: #e4ebfe;
+    background-color: #e4ebfe !important;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -33,13 +33,57 @@
     justify-content: space-between;
   }
 
+  .user_report_card_body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user_report_card_body h3{
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .user_report_card_container{
+    width: 100%;
+  }
+  
+  .user_report_card_button{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .user_report_card_button button{
+    width: max-content;
+    height: max-content;
+    background-color: #3164f4 !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .user_report_card_button button:last-child{
+    background-color: #fff;
+    color: #EB5757;
+    border: 1px solid #EB5757;
+  }
+
   #reported-card {
-    background-color: #e4ebfe;
+    width: 100%;
+    background-color: #e4ebfe !important;
     border-radius: 10px;
     display: flex;
     align-items: center;
     padding: 16px;
-    gap: 20px;
+    gap: 100px;
     /* justify-content: center; */
   }
   
@@ -90,7 +134,7 @@
   .user-purpose{
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
   
   .view-details {

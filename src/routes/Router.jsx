@@ -90,7 +90,7 @@ const Router = createBrowserRouter([
   { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage /> },
   { path: '/subscriptionverified', element: <SubscriptionVerification /> },
   { path: '/resetmessage', element: <ResetPasswordMessage /> },
-  { path: '/verifyemail/:token', element: <VerifyEmail /> },
+{ path: '/verifyemail/:token', element: <VerifyEmail />},
   { path: '*', element: <NotFound /> },
 ]);
 

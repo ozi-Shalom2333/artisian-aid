@@ -85,12 +85,12 @@ const PersonalInfo = () => {
             <div className="profile-image-container">
               <div className="profile-image">
                 <img
-                  src={profileImage || userData.profilePic.image_url || "/default-profile.png"}
+                  src={profileImage || userData?.profilePic?.image_url || "/default-profile.png"}
                   alt="Profile"
                 />
               </div>
               <label htmlFor="profileImageInput" className="camera-icon">
-                <FiCamera size={29} />
+                <FiCamera size={24} />
               </label>
               <input
                 type="file"
@@ -111,15 +111,15 @@ const PersonalInfo = () => {
               <div className="card-body">
                 <div className="info-row">
                   <div className="info-label">Full Name</div>
-                  <div className="info-value">{userData.fullname}</div>
+                  <div className="info-value">{userData?.fullname}</div>
                 </div>
                 <div className="info-row">
                   <div className="info-label">Email</div>
-                  <div className="info-value">{userData.email}</div>
+                  <div className="info-value">{userData?.email}</div>
                 </div>
                 <div className="info-row">
                   <div className="info-label">Phone</div>
-                  <div className="info-value">{userData.phoneNumber}</div>
+                  <div className="info-value">{userData?.phoneNumber}</div>
                 </div>
               </div>
             </div>

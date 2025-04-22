@@ -133,7 +133,8 @@
 }
 .homePage__hero3{
     width: 100%;
-    height: 110vh;
+    min-height: 110vh;
+    height: max-content;
     display: flex;
     flex-direction: column;
     gap: 10px;

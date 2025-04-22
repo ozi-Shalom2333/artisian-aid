@@ -143,9 +143,9 @@ const UserProfile = () => {
         `${API_BASE_URL}/v1/book/artisan/${userId}`,
         {
           serviceTitle: bookingData.serviceTitle,
-          phoneNumber: formattedPhone,
           location: bookingData.address,
-          serviceDescription: bookingData.serviceDescription
+          serviceDescription: bookingData.serviceDescription,
+          phoneNumber: formattedPhone
         },
         {
           headers: {

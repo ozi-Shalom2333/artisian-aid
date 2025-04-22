@@ -12,9 +12,9 @@ const HomePage = () => {
   const [artisans, setArtisans] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [artisans, setArtisans] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  
+
+  
 
   useEffect(() => {
     const getRecommendedArtisans = async () => {

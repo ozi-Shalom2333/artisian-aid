@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; 
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../styles/userprofile.css';
 
 const UserProfile = () => {
   const { userId } = useParams();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportReason, setReportReason] = useState('');
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
   const [reportSubmitted, setReportSubmitted] = useState(false);
-
 
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [bookingData, setBookingData] = useState({
@@ -70,27 +68,34 @@ const UserProfile = () => {
       isMounted = false;
     };
   }, [userId, API_BASE_URL]);
-
   const handleReportSubmit = async (e) => {
     e.preventDefault();
     setIsSubmittingReport(true);
     setError(null);
-
+  
+    const token = localStorage.getItem('report'); 
+  
+    if (!token) {
+      setError('You must be logged in to report an artisan.');
+      setIsSubmittingReport(false);
+      return;
+    }
+  
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/v1/report/artisan`,
+        `${API_BASE_URL}/v1/report/artisan/${userId}`,
         {
-          artisanId: userId,
           reason: reportReason
         },
         {
           headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}` 
           }
         }
       );
-
+  
       if (response.status === 201) {
         setReportSubmitted(true);
         setTimeout(() => {
@@ -118,54 +123,36 @@ const UserProfile = () => {
       setIsSubmittingReport(false);
     }
   };
+  
+  
 
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
     setIsSubmittingBooking(true);
     setError(null);
 
-    const phoneRegex = /^(?:\+234|0)[789][01]\d{8}$/;
+    const token = localStorage.getItem('employerToken'); 
 
-    if (!phoneRegex.test(bookingData.phoneNumber)) {
-      setError('Please enter a valid Nigerian phone number starting with 0 or +234');
+    if (!token) {
+      setError('You must be logged in to book an artisan.');
       setIsSubmittingBooking(false);
       return;
-    }
-
-
-    let formattedPhone = bookingData.phoneNumber.trim();
-    if (formattedPhone.startsWith('0')) {
-      formattedPhone = '+234' + formattedPhone.slice(1);
-    }
-
-    const phoneRegex = /^(?:\+234|0)[789][01]\d{8}$/;
-
-    if (!phoneRegex.test(bookingData.phoneNumber)) {
-      setError('Please enter a valid Nigerian phone number starting with 0 or +234');
-      setIsSubmittingBooking(false);
-      return;
-    }
-
-
-    let formattedPhone = bookingData.phoneNumber.trim();
-    if (formattedPhone.startsWith('0')) {
-      formattedPhone = '+234' + formattedPhone.slice(1);
     }
 
     try {
       const response = await axios.post(
         `${API_BASE_URL}/v1/book/artisan/${userId}`,
-        `${API_BASE_URL}/v1/book/artisan/${userId}`,
         {
           serviceTitle: bookingData.serviceTitle,
           location: bookingData.address,
           serviceDescription: bookingData.serviceDescription,
-          phoneNumber: formattedPhone
+          phoneNumber: bookingData.phoneNumber
         },
         {
           headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
           }
         }
       );
@@ -179,14 +166,8 @@ const UserProfile = () => {
           case 400:
             setError(err.response.data?.message || 'Validation error');
             break;
-          case 400:
-            setError(err.response.data?.message || 'Validation error');
-            break;
           case 404:
             setError('Artisan not found');
-            break;
-          case 500:
-            setError('External Server Error');
             break;
           case 500:
             setError('External Server Error');
@@ -219,7 +200,7 @@ const UserProfile = () => {
       address: '',
       serviceDescription: ''
     });
-    navigate('/'); 
+    navigate('/');
   };
 
   if (loading) return <div className="loading-spinner">Loading...</div>;
@@ -288,8 +269,6 @@ const UserProfile = () => {
             )}
           </div>
 
-
-
           {showBookingModal && (
             <div className="modal-overlay-g" onClick={() => setShowBookingModal(false)}>
               <div className="modal-content-1" onClick={(e) => e.stopPropagation()}>
@@ -322,14 +301,10 @@ const UserProfile = () => {
                           value={bookingData.phoneNumber}
                           onChange={handleBookingChange}
                           placeholder="e.g. 08012345678 or +2348012345678"
-                          placeholder="e.g. 08012345678 or +2348012345678"
                           required
                           pattern="(?:\+234|0)[789][01]\d{8}"
                           title="Enter a valid Nigerian phone number starting with 0 or +234"
-/>
-                          pattern="(?:\+234|0)[789][01]\d{8}"
-                          title="Enter a valid Nigerian phone number starting with 0 or +234"
-/>
+                        />
                       </div>
 
                       <div className="form-group-71">
@@ -357,7 +332,7 @@ const UserProfile = () => {
                       </div>
 
                       <div className="form-group-71">
-                        <button className='button-oh' type="submit" disabled={isSubmittingBooking}>
+                        <button className="button-oh" type="submit" disabled={isSubmittingBooking}>
                           {isSubmittingBooking ? 'Booking...' : 'Book Now'}
                         </button>
                       </div>
@@ -369,10 +344,7 @@ const UserProfile = () => {
                     <p className="success-description">
                       Your booking has been sent to your artisan. For further details, please check your email.
                     </p>
-                    <button
-                      className="back-home-button"
-                      onClick={handleBackHomeClick} 
-                    >
+                    <button className="back-home-button" onClick={handleBackHomeClick}>
                       Back home
                     </button>
                   </div>
@@ -380,8 +352,6 @@ const UserProfile = () => {
               </div>
             </div>
           )}
-
-
 
           {showReportModal && (
             <div className="modal-overlay" onClick={() => setShowReportModal(false)}>

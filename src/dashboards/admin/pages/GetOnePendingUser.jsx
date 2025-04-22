@@ -13,37 +13,37 @@ const API = axios.create({
   baseURL: "https://artisanaid.onrender.com",
 });
 
-const GetOnePendingUser = () => {
+const GetOnePendingUser = ({user}) => {
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const { user } = state || {};
+  // const { state } = useLocation();
+  // const { user } = state || {};
 
   // Redirect if no user in state
-  if (!user) {
-    navigate("/admindashboard/pendingUsers");
-    return null;
-  }
+  // if (!user) {
+  //   navigate("/admindashboard/pendingUsers");
+  //   return null;
+  // }
 
-  const verification = user.verificationId;
+  // const verification = user.verificationId;
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showApproveModal, setShowApproveModal] = useState(false);
   const [loadingAction, setLoadingAction] = useState(false);
 
   // If no verification document exists, inform admin
-  if (!verification) {
-    return (
-      <div className="pending-user-wrapper">
-        <h2 className="page-title">Pending User Verification</h2>
-        <PendingUserCard
-          user={{ name: user.fullname, email: user.email, image: user.profilePic.image_url }}
-          onViewDetails={() => {}}
-        />
-        <p className="no-docs-message">
-          No verification documents found for <strong>{user.fullname}</strong>.
-        </p>
-      </div>
-    );
-  }
+  // if (!verification) {
+  //   return (
+  //     <div className="pending-user-wrapper">
+  //       <h2 className="page-title">Pending User Verification</h2>
+  //       <PendingUserCard
+  //         user={{ name: user.fullname, email: user.email, image: user.profilePic.image_url }}
+  //         onViewDetails={() => {}}
+  //       />
+  //       <p className="no-docs-message">
+  //         No verification documents found for <strong>{user.fullname}</strong>.
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   // Modal open/close handlers
   const handleDecline = () => setShowDeleteModal(true);
@@ -57,7 +57,7 @@ const GetOnePendingUser = () => {
     const token = localStorage.getItem("authToken");
     try {
       await API.get(
-        `https://artisanaid.onrender.com/v1/reject/verification/${verification._id}`,
+        `https://artisanaid.onrender.com/v1/reject/verification/${user._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account verification has been rejected");
@@ -78,7 +78,7 @@ const GetOnePendingUser = () => {
     const token = localStorage.getItem("authToken");
     try {
       await API.get(
-        `https://artisanaid.onrender.com/v1/accept/verification/${verification._id}`,
+        `https://artisanaid.onrender.com/v1/accept/verification/${user._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account has been verified successfully");
@@ -94,21 +94,17 @@ const GetOnePendingUser = () => {
   };
 
   return (
-    <div className="pending-user-wrapper">
-      <h2 className="page-title">Pending User Verification</h2>
+    <div className="the_pending_user_wrapper">
       <div className="users-container">
-        <PendingUserCard
-          user={{ name: user.fullname, email: user.email, image: user.profilePic.image_url }}
-          onViewDetails={() => {}}
-        />
-
         <div className="certificate-section">
           <h3 className="section-title">Certificate Document</h3>
-          <img
-            src={verification.workCertificate.image_url}
-            alt="Certificate"
-            className="certificate-img"
-          />
+          <div className="certificate_item_image">
+            <img
+              src=""
+              // src={verification.workCertificate.image_url}
+              alt="Certificate"
+            />
+          </div>
         </div>
 
         <div className="guarantor-section">
@@ -118,7 +114,8 @@ const GetOnePendingUser = () => {
             <FaUserCircle className="guarantor-icon" />
             <div className="guarantor-details">
               <label className="guarantor-label">Guarantor's Name</label>
-              <span className="guarantor-value">{verification.guarantorName}</span>
+              <span className="guarantor-value">emmanuel</span>
+              {/* <span className="guarantor-value">{verification.guarantorName}</span> */}
             </div>
           </div>
 
@@ -126,7 +123,8 @@ const GetOnePendingUser = () => {
             <BsTelephoneFill className="guarantor-icon" />
             <div className="guarantor-details">
               <label className="guarantor-label">Guarantor's Phone Number</label>
-              <span className="guarantor-value">{verification.guarantorPhoneNumber}</span>
+              <span className="guarantor-value">0912353454</span>
+              {/* <span className="guarantor-value">{verification.guarantorPhoneNumber}</span> */}
             </div>
           </div>
         </div>

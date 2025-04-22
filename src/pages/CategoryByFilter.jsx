@@ -8,26 +8,19 @@ import Header from '../components/Header';
 import FooterSubstitute from '../components/FooterSubstitute';
 
 const CategoryByFilter = () => {
-  const { category } = useParams();
-  const decodedCategory = decodeURIComponent(category);
+  const { nameOfCategory } = useParams();
+//   const decodedCategory = decodeURIComponent(category);
   const [artisans, setArtisans] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(nameOfCategory)
 
-  const url = 'https://artisanaid.onrender.com/v1/artisans/category';
+  const url = `https://artisanaid.onrender.com/v1/artisan/category/${nameOfCategory}`;
 
   const getCategory = async () => {
-    if (!decodedCategory) {
-      toast.error("Invalid category.");
-      setLoading(false);
-      return;
-    }
-
     try {
-      const response = await axios.get(url, {
-        params: { category: decodedCategory }
-      });
-
-      console.log("API response:", response.data.data);
+      const response = await axios.get(url);
+      console.log(response)
+    //   console.log("API response:", response.data.data);
 
       if (Array.isArray(response.data.data) && response.data.data.length > 0) {
         setArtisans(response.data.data);
@@ -44,8 +37,8 @@ const CategoryByFilter = () => {
 
   useEffect(() => {
     getCategory();
-    document.title = `${decodedCategory} Services | ArtisanAid`;
-  }, [decodedCategory]);
+    document.title = `${nameOfCategory} Services | ArtisanAid`;
+  }, [nameOfCategory]);
 
   return (
     <div className='catfilter'>
@@ -54,7 +47,7 @@ const CategoryByFilter = () => {
       <div className='hero-pic'>
         <h3>Valued Services</h3>
         <h1>
-          Get <span style={{ color: 'rgba(255, 165, 0, 1)' }}>Satisfying</span> {decodedCategory} <br /> Services at your Finger Tip
+          Get <span style={{ color: 'rgba(255, 165, 0, 1)' }}>Satisfying</span> {nameOfCategory} <br /> Services at your Finger Tip
         </h1>
       </div>
 

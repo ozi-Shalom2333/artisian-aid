@@ -81,7 +81,7 @@ const Router = createBrowserRouter([
   },
   { path: '/signup', element: <SignUp /> },
   { path: '/login', element: <Login /> },
-  { path: '/category/:category', element: <CategoryByFilter /> },
+  { path: '/category/:nameOfCategory', element: <CategoryByFilter /> },
   { path: '/resetpassword/:token', element: <ResetPassword /> },
   { path: '/verificationmessage', element: <VerificationMessage /> },
   { path: '/authoption', element: <AuthOption /> },

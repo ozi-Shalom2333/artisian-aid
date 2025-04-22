@@ -279,7 +279,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   id="phoneNumber"
-                  placeholder="08012345678"
+                  placeholder="Type here"
                   value={formData.phoneNumber}
                   onChange={(e) => handleChange("phoneNumber", e.target.value)}
                   required

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';  
 import 'react-toastify/dist/ReactToastify.css';  
 import '../styles/resetpassword.css';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const ResetPassword = () => {
   const { token } = useParams();  
@@ -108,16 +109,38 @@ const ResetPassword = () => {
                             {errors.password && (
                               <p className="error-text">{errors.password}</p>
                             )}
+            <div className='passwordInputWrapper'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder='Type here'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span
+                className='toggleVisibilityIcon'
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </span>
+            </div>
           </div>
 
           <div className='verifyConfirmPasswordInput'>
             <p>Confirm Password</p>
-            <input
-              type='password'
-              placeholder='Type here'
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+            <div className='passwordInputWrapper'>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder='Type here'
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <span
+                className='toggleVisibilityIcon'
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </span>
+            </div>
           </div>
 
           {errorMessage && <p className='the_message'>{errorMessage}</p>}
@@ -136,4 +159,3 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
-

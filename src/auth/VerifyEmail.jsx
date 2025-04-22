@@ -12,40 +12,42 @@ const VerifyEmail = () => {
   const [isVerified, setIsVerified] = useState(false);
   const {token} = useParams()
 
-  // useEffect(() => {
-  //   const verifyAccount = async () => {
-  //     try {
-  //       const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
-  //       toast.success(response.data.message || "Account verified successfully!");
-  //       setIsVerified(true);
-  //       setTimeout(() => {
-  //         navigate('/login');
-  //       }, 3000);
-  //     } catch (error) {
-  //       console.error(error);
-  //       toast.error("Invalid or missing token.");
-  //       setTimeout(() => {
-  //         navigate('/error');
-  //       }, 3000);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const verifyAccount = async () => {
+      try {
+        setIsLoading(true)
+        const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
+        toast.success(response.data.message || "Account verified successfully!");
+        setIsVerified(true);
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+      } catch (error) {
+        console.error(error);
+        toast.error("Invalid or missing token.");
+        setTimeout(() => {
+          navigate('/error');
+        }, 3000);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //   if (token) {
-  //     verifyAccount();
-  //   } else {
-  //     toast.error("Invalid or missing token.");
-  //     setTimeout(() => {
-  //       navigate('/error');
-  //     }, 3000);
-  //     setIsLoading(false); 
-  //   }
-  // }, [token, navigate]);
+    if (token) {
+      verifyAccount();
+    } else {
+      toast.error("Invalid or missing token.");
+      setTimeout(() => {
+        navigate('/error');
+      }, 3000);
+      setIsLoading(false); 
+    }
+  }, [token, navigate]);
 
   const handleClick = () => {
     navigate('/login');
   };
+
 
   if (isLoading) {
     return (
@@ -53,13 +55,14 @@ const VerifyEmail = () => {
         <p>Verifying your account...</p>
       </div>
     );
+  } else{
+    null
   }
 
-  if (!isVerified) {
-    toast.error('User not verified')
-    return null;
-  }
+  if (!isVerified) return null;
 
+
+ 
   return (
     <>
       <div className='verifyEmailBody'>
@@ -72,7 +75,6 @@ const VerifyEmail = () => {
         </aside>
         <div className='verifyEmailSpanSection'>
           <span>You are set to continue</span>
-          {/* <p>taking the time, click on the link below to login</p> */}
         </div>
         <section className='verifyEmailLoginButton'>
           <button onClick={handleClick}>Login</button>

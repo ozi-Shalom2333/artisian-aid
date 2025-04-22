@@ -29,9 +29,9 @@ const HomePage = () => {
     getRecommendedArtisans();
   }, []);
 
-  const handleCategoryClick = (category) => {
-    const encodedCategory = encodeURIComponent(category);
-    navigate(`/category/${encodedCategory}`);
+  const handleCategoryClick = (nameOfCategory) => {
+    // const encodedCategory = encodeURIComponent(category);
+    navigate(`/category/${nameOfCategory}`);
   };
 
   return (

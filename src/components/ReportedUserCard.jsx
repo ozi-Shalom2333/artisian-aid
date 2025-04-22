@@ -3,13 +3,19 @@ import { FcCancel } from "react-icons/fc";
 import { PiWarningCircleLight } from "react-icons/pi";
 
 const ReportedUserCard = ({
+
   image,
   name,
-  onViewDetails,
+  showUserReport,
   status,
   email,
   verified,
 }) => {
+
+  // const handleViewDetails = ()=>{
+  //   setShowUserReport("item")
+  // }
+
   return (
     <div className="user-card">
       <div id="user-info">
@@ -22,7 +28,7 @@ const ReportedUserCard = ({
         <span className="user-name">{name}</span>
       </div>
       <span className="user-email">{email}</span>
-      <button className="view-details view-details2" onClick={onViewDetails}>
+      <button className="view-details view-details2" onClick={showUserReport}>
         View Details
       </button>
       <p className="user-card__status">{status}</p>

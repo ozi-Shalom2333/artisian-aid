@@ -2,7 +2,7 @@ import React from 'react'
 import { FaExclamation } from 'react-icons/fa' // npm install react-icons
 import '../../styles/Delete.css'
 
-const Delete = ({ onCancel, onConfirm  }) => {
+const Delete = ({ onCancel, onConfirm, promptStatus  }) => {
     return (
       <div className="modal-overlay">
         <div className="modal-content">
@@ -13,7 +13,7 @@ const Delete = ({ onCancel, onConfirm  }) => {
           <h2 className="modal-title">Are you sure?</h2>
   
           <p className="modal-text">
-            Are you sure you want to decline this user, this action cannot be undone
+            Are you sure you want to {promptStatus ? promptStatus : "decline"} this user, this action cannot be undone
           </p>
   
           <div className="modal-actions">

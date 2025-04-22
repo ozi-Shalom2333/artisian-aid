@@ -138,8 +138,23 @@ const UserProfile = () => {
       formattedPhone = '+234' + formattedPhone.slice(1);
     }
 
+    const phoneRegex = /^(?:\+234|0)[789][01]\d{8}$/;
+
+    if (!phoneRegex.test(bookingData.phoneNumber)) {
+      setError('Please enter a valid Nigerian phone number starting with 0 or +234');
+      setIsSubmittingBooking(false);
+      return;
+    }
+
+
+    let formattedPhone = bookingData.phoneNumber.trim();
+    if (formattedPhone.startsWith('0')) {
+      formattedPhone = '+234' + formattedPhone.slice(1);
+    }
+
     try {
       const response = await axios.post(
+        `${API_BASE_URL}/v1/book/artisan/${userId}`,
         `${API_BASE_URL}/v1/book/artisan/${userId}`,
         {
           serviceTitle: bookingData.serviceTitle,
@@ -164,8 +179,14 @@ const UserProfile = () => {
           case 400:
             setError(err.response.data?.message || 'Validation error');
             break;
+          case 400:
+            setError(err.response.data?.message || 'Validation error');
+            break;
           case 404:
             setError('Artisan not found');
+            break;
+          case 500:
+            setError('External Server Error');
             break;
           case 500:
             setError('External Server Error');
@@ -268,6 +289,7 @@ const UserProfile = () => {
           </div>
 
 
+
           {showBookingModal && (
             <div className="modal-overlay-g" onClick={() => setShowBookingModal(false)}>
               <div className="modal-content-1" onClick={(e) => e.stopPropagation()}>
@@ -300,7 +322,11 @@ const UserProfile = () => {
                           value={bookingData.phoneNumber}
                           onChange={handleBookingChange}
                           placeholder="e.g. 08012345678 or +2348012345678"
+                          placeholder="e.g. 08012345678 or +2348012345678"
                           required
+                          pattern="(?:\+234|0)[789][01]\d{8}"
+                          title="Enter a valid Nigerian phone number starting with 0 or +234"
+/>
                           pattern="(?:\+234|0)[789][01]\d{8}"
                           title="Enter a valid Nigerian phone number starting with 0 or +234"
 />
@@ -354,6 +380,7 @@ const UserProfile = () => {
               </div>
             </div>
           )}
+
 
 
           {showReportModal && (

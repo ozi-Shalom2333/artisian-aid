@@ -61,13 +61,10 @@ const Login = () => {
         const token = response.data.token;
 
         localStorage.setItem('authToken', token);
-        localStorage.setItem('employerToken', response.data.token);
         localStorage.setItem('userData', JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
         localStorage.setItem('userRole', userRole);
-        localStorage.setItem('report', response.data.token);
-         
-       
+        localStorage.setItem('jobPostImage',JSON.stringify(response.data.jobPostImage))
 
         toast.success(response.data.message || 'Login successful!');
         toast.info('Redirecting...');
@@ -95,7 +92,7 @@ const Login = () => {
       } else if (status === 401) {
         toast.error(errorMessage || 'Account not verified or is restricted.');
       } else {
-        toast.error(error?.response?.data?.message);
+        toast.error('Login failed. Please try again later.');
         console.error("Login Error:", error);
       }
     } finally {

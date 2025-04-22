@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/home.css';
-import Card from '../components/Card';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import '../styles/home.css'
+import Card from '../components/Card'
+import { RiArrowDropRightLine } from "react-icons/ri";
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import categoryListing from '../components/categoryList';
 import Carousel from '../components/Carousel';
 import { toast } from 'react-toastify';
 
 const HomePage = () => {
+  const [artisans, setArtisans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const [artisans, setArtisans] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();

@@ -76,7 +76,7 @@ const Router = createBrowserRouter([
     children: [
       { path: '/employerdashboard', element: <EmployerDash /> },
       { path: '/userprofile/:userId', element: <UserProfile /> },
-      { path: '/subscriptionverified', element: <SubscriptionVerification /> },
+   
     ],
   },
   { path: '/signup', element: <SignUp /> },
@@ -88,6 +88,7 @@ const Router = createBrowserRouter([
   { path: '/forget', element: <ForgetPassword /> },
   { path: '/employersignup', element: <EmployerSignUp /> },
   { path: '/resetsuccess', element: <ResetPasswordSuccessfulMessage /> },
+  { path: '/subscriptionverified', element: <SubscriptionVerification /> },
   { path: '/resetmessage', element: <ResetPasswordMessage /> },
 { path: '/verifyemail/:token', element: <VerifyEmail />},
   { path: '*', element: <NotFound /> },

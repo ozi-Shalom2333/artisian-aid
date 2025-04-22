@@ -102,9 +102,11 @@ const ArtisanVerification = () => {
     }
   };
 
+  console.log(verificationStatus)
+
   return (
     <div className="guarantor-container">
-      {verificationStatus === "Declined" ?
+      {verificationStatus == "Unverified" ?
         <>
           <h2>Please Fill & Upload necessary Information for verification</h2>
           <p className="subtitle">
@@ -170,7 +172,7 @@ const ArtisanVerification = () => {
           </form>
         </>
         :
-        verificationStatus === "Pending" ?
+        verificationStatus === "pending" ?
         <div className="pending-verification">
           <h2>Verification Pending</h2>
           <p>Your verification is currently under review. Please check back later.</p>

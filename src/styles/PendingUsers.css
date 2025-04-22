@@ -1,5 +1,5 @@
 .pending-users-wrapper {
-    background-color: #e7ecff;
+    background-color: #e7ecff !important;
     width: 100%;
     min-height: 100vh;
     padding: 40px;
@@ -24,7 +24,7 @@
   }
   
   .user-card {
-    background-color: #e4ebfe;
+    background-color: #e4ebfe !important;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@
   .user_report_card_button button{
     width: max-content;
     height: max-content;
-    background-color: #3164f4;
+    background-color: #3164f4 !important;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -78,7 +78,7 @@
 
   #reported-card {
     width: 100%;
-    background-color: #e4ebfe;
+    background-color: #e4ebfe !important;
     border-radius: 10px;
     display: flex;
     align-items: center;

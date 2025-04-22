@@ -15,6 +15,7 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verifyAccount = async () => {
       try {
+        setIsLoading(true)
         const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
         toast.success(response.data.message || "Account verified successfully!");
         setIsVerified(true);
@@ -47,19 +48,21 @@ const VerifyEmail = () => {
     navigate('/login');
   };
 
+
   if (isLoading) {
     return (
       <div className="loadingModal">
         <p>Verifying your account...</p>
       </div>
     );
+  } else{
+    null
   }
 
-  if (!isVerified) {
-    toast.error('User not verified')
-    return null;
-  }
+  if (!isVerified) return null;
 
+
+ 
   return (
     <>
       <div className='verifyEmailBody'>
@@ -72,7 +75,6 @@ const VerifyEmail = () => {
         </aside>
         <div className='verifyEmailSpanSection'>
           <span>You are set to continue</span>
-          {/* <p>taking the time, click on the link below to login</p> */}
         </div>
         <section className='verifyEmailLoginButton'>
           <button onClick={handleClick}>Login</button>

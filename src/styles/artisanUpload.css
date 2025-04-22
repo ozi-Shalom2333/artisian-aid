@@ -140,12 +140,13 @@
   background-color: #d9534f; /* Red for delete */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
   font-weight: bold;
   margin: 10px;
+  
 }
 
 .delete-post-button:hover {
@@ -153,7 +154,7 @@
 }
 
 .edit-post-button {
-  background-color: #5bc0de; /* Blue for edit */
+  background-color: #5bc0de; 
 }
 
 .edit-post-button:hover {

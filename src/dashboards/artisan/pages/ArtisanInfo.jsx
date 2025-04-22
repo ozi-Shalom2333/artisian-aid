@@ -94,7 +94,7 @@ const ArtisanInfo = () => {
         }));
       } else {
         toast.error("Failed to update profile picture.");
-        // toast.error("Failed to update profile picture.");
+
       }
     } catch (error) {
       console.error("Error updating profile picture:", error);
@@ -201,7 +201,7 @@ const ArtisanInfo = () => {
         </div>
         <button
           className="verify"
-          onClick={handleVerificationApproval} // Simulate approval
+          onClick={handleVerificationApproval} 
         >
           Complete Verification
         </button>
@@ -259,7 +259,7 @@ const ArtisanInfo = () => {
         </div>
 
         <div className="lga-row-wrapper">
-          <div className="lga-row">
+          <div className="lga-row"> 
             <select
               className="lga-select"
               value={lga}
@@ -289,11 +289,8 @@ const ArtisanInfo = () => {
               <option value="Surulere">Surulere</option>
             </select>
           </div>
-          <select className="lag">
-            <option value="Lagos">Lagos</option>
-          </select>
+        <h3 className="lag">Lagos</h3>
         </div>
-
         <div className="social-row">
           <input
             type="text"
@@ -310,6 +307,7 @@ const ArtisanInfo = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             disabled={!isEditing}
+            className="bio-textarea"
           />
         </div>
 

@@ -19,7 +19,7 @@ const CATEGORIES = [
   "Electrical Services",
   "Painting Services",
   "Gardening Services",
-  "Laundary Services",
+  "Laudary Services",
 ];
 
 const SignUp = () => {
@@ -228,7 +228,7 @@ const SignUp = () => {
 
         {/* Header / Branding */}
         <header className="signup-header">
-          <div className="logo">
+          <div className="logo" onClick={() => navigate("/")}>
             <img src="/Artisan.png" alt="ArtisanAid Logo" />
           </div>
         </header>
@@ -279,7 +279,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   id="phoneNumber"
-                  placeholder="08012345678"
+                  placeholder="Type here"
                   value={formData.phoneNumber}
                   onChange={(e) => handleChange("phoneNumber", e.target.value)}
                   required
@@ -344,7 +344,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   id="confirmPassword"
-                  style={{maxHeight:'7vh'}}
+                  // style={{maxHeight:'7vh'}}
                   placeholder="Type here"
                   value={formData.confirmPassword}
                   onChange={(e) =>

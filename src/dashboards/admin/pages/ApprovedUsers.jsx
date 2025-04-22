@@ -54,8 +54,33 @@ const ApprovedUsers = () => {
     
   };
 
-  if (loading)
-    return <div className="loading">Loading approved artisans...</div>;
-  if (error) return <div className="error">{error}</div>;
+  return(
+    <>
+      {
+        loading ? <div className="loading">Loading approved artisans...</div> : 
+        <div className="pending-users-wrapper">
+          <h2 className="title">Approved Users ({artisans.length})</h2>
+          <div className="users-container">
+            {
+              artisans?.map((item)=>(
+                <ApprovedUserCard
+                  key={item._id}
+                  image={item.image}
+                  name={item.fullname}
+                  onViewDetails={handleViewDetails}
+                  status={item.verificationStatus}
+                  email={item.email}
+                  verified={item.verified}
+                />
+              ))
+            }
+          </div>
+        </div>
+      }
+      {
+        error &&  <div className="error">{error}</div>
+      }
+    </>
+  )
 };
 export default ApprovedUsers;

@@ -91,7 +91,7 @@ const Login = () => {
       } else if (status === 401) {
         toast.error(errorMessage || 'Account not verified or is restricted.');
       } else {
-        toast.error('Login failed. Please try again later.');
+        toast.error(error?.response?.data?.message);
         console.error("Login Error:", error);
       }
     } finally {

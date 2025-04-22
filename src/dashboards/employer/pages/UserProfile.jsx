@@ -124,13 +124,26 @@ const UserProfile = () => {
     setIsSubmittingBooking(true);
     setError(null);
 
+    const phoneRegex = /^(?:\+234|0)[789][01]\d{8}$/;
+
+    if (!phoneRegex.test(bookingData.phoneNumber)) {
+      setError('Please enter a valid Nigerian phone number starting with 0 or +234');
+      setIsSubmittingBooking(false);
+      return;
+    }
+
+
+    let formattedPhone = bookingData.phoneNumber.trim();
+    if (formattedPhone.startsWith('0')) {
+      formattedPhone = '+234' + formattedPhone.slice(1);
+    }
+
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/v1/book/artisan`,
+        `${API_BASE_URL}/v1/book/artisan/${userId}`,
         {
-          artisanId: userId,
           serviceTitle: bookingData.serviceTitle,
-          phoneNumber: bookingData.phoneNumber,
+          phoneNumber: formattedPhone,
           location: bookingData.address,
           serviceDescription: bookingData.serviceDescription
         },
@@ -148,8 +161,14 @@ const UserProfile = () => {
     } catch (err) {
       if (err.response) {
         switch (err.response.status) {
+          case 400:
+            setError(err.response.data?.message || 'Validation error');
+            break;
           case 404:
             setError('Artisan not found');
+            break;
+          case 500:
+            setError('External Server Error');
             break;
           default:
             setError(err.response.data?.message || 'Error booking artisan');
@@ -248,7 +267,7 @@ const UserProfile = () => {
             )}
           </div>
 
-          
+
           {showBookingModal && (
             <div className="modal-overlay-g" onClick={() => setShowBookingModal(false)}>
               <div className="modal-content-1" onClick={(e) => e.stopPropagation()}>
@@ -280,9 +299,11 @@ const UserProfile = () => {
                           name="phoneNumber"
                           value={bookingData.phoneNumber}
                           onChange={handleBookingChange}
-                          placeholder="e.g. +2348123456789"
+                          placeholder="e.g. 08012345678 or +2348012345678"
                           required
-                        />
+                          pattern="(?:\+234|0)[789][01]\d{8}"
+                          title="Enter a valid Nigerian phone number starting with 0 or +234"
+/>
                       </div>
 
                       <div className="form-group-71">
@@ -334,7 +355,7 @@ const UserProfile = () => {
             </div>
           )}
 
-        
+
           {showReportModal && (
             <div className="modal-overlay" onClick={() => setShowReportModal(false)}>
               <div className="modal-content-2" onClick={(e) => e.stopPropagation()}>

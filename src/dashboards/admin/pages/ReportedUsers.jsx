@@ -4,13 +4,18 @@ import "../../../styles/reporteduser.css";
 import { useNavigate } from "react-router-dom";
 import ReportedUserCard from "../../../components/ReportedUserCard";
 import UserReportCard from "../../../components/UserReportCard";
+import Delete from "../../../components/modals/Delete";
+import { toast } from "react-toastify";
 
 const ReportedUser = () => {
   const [artisans, setArtisans] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showUserReport, setShowUserReport] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [promptStatus, setPromptStatus] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchDeclinedArtisans = async () => {
@@ -18,7 +23,6 @@ const ReportedUser = () => {
       setError("");
 
       try {
-        const token = localStorage.getItem("authToken");
         if (!token) {
           throw new Error("Authentication token is missing.");
         }
@@ -31,6 +35,7 @@ const ReportedUser = () => {
             },
           }
         );
+        console.log(response);
 
         setArtisans(response.data.data);
       } catch (err) {
@@ -45,40 +50,99 @@ const ReportedUser = () => {
     fetchDeclinedArtisans();
   }, []);
 
-  const handleViewDetails = () => {
-    navigate("/admindashboard/getOneReported");
+  const openModal = (prompt) => {
+    setPromptStatus(prompt);
+    setShowModal(true);
   };
+
+  const restrictArtisan = async (id) => {
+    try{
+      if (!token) {
+        throw new Error("Authentication token is missing.");
+      }
+
+      const response = await axios.post(
+        `https://artisanaid.onrender.com/v1/restrict/account/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  const deleteArtisan = async (id) => {
+    try{
+      if (!token) {
+        throw new Error("Authentication token is missing.");
+      }
+
+      const response = await axios.delete(
+        `https://artisanaid.onrender.com/v1/delete/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      toast.success(response.data.message)
+      
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  const confirmFunction = async (id) => {
+    promptStatus == "restrict" ? await restrictArtisan(id) : await deleteArtisan(id);
+    setShowModal(false)
+    // promptStatus == "restrict" ? alert("restrict user") : alert("delete user");
+  }
 
   return (
     <div className="pending-users-wrapper">
       <h2 className="title">Reported User Verification</h2>
       <div className="users-container">
-        {artisans.map((item) => (
-          <div className="reported_card_details">
-            <ReportedUserCard
-              // key={user.id}
-              name="Victoria Trust"
-              email="Text@gmail.com"
-              image=""
-              setShowUserReport={setShowUserReport}
-              status={"Declined"}
-            />
-            {
-              showUserReport == "item" ? 
-                <div className='user_report_card_body'>
-                  <h3>User Reports</h3>
-                  <div className="user_report_card_container">
-                    <UserReportCard/>
+        {
+          artisans.length === 0 ? (
+            <p className="no-users">No reported artisans</p>
+          ) : 
+          artisans.map((item) => (
+            <div className="reported_card_details">
+              <ReportedUserCard
+                key={item._id}
+                name={item.fullname}
+                email={item.email}
+                image=""
+                showUserReport={()=>showUserReport == item._id ? setShowUserReport(false) : setShowUserReport(item._id)}
+                status={item.verificationStatus}
+              />
+              {
+                showUserReport == item._id ? 
+                  <div className='user_report_card_body'>
+                    <h3>User Reports</h3>
+                    <div className="user_report_card_container">
+                      <UserReportCard/>
+                    </div>
+                    <div className="user_report_card_button">
+                      <button onClick={()=>openModal("restrict")}>Restrict user</button>
+                      <button onClick={()=>openModal("delete")}>Delete user</button>
+                    </div>
+                    {
+                      showModal ?
+                        <Delete promptStatus = {promptStatus} onCancel={()=>setShowModal(false)} onConfirm={()=>confirmFunction(item._id)}/>
+                      : null
+                    }
                   </div>
-                  <div className="user_report_card_button">
-                    <button>Restrict user</button>
-                    <button>Delete user</button>
-                  </div>
-                </div>
-              : null
-            }
-          </div>
-        ))}
+                : null
+              }
+            </div>
+          ))
+        }
       </div>
     </div>
   );

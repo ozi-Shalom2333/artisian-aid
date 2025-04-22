@@ -12,6 +12,15 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [touched, setTouched] = useState(false);
+
+  const passwordRequirements = [
+    { label: "At least 8 characters", regex: /.{8,}/ },
+    { label: "At least one uppercase letter", regex: /[A-Z]/ },
+    { label: "At least one lowercase letter", regex: /[a-z]/ },
+    { label: "At least one number", regex: /[0-9]/ },
+    { label: "At least one special character (!@#$%^&*)", regex: /[!@#$%^&*]/ }
+  ];
 
   const baseURL = 'https://artisanaid.onrender.com'; 
 
@@ -32,7 +41,7 @@ const ResetPassword = () => {
     try {
       const response = await axios.post(
         `${baseURL}/v1/reset/password/${token}`,
-        { Password: password, confirmPassword }
+        { password: password, confirmPassword }
       );
       console.log(password, confirmPassword)
       toast.success(response.data.message || 'Password reset successful!');
@@ -76,7 +85,29 @@ const ResetPassword = () => {
               placeholder='Type here'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setTouched(true)}
+              required
             />
+            {touched && formData.password && (
+                              <ul className="password-requirements">
+                                {passwordRequirements.map((req, index) => {
+                                  const isValid = req.regex.test(formData.password);
+                                  return (
+                                    <li
+                                      key={index}
+                                      className={`requirement ${
+                                        isValid ? "valid" : "invalid"
+                                      }`}
+                                    >
+                                      {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            )}
+                            {errors.password && (
+                              <p className="error-text">{errors.password}</p>
+                            )}
           </div>
 
           <div className='verifyConfirmPasswordInput'>

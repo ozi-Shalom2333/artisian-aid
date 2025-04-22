@@ -12,22 +12,28 @@ import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import ArtisanSubscription from "./pages/ArtisanSubscription";
 import { CiLogout } from "react-icons/ci";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const ArtisanDashoard = () => {
+const ArtisanDashboard = () => {
   const [activeTab, setActiveTab] = useState("personal-info");
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    setIsSidebarOpen(false); // Close sidebar on mobile
   };
-  const navigate = useNavigate();
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      console.log(token);
       const response = await axios.get(
         "https://artisanaid.onrender.com/v1/logout",
         {
@@ -36,11 +42,10 @@ const ArtisanDashoard = () => {
           },
         }
       );
-      console.log(response);
       if (response.status === 200) {
         toast.success("Logout successful!");
         localStorage.removeItem("authToken");
-        window.location.href = "/";
+        navigate("/");
       } else {
         toast.error("Failed to log out. Please try again.");
       }
@@ -54,7 +59,12 @@ const ArtisanDashoard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="sidebar">
+      <button className="mobile-menu-toggle" onClick={toggleSidebar}>
+        <GiHamburgerMenu size={24} />
+      </button>
+
+      {isSidebarOpen && <div className="sidebar-overlay" onClick={toggleSidebar} />}
+      <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
         <div className="logo" onClick={() => navigate("/")}>
           ArtisanAid.
         </div>
@@ -65,25 +75,19 @@ const ArtisanDashoard = () => {
               My Profile
             </li>
             <li
-              className={`nav-link ${
-                activeTab === "personal-info" ? "nav-link-active" : ""
-              }`}
+              className={`nav-link ${activeTab === "personal-info" ? "nav-link-active" : ""}`}
               onClick={() => handleTabClick("personal-info")}
             >
               Personal Information
             </li>
             <li
-              className={`nav-link ${
-                activeTab === "account" ? "nav-link-active" : ""
-              }`}
+              className={`nav-link ${activeTab === "account" ? "nav-link-active" : ""}`}
               onClick={() => handleTabClick("account")}
             >
               Account Verification
             </li>
             <li
-              className={`nav-link ${
-                activeTab === "security" ? "nav-link-active" : "nav-link"
-              }`}
+              className={`nav-link ${activeTab === "security" ? "nav-link-active" : ""}`}
               onClick={() => handleTabClick("security")}
             >
               Privacy & Security
@@ -93,30 +97,23 @@ const ArtisanDashoard = () => {
               Job Management
             </li>
             <li
-              className={`nav-link ${
-                activeTab === "job-post" ? "nav-link-active" : ""
-              }`}
+              className={`nav-link ${activeTab === "job-post" ? "nav-link-active" : ""}`}
               onClick={() => handleTabClick("job-post")}
             >
               Upload Job Post
             </li>
             <li
-              className={`nav-link ${
-                activeTab === "notification" ? "nav-link-active" : ""
-              }`}
+              className={`nav-link ${activeTab === "notification" ? "nav-link-active" : ""}`}
               onClick={() => handleTabClick("notification")}
             >
               Job Notification
             </li>
-          
             <li className="admin-management-header">
               <MdCurrencyExchange size={20} />
               Subscription
             </li>
             <li
-              className={`nav-link ${
-                activeTab === "subscription" ? "nav-link-active" : ""
-              }`}
+              className={`nav-link ${activeTab === "subscription" ? "nav-link-active" : ""}`}
               onClick={() => handleTabClick("subscription")}
             >
               Subscription Plan
@@ -153,16 +150,10 @@ const ArtisanDashoard = () => {
             <h3>Confirm Logout</h3>
             <p>Are you sure you want to log out?</p>
             <div className="modal-actions-logout">
-              <button
-                onClick={() => setShowLogoutModal(false)}
-                className="cancel-btn-logout"
-              >
+              <button onClick={() => setShowLogoutModal(false)} className="cancel-btn-logout">
                 Cancel
               </button>
-              <button
-                onClick={() => handleLogout()}
-                className="logout-btn-logout"
-              >
+              <button onClick={handleLogout} className="logout-btn-logout">
                 Logout
               </button>
             </div>
@@ -173,4 +164,4 @@ const ArtisanDashoard = () => {
   );
 };
 
-export default ArtisanDashoard;
+export default ArtisanDashboard;

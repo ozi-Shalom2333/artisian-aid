@@ -1,183 +1,177 @@
-import React, { useState, useEffect } from 'react'
-import '../styles/home.css'
-import Card from '../components/Card'
-import { RiArrowDropRightLine } from "react-icons/ri";
-import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import '../styles/home.css';
+import Card from '../components/Card';
+import { RiArrowDropRightLine } from 'react-icons/ri';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import categoryListing from '../components/categoryList';
 import Carousel from '../components/Carousel';
-
 import { toast } from 'react-toastify';
 
-
 const HomePage = () => {
-  
-  const [artisans, setArtisans] = useState([])  
-  const [error, setError] = useState(null)
- 
+  const [artisans, setArtisans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getRecommededArtisans = async () => {
+    const getRecommendedArtisans = async () => {
       try {
         const response = await axios.get('https://artisanaid.onrender.com/v1/recommended/artisans');
-        console.log(response.data.data);
-        setArtisans(response.data.data)
- 
+        setArtisans(response.data.data || []);
       } catch (error) {
-        console.log(error);
-         toast.error( error.response?.data?.message);
+        console.error(error);
+        toast.error(error?.response?.data?.message || 'Failed to fetch recommended artisans.');
+      } finally {
         setLoading(false);
       }
     };
 
-    getRecommededArtisans();
+    getRecommendedArtisans();
   }, []);
-  const navigate = useNavigate();
+
   const handleCategoryClick = (category) => {
-    navigate(`/category/${category}`);
+    const encodedCategory = encodeURIComponent(category);
+    navigate(`/category/${encodedCategory}`);
   };
-  
+
   return (
     <div className='HomePage'>
-       <div className='homePage__hero1'>
-       <h1>Transform Your <span style={{color:' #FFA500'}}> Skills </span> Into <br /> Opportunities</h1>
-           <p>Connect with clients, grow your business, 
-            and build <br /> a brighter future with ArtisanAid. 
-           <b> Sign up now and <br /> start building your success story!"
-           </b></p>
-           <div className='homePage__hero1__btns'>
-            <button>
-              <NavLink to="/authoption" style={{textDecoration:'none', color:'white'}}>
+      <div className='homePage__hero1'>
+        <h1>Transform Your <span style={{ color: '#FFA500' }}>Skills</span> Into <br /> Opportunities</h1>
+        <p>
+          Connect with clients, grow your business, and build <br />
+          a brighter future with ArtisanAid. <b>Sign up now and <br />
+          start building your success story!</b>
+        </p>
+        <div className='homePage__hero1__btns'>
+          <button>
+            <NavLink to="/authoption" style={{ textDecoration: 'none', color: 'white' }}>
               Get Started Now
-              </NavLink>
-              </button>
-            <button>
-              <NavLink to="/category" style={{textDecoration:'none', color:'white'}}>
+            </NavLink>
+          </button>
+          <button>
+            <NavLink to="/category" style={{ textDecoration: 'none', color: 'white' }}>
               Book Now
-              </NavLink>
-              </button>
-           </div>
+            </NavLink>
+          </button>
         </div>
-       <div className='homePage__hero2'>
-          <div>
-            <h1>Reliable. <span style={{color:' #FFA500'}}>Efficient.</span>  Quality <br /> Guaranteed.</h1>
-            <p>Find trusted artisans for all your home improvement <br /> needs as a busy professional.</p>
-            <section className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
+      </div>
+
+      <div className='homePage__hero2'>
+        <div>
+          <h1>Reliable. <span style={{ color: '#FFA500' }}>Efficient.</span> Quality <br /> Guaranteed.</h1>
+          <p>
+            Find trusted artisans for all your home improvement <br />
+            needs as a busy professional.
+          </p>
+          <section className='explore-artisans' onClick={() => navigate('/artisanpage')}>
             <p>Explore Artisans</p>
-            <RiArrowDropRightLine size={25}/>
-            </section>
-            <section>
-              <div>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt=""  />
-                <p>Efficient</p>
-              </div>
-              <div>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="" />
-                <p>Flexible</p>
-              </div>
-              <div>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="" />
-                <p>Trustworthy</p>
-              </div>
-            </section>
-          </div>
-          <div className='homePage__hero2__img'>
-             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
-          </div>
+            <RiArrowDropRightLine size={25} />
+          </section>
+          <section>
+            <div>
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt="Efficient" />
+              <p>Efficient</p>
             </div>
+            <div>
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="Flexible" />
+              <p>Flexible</p>
+            </div>
+            <div>
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="Trustworthy" />
+              <p>Trustworthy</p>
+            </div>
+          </section>
+        </div>
+        <div className='homePage__hero2__img'>
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="Hero" />
+        </div>
+      </div>
 
-       {/* mobile responsiveness setup */}
-       
-       
-          <div className='homePage__hero2__mobile'>
-            <h1>Reliable. <span>Efficient.</span> Quality  <br /> Guaranteed.</h1>
-            <p>Find trusted artisans for all your home improvement needs as a busy professional.</p>
-            <section className='home-h2-d2' >
-            <aside className='sect-mobile'>
-               <section className='explore-artisans' onClick={()=> navigate('/artisanpage')}>
+      {/* Mobile Responsive Section */}
+      <div className='homePage__hero2__mobile'>
+        <h1>Reliable. <span>Efficient.</span> Quality <br /> Guaranteed.</h1>
+        <p>Find trusted artisans for all your home improvement needs as a busy professional.</p>
+        <section className='home-h2-d2'>
+          <aside className='sect-mobile'>
+            <section className='explore-artisans' onClick={() => navigate('/artisanpage')}>
               <p>Explore Artisans</p>
-              <RiArrowDropRightLine size={25}/>
-              </section>
-              <div>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt=""  />
-                <p>Efficient</p>
-              </div>
-              <div>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="" />
-                <p>Flexible</p>
-              </div>
-              <div>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="" />
-                <p>Trustworthy</p>
-              </div>
-
-            </aside>
-
-              <div className='homePage__hero2__img'>
-                <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="" />
-              </div>
+              <RiArrowDropRightLine size={25} />
             </section>
-          </div>
-
-
-
-       <div className='homePage__hero3'>
-          <aside >
-          <h1>Discover Our <span style={{color:'#FFA500'}}>Artisans</span> Categories</h1>
-          <h3>Browse our categories to find the perfect professional for your needs.</h3>
+            <div>
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt="Efficient" />
+              <p>Efficient</p>
+            </div>
+            <div>
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="Flexible" />
+              <p>Flexible</p>
+            </div>
+            <div>
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="Trustworthy" />
+              <p>Trustworthy</p>
+            </div>
           </aside>
-          <div className='homePage__hero3__category'>
-             {categoryListing.map((category, index) => (
+          <div className='homePage__hero2__img'>
+            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="Hero" />
+          </div>
+        </section>
+      </div>
 
-             <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
-                <img src={category.image} alt="" />
-                <p>{category.text}</p>
-            </div>
-         ))}
-          </div>
-          <div className='seeMore' onClick={()=> navigate('/category')}>
-            <p>See more</p>
-            <RiArrowDropRightLine size={25}/>
-          </div>
-       </div>
-       <div className='recommendedart'>
-            <h1>Top Recommended Artisan <br /> Services</h1>
-            <div className='catfilter-card'>
-                    {
-                        artisans.map((e)=>(
-                            <Card data = {e}/>
-                        ))
-                    }
-            </div>
-          </div>
-
-       {/* mobile set up for categories */}
-       <div className='homePage__hero3_mobile'>
-          <aside >
-          <h1>Discover Our <span style={{color:'#FFA500'}}>Artisans</span> Categories</h1>
+      <div className='homePage__hero3'>
+        <aside>
+          <h1>Discover Our <span style={{ color: '#FFA500' }}>Artisans</span> Categories</h1>
           <h3>Browse our categories to find the perfect professional for your needs.</h3>
-          </aside>
-          <div className='homePage__hero3__category'>
-             {categoryListing.map((category, index) => (
-
-             <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
-                <img src={category.image} alt="" />
-                <p>{category.text}</p>
+        </aside>
+        <div className='homePage__hero3__category'>
+          {categoryListing.map((category, index) => (
+            <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
+              <img src={category.image} alt={category.text} />
+              <p>{category.text}</p>
             </div>
-         ))}
-          </div>
-          
-          
-       </div>
+          ))}
+        </div>
+        <div className='seeMore' onClick={() => navigate('/category')}>
+          <p>See more</p>
+          <RiArrowDropRightLine size={25} />
+        </div>
+      </div>
 
-       <div className='homePage__carousel'>
-            <h3>Testimonials</h3>
-            <h1>Hear from Our  <span style={{color:'#2F80ED'}}>Satisfied</span> <br /> Employers</h1>
-            <Carousel/>
-       </div>
-      
+      <div className='recommendedart'>
+        <h1>Top Recommended Artisan <br /> Services</h1>
+        <div className='catfilter-card'>
+          {loading ? (
+            <p>Loading recommended artisans...</p>
+          ) : artisans.length > 0 ? (
+            artisans.map((e) => <Card key={e._id} data={e} />)
+          ) : (
+            <p>No recommended artisans available.</p>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile category listing */}
+      <div className='homePage__hero3_mobile'>
+        <aside>
+          <h1>Discover Our <span style={{ color: '#FFA500' }}>Artisans</span> Categories</h1>
+          <h3>Browse our categories to find the perfect professional for your needs.</h3>
+        </aside>
+        <div className='homePage__hero3__category'>
+          {categoryListing.map((category, index) => (
+            <div key={index} className='homePage__hero3__categories' onClick={() => handleCategoryClick(category.text)}>
+              <img src={category.image} alt={category.text} />
+              <p>{category.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className='homePage__carousel'>
+        <h3>Testimonials</h3>
+        <h1>Hear from Our <span style={{ color: '#2F80ED' }}>Satisfied</span> <br /> Employers</h1>
+        <Carousel />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

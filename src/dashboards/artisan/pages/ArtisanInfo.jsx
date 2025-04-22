@@ -94,7 +94,7 @@ const ArtisanInfo = () => {
         }));
       } else {
         toast.error("Failed to update profile picture.");
-        // toast.error("Failed to update profile picture.");
+
       }
     } catch (error) {
       console.error("Error updating profile picture:", error);

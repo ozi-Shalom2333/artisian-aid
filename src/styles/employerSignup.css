@@ -185,13 +185,15 @@
 
 .employerSignUp__toggleEye {
   position: absolute;
-  top: 20px;
+  top: 59%;
   right: 10px;
+  transform: translateY(-50%);
   cursor: pointer;
   color: #999;
   font-size: 1.2rem;
   transition: color 0.2s ease;
 }
+
 
 .employerSignUp__toggleEye:hover {
   color: #333;

@@ -45,6 +45,8 @@ const ArtisanDashboard = () => {
       if (response.status === 200) {
         toast.success("Logout successful!");
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userData");
+        localStorage.removeItem("jobPostImage");
         navigate("/");
       } else {
         toast.error("Failed to log out. Please try again.");

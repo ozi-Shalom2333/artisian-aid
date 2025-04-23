@@ -13,7 +13,7 @@ const ArtisanUpload = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
-  const [jobPosts, setJobPosts] = useState(localStorage.getItem('jobPostImage'));
+  const [jobPosts, setJobPosts] = useState(JSON.parse(localStorage.getItem("jobPostImage")) || {});
   console.log(jobPosts)
   const baseUrl = "https://artisanaid.onrender.com";
 
@@ -83,7 +83,7 @@ const ArtisanUpload = () => {
 
       if (imageUrl) setImagePreview(imageUrl);
 
-      if (newJobPost) setJobPosts((prev) => [...prev, newJobPost]);
+      // if (newJobPost) setJobPosts((prev) => [...prev, newJobPost]);
 
       toast.success("Job uploaded successfully!");
       setUploadSuccess(true);
@@ -99,77 +99,77 @@ const ArtisanUpload = () => {
   const handleDeletePost = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      console.log(first)
-      await axios.delete(`${baseUrl}/v1/delete/job/${userData._id}`, {
+      console.log(token)
+      await axios.delete(`${baseUrl}/v1/delete/job/${jobPosts._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      localStorage.removeItem("jobPostImage");
+      setJobPosts({});
       toast.success("Job post deleted successfully!");
-      setJobPosts(jobPosts.filter((post) => post._id !== jobPostId));
+      // setJobPosts(jobPosts.filter((post) => post._id !== jobPostId));
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete job post.");
     }
   };
-console.log(jobPosts)
-  if (jobPosts.image_url) {
     return (
-      <div className="job-post-container">
-        <h1>Job Post</h1>
-        <p>Your job post has been successfully uploaded!</p>
-        {/* {imagePreview && (
+      <>
+        {
+          jobPosts?.jobImage ? <div className="job-post-container">
+          <h1>Job Post</h1>
+          <p>Your job post has been successfully uploaded!</p>
+          {/* {imagePreview && (
+            <div className="image-preview-container">
+              <h3>Uploaded Image</h3>
+              <div className="image-preview">
+                <img src={imagePreview} alt="Uploaded Job Post" className="preview-img" />
+              </div>
+            </div>
+          )} */} 
+          <div className="job-post-list">
+              <div className="job-post-item">
+                <img src={jobPosts?.jobImage?.image_url} alt="Job" className="preview-img" />
+  
+              </div>
+                <button className="delete-post-button" onClick={()=>handleDeletePost()}>Delete</button>
+          </div>
+        </div> : 
+        <div className="upload-job-container">
+        <h1>Upload a Job Post</h1>
+        <p className="upload-subtitle">You can easily upload your job post here.</p>
+  
+        <div className="upload-box" onDrop={handleDrop} onDragOver={handleDragOver}>
+          <div className="upload-icon">
+            <AiOutlineCloudUpload size={50} color="#888" />
+          </div>
+          <p className="drag-drop-text">Drag & drop files here</p>
+          <p className="file-types-text">(PDF or image files are allowed)</p>
+          <input type="file" id="fileInput" onChange={handleFileChange} style={{ display: "none" }} />
+          <button className="select-file-button" onClick={() => document.getElementById("fileInput").click()}>
+            Select File
+          </button>
+        </div>
+  
+        {imagePreview && (
           <div className="image-preview-container">
-            <h3>Uploaded Image</h3>
+            <h3>Uploaded Image Preview</h3>
             <div className="image-preview">
-              <img src={imagePreview} alt="Uploaded Job Post" className="preview-img" />
+              <img src={imagePreview} alt="Selected Preview" className="preview-img" />
             </div>
           </div>
-        )} */} 
-        <div className="job-post-list">
-            <div className="job-post-item">
-              <img src={jobPosts.image_url} alt="Job" className="preview-img" />
-
-            </div>
-              <button className="delete-post-button" onClick={handleDeletePost}>Delete</button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="upload-job-container">
-      <h1>Upload a Job Post</h1>
-      <p className="upload-subtitle">You can easily upload your job post here.</p>
-
-      <div className="upload-box" onDrop={handleDrop} onDragOver={handleDragOver}>
-        <div className="upload-icon">
-          <AiOutlineCloudUpload size={50} color="#888" />
-        </div>
-        <p className="drag-drop-text">Drag & drop files here</p>
-        <p className="file-types-text">(PDF or image files are allowed)</p>
-        <input type="file" id="fileInput" onChange={handleFileChange} style={{ display: "none" }} />
-        <button className="select-file-button" onClick={() => document.getElementById("fileInput").click()}>
-          Select File
+        )}
+  
+        <button className="upload-post-button" onClick={handleUpload} disabled={loading}>
+          {loading ? "Uploading..." : "Upload Post"}
         </button>
+  
+        <ToastContainer position="top-right" autoClose={4000} />
       </div>
-
-      {imagePreview && (
-        <div className="image-preview-container">
-          <h3>Uploaded Image Preview</h3>
-          <div className="image-preview">
-            <img src={imagePreview} alt="Selected Preview" className="preview-img" />
-          </div>
-        </div>
-      )}
-
-      <button className="upload-post-button" onClick={handleUpload} disabled={loading}>
-        {loading ? "Uploading..." : "Upload Post"}
-      </button>
-
-      <ToastContainer position="top-right" autoClose={4000} />
-    </div>
-  );
-};
+        }
+      </>
+    )
+}
 
 export default ArtisanUpload;

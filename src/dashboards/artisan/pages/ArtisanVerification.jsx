@@ -18,6 +18,8 @@ const ArtisanVerification = () => {
       JSON.parse(localStorage.getItem("userData"))
     );
 
+    console.log(userData)
+
   const baseUrl = "https://artisanaid.onrender.com";
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const ArtisanVerification = () => {
       toast.success(resData.message || "Verification submitted successfully!");
 
     
-      setVerificationStatus("pending");
+      setVerificationStatus("Pending");
 
     
       setGuarantorName("");
@@ -103,6 +105,13 @@ const ArtisanVerification = () => {
   };
 
   console.log(verificationStatus)
+
+  useEffect(() => {
+    if (verificationStatus === 'Declined'){
+      setVerificationStatus("Unverified")
+    }
+  }
+  , [verificationStatus])
 
   return (
     <div className="guarantor-container">
@@ -129,7 +138,7 @@ const ArtisanVerification = () => {
               value={guarantorNumber}
               onChange={(e) => setGuarantorNumber(e.target.value)}
             />
-
+            <label htmlFor="">Work certificate</label>
             <div className="file-upload">
               <div className="upload-box">
                 <span className="upload-instruction">
@@ -172,7 +181,7 @@ const ArtisanVerification = () => {
           </form>
         </>
         :
-        verificationStatus === "pending" ?
+        verificationStatus === "Pending" ?
         <div className="pending-verification">
           <h2>Verification Pending</h2>
           <p>Your verification is currently under review. Please check back later.</p>

@@ -19,9 +19,6 @@ const VerifyEmail = () => {
         const response = await axios.get(`https://artisanaid.onrender.com/v1/verify/account/${token}`);
         toast.success(response.data.message || "Account verified successfully!");
         setIsVerified(true);
-        setTimeout(() => {
-          navigate('/login');
-        }, 3000);
       } catch (error) {
         console.error(error);
         toast.error("Invalid or missing token.");

@@ -108,16 +108,16 @@ const PersonalInfo = () => {
               <div className="card-header">
                 <h4>Personal Info</h4>
               </div>
-              <div className="card-body">
-                <div className="info-row">
+              <div className="card-body-G">
+                <div className="info-row-G">
                   <div className="info-label">Full Name</div>
                   <div className="info-value">{userData?.fullname}</div>
                 </div>
-                <div className="info-row">
+                <div className="info-row-G">
                   <div className="info-label">Email</div>
                   <div className="info-value">{userData?.email}</div>
                 </div>
-                <div className="info-row">
+                <div className="info-row-G">
                   <div className="info-label">Phone</div>
                   <div className="info-value">{userData?.phoneNumber}</div>
                 </div>

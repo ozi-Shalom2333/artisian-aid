@@ -129,11 +129,16 @@
 }
 
 @media screen and (max-width: 480px) {
+  .footer{
+    width: 100%;
+    margin-top: 100px;
+  }
  .footerContainer_mobile_holder{
+  display: block;
   width: 100%;
   height: fit-content;
   margin: 30% 0 0 0;
-  background-color: yellow;
+  /* background-color: yellow; */
 
  } 
 
@@ -197,7 +202,7 @@
   .footerContainerMobileFull{
     position: relative;
     width: 100%;
-    height: autot;
+    height: auto;
     background-color: #000435;
     color: #ffff;
     padding: 10px;
@@ -275,7 +280,7 @@
     margin: 10% 0;
     padding: 20px 0;
     border-radius: 10px;
-    top: 220%;
+    top: 385%;
     left: 10%;
     
   }

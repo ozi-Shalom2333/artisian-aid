@@ -4,15 +4,17 @@ import axios from "axios";
 import "../../../styles/PendingUsers.css";
 import PendingUserCard from "../../../components/PendingUserCard";
 import { toast } from "react-toastify";
+import GetOnePendingUser from "./GetOnePendingUser";
 
 const PendingVerification = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showPendingDetails, setShowPendingDetails] = useState(false)
 
-  const handleViewDetails = (user) => {
-    navigate("/admindashboard/onePendingUser", { state: { user } }); 
-  };
+  // const handleViewDetails = (user) => {
+  //   navigate("/admindashboard/onePendingUser", { state: { user } }); 
+  // };
 
   useEffect(() => {
     const fetchPendingUsers = async () => {
@@ -55,15 +57,21 @@ const PendingVerification = () => {
         <div className="users-container">
           {users.length > 0 ? (
             users.map((user) => (
-              <PendingUserCard
-                key={user.id}
-                user={{
-                  name: user.fullname,
-                  email: user.email,
-                  image: user.profilePic.image_url, 
-                }}
-                onViewDetails={() => handleViewDetails(user)}
-              />
+              <div className="pending_artisan_container" key={user._id}>
+                <PendingUserCard
+                  user={{
+                    name: user.fullname,
+                    email: user.email,
+                    image: user.profilePic.image_url, 
+                  }}
+                  onViewDetails={() => setShowPendingDetails(user._id == showPendingDetails ? false : user._id)}
+                />
+                {
+                  showPendingDetails == user._id ?
+                    <GetOnePendingUser user={user}/>
+                  : null
+                }
+              </div>
             ))
           ) : (
             <p>No pending users at the moment.</p>

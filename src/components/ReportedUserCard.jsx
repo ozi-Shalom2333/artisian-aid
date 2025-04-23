@@ -3,7 +3,6 @@ import { FcCancel } from "react-icons/fc";
 import { PiWarningCircleLight } from "react-icons/pi";
 
 const ReportedUserCard = ({
-
   image,
   name,
   showUserReport,
@@ -31,7 +30,7 @@ const ReportedUserCard = ({
       <button className="view-details view-details2" onClick={showUserReport}>
         View Details
       </button>
-      <p className="user-card__status">{status}</p>
+      <p className="user-card__status" style={{color: status == "Approved" ? "green" : status == "Pending" ? "yellow" : "red"}}>{status}</p>
       <p className="user-card__verified">{verified}</p>
     </div>
   );

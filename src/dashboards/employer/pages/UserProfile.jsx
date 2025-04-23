@@ -233,7 +233,7 @@ const UserProfile = () => {
               <h1 className="user-name">{userData.fullname || 'No name provided'}</h1>
               <p className="description-5"><strong>Bio:</strong> {userData.bio || 'No bio available'}</p>
             </div>
-            <div className="top-right">
+            <div className="top-right-g">
               <button className="connect-button" onClick={() => setShowBookingModal(true)}>Book Now</button>
               <div className="report-container">
                 <p

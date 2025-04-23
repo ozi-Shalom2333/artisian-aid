@@ -160,9 +160,9 @@ const ArtisanVerification = () => {
                   hidden
                 />
               </div>
-              <p className="file-name">
+              {/* <p className="file-name">
                 {fileName ? `File added: ${fileName}` : ""}
-              </p>
+              </p> */}
               {imagePreview && (
                 <div className="image-preview">
                   <p>Image Preview:</p>

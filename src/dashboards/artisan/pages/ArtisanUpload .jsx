@@ -112,63 +112,25 @@ const ArtisanUpload = () => {
       toast.error("Failed to delete job post.");
     }
   };
-
-  const handleEditPost = async (jobPostId) => {
-    if (!selectedFile) {
-      toast.error("Please select a file to update.");
-      return;
-    }  
-    try {
-      const token = localStorage.getItem("authToken");
-      const formData = new FormData();
-      formData.append("jobImage", selectedFile);
-
-      const response = await axios.put(
-        `${baseUrl}/v1/upload/job/${jobPostId}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      toast.success("Job post updated successfully!");
-
-      const updatedImageUrl = response.data?.imageUrl;
-      if (updatedImageUrl) {
-        setJobPosts((prev) =>
-          prev.map((post) =>
-            post._id === jobPostId ? { ...post, imageUrl: updatedImageUrl } : post
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Edit Error:", error.response?.data || error);
-      toast.error("Failed to update job post.");
-    }
-  };
 console.log(jobPosts)
   if (jobPosts.image_url) {
     return (
       <div className="job-post-container">
         <h1>Job Post</h1>
         <p>Your job post has been successfully uploaded!</p>
-        {imagePreview && (
+        {/* {imagePreview && (
           <div className="image-preview-container">
             <h3>Uploaded Image</h3>
             <div className="image-preview">
-              {/* <img src={imagePreview} alt="Uploaded Job Post" className="preview-img"  */}
+              <img src={imagePreview} alt="Uploaded Job Post" className="preview-img" />
             </div>
           </div>
-        )}
+        )} */} 
         <div className="job-post-list">
             <div className="job-post-item">
               <img src={jobPosts.image_url} alt="Job" className="preview-img" />
 
             </div>
-            {/* <button className="edit-post-button" onClick={handleEditPost}>Edit</button> */}
               <button className="delete-post-button" onClick={handleDeletePost}>Delete</button>
         </div>
       </div>

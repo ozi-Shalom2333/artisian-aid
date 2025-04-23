@@ -12,14 +12,15 @@ const ApprovedUsers = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const fetchApprovedArtisans = async () => {
       setLoading(true);
       setError("");
-
+      
       try {
         const token = localStorage.getItem("authToken");
+        console.log(token)
         if (!token) {
           // throw new Error("Authentication token is missing.");
           setError("Authentication token is missing.");

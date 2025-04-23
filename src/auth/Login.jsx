@@ -14,10 +14,10 @@ const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showpassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showpassword);
+    setShowPassword(!showPassword);
   };
 
   const isValidEmail = (email) => {
@@ -129,17 +129,17 @@ const Login = () => {
           <span>
             <p>Password</p>
           </span>
-          <div className='loginPasswordSection' >
+          <div className='loginPasswordSections'style={{height:50}} >
             <input
-              style={{border: 'none',borderRadius:'10px', outline: 'none'}}
-              type={showpassword ? 'text' : 'password'}
+              style={{border: 'none',borderRadius:'10px', outline: 'none',height:50}}
+              type={showPassword ? 'text' : 'password'}
               placeholder='Type here'
               value={password}
               
               onChange={(e) => setPassword(e.target.value)}
             />
-            <span className='showPassword' onClick={togglePasswordVisibility}>
-              {showpassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
+            <span className='showPasswords' onClick={togglePasswordVisibility}>
+              {showPassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
             </span>
           </div>
           <p className='forget' onClick={handleForgotPassword}>Forgot Password?</p>

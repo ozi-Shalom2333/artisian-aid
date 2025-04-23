@@ -80,8 +80,9 @@ const DeclinedUsers = () => {
     ) : (
       <div className="users-container">
         {artisans.length > 0 ? (
-          artisans.map((user) => (
+          artisans.map((user,index) => (
             <DeclinedUserCard
+            key={index}
               name= {user.fullname}
               email= {user.email}
               image= {user.profilePic.image_url}

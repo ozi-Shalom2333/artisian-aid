@@ -56,12 +56,12 @@ const ResetPassword = () => {
 
     } catch (error) {
       console.error(error);
-      console.log(password, confirmPassword)
+      console.log(newPassword, confirmPassword)
       toast.error(
         error.response?.data?.message || 'Failed to reset password. Please try again.'
       );
     } finally {
-      setIsLoading(false);
+      setIsLoading(false);  
     }
   };
 
@@ -113,6 +113,7 @@ const ResetPassword = () => {
               <p className="error-text">{errors.newPassword}</p>
             )} */}
             <div className='passwordInputWrapper'>
+              
               <input
                 type={showNewPassword ? 'text' : 'password'}
                 placeholder='Type here'

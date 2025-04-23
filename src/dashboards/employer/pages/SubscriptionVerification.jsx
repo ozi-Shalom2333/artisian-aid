@@ -17,15 +17,15 @@ const SubscriptionVerification = () => {
   useEffect(() => {
     const verifyPayment = async () => {
       try {
-        const res = await axios.get(`https://your-api.com/v1/verify/payment`, {
+        const res = await axios.get(`https://artisanaid.onrender.com/v1/verify/payment`, {
           params: { reference },
         });
 
         console.log(res);
 
-        if (res.data?.artisan?.isSubscribed) {
+        if (res.data?.message === 'Transaction is successful' ) {
           setVerificationResult("success");
-          setTimeout(() => navigate("/employerdashboard"), 3000);
+          // setTimeout(() => navigate("/employerdashboard"), 3000);
         } else {
           setVerificationResult("fail");
           setStatus("❌ Payment verification failed. Please try again.");
@@ -34,7 +34,7 @@ const SubscriptionVerification = () => {
         console.error(err);
         setVerificationResult("fail");
         setStatus("⚠️ Error verifying payment.");
-        toast.error("Error verifying payment. Please try again later.");
+        toast.error(error?.res?.data?.message);
       }
     };
 

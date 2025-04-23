@@ -286,6 +286,7 @@ const UserProfile = () => {
                         <input
                           type="text"
                           name="serviceTitle"
+                          className='input-stress'
                           value={bookingData.serviceTitle}
                           onChange={handleBookingChange}
                           placeholder="Enter service title"
@@ -299,6 +300,7 @@ const UserProfile = () => {
                           type="tel"
                           name="phoneNumber"
                           value={bookingData.phoneNumber}
+                          className='input-stress'
                           onChange={handleBookingChange}
                           placeholder="e.g. 08012345678 or +2348012345678"
                           required
@@ -311,6 +313,7 @@ const UserProfile = () => {
                         <h4 className="input-title">Address</h4>
                         <input
                           type="text"
+                          className='input-stress'
                           name="address"
                           value={bookingData.address}
                           onChange={handleBookingChange}
@@ -324,6 +327,7 @@ const UserProfile = () => {
                         <textarea
                           name="serviceDescription"
                           value={bookingData.serviceDescription}
+                          className='textarea-stress'
                           onChange={handleBookingChange}
                           placeholder="Describe the service you need"
                           rows={4}

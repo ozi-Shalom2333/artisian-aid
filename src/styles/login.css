@@ -88,7 +88,7 @@
     border-radius: 4px;
     border: none;
     outline: none;
-    background-color: #E8F0FE;
+    background-color: #fff;
 }
 .loginPasswordSection input{
     width: 100%;
@@ -97,7 +97,7 @@
     border: none;
     outline: none;
     border-radius: 0px;
-    background-color: #fff !important;
+    background-color: #fff;
 }
 .forget{
     color: #2F80ED;

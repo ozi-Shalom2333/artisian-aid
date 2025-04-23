@@ -11,15 +11,29 @@ const ArtisanNotification = () => {
   const [confirmedBookings, setConfirmedBookings] = useState([]);
   const [rejectedBookings, setRejectedBookings] = useState([]);
   const [loading, setLoading] = useState(false);
+   const userData = localStorage.getItem("userData")
+  const token  = localStorage.getItem("authToken");
+  console.log(userData)
 
   useEffect(() => {
     const fetchBookings = async () => {
       try {
         setLoading(true);
         const [pendingRes, confirmedRes, rejectedRes] = await Promise.all([
-          axios.get("https://artisanaid.onrender.com/v1/pending/job"),
-          axios.get("https://artisanaid.onrender.com/v1/confimed/job"),
-          axios.get("https://artisanaid.onrender.com/v1/rejected/job"),
+          axios.get(`https://artisanaid.onrender.com/v1/pending/job`,{
+            headers: { 
+              Authorization: `Bearer ${token}`,
+            },
+
+          }),
+          axios.get(`https://artisanaid.onrender.com/v1/confimed/job`,{
+            headers: { 
+              Authorization: `Bearer ${token}`,
+            }}),
+          axios.get(`https://artisanaid.onrender.com/v1/rejected/job`,{
+            headers: { 
+              Authorization: `Bearer ${token}`,
+            }}),
         ]);
         setLoading(false);
 
@@ -29,7 +43,7 @@ const ArtisanNotification = () => {
 
         setPendingConfirmations(pendingRes.data.data);
         setConfirmedBookings(confirmedRes.data.data);
-        setRejectedBookings(rejectedRes.data.data);
+        setRejectedBookings(rejectedRes.data.data);a
       } catch (err) {
         console.error("Failed to fetch bookings", err);
       }

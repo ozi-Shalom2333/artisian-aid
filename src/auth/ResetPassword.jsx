@@ -9,23 +9,31 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 const ResetPassword = () => {
   const { token } = useParams();  
   const navigate = useNavigate();  
-  const [password, setPassword] = useState('');
+  const [newPassword, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [touched, setTouched] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState("");
+  const [showConfirmPassword, setShowConfirmPassword] = useState("")
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const passwordRequirements = [
+    { label: "At least 8 characters", regex: /.{8,}/ },
+    { label: "At least one uppercase letter", regex: /[A-Z]/ },
+    { label: "At least one lowercase letter", regex: /[a-z]/ },
+    { label: "At least one number", regex: /[0-9]/ },
+    { label: "At least one special character (!@#$%^&*)", regex: /[!@#$%^&*]/ }
+  ];
 
   const baseURL = 'https://artisanaid.onrender.com'; 
 
   const handleResetPassword = async () => {
-    if (!password || !confirmPassword) {
+    if (!newPassword || !confirmPassword) {
       setErrorMessage('Please fill in both password fields.');
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (newPassword !== confirmPassword) {
       setErrorMessage('Passwords do not match.');
       return;
     }
@@ -36,9 +44,9 @@ const ResetPassword = () => {
     try {
       const response = await axios.post(
         `${baseURL}/v1/reset/password/${token}`,
-        { Password: password, confirmPassword }
+        { newPassword: newPassword, confirmPassword: confirmPassword}
       );
-      console.log(password, confirmPassword)
+      console.log(newPassword, confirmPassword)
       toast.success(response.data.message || 'Password reset successful!');
 
       // Wait 2.5 seconds before redirecting to login
@@ -75,18 +83,47 @@ const ResetPassword = () => {
         <section className='verifyPasswordInputSection'>
           <div className='verifyPasswordInput'>
             <p>Password</p>
+            <input
+              type='password'
+              placeholder='Type here'
+              value={password}
+              onChange={(e) => setNewPassword(e.target.value)}
+              onFocus={() => setTouched(true)}
+              required
+            />
+            'ww3'
+            {touched && formData.newPassword && (
+                              <ul className="password-requirements">
+                                {passwordRequirements.map((req, index) => {
+                                  const isValid = req.regex.test(formData.newPassword);
+                                  return (
+                                    <li
+                                      key={index}
+                                      className={`requirement ${
+                                        isValid ? "valid" : "invalid"
+                                      }`}
+                                    >
+                                      {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            )}
+                            {errorMessage.password && (
+                              <p className="error-text">{errors.password}</p>
+                            )}
             <div className='passwordInputWrapper'>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showNewPassword ? 'text' : 'New Password'}
                 placeholder='Type here'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
               />
               <span
                 className='toggleVisibilityIcon'
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowNewPassword(!showNewPassword)}
               >
-                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                {showNewPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
               </span>
             </div>
           </div>

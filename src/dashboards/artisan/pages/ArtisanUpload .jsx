@@ -13,14 +13,14 @@ const ArtisanUpload = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
-  const [jobPosts, setJobPosts] = useState([]);
+  const [jobPosts, setJobPosts] = useState(localStorage.getItem('jobPostImage'));
+  console.log(jobPosts)
   const baseUrl = "https://artisanaid.onrender.com";
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const response = await axios.get(`${baseUrl}/v1/user/${userData._id}`);
-        setJobPosts(response.data.data.jobPost || []);
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to fetch user data.");
@@ -75,6 +75,8 @@ const ArtisanUpload = () => {
           },
         }
       );
+      console.log(response)
+      localStorage.setItem('jobPostImage', JSON.stringify(response.data.data))
 
       const imageUrl = response.data?.imageUrl;
       const newJobPost = response.data?.jobPost;
@@ -94,10 +96,11 @@ const ArtisanUpload = () => {
     }
   };
 
-  const handleDeletePost = async (jobPostId) => {
+  const handleDeletePost = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      await axios.delete(`${baseUrl}/v1/delete/job/${jobPostId}`, {
+      console.log(first)
+      await axios.delete(`${baseUrl}/v1/delete/job/${userData._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +108,7 @@ const ArtisanUpload = () => {
       toast.success("Job post deleted successfully!");
       setJobPosts(jobPosts.filter((post) => post._id !== jobPostId));
     } catch (error) {
-      console.error("Delete Error:", error.response?.data || error);
+      console.error(error);
       toast.error("Failed to delete job post.");
     }
   };
@@ -114,7 +117,7 @@ const ArtisanUpload = () => {
     if (!selectedFile) {
       toast.error("Please select a file to update.");
       return;
-    }
+    }  
     try {
       const token = localStorage.getItem("authToken");
       const formData = new FormData();
@@ -146,8 +149,8 @@ const ArtisanUpload = () => {
       toast.error("Failed to update job post.");
     }
   };
-
-  if (uploadSuccess || jobPosts) {
+console.log(jobPosts)
+  if (jobPosts.image_url) {
     return (
       <div className="job-post-container">
         <h1>Job Post</h1>
@@ -156,7 +159,7 @@ const ArtisanUpload = () => {
           <div className="image-preview-container">
             <h3>Uploaded Image</h3>
             <div className="image-preview">
-              <img src={imagePreview} alt="Uploaded Job Post" className="preview-img" />
+              {/* <img src={imagePreview} alt="Uploaded Job Post" className="preview-img"  */}
             </div>
           </div>
         )}
@@ -165,8 +168,8 @@ const ArtisanUpload = () => {
               <img src={jobPosts.image_url} alt="Job" className="preview-img" />
 
             </div>
-            <button className="edit-post-button">Edit</button>
-              <button className="delete-post-button">Delete</button>
+            {/* <button className="edit-post-button" onClick={handleEditPost}>Edit</button> */}
+              <button className="delete-post-button" onClick={handleDeletePost}>Delete</button>
         </div>
       </div>
     );

@@ -13,6 +13,7 @@ const ArtisanInfo = () => {
   const [mainFile, setMainFile] = useState(null);
   const [isVerified, setIsVerified] = useState(false); 
   const[isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
   const BaseUrl = "https://artisanaid.onrender.com";
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
@@ -94,7 +95,7 @@ const ArtisanInfo = () => {
         }));
       } else {
         toast.error("Failed to update profile picture.");
-
+        // toast.error("Failed to update profile picture.");
       }
     } catch (error) {
       console.error("Error updating profile picture:", error);
@@ -201,7 +202,7 @@ const ArtisanInfo = () => {
         </div>
         <button
           className="verify"
-          onClick={handleVerificationApproval} 
+          onClick={handleVerificationApproval} // Simulate approval
         >
           Complete Verification
         </button>
@@ -289,8 +290,11 @@ const ArtisanInfo = () => {
               <option value="Surulere">Surulere</option>
             </select>
           </div>
-        <h3 className="lag">Lagos</h3>
+          <select className="lag">
+            <option value="Lagos">Lagos</option>
+          </select>
         </div>
+
         <div className="social-row">
           <input
             type="text"
@@ -307,7 +311,6 @@ const ArtisanInfo = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             disabled={!isEditing}
-            className="bio-textarea"
           />
         </div>
 

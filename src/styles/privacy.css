@@ -116,7 +116,86 @@
   
   .Privacy-button:hover {
     background-color: #0056b3;
+  }/* Small screens (phones) */
+@media (max-width: 480px) {
+  .change-password-container {
+    width: 90%;
+    padding: 20px;
   }
+
+  .change-password-heading {
+    font-size: 20px;
+  }
+
+  .change-password-sub-heading {
+    font-size: 14px;
+  }
+
+  .password-input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .save-changes-button {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  .modal-password {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .privacy-password {
+    font-size: 1.2rem;
+  }
+
+  .privacy-text {
+    font-size: 0.9rem;
+  }
+
+  .Privacy-button {
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+/* Large screens (desktops and beyond) */
+@media (min-width: 1200px) {
+  .change-password-container {
+    width: 50%;
+    padding: 40px;
+  }
+
+  .password-input {
+    font-size: 18px;
+    padding: 14px 18px;
+  }
+
+  .save-changes-button {
+    font-size: 17px;
+    padding: 14px 28px;
+  }
+
+  .modal-password {
+    max-width: 500px;
+    padding: 3rem;
+  }
+
+  .privacy-password {
+    font-size: 1.75rem;
+  }
+
+  .privacy-text {
+    font-size: 1.1rem;
+  }
+
+  .Privacy-button {
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+  }
+}
+
   
 
   

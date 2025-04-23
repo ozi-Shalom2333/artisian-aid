@@ -2,8 +2,26 @@ import React from 'react'
 import "../styles/verificationmessage.css";
 import '../../public/Frame 1000006356.png'
 import verification_message_image from '../assets/verification_message_image.png'
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ResetPasswordMessage= () => {
+  const {email} = useLocation().state
+  console.log(email)
+  const baseURL = 'https://artisanaid.onrender.com/v1';
+
+  const handleResendLink = async() => {
+    const id = toast.loading("Resending link...")
+    try {
+      const response = await axios.post(`${baseURL}/resend/reset`, { email });
+      toast.success(response?.data?.message)
+      toast.dismiss(id)
+    } catch (error) {
+      toast.dismiss(id)
+      console.log(error)
+    }
+  }
   return (
     <div className="verificationBody">
       <section className="verificationHeaderImage">
@@ -24,7 +42,7 @@ const ResetPasswordMessage= () => {
       </section>
       <div className="verificationResendLink">
         <p>Didn't receive an email?</p>
-        <span>
+        <span onClick={handleResendLink}>
           Resend link
         </span>
       </div>

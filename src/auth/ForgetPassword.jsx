@@ -32,7 +32,7 @@ const ForgetPassword = () => {
 
       // Redirect after a short delay so user sees the toast
       setTimeout(() => {
-        navigate("/resetmessage");
+        navigate("/resetmessage",{ state: { email } });
       }, 1000);
     } catch (error) {
       console.error(error);

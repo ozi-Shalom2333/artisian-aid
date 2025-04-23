@@ -4,13 +4,15 @@ import {
   MdCancel, 
   MdKeyboardArrowDown, 
   MdKeyboardArrowUp,
-  MdClose 
+  MdClose, 
+  MdOutlineRemoveRedEye
 } from "react-icons/md";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const CATEGORIES = [
   "Carpentry Services",
@@ -46,6 +48,7 @@ const SignUp = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
   // Custom dropdown states
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -64,6 +67,10 @@ const SignUp = () => {
   const filteredCategories = CATEGORIES.filter((cat) =>
     cat.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   // Validation logic for text fields
   const validateInput = (name, value) => {
@@ -318,6 +325,9 @@ const SignUp = () => {
                   onFocus={() => setTouched(true)}
                   required
                 />
+                <span onClick={togglePasswordVisibility}>
+              {showPassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
+            </span>
                 {touched && formData.password && (
                   <ul className="password-requirements">
                     {passwordRequirements.map((req, index) => {
@@ -352,6 +362,9 @@ const SignUp = () => {
                   }
                   required
                 />
+                <span onClick={togglePasswordVisibility}>
+              {showPassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
+            </span>
                 {errors.confirmPassword && (
                   <p className="error-text">{errors.confirmPassword}</p>
                 )}

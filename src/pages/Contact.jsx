@@ -101,7 +101,7 @@ const Contact = () => {
         </div>
 
         <div className="form-right">
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form-5" onSubmit={handleSubmit}>
             <label htmlFor="fullName">Full Name</label>
             <input
               type="text"

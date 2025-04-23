@@ -61,9 +61,11 @@ const Login = () => {
         const token = response.data.token;
 
         localStorage.setItem('authToken', token);
+        localStorage.setItem('employerToken', response.data.token);
         localStorage.setItem('userData', JSON.stringify(response.data.data));
         const userRole = response.data.data.role;
         localStorage.setItem('userRole', userRole);
+        localStorage.setItem('report', response.data.token);
         localStorage.setItem('jobPostImage',JSON.stringify(response.data.jobPostImage))
 
         toast.success(response.data.message || 'Login successful!');

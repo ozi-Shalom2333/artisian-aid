@@ -9,7 +9,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 const ResetPassword = () => {
   const { token } = useParams();  
   const navigate = useNavigate();  
-  const [newPassword, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -82,39 +82,39 @@ const ResetPassword = () => {
 
         <section className='verifyPasswordInputSection'>
           <div className='verifyPasswordInput'>
-            <p>Password</p>
+            {/* <p>New Password</p>
             <input
-              type='password'
+              type={showNewPassword ? 'text' : 'password'}
               placeholder='Type here'
-              value={password}
+              value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               onFocus={() => setTouched(true)}
               required
             />
             'ww3'
             {touched && formData.newPassword && (
-                              <ul className="password-requirements">
-                                {passwordRequirements.map((req, index) => {
-                                  const isValid = req.regex.test(formData.newPassword);
-                                  return (
-                                    <li
-                                      key={index}
-                                      className={`requirement ${
-                                        isValid ? "valid" : "invalid"
-                                      }`}
-                                    >
-                                      {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            )}
-                            {errorMessage.password && (
-                              <p className="error-text">{errors.password}</p>
-                            )}
+              <ul className="password-requirements">
+                {passwordRequirements.map((req, index) => {
+                  const isValid = req.regex.test(formData.newPassword);
+                  return (
+                    <li
+                      key={index}
+                      className={`requirement ${
+                        isValid ? "valid" : "invalid"
+                      }`}
+                    >
+                      {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            {errorMessage.newPassword && (
+              <p className="error-text">{errors.newPassword}</p>
+            )} */}
             <div className='passwordInputWrapper'>
               <input
-                type={showNewPassword ? 'text' : 'New Password'}
+                type={showNewPassword ? 'text' : 'password'}
                 placeholder='Type here'
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}

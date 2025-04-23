@@ -93,7 +93,7 @@
   min-width: 280px;
 }
 
-.top-right {
+.top-right-g {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -402,12 +402,7 @@ input[type="tel"] {
   display: block;
 }
 
-
-.submission-success {
-  text-align: center;
-}
-
-.submission-success h3 {
+.submission-success-2 h3 {
   margin-bottom: 0.5rem;
   color: #28a745;
 }
@@ -440,79 +435,84 @@ input[type="tel"] {
   color: #666;
 }
 
-
 @media (max-width: 768px) {
+  .header {
+    height: 200px;
+  }
+
   .profile-pic-wrapper {
-    width: 100px;
-    height: 100px;
-    left: 20px;
+    width: 140px;
+    height: 140px;
+    left: 15px;
     bottom: -50px;
-  }
-
-  .user-name {
-    font-size: 1.5rem;
-  }
-
-  .description-5 {
-    font-size: 0.95rem;
   }
 
   .content-5 {
     padding: 60px 20px 20px;
   }
 
-  .modal-content-1 {
-    padding: 2rem;
-    width: 90%;
+  .top-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
+  .top-right-g {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .connect-button,
+  .report-text-link-1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-content-1,
   .modal-content-2 {
-    padding: 2rem;
     width: 90%;
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+
+  .certificate-img {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .profile-pic-wrapper {
-    width: 70px;
-    height: 70px;
-    bottom: -35px;
-    left: 15px;
-  }
-
   .user-name {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
-  .description-5 {
-    font-size: 0.9rem;
-  }
-
+  .connect-button,
   .report-link {
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
   }
 
-  .modal-actions-1 {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .modal-actions-2 {
-    flex-direction: column;
-    gap: 0.5rem;
+  .submit-button-1,
+  .submit-button-2 {
+    padding: 0.8rem 1.4rem;
+    font-size: 1rem;
   }
 
   .cancel-button {
-    width: 100%;
+    font-size: 0.9rem;
   }
 
-  .submit-button-1 {
-    width: 100%;
+  .form-group-71 h4 {
+    font-size: 0.95rem;
   }
 
-  .submit-button-2 {
-    width: 100%;
+  .modal-title-1,
+  .modal-title-2 {
+    font-size: 1.25rem;
+  }
+
+  .describe-why,
+  .describe-7 {
+    font-size: 0.95rem;
   }
 }

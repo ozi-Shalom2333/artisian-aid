@@ -88,6 +88,12 @@ border-radius: 5px;
   color: #333;
   margin-top: 0.5rem;
 }
+.loading-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #555;
+}
 
 .verify-btn {
   background-color: #5c5c80;

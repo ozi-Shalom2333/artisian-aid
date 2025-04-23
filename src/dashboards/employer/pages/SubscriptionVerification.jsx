@@ -25,7 +25,7 @@ const SubscriptionVerification = () => {
 
         if (res.data?.message === 'Transaction is successful' ) {
           setVerificationResult("success");
-          // setTimeout(() => navigate("/employerdashboard"), 3000);
+          setTimeout(() => navigate("/artisandashboard"), 3000);
         } else {
           setVerificationResult("fail");
           setStatus("❌ Payment verification failed. Please try again.");

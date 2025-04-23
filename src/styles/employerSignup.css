@@ -1,5 +1,4 @@
-/* ==== MAIN LAYOUT ==== */
-/* ==== MAIN LAYOUT ==== */
+
 .employerSignUp__main {
   width: 100%;
   height: max-content;
@@ -126,30 +125,30 @@
 }
 
 .employerSignUp__inputGroup p {
-  margin-bottom: 0.1rem;
-  margin-bottom: 0.1rem;
   font-weight: 500;
   font-size: 0.95rem;
   color: #ffffff;
   font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1.4rem;
 }
 
 .employerSignUp__inputGroup input {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  outline: none;
-  background: #f9f9f9;
   width: 100%;
+  min-height: 62px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   box-sizing: border-box;
-  height: auto;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
 .employerSignUp__inputGroup input:focus {
   border-color: #2d5bff;
   background: #fff;
 }
+
 
 .employerSignUp__error {
   color: red;
@@ -179,13 +178,20 @@
 
 .employerSignUp__passwordWrapper input {
   width: 100%;
-  padding-right: 2.5rem;
-  height: 100%;
+  min-height: 62px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-top: 1.3rem;
 }
 
 .employerSignUp__toggleEye {
   position: absolute;
-  top: 59%;
+  top: 76%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;

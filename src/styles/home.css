@@ -3,7 +3,55 @@
     height: auto;
     overflow: hidden;
 }
-.homePage__hero1{
+.homePage__hero1 {
+  padding: 4rem 2rem;
+  margin-top: 13vh;
+  text-align: center;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://ucarecdn.com/a7e92551-040b-4d26-b40f-b7202c1c26de/carpentercuttingmdfboardinsideworkshop3.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background-repeat: no-repeat;
+}
+
+.homePage__hero1 h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.homePage__hero1 p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.homePage__hero1__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.homePage__hero1__btns button {
+  background-color: #FFA500;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* .homePage__hero1{
     width: 100%;
     height: 100vh;
     display: flex;
@@ -36,10 +84,9 @@
     justify-content: center;
    
     
-}
+} */
 .homePage__hero1__btns button{
     width: max-content;
-    
     text-align: center;
     color: #fff;
     height: max-content;
@@ -62,6 +109,7 @@
     border-radius: 9px;
     background-color: transparent;
     padding: 8px 36px;
+    color: black;
 
 }
 .homePage__hero2{
@@ -179,6 +227,7 @@
     height: 40%;
     display: flex;
     gap: 10px;
+    flex-direction: row;
     align-items: center;
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -186,10 +235,10 @@
 }
 .homePage__hero3__category > div > img{
     object-fit: contain;
-    width: 18%;
+    width: 14%;
 }
 .homePage__hero3__category > div > p{
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
 }
 .homePage__hero3__categories{
@@ -259,12 +308,24 @@
    font-weight: 700;
    color: #282828;
 }
-.catfilter-card{
+/* .catfilter-card{
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   
+} */
+.catfilter-card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.catfilter-card > * {
+  flex: 1 1 300px; 
+  max-width: 300px;
 }
 
 
@@ -273,12 +334,13 @@
 
   /* Mobile View (max-width: 480px) */
   @media screen and (max-width: 480px) {
-    .homePage__hero1{
-     
-      background-size: 115% 100%; 
-      background-position: center;
-     background-repeat: no-repeat; 
+    .homePage__hero1 {
+      padding: 2rem 1rem;
+      background-position: top center;
+      min-height: 80svh; 
     }
+    
+    
     .homePage__hero1 h1 {
       font-size: 28px;
       margin-top: 10vh;
@@ -314,7 +376,6 @@
     }
     .explore-artisans{
       display: flex;
-      border: 2px solid green;
       align-items: center;
       justify-content: center;
       width: 170px;
@@ -352,6 +413,15 @@
     display: none;
    } 
    
+   @media screen and (max-width: 480px) {
+    .catfilter-card {
+      justify-content: center;
+      gap: 15px;
+    }
+  }
+  
+
+
    .homePage__hero3_mobile h1{
      font-size: 20px;
      text-align: center;
@@ -370,13 +440,15 @@
    .homePage__hero3__category{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    flex-direction: row;
+  
    }
    .homePage__hero3__category div{
     width: 45%;
     padding: 10px 5px;
     display: flex;
+    text-align: center;
     
    }
    .homePage__hero3__category div p{

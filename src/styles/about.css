@@ -1,255 +1,158 @@
-.aboutUsMainBody {
+.about-us-body{
   width: 100%;
+  height: auto;
+  background-color: rgba(216, 231, 240, 1);
+
+}
+.about-hero-1{
+  width: 100%;
+  height: max-content;
   min-height: 100vh;
-}
-
-.aboutTopBackgroundImage {
-  width: 100%;
-  max-width: 1440px;
-  height: auto;
-  aspect-ratio: 1440 / 693;
-  background-image: url("/imageAbout.jpg");
+  margin-top: 13vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://res.cloudinary.com/dd1aj3hvn/image/upload/v1745420237/imageAbout_axe8uo.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+  color: white;
+  background-repeat: no-repeat;
 }
-
-.aboutUsBackgroundImageText {
-  width: 100%;
-  max-width: 889px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 20px;
-}
-
-.aboutUsBackgroundImageText p {
-  width: 100%;
-  max-width: 524px;
-  font-family: Montserrat;
+.about-hero-1 h1{
+  font-size: 48px;
   font-weight: 700;
+  text-align: center;
+}
+.about-hero-1 p{
   font-size: 20px;
-  line-height: 28px;
-  text-align: center;
-  color: #ffffff;
-}
-
-.aboutUsBackgroundImageText h2 {
-  width: 100%;
-  max-width: 889px;
-  font-family: Montserrat;
   font-weight: 700;
-  font-size: 48px;
-  line-height: 52.8px;
   text-align: center;
-  color: #ffffff;
 }
-
-.aboutUsOurValues {
+.our-values{
   width: 100%;
-  background-color: #d8e7f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
-
-.aboutUsOurValuesChild {
-  width: 100%;
-  max-width: 1357px;
+  height: max-content;
+  min-height: 80vh;
+  background-color: rgba(216, 231, 240, 1);
+  padding: 50px 20px 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 54px;
 }
-
-.aboutUsOurValuesChild h2 {
-  font-family: Montserrat;
+.our-values h2{
   font-weight: 700;
   font-size: 48px;
 }
-
-.aboutUsQuality {
+.value-statement{
   display: flex;
+  width: 100%;
+  height: max-content;
+  padding: 100px 20px 50px 20px;
   justify-content: space-between;
-  gap: 35px;
-  flex-wrap: nowrap;
-}
-
-.aboutUsReliable {
-  flex: 1 1 0;
-  max-width: 429px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.aboutUsReliable nav {
-  width: 41px;
-  height: 41px;
-  border: 1px solid #ffa500;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
-
-.aboutUsReliable nav img {
-  width: 20px;
+.value-statement div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.value-statement div div{
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  border: 2px solid #ffb733;
+  align-items: center;
+} 
+.value-statement div p{
+  font-size: 17px;
+  font-weight: 600;
+}
+.value-statement div div img{
+  height: 20px;
   height: 20px;
 }
-
-.aboutUsText {
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
+.our-aim{
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+}
+.our-aim > div{
+  width: 50%;
+  height: 100%;
+}
+.our-aim > div:first-of-type{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 40px;
+  max-height: 100vh;
+  padding: 40px 20px 20px 20px;
 }
-
-.aboutUsOurAim {
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
+.our-aim > div:first-of-type h2{
+  padding: 30px 0 0 0;
+  color: rgba(47, 128, 237, 1);
+  font-size: 48px;
+  font-weight: 700;
 }
-
-.aboutUsAimSection {
-  width: 100%;
-  max-width: 1360px;
+.our-aim > div:first-of-type div{
   display: flex;
+  height: 600px;
+  flex-direction: column;
+  padding: 70px 30px;
   justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: nowrap;
 }
+.our-aim > div:last-of-type{
+  min-height: 100vh;
+  height: 100vh;
+}
+.our-aim > div:last-of-type img{
+   object-fit: contain;
+   width: 100%;
 
-.aboutUsAimSectionText {
-  width: 534px;
+   height: 100%;
+}
+.the-team{
+  background-color: rgba(216, 231, 240, 1);
+  width: 100%;
+  min-height: 200vh;
+  height: max-content;
   display: flex;
   flex-direction: column;
-  gap: 28px;
 }
-
-.aboutUsAimSectionText h2 {
+.the-team > h2{
+  text-align: center;
+  padding: 20px;
   font-size: 48px;
-  color: #2f80ed;
-}
-
-.aboutUsFullText {
-  color: #000000;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.aboutUsFullText span,
-.aboutUsFullText p {
-  font-size: 20px;
-  line-height: 28px;
-  font-family: Montserrat;
-  font-weight: 400;
-}
-
-.aboutUsAimImageSection {
-  width: 786px;
-  height: 484px;
-  border-radius: 10px;
-  background-image: url("/Group15.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  flex-shrink: 0;
-}
-
-.aboutUsMeetTheTeam {
-  width: 100%;
-  background-color: #d8e7f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 60px 20px;
-}
-
-.aboutUsTheTeam {
-  width: 100%;
-  max-width: 855px;
-  background-color: #ffa500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.aboutUsTheTeam h2 {
-  font-family: Montserrat;
   font-weight: 700;
-  font-size: 48px;
-  color: #000435;
 }
-
-.teamImages {
-  width: 100%;
-  max-width: 1358px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 54px;
-  margin-top: 30px;
-}
-
-.victoriaSection {
+.the-team > div{
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  height: max-content;
   justify-content: center;
-  gap: 22px;
-}
+  gap: 30px;
+  color: #fff;
 
-.aboutUsImageCard {
-  width: 299.1px;
-  height: 496.43px;
-  background-color: #e29a16;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
-.aboutUsTeamName {
-  width: 240.69px;
+.the-team > div > div{
+  width: 23%;
+  height: 450px;
+  max-height: 450px;
   padding: 10px;
-  /* background-color: aqua; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: relative;
 }
-
-.aboutUsTeamName article,
-.aboutUsTeamName p {
-  color: #ffffff;
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 35.4px;
+.the-team > div > div img{
+  width: 100%;
+  height: 100%;
 }
-
-.aboutUsTeamName span {
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 15.93px;
-  line-height: 22.3px;
-  color: #ffffff;
-}
-
-.aboustUsImageDiv{
-  background-color: aqua;
-  width: 20%;
-  height: 477.85px;
+.the-team > div > div > div{
+  width: 100%;
+  height: 40px;
+  border: 2px solid red;
+  position: absolute;
+  bottom: 0;
+  top: 95%;
+  left: -7%;
 }

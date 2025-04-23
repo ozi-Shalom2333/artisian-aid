@@ -43,7 +43,7 @@
   height: 65px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .authWelcomeH2 nav h1 {
@@ -51,7 +51,7 @@
   font-family: Montserrat;
   font-weight: 700;
   font-size: 40px;
-  line-height: 61.6px;
+  /* line-height: 61.6px; */
   letter-spacing: 0%;
   color: #000000;
   display: flex;

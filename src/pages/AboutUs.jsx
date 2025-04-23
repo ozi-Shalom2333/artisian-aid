@@ -53,7 +53,8 @@ const AboutUs = () => {
         <h2>Meet The <span style={{color:'rgba(47, 128, 237, 1)'}}>Team</span> Behind The Vision </h2>
         <div>
           <div>
-          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_7_kiq66a.png" alt="" />
+            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_ud6z6m.png" alt="" />
+          
           <div></div>
           </div>
           <div>
@@ -81,7 +82,7 @@ const AboutUs = () => {
             <div></div>
           </div>
           <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_ud6z6m.png" alt="" />
+            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_7_kiq66a.png" alt="" />
             <div></div>
           </div>
         </div>

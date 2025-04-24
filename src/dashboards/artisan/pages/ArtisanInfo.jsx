@@ -268,7 +268,7 @@ const ArtisanInfo = () => {
                 readOnly
               />
             </div>
-            <div className="label-row-2">
+            <div className="label-row-1">
               <label htmlFor="" className="girl">
                 Business Name
               </label>
@@ -280,7 +280,7 @@ const ArtisanInfo = () => {
                 readOnly
               />
             </div>
-            <div className="label-row-3">
+            <div className="label-row-1">
               <label htmlFor="" className="gay">
                 Email
               </label>

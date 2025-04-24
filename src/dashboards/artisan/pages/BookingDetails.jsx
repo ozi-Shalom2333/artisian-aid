@@ -24,6 +24,9 @@ const BookingDetails = ({ booking }) => {
       );
       setLoading(false);
       toast.success(response.data.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
       console.log(response);
     } catch (error) {
       setLoading(false);
@@ -44,6 +47,9 @@ const BookingDetails = ({ booking }) => {
       );
       setLoadingDetails(false);
       toast.success(response.data.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
       console.log(response);
     } catch (error) {
       setLoadingDetails(false);
@@ -65,9 +71,9 @@ const BookingDetails = ({ booking }) => {
           {booking.serviceDescription}
         </span>
       </p>
-      <p className="booking-details-label">
+      {/* <p className="booking-details-label">
         Date: <span className="booking-details-value">{booking.date}</span>
-      </p>
+      </p> */}
       <p className="booking-details-label">
         Location:{" "}
         <span className="booking-details-value">{booking.location}</span>

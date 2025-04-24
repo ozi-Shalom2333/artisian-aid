@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { 
   MdCheckCircle, 
   MdCancel, 
@@ -14,6 +14,9 @@ import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
 import { FaRegEyeSlash } from "react-icons/fa";
 
+// API base URL (move to .env)
+const API_BASE_URL = "https://artisanaid.onrender.com/v1/register/artisan";
+
 const CATEGORIES = [
   "Carpentry Services",
   "Home Cleaning Services",
@@ -21,7 +24,7 @@ const CATEGORIES = [
   "Electrical Services",
   "Painting Services",
   "Gardening Services",
-  "Laudary Services",
+  "Laundry Services", // Fixed typo
 ];
 
 const SignUp = () => {
@@ -48,13 +51,11 @@ const SignUp = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-
-  // Custom dropdown states
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Password requirements array
   const passwordRequirements = [
     { label: "At least 8 characters", regex: /.{8,}/ },
     { label: "At least one uppercase letter", regex: /[A-Z]/ },
@@ -63,58 +64,41 @@ const SignUp = () => {
     { label: "At least one special character (!@#$%^&*)", regex: /[!@#$%^&*]/ }
   ];
 
-  // Filter categories based on search term
-  const filteredCategories = CATEGORIES.filter((cat) =>
-    cat.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCategories = useMemo(() =>
+    CATEGORIES.filter((cat) =>
+      cat.toLowerCase().includes(searchTerm.toLowerCase())
+    ), [searchTerm]
   );
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
-  // Validation logic for text fields
   const validateInput = (name, value) => {
     let errorMessage = "";
     switch (name) {
       case "fullName":
-        if (!value.trim()) {
-          errorMessage = "This field is required";
-        } else if (!/^[A-Za-z\s]+$/.test(value)) {
-          errorMessage = "Only letters are allowed";
-        } else if (value.length > 30) {
-          errorMessage = "Cannot be more than 30 characters";
-        }
+        if (!value.trim()) errorMessage = "This field is required";
+        else if (!/^[A-Za-z\s]+$/.test(value)) errorMessage = "Only letters are allowed";
+        else if (value.length > 30) errorMessage = "Cannot be more than 30 characters";
         break;
       case "email":
-        if (!/^\S+@\S+\.\S+$/.test(value)) {
-          errorMessage = "Enter a valid email address";
-        }
+        if (!/^\S+@\S+\.\S+$/.test(value)) errorMessage = "Enter a valid email address";
         break;
       case "phoneNumber":
-        // Example Nigeria phone number: starts with 0 followed by 10 digits
-        if (!/^(0)[0-9]{10}$/.test(value)) {
-          errorMessage = "Enter a valid Nigeria phone number";
-        }
+        if (!/^(0|\+234)[0-9]{10}$/.test(value)) errorMessage = "Enter a valid Nigeria phone number";
         break;
       case "businessName":
-        if (!value.trim()) {
-          errorMessage = "This field is required";
-        }
+        if (!value.trim()) errorMessage = "This field is required";
         break;
       case "category":
-        if (!value.trim()) {
-          errorMessage = "This field is required";
-        }
+        if (!value.trim()) errorMessage = "This field is required";
         break;
       case "password":
-        if (!value) {
-          errorMessage = "Password is required";
-        }
+        if (!value) errorMessage = "Password is required";
+        else if (!validatePassword(value)) errorMessage = "Password does not meet requirements";
         break;
       case "confirmPassword":
-        if (value !== formData.password) {
-          errorMessage = "Passwords do not match";
-        }
+        if (value !== formData.password) errorMessage = "Passwords do not match";
         break;
       default:
         break;
@@ -122,67 +106,45 @@ const SignUp = () => {
     setErrors((prev) => ({ ...prev, [name]: errorMessage }));
   };
 
-  // Validate password based on all requirements
   const validatePassword = (password) =>
     passwordRequirements.every((req) => req.regex.test(password));
 
-  // Handle input changes (text, email, password, phone)
-  const handleChange = (name, value) => {
+  const handleChange = useCallback((name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     validateInput(name, value);
 
-    if (
-      (name === "password" || name === "confirmPassword") &&
-      formData.confirmPassword
-    ) {
-      if (name === "password") {
-        validateInput("confirmPassword", formData.confirmPassword);
-      }
+    if (name === "password" && formData.confirmPassword) {
+      validateInput("confirmPassword", formData.confirmPassword);
     }
-  };
+  }, [formData.confirmPassword]);
 
-  // Handle category selection from the dropdown
-  const handleSelectCategory = (categoryValue) => {
+  const handleSelectCategory = useCallback((categoryValue) => {
     setSearchTerm("");
     setFormData((prev) => ({ ...prev, category: categoryValue }));
     validateInput("category", categoryValue);
     setIsDropdownOpen(false);
-  };
+  }, []);
 
-  // Decide which icon to display in the dropdown header
   const getDropdownIcon = () => {
-    if (isDropdownOpen) {
-      // Dropdown is open => Up Arrow
-      return <MdKeyboardArrowUp />;
-    } else if (formData.category) {
-      // A category is selected => Close icon
-      return <MdClose />;
-    } else {
-      // No category selected => Down Arrow
-      return <MdKeyboardArrowDown />;
-    }
+    if (isDropdownOpen) return <MdKeyboardArrowUp />;
+    if (formData.category) return <MdClose />;
+    return <MdKeyboardArrowDown />;
   };
 
-  // Handle clicks on the custom dropdown header
   const handleDropdownHeaderClick = () => {
     if (isDropdownOpen) {
-      // If dropdown is open, close it
       setIsDropdownOpen(false);
       return;
     }
-
     if (formData.category) {
-      // If a category is selected and dropdown is closed, clear it
       setFormData((prev) => ({ ...prev, category: "" }));
       validateInput("category", "");
       setSearchTerm("");
     } else {
-      // No category selected => open the dropdown
       setIsDropdownOpen(true);
     }
   };
 
-  // Check if the form is valid
   const isFormValid =
     formData.fullName &&
     formData.email &&
@@ -195,10 +157,10 @@ const SignUp = () => {
     formData.password === formData.confirmPassword &&
     Object.values(errors).every((error) => error === "");
 
-  // Submit form (calls the API endpoint using axios)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    toast.dismiss();
 
     const payload = {
       fullname: formData.fullName.trim(),
@@ -211,18 +173,21 @@ const SignUp = () => {
     };
 
     try {
-      const response = await axios.post(
-        "https://artisanaid.onrender.com/v1/register/artisan",
-        payload
-      );
-      // set the email to localStorage
+      const response = await axios.post(API_BASE_URL, payload);
       localStorage.setItem("email", formData.email.trim());
-      toast.success(response.data.message || "Signup successful!");
+      toast.success(response.data.message || "Signup successful!", { toastId: "signup-success" });
+      setFormData({
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        businessName: "",
+        category: "",
+        password: "",
+        confirmPassword: ""
+      });
       navigate("/verificationmessage");
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Signup failed. Please try again."
-      );
+      toast.error(error.response?.data?.message || "Signup failed. Please try again.", { toastId: "signup-error" });
     } finally {
       setIsLoading(false);
     }
@@ -231,16 +196,12 @@ const SignUp = () => {
   return (
     <>
       <div className="signup-container">
-        {/* <div className="overlay"></div> */}
-
-        {/* Header / Branding */}
         <header className="signup-header">
-          <div className="logo" onClick={() => navigate("/")}>
+          <div className="logo" onClick={() => navigate("/")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && navigate("/")}>
             <img src="/Artisan.png" alt="ArtisanAid Logo" />
           </div>
         </header>
 
-        {/* Form Content */}
         <div className="signup-content">
           <h2 className="signup-title">Create Account</h2>
           <p className="signup-subtitle">
@@ -248,7 +209,6 @@ const SignUp = () => {
           </p>
 
           <form className="signup-form" onSubmit={handleSubmit}>
-            {/* Full Name */}
             <div className="form_input_container">
               <div className="form_input">
                 <label htmlFor="fullName">Full Name</label>
@@ -259,23 +219,25 @@ const SignUp = () => {
                   value={formData.fullName}
                   onChange={(e) => handleChange("fullName", e.target.value)}
                   required
+                  aria-describedby={errors.fullName ? "fullName-error" : undefined}
                 />
                 {errors.fullName && (
-                  <p className="error-text">{errors.fullName}</p>
+                  <p id="fullName-error" className="error-text" aria-live="polite">{errors.fullName}</p>
                 )}
               </div>
               <div className="form_input">
                 <label htmlFor="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   placeholder="Type here"
                   value={formData.email}
                   onChange={(e) => handleChange("email", e.target.value)}
                   required
+                  aria-describedby={errors.email ? "email-error" : undefined}
                 />
                 {errors.email && (
-                  <p className="error-text">{errors.email}</p>
+                  <p id="email-error" className="error-text" aria-live="polite">{errors.email}</p>
                 )}
               </div>
             </div>
@@ -290,9 +252,10 @@ const SignUp = () => {
                   value={formData.phoneNumber}
                   onChange={(e) => handleChange("phoneNumber", e.target.value)}
                   required
+                  aria-describedby={errors.phoneNumber ? "phoneNumber-error" : undefined}
                 />
                 {errors.phoneNumber && (
-                  <p className="error-text">{errors.phoneNumber}</p>
+                  <p id="phoneNumber-error" className="error-text" aria-live="polite">{errors.phoneNumber}</p>
                 )}
               </div>
               <div className="form_input">
@@ -302,13 +265,12 @@ const SignUp = () => {
                   id="businessName"
                   placeholder="Type here"
                   value={formData.businessName}
-                  onChange={(e) =>
-                    handleChange("businessName", e.target.value)
-                  }
+                  onChange={(e) => handleChange("businessName", e.target.value)}
                   required
+                  aria-describedby={errors.businessName ? "businessName-error" : undefined}
                 />
                 {errors.businessName && (
-                  <p className="error-text">{errors.businessName}</p>
+                  <p id="businessName-error" className="error-text" aria-live="polite">{errors.businessName}</p>
                 )}
               </div>
             </div>
@@ -316,29 +278,35 @@ const SignUp = () => {
             <div className="form_input_container">
               <div className="form_input">
                 <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Type here"
-                  value={formData.password}
-                  onChange={(e) => handleChange("password", e.target.value)}
-                  onFocus={() => setTouched(true)}
-                  required
-                />
-                <span onClick={togglePasswordVisibility}>
-              {showPassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
-            </span>
+                <div className="password-input-wrapper">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Type here"
+                    value={formData.password}
+                    onChange={(e) => handleChange("password", e.target.value)}
+                    onFocus={() => setTouched(true)}
+                    required
+                    aria-describedby={errors.password ? "password-error" : undefined}
+                  />
+                  <span
+                    role="button"
+                    tabIndex={0}
+                    style={{ cursor: "pointer", color: "black" }}
+                    onClick={togglePasswordVisibility}
+                    onKeyDown={(e) => e.key === "Enter" && togglePasswordVisibility()}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    className="password-toggle"
+                  >
+                    {showPassword ? <MdOutlineRemoveRedEye /> : <FaRegEyeSlash />}
+                  </span>
+                </div>
                 {touched && formData.password && (
                   <ul className="password-requirements">
                     {passwordRequirements.map((req, index) => {
                       const isValid = req.regex.test(formData.password);
                       return (
-                        <li
-                          key={index}
-                          className={`requirement ${
-                            isValid ? "valid" : "invalid"
-                          }`}
-                        >
+                        <li key={index} className={`requirement ${isValid ? "valid" : "invalid"}`}>
                           {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
                         </li>
                       );
@@ -346,49 +314,54 @@ const SignUp = () => {
                   </ul>
                 )}
                 {errors.password && (
-                  <p className="error-text">{errors.password}</p>
+                  <p id="password-error" className="error-text" aria-live="polite">{errors.password}</p>
                 )}
               </div>
               <div className="form_input">
                 <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  // style={{maxHeight:'7vh'}}
-                  placeholder="Type here"
-                  value={formData.confirmPassword}
-                  onChange={(e) =>
-                    handleChange("confirmPassword", e.target.value)
-                  }
-                  required
-                />
-                <span onClick={togglePasswordVisibility}>
-              {showPassword ? <MdOutlineRemoveRedEye color='black' /> : <FaRegEyeSlash color='black' />}
-            </span>
+                <div className="password-input-wrapper">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    placeholder="Type here"
+                    value={formData.confirmPassword}
+                    onChange={(e) => handleChange("confirmPassword", e.target.value)}
+                    required
+                    aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
+                  />
+                  <span
+                    role="button"
+                    tabIndex={0}
+                    onClick={toggleConfirmPasswordVisibility}
+                    style={{ cursor: "pointer", color: "black" }}
+                    onKeyDown={(e) => e.key === "Enter" && toggleConfirmPasswordVisibility()}
+                    aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+                    className="password-toggle"
+                  >
+                    {showConfirmPassword ? <MdOutlineRemoveRedEye /> : <FaRegEyeSlash />}
+                  </span>
+                </div>
                 {errors.confirmPassword && (
-                  <p className="error-text">{errors.confirmPassword}</p>
+                  <p id="confirmPassword-error" className="error-text" aria-live="polite">{errors.confirmPassword}</p>
                 )}
               </div>
             </div>
 
-            {/* Custom Category Dropdown with dynamic icons */}
             <div className="form-group custom-dropdown-group">
-              <label>Category</label>
+              <label htmlFor="category-dropdown">Category</label>
               <div className="custom-dropdown">
-                {/* Dropdown Header */}
-                <div 
-                  className="dropdown-header" 
+                <div
+                  id="category-dropdown"
+                  className="dropdown-header"
                   onClick={handleDropdownHeaderClick}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && handleDropdownHeaderClick()}
+                  aria-expanded={isDropdownOpen}
                 >
-                  {/* Show either the category or placeholder */}
                   {formData.category || "Select Category"}
-                  {/* Icon on the right */}
-                  <span className="dropdown-arrow">
-                    {getDropdownIcon()}
-                  </span>
+                  <span className="dropdown-arrow">{getDropdownIcon()}</span>
                 </div>
-
-                {/* Dropdown Body */}
                 {isDropdownOpen && (
                   <div className="dropdown-body">
                     <input
@@ -397,58 +370,55 @@ const SignUp = () => {
                       placeholder="Search"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
+                      autoFocus
                     />
                     <div className="dropdown-list">
-                      {filteredCategories.map((item) => (
+                      {filteredCategories.map((item, index) => (
                         <div
                           key={item}
                           className="dropdown-item"
                           onClick={() => handleSelectCategory(item)}
+                          role="option"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === "Enter" && handleSelectCategory(item)}
+                          aria-selected={formData.category === item}
                         >
                           {item}
                         </div>
                       ))}
                       {filteredCategories.length === 0 && (
-                        <div className="dropdown-item no-match">
-                          No matching categories
-                        </div>
+                        <div className="dropdown-item no-match">No matching categories</div>
                       )}
                     </div>
                   </div>
                 )}
               </div>
               {errors.category && (
-                <p className="error-text">{errors.category}</p>
+                <p className="error-text" aria-live="polite">{errors.category}</p>
               )}
             </div>
 
-            {/* Terms and Conditions */}
             <div className="terms_condition">
               <p className="signup-terms">
                 By creating an account you automatically agree to ArtisanAid{" "}
-                <a href="#terms" className="terms-link">
-                  Terms and Conditions
-                </a>
+                <a href="/terms" className="terms-link">Terms and Conditions</a>
               </p>
             </div>
 
-            {/* Create Account Button */}
             <div className="form_btn">
               <button
                 type="submit"
                 className={`signup-button ${!isFormValid ? "disabled" : ""}`}
                 disabled={!isFormValid || isLoading}
+                aria-busy={isLoading}
               >
                 {isLoading ? "Please wait..." : "Create Account"}
               </button>
             </div>
 
-            {/* Already have an account link */}
             <p className="signup-login-text">
               Already have an account?{" "}
-              <a href="/login" className="login-link">
-                Log in
-              </a>
+              <a href="/login" className="login-link">Log in</a>
             </p>
           </form>
         </div>

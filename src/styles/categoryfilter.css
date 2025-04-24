@@ -1,40 +1,138 @@
-.catfilter{
-    width: 100%;
-    height: auto;
-    display: flex;
-    /* padding: 20px; */
-    align-items: center;
-    /* display: block; */
-    flex-wrap: wrap;
+:root {
+    --primary-dark: #000435;
+    --accent-orange: #ffa500;
+    --text-white: #fff;
+    --text-gray: #666;
+    --font-family: 'Montserrat', sans-serif;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 2rem;
+    --font-size-xl: 3rem;
+    --hero-bg-image: url('https://res.cloudinary.com/djnowfvsk/image/upload/v1744296984/Premium_Photo___AfricanAmerican_decorator_painting_light-wall_c2e0s4.jpg');
 }
-.hero-pic{
+
+.catfilter {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family);
+}
+
+.hero-pic {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),url('https://res.cloudinary.com/djnowfvsk/image/upload/v1744296984/Premium_Photo___AfricanAmerican_decorator_painting_light_wall_c2e0s4.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), var(--hero-bg-image);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-position: center;
 }
-.hero-pic h3{
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #FFFFFF;
-}
-.hero-pic h1{
-    font-size: 56px;
+
+.hero-pic h2 {
+    font-size: var(--font-size-xl);
     font-weight: 700;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--text-white);
+    line-height: 1.3;
+    margin-bottom: var(--spacing-sm);
 }
-.catfilter-card{
+
+.hero-pic h3 {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.highlight-orange {
+    color: var(--accent-orange);
+}
+
+.catfilter-card {
     width: 100%;
-    height: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+}
+
+.loading {
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--text-gray);
+    border-top: 3px solid var(--accent-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    width: 100%;
+    text-align: center;
+    color: #d32f2f;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-lg);
+}
+
+.retry-button {
+    background-color: var(--primary-dark);
+    color: var(--text-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: var(--spacing-sm);
+    transition: background-color 0.2s;
+}
+
+.retry-button:hover,
+.retry-button:focus {
+    background-color: #1a237e;
+}
+
+@media (max-width: 768px) {
+    .hero-pic {
+        min-height: 60vh;
+        padding: var(--spacing-md);
+    }
+
+    .hero-pic h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .hero-pic h3 {
+        font-size: var(--font-size-sm);
+    }
+
+    .catfilter-card {
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+    }
+
+    .loading,
+    .error {
+        padding: var(--spacing-md);
+    }
 }

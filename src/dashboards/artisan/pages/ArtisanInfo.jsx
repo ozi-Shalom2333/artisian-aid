@@ -5,14 +5,16 @@ import { MdOutlineCameraAlt } from "react-icons/md";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ArtisanInfo = () => {
+  const nav = useNavigate();
   const [profileImage, setProfileImage] = useState(null);
   const [profileFile, setProfileFile] = useState(null);
   const [mainImage, setMainImage] = useState(null);
   const [mainFile, setMainFile] = useState(null);
-  const [isVerified, setIsVerified] = useState(false); 
-  const[isEditing, setIsEditing] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const BaseUrl = "https://artisanaid.onrender.com";
   const [userData, setUserData] = useState(
@@ -34,7 +36,7 @@ const ArtisanInfo = () => {
         setLga(user.location.lga || "");
         setProfileImageNow(user.profilePic.image_url || "");
         console.log("User data fetched:", user);
-        setIsVerified(user.isVerified || false); 
+        setIsVerified(user.verificationStatus === "Verified");
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to fetch user data.");
@@ -50,13 +52,12 @@ const ArtisanInfo = () => {
     setIsEditing(false); // Disable edit mode after saving
     await handleUpdateProfile(); // Call the save function
   };
-  
-  const handleVerificationApproval = () => {
-    // Simulate verification approval
-    setIsVerified(true);
-    toast.success("Verification approved!");
-  };
 
+  // const handleVerificationApproval = () => {
+  //   // Simulate verification approval
+  //   setIsVerified(true);
+  //   toast.success("Verification approved!");
+  // };
 
   const handleProfileImageChange = (event) => {
     const file = event.target.files[0];
@@ -186,28 +187,22 @@ const ArtisanInfo = () => {
 
   return (
     <div className="profile-container">
-    <ToastContainer />
-    {!isVerified && (
-      <div className="profile-warning">
-        <div className="warning-header">
-          <MdVerified size={20} color="blue" /> ATTENTION REQUIRED
+      <ToastContainer />
+      {!isVerified && (
+        <div className="profile-warning">
+          <div className="warning-header">
+            <MdVerified size={20} color="blue" /> ATTENTION REQUIRED
+          </div>
+          <div className="warning-text">
+            <strong>Complete Profile Verification</strong>
+            <p>
+              Your profile is currently hidden from potential employers.
+              Complete verification to make your profile visible and start
+              receiving job requests.
+            </p>
+          </div>
         </div>
-        <div className="warning-text">
-          <strong>Complete Profile Verification</strong>
-          <p>
-            Your profile is currently hidden from potential employers.
-            Complete verification to make your profile visible and start
-            receiving job requests.
-          </p>
-        </div>
-        <button
-          className="verify"
-          onClick={handleVerificationApproval} // Simulate approval
-        >
-          Complete Verification
-        </button>
-      </div>
-    )}
+      )}
 
       <h2 className="verifyh2">Your Personal Information</h2>
 
@@ -252,15 +247,56 @@ const ArtisanInfo = () => {
         </div>
       </div>
 
+      {!isEditing && (
+        <button className="edit-btn" type="button" onClick={handleEditClick}>
+          Edit
+        </button>
+      )}
+
       <form className="profile-form">
-        <div className="form-row">
-          <p>{userData?.fullname || "Full Name"}</p>
-          <p>{userData?.businessName || "Business Name"}</p>
-          <p>{userData?.email || "Email Address"}</p>
+        <div>
+          <div className="form-row-wrapper">
+            <div className="label-row-1">
+              <label htmlFor="" className="boy">
+                Full Name
+              </label>
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={userData?.fullname || "Full Name"}
+                className="form-input1"
+                readOnly
+              />
+            </div>
+            <div className="label-row-2">
+              <label htmlFor="" className="girl">
+                Business Name
+              </label>
+              <input
+                type="text"
+                placeholder="Business Name"
+                value={userData?.businessName || "Business Name"}
+                className="form-input2"
+                readOnly
+              />
+            </div>
+            <div className="label-row-3">
+              <label htmlFor="" className="gay">
+                Email
+              </label>
+              <input
+                type="text"
+                placeholder="Email Address"
+                value={userData?.email || "Email Address"}
+                className="form-input3"
+                readOnly
+              />
+            </div>
+          </div>
         </div>
 
         <div className="lga-row-wrapper">
-          <div className="lga-row"> 
+          <div className="lga-row">
             <select
               className="lga-select"
               value={lga}
@@ -290,9 +326,11 @@ const ArtisanInfo = () => {
               <option value="Surulere">Surulere</option>
             </select>
           </div>
-          <select className="lag">
-            <option value="Lagos">Lagos</option>
-          </select>
+          <div className="lagos">
+            <select className="lag">
+              <option value="Lagos">Lagos</option>
+            </select>
+          </div>
         </div>
 
         <div className="social-row">
@@ -302,6 +340,7 @@ const ArtisanInfo = () => {
             value={socialLink}
             onChange={(e) => setSocialLink(e.target.value)}
             disabled={!isEditing}
+            className={!isEditing ? "no-border" : ""}
           />
         </div>
 
@@ -311,19 +350,9 @@ const ArtisanInfo = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             disabled={!isEditing}
+            className={!isEditing ? "no-border" : ""}
           />
         </div>
-
-        {!isEditing && (
-          <button
-            className="edit-btn"
-            type="button"
-            onClick={handleEditClick} // Show edit button
-          >
-            Edit
-          </button>
-        )}
-
         {isEditing && (
           <button
             className="save-btn"

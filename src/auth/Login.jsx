@@ -94,7 +94,7 @@ const Login = () => {
       } else if (status === 401) {
         toast.error(errorMessage || 'Account not verified or is restricted.');
       } else {
-        toast.error('Login failed. Please try again later.');
+        toast.error(error?.response?.data?.message);
         console.error("Login Error:", error);
       }
     } finally {
@@ -148,7 +148,7 @@ const Login = () => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
         <p>Don't have an account?
-          <span className='gosignUp' onClick={handleSignUpRedirect}> SignUp</span>
+          <span className='gosignUp' onClick={handleSignUpRedirect}> Sign Up</span>
         </p>
       </div>
     </div>

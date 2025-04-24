@@ -84,6 +84,7 @@ const ResetPassword = () => {
           <div className='verifyPasswordInput'>
             <p>New Password</p>
             <div className='passwordInputWrapper'>
+              
               <input
                 type={showNewPassword ? 'text' : 'password'}
                 placeholder='Type here'

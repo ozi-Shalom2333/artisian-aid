@@ -1,255 +1,236 @@
-.aboutUsMainBody {
+:root {
+  --primary-bg: rgba(216, 231, 240, 1);
+  --highlight-blue: rgba(47, 128, 237, 1);
+  --highlight-orange: rgba(226, 154, 22, 1);
+  --text-white: #fff;
+}
+
+.about-us-body {
+  width: 100%;
+  height: auto;
+  background-color: var(--primary-bg);
+}
+
+.about-hero-1 {
+  width: 100%;
+  height: max-content;
+  min-height: 100vh;
+  margin-top: 13vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://res.cloudinary.com/dd1aj3hvn/image/upload/q_auto,f_auto/v1745420237/imageAbout_axe8uo.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--text-white);
+  background-repeat: no-repeat;
+}
+
+.about-hero-1 h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.about-hero-1 p {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.our-values {
+  width: 100%;
+  height: max-content;
+  min-height: 80vh;
+  background-color: var(--primary-bg);
+  padding: 3rem 1.25rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.our-values h2 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.value-statement {
+  display: flex;
+  width: 100%;
+  height: max-content;
+  padding: 6rem 1.25rem 3rem 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.value-statement div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.value-statement div div {
+  height: 30px;
+  width: 30px;
+  background-color: var(--text-white);
+  display: flex;
+  justify-content: center;
+  border: 2px solid #ffb733;
+  align-items: center;
+}
+
+.value-statement div p {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.value-statement div div img {
+  height: 20px;
+  width: 20px;
+}
+
+.our-aim {
+  display: flex;
   width: 100%;
   min-height: 100vh;
+  background-color: #fff;
 }
 
-.aboutTopBackgroundImage {
-  width: 100%;
-  max-width: 1440px;
-  height: auto;
-  aspect-ratio: 1440 / 693;
-  background-image: url("/imageAbout.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+.our-aim > div {
+  width: 50%;
+  height: 100%;
 }
 
-.aboutUsBackgroundImageText {
-  width: 100%;
-  max-width: 889px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 20px;
-}
-
-.aboutUsBackgroundImageText p {
-  width: 100%;
-  max-width: 524px;
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 28px;
-  text-align: center;
-  color: #ffffff;
-}
-
-.aboutUsBackgroundImageText h2 {
-  width: 100%;
-  max-width: 889px;
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 52.8px;
-  text-align: center;
-  color: #ffffff;
-}
-
-.aboutUsOurValues {
-  width: 100%;
-  background-color: #d8e7f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
-
-.aboutUsOurValuesChild {
-  width: 100%;
-  max-width: 1357px;
-  display: flex;
-  flex-direction: column;
-  gap: 54px;
-}
-
-.aboutUsOurValuesChild h2 {
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 48px;
-}
-
-.aboutUsQuality {
-  display: flex;
-  justify-content: space-between;
-  gap: 35px;
-  flex-wrap: nowrap;
-}
-
-.aboutUsReliable {
-  flex: 1 1 0;
-  max-width: 429px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.aboutUsReliable nav {
-  width: 41px;
-  height: 41px;
-  border: 1px solid #ffa500;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.aboutUsReliable nav img {
-  width: 20px;
-  height: 20px;
-}
-
-.aboutUsText {
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.aboutUsOurAim {
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-}
-
-.aboutUsAimSection {
-  width: 100%;
-  max-width: 1360px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: nowrap;
-}
-
-.aboutUsAimSectionText {
-  width: 534px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.aboutUsAimSectionText h2 {
-  font-size: 48px;
-  color: #2f80ed;
-}
-
-.aboutUsFullText {
-  color: #000000;
+.our-aim > div:first-of-type {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  max-height: 100vh;
+  padding: 2.5rem 1.25rem 1.25rem 1.25rem;
 }
 
-.aboutUsFullText span,
-.aboutUsFullText p {
-  font-size: 20px;
-  line-height: 28px;
-  font-family: Montserrat;
-  font-weight: 400;
-}
-
-.aboutUsAimImageSection {
-  width: 786px;
-  height: 484px;
-  border-radius: 10px;
-  background-image: url("/Group15.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  flex-shrink: 0;
-}
-
-.aboutUsMeetTheTeam {
-  width: 100%;
-  background-color: #d8e7f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 60px 20px;
-}
-
-.aboutUsTheTeam {
-  width: 100%;
-  max-width: 855px;
-  background-color: #ffa500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.aboutUsTheTeam h2 {
-  font-family: Montserrat;
+.our-aim > div:first-of-type h2 {
+  padding: 1.875rem 0 0 0;
+  color: var(--highlight-blue);
+  font-size: 3rem;
   font-weight: 700;
-  font-size: 48px;
-  color: #000435;
 }
 
-.teamImages {
+.our-aim > div:first-of-type div {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  padding: 4rem 1.875rem;
+  justify-content: space-between;
+}
+
+.our-aim > div:last-of-type {
+  min-height: 100vh;
+  height: 100%;
+}
+
+.our-aim > div:last-of-type img {
+  object-fit: contain;
   width: 100%;
-  max-width: 1358px;
+  height: 100%;
+}
+
+.the-team {
+  background-color: var(--primary-bg);
+  width: 100%;
+  min-height: auto;
+  height: max-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 54px;
-  margin-top: 30px;
 }
 
-.victoriaSection {
+.the-team > h2 {
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.the-team > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  padding: 1.25rem;
+  color: var(--text-white);
+}
+
+.the-team > div > div {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-}
-
-.aboutUsImageCard {
-  width: 299.1px;
-  height: 496.43px;
-  background-color: #e29a16;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.aboutUsTeamName {
-  width: 240.69px;
+  max-width: 300px;
+  height: 450px;
   padding: 10px;
-  /* background-color: aqua; */
+  position: relative;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.the-team > div > div img {
+  width: 100%;
+  height: 100%;
+}
+
+.the-team > div > div > div {
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
+  padding: 10px;
   justify-content: center;
+  gap: 10px;
 }
 
-.aboutUsTeamName article,
-.aboutUsTeamName p {
-  color: #ffffff;
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 35.4px;
+.the-team > div > div > div a {
+  transition: transform 0.2s ease;
 }
 
-.aboutUsTeamName span {
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 15.93px;
-  line-height: 22.3px;
-  color: #ffffff;
+.the-team > div > div > div a:hover {
+  transform: scale(1.2);
 }
 
-.aboustUsImageDiv{
-  background-color: aqua;
-  width: 20%;
-  height: 477.85px;
+@media (max-width: 768px) {
+  .about-hero-1 {
+    min-height: 60vh;
+    margin-top: 10vh;
+  }
+  .about-hero-1 h1 {
+    font-size: 2rem;
+  }
+  .about-hero-1 p {
+    font-size: 1rem;
+  }
+
+  .value-statement {
+    flex-direction: column;
+    padding: 3rem 0.625rem;
+  }
+  .value-statement div {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .our-aim {
+    flex-direction: column;
+  }
+  .our-aim > div {
+    width: 100%;
+  }
+  .our-aim > div:last-of-type {
+    height: 50vh;
+  }
+
+  .the-team > div {
+    grid-template-columns: 1fr;
+  }
+  .the-team > div > div {
+    max-width: 80%;
+  }
 }

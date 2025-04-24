@@ -82,50 +82,20 @@ const ResetPassword = () => {
 
         <section className='verifyPasswordInputSection'>
           <div className='verifyPasswordInput'>
-            {/* <p>New Password</p>
-            <input
-              type={showNewPassword ? 'text' : 'password'}
-              placeholder='Type here'
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              onFocus={() => setTouched(true)}
-              required
-            />
-            'ww3'
-            {touched && formData.newPassword && (
-              <ul className="password-requirements">
-                {passwordRequirements.map((req, index) => {
-                  const isValid = req.regex.test(formData.newPassword);
-                  return (
-                    <li
-                      key={index}
-                      className={`requirement ${
-                        isValid ? "valid" : "invalid"
-                      }`}
-                    >
-                      {isValid ? <MdCheckCircle /> : <MdCancel />} {req.label}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-            {errorMessage.newPassword && (
-              <p className="error-text">{errors.newPassword}</p>
-            )} */}
+            <p>New Password</p>
             <div className='passwordInputWrapper'>
-              
               <input
                 type={showNewPassword ? 'text' : 'password'}
                 placeholder='Type here'
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
-              <span
+              {/* <span
                 className='toggleVisibilityIcon'
                 onClick={() => setShowNewPassword(!showNewPassword)}
               >
                 {showNewPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-              </span>
+              </span> */}
             </div>
           </div>
 
@@ -138,12 +108,12 @@ const ResetPassword = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <span
+              {/* <span
                 className='toggleVisibilityIcon'
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-              </span>
+              </span> */}
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../../styles/artisanNotification.css";
 import { FaUserCircle } from "react-icons/fa";
 import BookingDetails from "./BookingDetails";
+import { toast, ToastContainer } from "react-toastify";
 
 const ArtisanNotification = () => {
   const [activeTab, setActiveTab] = useState("Pending");
@@ -43,7 +44,8 @@ const ArtisanNotification = () => {
 
         setPendingConfirmations(pendingRes.data.data);
         setConfirmedBookings(confirmedRes.data.data);
-        setRejectedBookings(rejectedRes.data.data);a
+        setRejectedBookings(rejectedRes.data.data);
+        toast.success("Bookings fetched successfully!");
       } catch (err) {
         console.error("Failed to fetch bookings", err);
       }
@@ -68,6 +70,7 @@ const ArtisanNotification = () => {
 
   return (
     <div className="container">
+      <ToastContainer/>
       <div className="tab-bar">
         <button
           className={`tab-button ${activeTab === "Pending" ? "active" : ""}`}

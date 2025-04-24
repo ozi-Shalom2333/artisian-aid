@@ -148,7 +148,7 @@ const Login = () => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
         <p>Don't have an account?
-          <span className='gosignUp' onClick={handleSignUpRedirect}> Sign Up</span>
+          <span className='gosignUp' style={{cursor:'pointer'}} onClick={handleSignUpRedirect}> Sign Up</span>
         </p>
       </div>
     </div>

@@ -1,5 +1,8 @@
 import React from 'react'
 import '../styles/about.css'
+import { BsTwitterX } from "react-icons/bs";
+import { FaICursor, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { TbBrandLinkedin } from "react-icons/tb";
 
 const AboutUs = () => {
   return (
@@ -53,37 +56,68 @@ const AboutUs = () => {
         <h2>Meet The <span style={{color:'rgba(47, 128, 237, 1)'}}>Team</span> Behind The Vision </h2>
         <div>
           <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_ud6z6m.png" alt="" />
-          
-          <div></div>
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_7_kiq66a.png" alt="" />
+          <div style={{background:'rgba(226, 154, 22, 1)'}}>
+            <p>Follow Us</p>
+            <a href="" target='_blank'><BsTwitterX size={20} /></a>
+            <FaInstagram size={20}/>
+          </div>
           </div>
           <div>
             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_1_rxdsn8.png" alt="" />
-            <div></div>
+            <div style={{background:'rgba(226, 154, 22, 1)'}}>
+              <p>Follow Us</p>
+              <FaLinkedin size={20}/>
+              <FaInstagram size={20}/>
+            </div>
           </div>
           <div>
             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431819/Frame_1000006083_2_vwnbbf.png" alt="" />
-            <div></div>
+            <div style={{background:'rgba(47, 128, 237, 1)'}}>
+              <p>Follow Us</p>
+              <FaLinkedin size={20}/>
+              <FaInstagram size={20}/>
+            </div>
           </div>
           <div>
            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431819/Frame_1000006083_3_xbywcd.png" alt="" />
-           <div></div>
+           <div style={{background:'rgba(226, 154, 22, 1)'}}>
+            <p>Follow Us</p>
+            <FaLinkedin size={20 }/>
+            <BsTwitterX size={20}/>
+           </div>
           </div>
           <div>
             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431819/Frame_1000006083_4_w3xuhu.png" alt="" />
-            <div></div>
+            <div style={{background:'rgba(47, 128, 237, 1)'}}>
+              <p>Follow Us</p>
+              <BsTwitterX size={20}/>
+              <FaInstagram size={20}/>
+            </div>
           </div>
           <div>
             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_5_f0hthg.png" alt="" />
-            <div></div>
+            <div style={{background:'rgba(226, 154, 22, 1)'}}>
+              <p>Follow Us</p>
+              <FaLinkedin size={20}/>
+              <FaInstagram size={20}/>
+            </div>
           </div>
           <div>
             <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_6_guczke.png" alt="" />
-            <div></div>
+            <div style={{background:'rgba(47, 128, 237, 1)'}}>
+              <p>Follow Us</p>
+              <FaLinkedin size={20}/>
+              <FaInstagram size={20}/>
+            </div>
           </div>
           <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_7_kiq66a.png" alt="" />
-            <div></div>
+            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_ud6z6m.png" alt="" />
+            <div style={{background:'rgba(47, 128, 237, 1)'}}>
+              <p>Follow Us</p>
+              <FaLinkedin size={20}/>
+              <FaInstagram size={20}/>
+            </div>
           </div>
         </div>
       </section>

@@ -14,6 +14,7 @@ const API = axios.create({
 });
 
 const GetOnePendingUser = ({user}) => {
+  console.log(user?.verificationId?.guarantorName)
   const navigate = useNavigate();
   // const { state } = useLocation();
   // const { user } = state || {};
@@ -57,7 +58,7 @@ const GetOnePendingUser = ({user}) => {
     const token = localStorage.getItem("authToken");
     try {
       await API.get(
-        `https://artisanaid.onrender.com/v1/reject/verification/${user._id}`,
+        `https://artisanaid.onrender.com/v1/reject/verification/${user?.verificationId?._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account verification has been rejected");
@@ -78,7 +79,7 @@ const GetOnePendingUser = ({user}) => {
     const token = localStorage.getItem("authToken");
     try {
       await API.get(
-        `https://artisanaid.onrender.com/v1/accept/verification/${user._id}`,
+        `https://artisanaid.onrender.com/v1/accept/verification/${user?.verificationId?._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Account has been verified successfully");
@@ -100,8 +101,8 @@ const GetOnePendingUser = ({user}) => {
           <h3 className="section-title">Certificate Document</h3>
           <div className="certificate_item_image">
             <img
-              src=""
-              // src={verification.workCertificate.image_url}
+              // src=""
+              src={user?.verificationId?.workCertificate?.image_url}
               alt="Certificate"
             />
           </div>
@@ -114,7 +115,7 @@ const GetOnePendingUser = ({user}) => {
             <FaUserCircle className="guarantor-icon" />
             <div className="guarantor-details">
               <label className="guarantor-label">Guarantor's Name</label>
-              <span className="guarantor-value">emmanuel</span>
+              <span className="guarantor-value">{user?.verificationId?.guarantorName}</span>
               {/* <span className="guarantor-value">{verification.guarantorName}</span> */}
             </div>
           </div>
@@ -123,7 +124,7 @@ const GetOnePendingUser = ({user}) => {
             <BsTelephoneFill className="guarantor-icon" />
             <div className="guarantor-details">
               <label className="guarantor-label">Guarantor's Phone Number</label>
-              <span className="guarantor-value">0912353454</span>
+              <span className="guarantor-value">{user?.verificationId?.guarantorPhoneNumber}</span>
               {/* <span className="guarantor-value">{verification.guarantorPhoneNumber}</span> */}
             </div>
           </div>

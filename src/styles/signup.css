@@ -74,6 +74,13 @@
 .form_input {
   width: 48%;
   height: auto;
+  position: relative;
+
+  span{
+    position: absolute;
+    top: 30px;
+    right: 5px;
+  }
 }
 
 .form_input label {

@@ -87,7 +87,8 @@ const HomePage = () => {
           </section>
         </div>
         <div className='homePage__hero2__img'>
-          <img src="public/Group 14.webp" alt="Hero" />
+        
+          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744219962/Group_14_blxmnt.png" alt="Hero" />
         </div>
       </div>
 

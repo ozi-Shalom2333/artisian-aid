@@ -73,15 +73,15 @@ const HomePage = () => {
           </section>
           <section>
             <div>
-              <img src="public/Group.webp" alt="Efficient" />
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220127/Group_awpfr4.png" alt="Efficient" />
               <p>Efficient</p>
             </div>
             <div>
-              <img src="public/flexible-access-svgrepo-com 1.webp" alt="Flexible" />
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220125/flexible-access-svgrepo-com_1_svylwv.png" alt="Flexible" />
               <p>Flexible</p>
             </div>
             <div>
-              <img src="public/diamond-1-solid-svgrepo-com 1.webp" alt="Trustworthy" />
+              <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1744220310/diamond-1-solid-svgrepo-com_1_kgk1hq.png" alt="Trustworthy" />
               <p>Trustworthy</p>
             </div>
           </section>

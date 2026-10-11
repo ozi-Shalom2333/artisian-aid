@@ -1,121 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { CgProfile } from "react-icons/cg";
-import { FiLogOut } from 'react-icons/fi';
-import './../styles/header.css';
-import { TbMenu3 } from "react-icons/tb";
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('authToken'));
-  const navigate = useNavigate();
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userData');
-    localStorage.removeItem('userRole');
-    setToken(null);
-    navigate('/login');
-  };
-
-  const handleProfileClick = () => {
-    const userRole = localStorage.getItem('userRole');
-    if (userRole === 'Admin') {
-      navigate('/admindashboard');
-    } else if (userRole === 'Employer') {
-      navigate('/employerdashboard');
-    } else if (userRole === 'Artisan') {
-      navigate('/artisandashboard');
-    } else {
-      navigate('/login');
-    }
-    toggleDropdown();
-  };
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem('authToken');
-    setToken(storedToken);
-  }, []);
-
+import { useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Menu, ArrowUpRight } from 'lucide-react';
+import Brand from './Brand';
+import Modal from './shared/Modal';
+import useAuth from '../hooks/useAuth';
+import { dashboardFor } from '../data/catalog';
+const navItems = [
+  { to: '/artisanpage', label: 'Find an artisan' },
+  { to: '/about', label: 'Our story' },
+  { to: '/contact', label: 'Contact' },
+];
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const auth = useAuth();
+  const { pathname } = useLocation();
+  const links = (
+    <>
+      {navItems.map((item) => (
+        <NavLink
+          key={item.to}
+          to={item.to}
+          onClick={() => setOpen(false)}
+          className={({ isActive }) =>
+            isActive || (item.to === '/artisanpage' && pathname.startsWith('/category'))
+              ? 'active'
+              : ''
+          }
+        >
+          {item.label}
+        </NavLink>
+      ))}
+    </>
+  );
   return (
-    <div className='Header-container'>
-      <section className='Header-section'>
-        <div className='responsive-image'>
-          <img 
-            onClick={() => navigate('/')} 
-            src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652328/Artisan_4_tzas3g.png" 
-            alt="Artisan logo" 
-          />
+    <header className="site-header">
+      <div className="container-app header-inner">
+        <Brand />
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {links}
+        </nav>
+        <div className="desktop-actions">
+          {auth.isAuthenticated ? (
+            <Link className="button button-small" to={dashboardFor(auth.role)}>
+              My dashboard <ArrowUpRight size={16} />
+            </Link>
+          ) : (
+            <>
+              <Link className="text-link" to="/login">
+                Sign in
+              </Link>
+              <Link className="button button-small" to="/signup">
+                Join as an artisan <ArrowUpRight size={16} />
+              </Link>
+            </>
+          )}
         </div>
-
-        <div className='Header-Pages'>
-          <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : 'notActive'}>Home</NavLink>
-          <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : 'notActive'}>About Us</NavLink>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : 'notActive'}>Contact Us</NavLink>
-        </div>
-
-        {!token ? (
-          <div className='Header-authentication'>
-            <p><NavLink to="/authoption">Sign Up</NavLink></p>
-            <p><NavLink to="/login" style={{ color: 'white' }}>Login</NavLink></p>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <p onClick={handleLogout} style={{ cursor: 'pointer' }}><FiLogOut size={25}/></p>
-            <p onClick={handleProfileClick}><CgProfile size={25}/></p>
-          </div>
-          
-        )}
-
-        <div className='second-respon' onClick={toggleDropdown} role="button" tabIndex={0}>
-          {/* <img 
-            src="https://res.cloudinary.com/dffl7wbtb/image/upload/v1744652397/Component_64_vvm2yd.png" 
-            alt="menu icon" 
-          /> */}
-
-          <TbMenu3 /> 
-        </div>
-
-        {isOpen && (
-          <div className='dropdown'>
-            <NavLink to="/" onClick={toggleDropdown} end>Home</NavLink>
-            <NavLink to="/about" onClick={toggleDropdown}>About Us</NavLink>
-            <NavLink to="/contact" onClick={toggleDropdown}>Contact Us</NavLink>
-
-            {token ? (
-              <>
-                <div 
-                  onClick={handleProfileClick} 
-                  style={{ cursor: 'pointer', padding: '10px 0', color:'black' }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  My Profile
-                </div>
-                <div 
-                  onClick={() => { handleLogout(); toggleDropdown(); }} 
-                  style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', padding: '10px 0' }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <FiLogOut />
-                  Logout
-                </div>
-              </>
+        <button
+          className="icon-button mobile-menu-button"
+          aria-label="Open navigation"
+          aria-expanded={open}
+          onClick={() => setOpen(true)}
+        >
+          <Menu />
+        </button>
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          title="Explore Artisan Aid"
+          description="Find a professional or manage your account."
+        >
+          <nav className="mobile-links" aria-label="Mobile navigation">
+            {links}
+            {auth.isAuthenticated ? (
+              <Link to={dashboardFor(auth.role)} onClick={() => setOpen(false)}>
+                My dashboard
+              </Link>
             ) : (
               <>
-                <NavLink to="/login" onClick={toggleDropdown}>Login</NavLink>
-                <NavLink to="/authoption" onClick={toggleDropdown}>Sign Up</NavLink>
+                <Link to="/login" onClick={() => setOpen(false)}>
+                  Sign in
+                </Link>
+                <Link to="/signup" onClick={() => setOpen(false)}>
+                  Join as an artisan
+                </Link>
               </>
             )}
-          </div>
-        )}
-      </section>
-    </div>
+          </nav>
+        </Modal>
+      </div>
+    </header>
   );
-};
-
-export default Header;
+}

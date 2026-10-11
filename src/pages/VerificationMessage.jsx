@@ -1,63 +1,63 @@
-import React, { useState } from "react";
-import "../styles/verificationmessage.css";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import verification_message_image from '../assets/verification_message_image.png'
-
-const VerificationMessage = () => {
-  // get the email from localStorage
-  const email = localStorage.getItem("email");
-  console.log(email);
-
-  // base URL
-  const baseURL = "https://artisanaid.onrender.com/v1";
-
-  // loading state for resend button
-  const [isResending, setIsResending] = useState(false);
-
-  // function to handle email resend using axios post method
-  const handleEmailResend = async () => {
-    setIsResending(true); // Set loading state to true
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { services, isDemo } from '../services';
+import { dashboardFor } from '../data/catalog';
+import useAuth from '../hooks/useAuth';
+import AuthLayout from '../components/auth/AuthLayout';
+export default function VerificationMessage() {
+  const auth = useAuth();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [verified, setVerified] = useState(false);
+  async function preview() {
+    setBusy(true);
     try {
-      const response = await axios.post(`${baseURL}/resend/email`, { email });
-      console.log(response.data);
-      // use toast to display backend message
-      toast.success(response.data.message);
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to resend verification email.");
+      await services.previewEmailVerification();
+      setVerified(true);
+    } catch (err) {
+      setError(err.message);
     } finally {
-      setIsResending(false); // Reset loading state
+      setBusy(false);
     }
-  };
-
+  }
   return (
-    <div className="verificationBody">
-      <section className="verificationHeaderImage">
-        <img src="/Artisan.png" alt="" />
-      </section>
-
-      <section className="message_image">
-        <img src={verification_message_image} alt="image"/>
-      </section>
-
-      <section className="verificationMessage">
-        <div className="verificationLinkMessage">
-          <h3>We sent you an email</h3>
-          <p>Please check your email inbox for a verification link sent from us</p>
-        </div>
-      </section>
-      <div className="verificationResendLink">
-        <p>Didn't receive an email?</p>
-        <span onClick={handleEmailResend}>
-          {isResending ? "Resending..." : "Resend link"}
-        </span>
+    <AuthLayout
+      title={
+        verified
+          ? 'Email verification previewed.'
+          : isDemo
+            ? 'Your demo account is ready.'
+            : 'Check your email.'
+      }
+      subtitle={
+        isDemo
+          ? 'No verification email has been sent. Preview the step here, then open your workspace.'
+          : 'Use the server-issued verification link for your account.'
+      }
+    >
+      <div className="form-stack">
+        {auth.user && <p className="info-note">{auth.user.email}</p>}
+        {isDemo && !verified && (
+          <button
+            className="button button-outline"
+            onClick={preview}
+            disabled={busy || !auth.isAuthenticated}
+          >
+            {busy ? 'Previewing…' : 'Simulate email verification'}
+          </button>
+        )}
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
+          </p>
+        )}
+        <Link className="button" to={dashboardFor(auth.role)}>
+          Open my workspace
+        </Link>
+        <Link className="text-link" to="/login">
+          Sign in
+        </Link>
       </div>
-      {/* fxnbvnc v */}
-      <ToastContainer />
-    </div>
+    </AuthLayout>
   );
-};
-
-export default VerificationMessage;
+}

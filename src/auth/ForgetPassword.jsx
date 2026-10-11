@@ -1,104 +1,78 @@
-import React, { useState } from 'react';
-import "../styles/forget.css";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
-
-const ForgetPassword = () => {
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false); 
-
-  const baseURL = 'https://artisanaid.onrender.com/v1';
-
-  const handlePasswordReset = async () => {
-    if (!email.trim()) {
-      toast.error("Please enter your email address.");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-
-    setIsLoading(true); 
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import AuthLayout from '../components/auth/AuthLayout';
+import Field from '../components/shared/Field';
+import { services, isDemo } from '../services';
+export default function ForgetPassword() {
+  const [email, setEmail] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [done, setDone] = useState(false);
+  async function submit(e) {
+    e.preventDefault();
+    setBusy(true);
+    setError('');
     try {
-      const response = await axios.post(`${baseURL}/forgot/password`, { email });
-      toast.success(response.data.message || "Password reset link sent!");
-
-      // Redirect after a short delay so user sees the toast
-      setTimeout(() => {
-        navigate("/resetmessage",{ state: { email } });
-      }, 1000);
-    } catch (error) {
-      console.error(error);
-      toast.error(
-        error.response?.data?.message || "Failed to send password reset link."
-      );
+      await services.requestPasswordReset(email);
+      setDone(true);
+    } catch (err) {
+      setError(err.message);
     } finally {
-      setIsLoading(false); 
+      setBusy(false);
     }
-  };
-
+  }
   return (
-    <div className='forgetBody'>
-      <main className='forgetMainContainer'>
-        <section className='forgetImage'>
-          <img src="/Frame 1000006356.png" alt="Illustration" />
-        </section>
-
-        <section className='forgetPasswordContainer'>
-          <h2>Reset Password?</h2>
-          <div className='forgetPasswordText'>
-            <p>
-              Enter the email address you used to create the account, and we will<br />
-              email you instructions to reset your password.
+    <AuthLayout
+      title={
+        done
+          ? isDemo
+            ? 'Recovery request previewed.'
+            : 'Check your email.'
+          : 'Need a fresh start?'
+      }
+      subtitle={
+        isDemo
+          ? 'Demo recovery does not send an email or change a password. All demo accounts use Demo123!.'
+          : 'Enter your account email to request a reset link.'
+      }
+    >
+      {done ? (
+        <div className="form-stack">
+          <p className="success-note" role="status">
+            {isDemo
+              ? 'The form was validated. No recovery email was sent and no credential was changed.'
+              : 'If an account exists for this email, the server will send a recovery link.'}
+          </p>
+          <Link className="button" to="/login">
+            Back to sign in
+          </Link>
+          <button className="subtle-button" onClick={() => setDone(false)}>
+            Try another email
+          </button>
+        </div>
+      ) : (
+        <form className="form-stack" onSubmit={submit}>
+          <Field
+            label="Account email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+          />
+          {error && (
+            <p className="form-error" role="alert">
+              {error}
             </p>
-          </div>
-
-          <div className='forgetPasswordInput'>
-            <p>Email</p>
-            <input
-              type="email"
-              placeholder='Type here'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-
-          <div className='forgetPasswordSendEmail'>
-            <button onClick={handlePasswordReset} disabled={isLoading}>
-              {isLoading ? "Sending..." : "Send email"}
-            </button>
-          </div>
-
-          <section className='forgetRemember'>
-            <p>
-              Remember your password?{" "}
-              <span
-                onClick={() => navigate('/login')}
-                style={{
-                  cursor: 'pointer',
-                  color: '#007bff',
-                  textDecoration: 'underline'
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/login')}
-              >
-                Login
-              </span>
-            </p>
-          </section>
-        </section>
-      </main>
-      <ToastContainer />
-    </div>
+          )}
+          <button className="button" disabled={busy}>
+            {busy ? 'Checking…' : isDemo ? 'Preview recovery request' : 'Request reset link'}
+          </button>
+          <Link className="text-link" to="/login">
+            Back to sign in
+          </Link>
+        </form>
+      )}
+    </AuthLayout>
   );
-};
-
-export default ForgetPassword;
+}

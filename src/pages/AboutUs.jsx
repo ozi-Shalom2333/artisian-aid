@@ -1,128 +1,53 @@
-import React from 'react'
-import '../styles/about.css'
-import { BsTwitterX } from "react-icons/bs";
-import { FaICursor, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { TbBrandLinkedin } from "react-icons/tb";
-
-const AboutUs = () => {
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import PageHero from '../components/shared/PageHero';
+import FeaturesSection from '../features/home/FeaturesSection';
+import { team } from '../data/team';
+export default function AboutUs() {
   return (
-    <div className='about-us-body'>
-      <div className='about-hero-1'>
-        <p>About Us</p>
-        <h1>
-        We’re Set Out To Providing <br /> <span style={{color:'hsl(39, 100%, 60%)'}}>Timeless</span> Solutions to Artisans & <br /> Busy Professionals
-        </h1>
-      </div>
-      <section className='our-values'>
-        <h2>Our Values</h2>
-        <aside className='value-statement'>
+    <>
+      <PageHero
+        kicker="OUR STORY"
+        title={
+          <>
+            Good craft deserves
+            <br />
+            <em>a good connection.</em>
+          </>
+        }
+        description="Artisan Aid brings local skills and everyday needs a little closer together."
+      />
+      <section className="container-app story-layout">
+        <img src="/media/workshop.webp" alt="Two craftspeople discussing a project in a workshop" />
         <div>
-          <div className='statement-writeup'>
-          <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1745420777/Vector_3_rtz7vo.png" alt="" />
-          </div>
-          <p> <span style={{color:'rgba(47, 128, 237, 1)'}}>Reliable & Efficient Workers at Your <br /> Service.</span> Trust Our Vetted Artisans to <br /> Deliver Quality Work on Time, Every <br /> Time.</p>
-        </div>
-        <div>
-          <div >
-          <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1745420937/Group_1_qk1vov.png" alt="" />
-          </div>
-          <p><span style={{color:'rgba(255, 165, 0, 1)'}}>Flexible earning opportunities: </span> Taskers <br /> can set their own hours and choose tasks <br /> that fit their skills and availability, <br /> providing a flexible way to earn income</p>
-        </div>
-        <div>
-          <div>
-          <img src="https://res.cloudinary.com/dd1aj3hvn/image/upload/v1745421106/Group_2_xlo7ma.png" alt="" />
-          </div>
-          <p> <b>Personalized Service Guaranteed:</b> <br /> Enjoy Direct, One-on-One Interaction <br /> with Our Skilled Artisans for a Seamless <br /> Experienc</p>
-        </div>
-        </aside>
-      </section>
-      <section className='our-aim'>
-        <div>
-          <h2>Our Aim</h2>
-          <div>
-              <p>Our aim is to empower busy professionals with unparalleled convenience and flexibility, while providing artisans and taskers with the freedom to earn on their own terms. By offering a transparent, secure, and supportive platform.
-                We bridge the gap between those seeking to offload time-consuming tasks and those looking to monetize their skills flexibly. Through a diverse range of task categories, we foster a community that values mutual support and growth, ensuring that both task posters and taskers benefit from a seamless and rewarding experience.
-              </p>
-              <p>
-                We bridge the gap between those seeking to offload time-consuming tasks and those looking to monetize their skills flexibly. Through a diverse range of task categories, we foster a community that values mutual support and growth, ensuring that both task posters and taskers benefit from a seamless and rewarding experience
-              </p>
-          </div>
-        </div>
-        <div>
-          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745428247/Group_15_zr0gm1.png" alt="" />
+          <p className="eyebrow">BUILT AROUND PEOPLE</p>
+          <h2>
+            A place for skill.
+            <br />
+            <em>And the people behind it.</em>
+          </h2>
+          <p>
+            Finding someone to help with a home project can start with a lot of asking around. For
+            an artisan, getting good work seen can be just as difficult.
+          </p>
+          <p>
+            Artisan Aid is designed to make that introduction clearer. Clients can explore a
+            person’s skills, location and work. Artisans can share a profile and manage requests in
+            one place.
+          </p>
+          <p>
+            Behind Artisan Aid is a collaborative team working across product design, frontend and
+            backend development. Each contributor has helped shape the project and its vision.
+          </p>
+          <Link className="button" to="/artisanpage">
+            Explore artisans <ArrowUpRight size={18} />
+          </Link>
+          <Link className="text-link story-team-link" to="/meetTeam">
+            Meet all {team.length} contributors <ArrowUpRight size={18} />
+          </Link>
         </div>
       </section>
-      <section className='the-team'>
-        <h2>Meet The <span style={{color:'rgba(47, 128, 237, 1)'}}>Team</span> Behind The Vision </h2>
-        <div>
-          <div>
-          <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_7_kiq66a.png" alt="" />
-          <div style={{background:'rgba(226, 154, 22, 1)'}}>
-            <p>Follow Us</p>
-            <a href="" target='_blank'><BsTwitterX size={20} /></a>
-            <FaInstagram size={20}/>
-          </div>
-          </div>
-          <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_1_rxdsn8.png" alt="" />
-            <div style={{background:'rgba(226, 154, 22, 1)'}}>
-              <p>Follow Us</p>
-              <FaLinkedin size={20}/>
-              <FaInstagram size={20}/>
-            </div>
-          </div>
-          <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431819/Frame_1000006083_2_vwnbbf.png" alt="" />
-            <div style={{background:'rgba(47, 128, 237, 1)'}}>
-              <p>Follow Us</p>
-              <FaLinkedin size={20}/>
-              <FaInstagram size={20}/>
-            </div>
-          </div>
-          <div>
-           <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431819/Frame_1000006083_3_xbywcd.png" alt="" />
-           <div style={{background:'rgba(226, 154, 22, 1)'}}>
-            <p>Follow Us</p>
-            <FaLinkedin size={20 }/>
-            <BsTwitterX size={20}/>
-           </div>
-          </div>
-          <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431819/Frame_1000006083_4_w3xuhu.png" alt="" />
-            <div style={{background:'rgba(47, 128, 237, 1)'}}>
-              <p>Follow Us</p>
-              <BsTwitterX size={20}/>
-              <FaInstagram size={20}/>
-            </div>
-          </div>
-          <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_5_f0hthg.png" alt="" />
-            <div style={{background:'rgba(226, 154, 22, 1)'}}>
-              <p>Follow Us</p>
-              <FaLinkedin size={20}/>
-              <FaInstagram size={20}/>
-            </div>
-          </div>
-          <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431818/Frame_1000006083_6_guczke.png" alt="" />
-            <div style={{background:'rgba(47, 128, 237, 1)'}}>
-              <p>Follow Us</p>
-              <FaLinkedin size={20}/>
-              <FaInstagram size={20}/>
-            </div>
-          </div>
-          <div>
-            <img src="https://res.cloudinary.com/djnowfvsk/image/upload/v1745431820/Frame_1000006083_ud6z6m.png" alt="" />
-            <div style={{background:'rgba(47, 128, 237, 1)'}}>
-              <p>Follow Us</p>
-              <FaLinkedin size={20}/>
-              <FaInstagram size={20}/>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  )
+      <FeaturesSection />
+    </>
+  );
 }
-
-export default AboutUs

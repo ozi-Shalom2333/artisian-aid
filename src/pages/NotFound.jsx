@@ -1,17 +1,19 @@
-import React from 'react'
-import { FaQuestionCircle } from "react-icons/fa";
-import './../styles/notFound.css'
-
-const NotFound = () => {
+import { Link } from 'react-router-dom';
+export default function NotFound() {
   return (
-    <div className="not-found-container humorous">
-      <h1 className="error-code">404</h1>
-      <p className="error-message">Looks like you've wandered off the beaten path!</p>
-      <FaQuestionCircle  className="lost-icon animated" size={80} /><p className="error-description">The page you're looking for doesn't exist.</p>
-      <br />
-      <button onClick={() => window.history.back()} className="go-back-button">Take Me Back</button>
-    </div>
-  )
+    <section className="container-app page-section">
+      <p className="eyebrow">404 · A SMALL DETOUR</p>
+      <h1 className="page-intro">
+        Let’s get you back
+        <br />
+        <em>to the right place.</em>
+      </h1>
+      <p className="intro-description">
+        That page isn’t available. The artisan community is a good place to start.
+      </p>
+      <Link className="button" to="/artisanpage">
+        Find an artisan
+      </Link>
+    </section>
+  );
 }
-
-export default NotFound

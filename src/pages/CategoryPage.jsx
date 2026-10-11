@@ -1,46 +1,39 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/categorypage.css";
-import Header from "../components/Header";
-import categoryListing from "../components/categoryList"; 
-
-const CategoryPage = () => {
-  const navigate = useNavigate();
-
-  const handleCategoryClick = (category) => {
-    navigate(`/category/${category}`);
-  };
-
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import { categories } from '../data/catalog';
+import PageHero from '../components/shared/PageHero';
+import ServiceIcon from '../components/shared/ServiceIcon';
+export default function CategoryPage() {
   return (
-    <div className="category-page-container">
-      <Header />
-      <div className="category-title-section">
-        <h1 className="category-title">
-          Discover Our <span className="highlight-text">Artisans</span> Categories
-        </h1>
-        <p className="category-description">
-          Browse our categories to find the perfect professional for your needs.
-        </p>
-      </div>
-
-      <div className="category-item-boxes">
-        {categoryListing.map((category, index) => (
-          <div
-            key={index}
-            className="category-item-box-G"
-            onClick={() => handleCategoryClick(category.text)}
+    <>
+      <PageHero
+        kicker="THE EVERYDAY, TAKEN CARE OF"
+        title={
+          <>
+            A little help.
+            <br />
+            <em>A lot of possibility.</em>
+          </>
+        }
+        description="Start with what needs doing. Find the people who know how."
+      />
+      <section className="container-app category-page-grid">
+        {categories.map((category, index) => (
+          <Link
+            key={category.name}
+            to={`/category/${encodeURIComponent(category.name)}`}
+            className="category-page-card"
           >
-            <img
-              src={category.image}
-              className="category-icon"
-              alt={`${category.text} icon`}
-            />
-            <span className="category-label">{category.text}</span>
-          </div>
+            <span className="category-number">0{index + 1}</span>
+            <ServiceIcon name={category.icon} size={44} />
+            <h2>{category.label}</h2>
+            <p>{category.description}</p>
+            <span className="text-link">
+              Explore artisans <ArrowUpRight size={18} />
+            </span>
+          </Link>
         ))}
-      </div>
-    </div>
+      </section>
+    </>
   );
-};
-
-export default CategoryPage;
+}

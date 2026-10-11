@@ -1,65 +1,30 @@
-import React from 'react';
-import "../styles/authoption.css";
-import { FaArrowRight } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
-
-const AuthOption = () => {
-  const navigate = useNavigate();
-
-  const handleArtisanSignup = () => {
-    navigate('/signup');
-  };
-
-  const handleEmployerSignup = () => {
-    navigate('/employersignup');
-  };
-
-  const handleGoBack = () => {
-    navigate('/');
-  };
-
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Hammer, Search } from 'lucide-react';
+import AuthLayout from '../components/auth/AuthLayout';
+export default function AuthOption() {
   return (
-    <div className='authOptionBody'>
-      <section className='authWelcomeContainer'>
-        <div className='authArrowIcon' onClick={handleGoBack}>
-          <img src="/Frame 1000006180.png" alt="Back Arrow" />
-        </div>
-        <div className='authWelcomeH2'>
-          <nav>
-            <h1>Welcome To</h1> <img src="/Artisan.png" alt="Artisan Logo" />
-          </nav>
-          <span>Select who you want to sign up as</span>
-        </div>
-        <div className='authUnseenSpace'></div>
-      </section>
-
-      <section className='authInputContainer'>
-        <aside className='authOptionArtisan'
-        onClick={handleArtisanSignup}>
-          <img src="/Vector.png" alt="Artisan Icon" />
-          <section className='authOptionsConnect'>
-            <h2>Artisans</h2>
-            <p>Connect with clients and upscale</p>
-          </section>
-          <div className='authRightArrow'>
-            <FaArrowRight />
-          </div>
-        </aside>
-
-        <aside className='authOptionArtisan' 
-        onClick={handleEmployerSignup}>
-          <img src="/Vector (2).png" alt="Employer Icon" />
-          <section className='authOptionsConnect'>
-            <h2>Employer</h2>
-            <p>Access and book the artisan you need</p>
-          </section>
-          <div className='authRightArrow' >
-            <FaArrowRight />
-          </div>
-        </aside>       
-      </section>
-    </div>
+    <AuthLayout
+      title="There’s a place for you here."
+      subtitle="How would you like to use Artisan Aid?"
+    >
+      <div className="role-options">
+        <Link to="/employersignup">
+          <Search />
+          <h2>I need a hand</h2>
+          <p>Find artisans and track requests for your home or business.</p>
+          <span className="text-link">
+            Join as a client <ArrowUpRight size={18} />
+          </span>
+        </Link>
+        <Link to="/signup">
+          <Hammer />
+          <h2>I know my craft</h2>
+          <p>Share your skills, show your work and manage new requests.</p>
+          <span className="text-link">
+            Join as an artisan <ArrowUpRight size={18} />
+          </span>
+        </Link>
+      </div>
+    </AuthLayout>
   );
-};
-
-export default AuthOption;
+}

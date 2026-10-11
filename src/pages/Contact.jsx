@@ -1,161 +1,119 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../styles/contact.css";
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import { ToastContainer, toast, Bounce } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    fullname: "",
-    email: "",
-    message: "",
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  console.log(formData);
-
-  const validateForm = () => {
-    const { fullname, email, message } = formData;
-
-    if (!fullname.trim() || !email.trim() || !message.trim()) {
-      toast.error("Please fill in all fields.");
-      return false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.");
-      return false;
-    }
-
-    if (message.length < 10) {
-      toast.error("Message must be at least 10 characters.");
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleSubmit = async (e) => {
+import { useState } from 'react';
+import { services, isDemo } from '../services';
+import PageHero from '../components/shared/PageHero';
+import Field from '../components/shared/Field';
+import { CheckCircle2 } from 'lucide-react';
+export default function Contact() {
+  const [form, setForm] = useState({ fullname: '', email: '', message: '' });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [reference, setReference] = useState('');
+  const change = (e) => setForm((v) => ({ ...v, [e.target.name]: e.target.value }));
+  async function submit(e) {
     e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setIsLoading(true);
-
+    setBusy(true);
+    setError('');
     try {
-      const payload = {
-        fullname: formData.fullname,
-        email: formData.email,
-        message: formData.message,
-      };
-
-      const res = await axios.post(
-        'https://artisanaid.onrender.com/v1/contact/us', payload
-      );
-
-      if (res.status === 201 || 200) {
-        toast.success("Message sent successfully!");
-        setFormData({ fullName: "", email: "", message: "" });
-      } else {
-        toast.error("Unexpected response. Try again.");
-      }
+      const result = await services.sendContact(form);
+      setReference(result.reference);
+      setForm({ fullname: '', email: '', message: '' });
     } catch (err) {
-      toast.error("Error sending message. Please try again.");
+      setError(err.message);
     } finally {
-      setIsLoading(false);
+      setBusy(false);
     }
-  };
-
+  }
   return (
-    <div className="contact-container">
-      <div className="overlay" />
-
-      <div className="content">
-        <p className="subtitle-1">Explore Artisans</p>
-        <h1 className="title-1">
-          "Your <span className="highlight-9">Feedback</span> is Valued -<br /> Contact Us Here!"
-        </h1>
-        <p className="description">
-          "Have a Question or Suggestion? We'd Love to Hear It"
-        </p>
-      </div>
-
-      <div className="form-section">
-        <div className="form-left">
-          <h2 className="form-heading-white">"Get in Touch - We're Here to Help!"</h2>
-          <div className="contact-detail">
-            <FaPhoneAlt className="icon" />
-            <span>+23499041835740</span>
-          </div>
-          <div className="contact-detail">
-            <FaEnvelope className="icon" />
-            <span>artisanaid.team@gmail.com</span>
-          </div>
-        </div>
-
-        <div className="form-right">
-          <form className="contact-form-5" onSubmit={handleSubmit}>
-            <label htmlFor="fullName">Full Name</label>
-            <input
-              type="text"
-              id="fullname"
-              name="fullname"
-              placeholder="Type here"
-              value={formData.fullname}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Type here"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Type here"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
-
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "Sending..." : "Send Message"}
-            </button>
-          </form>
-        </div>
-      </div>
-
-    
-      <ToastContainer
-        position="top-right"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable
-        pauseOnFocusLoss
-        theme="dark"
-        transition={Bounce}
+    <>
+      <PageHero
+        kicker="LET’S TALK"
+        title={
+          <>
+            Every good connection
+            <br />
+            <em>starts somewhere.</em>
+          </>
+        }
+        description="Questions, ideas or something we could do better? There’s room for your feedback."
       />
-    </div>
+      <section className="container-app contact-layout">
+        <div>
+          <h2>A note can go a long way.</h2>
+          <p>
+            Share an idea for Artisan Aid or tell us what was unclear as you explored the project.
+          </p>
+          {isDemo && (
+            <p className="info-note">
+              The demo form saves a sample message in this browser. It does not deliver it to the
+              team. For direct contact, the original project listed this email address.
+            </p>
+          )}
+          <div className="contact-detail">
+            <strong>Original project email</strong>
+            <a href="mailto:artisanaid.team@gmail.com">artisanaid.team@gmail.com</a>
+          </div>
+          <p className="sample-note bottom-note">
+            Opening the email link uses your email app. It is separate from the simulated form.
+          </p>
+        </div>
+        <div className="panel">
+          {reference ? (
+            <div className="success-panel" role="status">
+              <CheckCircle2 size={40} />
+              <h2>{isDemo ? 'Your demo message is saved.' : 'Your message has been received.'}</h2>
+              <p>
+                {isDemo
+                  ? 'No email or support ticket was sent. This is a local preview of the contact workflow.'
+                  : 'Keep your reference for any follow-up.'}
+              </p>
+              <p className="sample-note">Reference: {reference}</p>
+              <button className="button" onClick={() => setReference('')}>
+                Write another message
+              </button>
+            </div>
+          ) : (
+            <form className="form-stack" onSubmit={submit}>
+              <Field
+                label="Full name"
+                name="fullname"
+                value={form.fullname}
+                onChange={change}
+                required
+                minLength={2}
+                maxLength={80}
+                autoComplete="name"
+              />
+              <Field
+                label="Email"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={change}
+                required
+                autoComplete="email"
+              />
+              <Field
+                label="Your message"
+                name="message"
+                multiline
+                value={form.message}
+                onChange={change}
+                required
+                minLength={10}
+                maxLength={1500}
+              />
+              {error && (
+                <p className="form-error" role="alert">
+                  {error}
+                </p>
+              )}
+              <button className="button" disabled={busy}>
+                {busy ? 'Saving…' : isDemo ? 'Save demo message' : 'Send message'}
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+    </>
   );
-};
-
-export default Contact;
+}

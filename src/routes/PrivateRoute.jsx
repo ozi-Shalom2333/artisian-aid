@@ -1,37 +1,16 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-
-const PrivateRoute = ({ allowedRoles }) => {
-  
-  const token = localStorage.getItem('authToken');
-  const userRole = localStorage.getItem('userRole');
-
-  
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  
-  if (allowedRoles && userRole) {
-    const normalizedUserRole = userRole.toLowerCase();
-    const normalizedAllowedRoles = allowedRoles.map(role => role.toLowerCase());
-    
-    if (!normalizedAllowedRoles.includes(normalizedUserRole)) {
-      
-      if (normalizedUserRole === 'admin') {
-        return <Navigate to="/admindashboard" replace />;
-      } else if (normalizedUserRole === 'artisan') {
-        return <Navigate to="/artisandashboard" replace />;
-      } else if (normalizedUserRole === 'employer') {
-        return <Navigate to="/employerdashboard" replace />;
-      } else {
-        return <Navigate to="/" replace />;
-      }
-    }
-  }
-
-
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import { dashboardFor } from '../data/catalog';
+export default function PrivateRoute({ allowedRoles }) {
+  const auth = useAuth();
+  const location = useLocation();
+  if (!auth.isAuthenticated)
+    return (
+      <Navigate
+        to={`/login?next=${encodeURIComponent(location.pathname + location.search)}`}
+        replace
+      />
+    );
+  if (!allowedRoles.includes(auth.role)) return <Navigate to={dashboardFor(auth.role)} replace />;
   return <Outlet />;
-};
-
-export default PrivateRoute;
+}

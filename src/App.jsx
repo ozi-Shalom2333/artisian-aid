@@ -1,26 +1,16 @@
-import React from "react";
-import Header from "./components/Header";
-import { Outlet } from "react-router-dom";
-import Footer from "./components/Footer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ScrollToTop from "../ScrollToTop";
-
-const App = () => {
-
+import { Outlet } from 'react-router-dom';
+import StorageNotice from './components/StorageNotice';
+import ScrollToTop from './components/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
+export default function App() {
   return (
-    <>
-      <ScrollToTop/>
-      <ToastContainer />
-      <div className="App">
-        <Header />
-         <main>
-          <Outlet />
-         </main>
-        <Footer />
-      </div>
-    </>
+    <ErrorBoundary>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+      <ScrollToTop />
+      <StorageNotice />
+      <Outlet />
+    </ErrorBoundary>
   );
-};
-
-export default App;
+}

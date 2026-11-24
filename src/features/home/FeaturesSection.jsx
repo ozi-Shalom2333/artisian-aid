@@ -1,4 +1,5 @@
 import { Search, UsersRound, ClipboardCheck } from 'lucide-react';
+import Reveal from '../../components/motion/Reveal';
 const steps = [
   {
     icon: Search,
@@ -19,7 +20,7 @@ const steps = [
 export default function FeaturesSection() {
   return (
     <section className="container-app how-section" id="how-it-works">
-      <div className="section-heading">
+      <Reveal className="section-heading">
         <div>
           <p className="eyebrow">LESS GUESSWORK. MORE GETTING IT DONE.</p>
           <h2>
@@ -33,17 +34,17 @@ export default function FeaturesSection() {
           <br />
           to a project with a plan.
         </p>
-      </div>
+      </Reveal>
       <div className="steps-grid">
         {steps.map(({ icon: Icon, title, text }, index) => (
-          <article key={title}>
+          <Reveal as="article" key={title} delay={index * 0.045}>
             <div className="step-top">
               <span>0{index + 1}</span>
               <Icon size={26} aria-hidden="true" />
             </div>
             <h3>{title}</h3>
             <p>{text}</p>
-          </article>
+          </Reveal>
         ))}
       </div>
     </section>

@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Check, CheckCircle2 } from 'lucide-react';
-import { services, isDemo } from '../../services';
+import { useServices } from '../../services/context';
 import useResource from '../../hooks/useResource';
 import Modal from '../../components/shared/Modal';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import EmptyState from '../../components/shared/EmptyState';
 import ErrorState from '../../components/shared/ErrorState';
-const load = () => Promise.all([services.listPlans(), services.getProfile()]);
+import { Skeleton } from '../../components/ui/skeleton';
 export default function Plans() {
+  const { services } = useServices();
+  const load = useCallback(
+    () => Promise.all([services.listPlans(), services.getProfile()]),
+    [services],
+  );
   const resource = useResource(load);
   const [selected, setSelected] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -15,9 +20,10 @@ export default function Plans() {
   async function choose() {
     setBusy(true);
     setError('');
+    setSuccess('');
     try {
       await services.choosePlan(selected._id);
-      setSuccess(`Demo ${selected.planName} plan selected. No payment was taken.`);
+      setSuccess(`${selected.planName} plan selected.`);
       setSelected(null);
       resource.reload();
     } catch (err) {
@@ -26,15 +32,35 @@ export default function Plans() {
       setBusy(false);
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Loading plan previews…" />;
+  if (resource.loading)
+    return (
+      <div className="plans-grid" role="status" aria-label="Loading plans">
+        {[1, 2].map((n) => (
+          <div key={n} className="plan-card space-y-4">
+            <Skeleton className="h-3 w-20" />
+            <Skeleton className="h-10 w-36" />
+            <Skeleton className="h-4 w-48" />
+            <div className="space-y-2 py-4">
+              <Skeleton className="h-4 w-40" />
+              <Skeleton className="h-4 w-44" />
+              <Skeleton className="h-4 w-36" />
+            </div>
+            <Skeleton className="h-11 w-40" />
+          </div>
+        ))}
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
   const [plans, user] = resource.data;
+  if (!plans.length)
+    return (
+      <EmptyState
+        title="No subscription plans available"
+        description="Plans will appear here once published."
+      />
+    );
   return (
     <div>
-      <p className="info-note">
-        These are illustrative plans from the original project. Real subscriptions, payment
-        processing, receipts and visibility upgrades need a backend. No card details are requested.
-      </p>
       {success && (
         <p className="success-note" role="status">
           {success}
@@ -62,17 +88,13 @@ export default function Plans() {
             </ul>
             <button
               className="button"
-              disabled={!isDemo || user.subscription === plan._id}
+              disabled={user.subscription === plan._id}
               onClick={() => {
                 setSelected(plan);
                 setError('');
               }}
             >
-              {user.subscription === plan._id
-                ? 'Selected in demo'
-                : isDemo
-                  ? 'Preview this plan'
-                  : 'Checkout unavailable'}
+              {user.subscription === plan._id ? 'Current plan' : 'Select plan'}
             </button>
           </article>
         ))}
@@ -80,20 +102,20 @@ export default function Plans() {
       <Modal
         open={Boolean(selected)}
         onClose={() => setSelected(null)}
-        title="Preview a subscription"
-        description="This simulates a plan selection. You will not be charged and there is no recurring subscription."
+        title="Select subscription plan"
+        description="Confirm your subscription plan selection."
         busy={busy}
       >
         <div className="success-panel">
           <CheckCircle2 size={34} />
-          <p>Select the {selected?.planName} plan for this browser demo.</p>
+          <p>Select the {selected?.planName} plan for your account.</p>
           {error && (
             <p className="form-error" role="alert">
               {error}
             </p>
           )}
           <button className="button" onClick={choose} disabled={busy}>
-            {busy ? 'Saving…' : 'Simulate plan selection'}
+            {busy ? 'Saving…' : 'Confirm plan'}
           </button>
         </div>
       </Modal>

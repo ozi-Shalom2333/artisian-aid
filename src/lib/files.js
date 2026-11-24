@@ -1,9 +1,9 @@
-export function readDemoImage(file) {
+export function readImageFile(file) {
   return new Promise((resolve, reject) => {
     if (!file || !['image/jpeg', 'image/png', 'image/webp'].includes(file.type))
       return reject(new Error('Choose a JPEG, PNG or WebP image.'));
     if (file.size > 1024 * 1024)
-      return reject(new Error('Choose an image under 1 MB for this browser demo.'));
+      return reject(new Error('Choose an image under 1 MB.'));
     const reader = new FileReader();
     reader.onerror = () =>
       reject(new Error('This image could not be read. Please choose it again.'));
@@ -11,3 +11,4 @@ export function readDemoImage(file) {
     reader.readAsDataURL(file);
   });
 }
+export const readDemoImage = readImageFile;

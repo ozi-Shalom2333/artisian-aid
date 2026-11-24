@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { services, isDemo } from '../../services';
+import { useServices } from '../../services/context';
 import useResource from '../../hooks/useResource';
 import Avatar from '../../components/shared/Avatar';
 import Modal from '../../components/shared/Modal';
-import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorState from '../../components/shared/ErrorState';
 import EmptyState from '../../components/shared/EmptyState';
+import { Skeleton } from '../../components/ui/skeleton';
 export default function Reports() {
+  const { services } = useServices();
   const resource = useResource(services.listReports);
   const [selected, setSelected] = useState(null);
   const [action, setAction] = useState('');
@@ -18,7 +19,7 @@ export default function Reports() {
     setError('');
     try {
       await services.resolveReport(selected._id, action);
-      setSuccess(`Report handled: ${action.toLowerCase()}${isDemo ? ' in the demo' : ''}.`);
+      setSuccess(`Report handled: ${action.toLowerCase()}.`);
       setSelected(null);
       resource.reload();
     } catch (err) {
@@ -27,7 +28,28 @@ export default function Reports() {
       setBusy(false);
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Loading reports…" />;
+  if (resource.loading)
+    return (
+      <div className="dashboard-feature" role="status" aria-label="Loading reports">
+        <Skeleton className="h-7 w-48" />
+        {[1, 2].map((n) => (
+          <div className="panel report-panel" key={n}>
+            <div className="report-person">
+              <Skeleton className="size-9 rounded-full" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-36" />
+                <Skeleton className="h-3 w-48" />
+              </div>
+            </div>
+            <Skeleton className="h-12 w-full" />
+            <div className="inline-actions">
+              <Skeleton className="h-9 w-28" />
+              <Skeleton className="h-9 w-28" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
   return (
     <div className="dashboard-feature">
@@ -58,8 +80,7 @@ export default function Reports() {
             </div>
             <p className="report-reason">{report.reason}</p>
             <p className="sample-note">
-              {new Date(report.createdAt).toLocaleDateString('en-NG')} ·{' '}
-              {isDemo ? 'Fictional report' : 'Open report'}
+              {new Date(report.createdAt).toLocaleDateString('en-NG')} · Open report
             </p>
             <div className="inline-actions">
               {[
@@ -97,7 +118,7 @@ export default function Reports() {
         description={
           action === 'Dismissed'
             ? 'The report will leave the open queue.'
-            : 'The profile will be hidden and its account will no longer be able to sign in. The record remains for review. Demo reset restores sample data.'
+            : 'The profile will be hidden and its account will no longer be able to sign in. The record remains for review.'
         }
       >
         <button

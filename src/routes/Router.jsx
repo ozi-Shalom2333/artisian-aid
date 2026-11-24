@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import App from '../App';
 import PublicLayout from '../components/PublicLayout';
 import PrivateRoute from './PrivateRoute';
@@ -10,7 +10,6 @@ const Contact = lazy(() => import('../pages/Contact'));
 const ArtisanPage = lazy(() => import('../pages/ArtisanPage'));
 const CategoryPage = lazy(() => import('../pages/CategoryPage'));
 const ArtisanProfile = lazy(() => import('../pages/ArtisanProfile'));
-const DemoGuide = lazy(() => import('../pages/DemoGuide'));
 const MeetTeam = lazy(() => import('../pages/MeetTeam'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const Login = lazy(() => import('../auth/Login'));
@@ -30,21 +29,21 @@ const render = (Component, props) => (
     <Component {...props} />
   </Suspense>
 );
-export const routes = [
+export const createRoutes = ({ home, shell, extraPublicRoutes = [] } = {}) => [
   {
-    element: <App />,
+    element: shell || <App />,
     children: [
       {
         element: <PublicLayout />,
         children: [
-          { path: '/', element: render(HomePage) },
+          { path: '/', element: home || render(HomePage) },
           { path: '/about', element: render(AboutUs) },
           { path: '/contact', element: render(Contact) },
           { path: '/artisanpage', element: render(ArtisanPage) },
           { path: '/category', element: render(CategoryPage) },
           { path: '/category/:nameOfCategory', element: render(ArtisanPage) },
           { path: '/userprofile/:userId', element: render(ArtisanProfile) },
-          { path: '/demo', element: render(DemoGuide) },
+          ...extraPublicRoutes,
           { path: '/meetTeam', element: render(MeetTeam) },
           { path: '*', element: render(NotFound) },
         ],
@@ -111,4 +110,3 @@ export const routes = [
     ],
   },
 ];
-export default createBrowserRouter(routes);

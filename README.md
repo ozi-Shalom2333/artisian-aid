@@ -1,19 +1,35 @@
 # Artisan Aid
 
-A React frontend for discovering local artisans, reviewing their work and tracking project requests. With live services currently unavailable, the default frontend mode uses fictional marketplace records and simulated actions that work without a backend.
+A React frontend for discovering local artisans, reviewing their work and tracking project requests. The public interface preserves the project's blue, navy and amber identity, shared ownership and original contributor acknowledgments.
 
-The original public pages and artisan, client/employer and administrator journeys have been retained and refined. No backend provider, server, database or payment infrastructure has been selected or built.
+Public pages always use a real-service adapter. No backend is currently connected. Account creation, sign-in and profile management are API-ready screens, **not working real authentication or a durable user database**. When a service is unavailable, the action reports that limitation and does not manufacture success or create a browser-only public account. No provider, server or backend infrastructure has been chosen or built.
 
-## Run locally
+## Run the public application
 
-Use Node.js 20.19 or newer. This revision was checked with Node 24.19.0 and npm 11.9.0.
+Use Node.js 20.19 or newer.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. Demo mode is the default, including when no `.env` file exists. You can copy `.env.example` to `.env` if you want the mode explicit. No API credentials are needed.
+Without `VITE_API_BASE_URL`, public forms give concise unavailable feedback and discovery displays a retryable unavailable state. The public shell, service categories, story, contributor page and email contact link remain accessible. There is no automatic fallback to fictional marketplace records. Old `VITE_DATA_MODE=demo` settings no longer select a simulator.
+
+Copy `.env.example` to `.env.local` and set `VITE_API_BASE_URL` only after implementing the adapter contract in [BACKEND_INTEGRATION.md](docs/BACKEND_INTEGRATION.md). The old unavailable server is not assumed compatible. Restart Vite after configuration changes; rebuild deployed assets.
+
+## Local developer testing
+
+```bash
+npm run dev:testing
+```
+
+Open `http://127.0.0.1:5173/__testing` (use the port printed by Vite if different). Sample accounts, browser records, reset controls and all three dashboards are available there. `/` on the same server still uses public services. No public navigation links to this area.
+
+The testing command binds to loopback. Testing middleware rejects non-loopback connections, and the browser entry also requires a loopback hostname. Every build excludes the testing entry, seed records, sample credentials and sample certificate, even with `--mode testing` or a development `NODE_ENV`. This is a local development boundary, not a hosted private portal. Do not expose the development server through a proxy/tunnel. A future hosted testing area needs server-enforced authentication and permissions plus separate test services/storage; an unlisted route or frontend password is insufficient.
+
+See [DEVELOPER_TESTING.md](docs/DEVELOPER_TESTING.md) for accounts, reset, persistence and limitations.
+
+## Checks and build
 
 ```bash
 npm run lint
@@ -22,69 +38,38 @@ npm run build
 npm run preview
 ```
 
-`npm run preview` serves a production build after `npm run build`. The included `vercel.json` retains the original SPA route rewrite; no deployment was performed.
+Preview serves the public production build. The existing `vercel.json` SPA rewrite is retained; nothing has been deployed. SPA hosting may return the HTML shell with HTTP 200 for an unknown path, but the application has no production testing route and renders its normal unavailable-page screen.
 
-## Try the core journeys
+Tests cover backend-offline public actions, a stubbed HTTP contract journey, isolated local workflows, persistence failures and role/ownership behavior. A stubbed API test is not evidence of a working live backend. See [VERIFICATION.md](docs/VERIFICATION.md) for actual checks and browser limitations.
 
-On **Sign in**, expand **Explore with a sample account**, or use **Service information** in the footer. All sample accounts use `Demo123!`. Public discovery, the story and team credits are available without signing in.
-
-| Perspective       | Demo email             | What to try                                                                 |
-| ----------------- | ---------------------- | --------------------------------------------------------------------------- |
-| Client / Employer | chidinma@artisanaid.ng | Search/filter, inspect Adewale’s profile, review and save a project request |
-| Artisan           | ade@artisanaid.ng      | Confirm or decline the same request, edit the profile, add a work photo     |
-| Administrator     | admin@artisanaid.ng    | Review sample documents, approve/decline profiles, handle sample reports    |
-
-1. Browse Carpentry and request Adewale Adeyemi. Use a future date, sample phone and sample address.
-2. Open the artisan perspective from `/demo` and respond to that request.
-3. Return to the client perspective to see the saved response.
-4. Create a new artisan account with sample contact details, submit a sample JPEG/PNG/WebP verification image, then switch to Admin to review it. Approved profiles appear in discovery; declined profiles show the reason to the artisan and allow another submission.
-5. Try the work gallery, profile edits, contact form and plan preview. Their success messages explain what was saved locally.
-
-There are eight fictional artisans: six initially listed, one awaiting review and one declined. Seeded dates are generated relative to the first fresh demo. Those dates then persist with the rest of the data.
-
-## Persistence and limitations
-
-- `localStorage` holds the demo dataset under `artisanaid.demo.v2` and the current demo session under `artisanaid.demo-session.v2`.
-- Changes survive refresh, sign-out and reopening the same site in the same browser. The session also survives reopening until you sign out or reset it. Sign-out removes the session, not the dataset.
-- Storage is specific to the browser and origin, including the port. It does not sync across devices. Use one tab for role switching; concurrent writes in different tabs are not coordinated.
-- Clearing site data, private browsing policies, unavailable storage or a future schema reset can lose changes. When storage is unavailable the app warns and can operate in memory. If only a session write fails, it uses the new role in memory and warns that a reload might restore the previously saved session.
-- Image uploads are data URLs. Each JPEG/PNG/WebP must be no larger than 1 MiB, and the demo work gallery allows four photos. The browser’s total quota may be reached sooner. Failed dataset writes keep the previous saved data and give an actionable error.
-- **Reset sample data** in `/demo` clears only these two demo keys, signs out and restores the sample dataset. API sessions and unrelated site storage are untouched.
-- All demo accounts share the sample password; passwords are not stored. Client-side role checks are interaction safeguards, not secure authentication. Use fictional contact details and non-sensitive images.
-
-## What cannot operate genuinely yet
-
-Real authentication and authorization, password changes/reset tokens, email verification/delivery, notifications, messaging, appointment coordination, identity or skill checks, payment processing, subscriptions, receipts and cross-device file/data storage require backend integration. PDF verification documents are currently unsupported.
-
-A locally confirmed request does not schedule a real appointment. A locally approved profile does not establish credentials. A plan selection does not charge money or create benefits. The contact form saves a sample message; it does not open a support ticket or send an email. Password recovery validates a sample request but does not send or change credentials.
+Subtle Framer Motion scroll reveals retain fully readable content, run once, settle immediately for keyboard focus and respect reduced-motion changes. Motion settings, placement, bundle cost and remaining browser checks are documented in [MOTION.md](docs/MOTION.md).
 
 ## Code map
 
 ```text
 src/
   auth/                 Sign-in, registration and recovery screens
-  components/           Shared navigation, layouts, states and UI primitives
-  data/                 Fictional seed records, category/location catalog and original team credits
-  dashboards/           Role-specific page composition and navigation
-  features/dashboard/   Requests, profiles, gallery, verification, plans and moderation
-  features/home/        Search-first landing page sections
-  hooks/                Shared auth snapshot and async resource loading
+  components/           Navigation, layouts, states and UI primitives
+  data/                 Category/location catalog and original team credits
+  dashboards/           Role-specific composition and navigation
+  features/dashboard/   Requests, profiles, gallery, review, plans and moderation
+  features/home/        Search-first landing sections
+  hooks/                Scoped auth snapshots and async resource loading
   lib/                  Image preview/validation helper
-  pages/                Public discovery, artisan profile, story, contact and demo guide
-  routes/               Route definitions, preserved aliases and role guards
-  services/             Demo implementation, HTTP adapter template and mode selection
-public/media/           Optimized photographs reused from the supplied project
+  pages/                Public discovery, profile, story, contact and credits
+  routes/               Shared routes, preserved aliases and role guards
+  services/             Public HTTP adapter, environment factory and React context
+  testing/              Local-only service, sample records, credentials and tools
+public/media/           Optimized original project photographs
 ```
 
-Pages call domain operations from `src/services/index.js`. They do not access storage or send network requests directly. The demo service and future adapter share those operations and data shapes; there is no provider SDK in the application.
+Components call the service provided by `ServiceContext`, not storage or fetch directly. Public and local testing environments implement the same domain operations but have different routes, event subscriptions and storage namespaces. Backend integration belongs in the adapter; the interface does not require a provider SDK or a replacement state framework.
 
-## Handoff notes
-
-- [Review, design rationale and journey changes](docs/REVIEW.md)
-- [Service contract and future backend integration](docs/BACKEND_INTEGRATION.md)
-- [Verification results and remaining browser checks](docs/VERIFICATION.md)
-
-Automated service and DOM integration tests exercise the core demo without backend access. DOM tests do not measure layout. A real-browser visual, responsive and assistive-technology pass remains necessary; see the verification notes for the specific environment limitation and checklist.
+- [Review and design rationale](docs/REVIEW.md)
+- [Backend contract, incomplete flows and session considerations](docs/BACKEND_INTEGRATION.md)
+- [Local testing and data isolation](docs/DEVELOPER_TESTING.md)
+- [Verification and remaining browser checks](docs/VERIFICATION.md)
+- [Motion choices and accessibility](docs/MOTION.md)
 
 ## Team and contributor acknowledgments
 

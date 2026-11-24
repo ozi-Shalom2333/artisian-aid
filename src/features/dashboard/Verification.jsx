@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
-import { services, isDemo } from '../../services';
-import { readDemoImage } from '../../lib/files';
+import { useServices } from '../../services/context';
+import { readImageFile } from '../../lib/files';
 import useResource from '../../hooks/useResource';
 import Field from '../../components/shared/Field';
 import StatusBadge from '../../components/dashboard/StatusBadge';
-import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorState from '../../components/shared/ErrorState';
+import { Skeleton } from '../../components/ui/skeleton';
 export default function Verification() {
+  const { services } = useServices();
   const fileInput = useRef(null);
   const resource = useResource(services.getProfile);
   const [form, setForm] = useState({ guarantorName: '', guarantorPhoneNumber: '' });
@@ -18,7 +19,7 @@ export default function Verification() {
     setImage(null);
     setError('');
     try {
-      setImage(await readDemoImage(e.target.files[0]));
+      setImage(await readImageFile(e.target.files[0]));
     } catch (err) {
       setError(err.message);
     }
@@ -27,13 +28,10 @@ export default function Verification() {
     e.preventDefault();
     setBusy(true);
     setError('');
+    setSuccess('');
     try {
       await services.submitVerification({ ...form, ...image });
-      setSuccess(
-        isDemo
-          ? 'Demo verification submitted. Switch to Admin to review it.'
-          : 'Your verification is awaiting review.',
-      );
+      setSuccess('Your verification is awaiting review.');
       resource.reload();
     } catch (err) {
       setError(err.message);
@@ -41,7 +39,21 @@ export default function Verification() {
       setBusy(false);
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Checking verification status…" />;
+  if (resource.loading)
+    return (
+      <div className="panel space-y-6" role="status" aria-label="Checking verification status">
+        <div className="panel-heading">
+          <div className="space-y-2">
+            <Skeleton className="h-7 w-56" />
+            <Skeleton className="h-4 w-48" />
+          </div>
+          <Skeleton className="h-6 w-24 rounded-full" />
+        </div>
+        <Skeleton className="h-11 w-full" />
+        <Skeleton className="h-11 w-full" />
+        <Skeleton className="h-28 w-full" />
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
   const user = resource.data;
   const maySubmit = ['Unverified', 'Declined'].includes(user.verificationStatus);
@@ -54,12 +66,6 @@ export default function Verification() {
         </div>
         <StatusBadge status={user.verificationStatus} />
       </div>
-      {isDemo && (
-        <p className="info-note">
-          Demo review only. No identity, skill or background checks are performed. Use a sample
-          image, never a real identity document.
-        </p>
-      )}
       {success && (
         <p className="success-note" role="status">
           {success}
@@ -67,21 +73,13 @@ export default function Verification() {
       )}
       {user.verificationStatus === 'Approved' ? (
         <div className="quiet-empty">
-          <h3>{isDemo ? 'Your demo profile is approved' : 'Your profile is approved'}</h3>
-          <p>
-            {isDemo
-              ? 'It is visible in discovery. This status represents a sample review, not a real credential check.'
-              : 'Your profile is now visible in discovery.'}
-          </p>
+          <h3>Your profile is approved</h3>
+          <p>Your profile is now visible in discovery.</p>
         </div>
       ) : user.verificationStatus === 'Pending' ? (
         <div className="quiet-empty">
           <h3>Your profile is in the review queue</h3>
-          <p>
-            {isDemo
-              ? 'The demo administrator can approve or decline it. There is no automatic approval or real verification service.'
-              : 'An administrator will review your submission.'}
-          </p>
+          <p>An administrator will review your submission.</p>
           <p>Document: {user.verificationId?.documentName}</p>
         </div>
       ) : null}
@@ -91,14 +89,14 @@ export default function Verification() {
       {maySubmit && (
         <form className="form-stack" onSubmit={submit}>
           <Field
-            label={isDemo ? 'Sample guarantor name' : 'Guarantor name'}
+            label="Guarantor name"
             value={form.guarantorName}
             minLength={2}
             required
             onChange={(e) => setForm((v) => ({ ...v, guarantorName: e.target.value }))}
           />
           <Field
-            label={isDemo ? 'Sample guarantor phone' : 'Guarantor phone'}
+            label="Guarantor phone"
             value={form.guarantorPhoneNumber}
             type="tel"
             pattern="(?:\+234|0)[789][01]\d{8}"
@@ -106,9 +104,7 @@ export default function Verification() {
             onChange={(e) => setForm((v) => ({ ...v, guarantorPhoneNumber: e.target.value }))}
           />
           <div className="upload-area">
-            <label htmlFor="verification-file">
-              {isDemo ? 'Choose a sample document image' : 'Choose a document image'}
-            </label>
+            <label htmlFor="verification-file">Choose a document image</label>
             <input
               id="verification-file"
               ref={fileInput}
@@ -123,7 +119,7 @@ export default function Verification() {
           </div>
           {image && (
             <>
-              <img className="upload-preview" src={image.image_url} alt="Sample document preview" />
+              <img className="upload-preview" src={image.image_url} alt="Document preview" />
               <button
                 type="button"
                 className="subtle-button"
@@ -142,7 +138,7 @@ export default function Verification() {
             </p>
           )}
           <button className="button" disabled={busy || !image}>
-            {busy ? 'Submitting…' : isDemo ? 'Submit demo verification' : 'Submit verification'}
+            {busy ? 'Submitting…' : 'Submit verification'}
           </button>
         </form>
       )}

@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { services, isDemo } from '../services';
+import { useServices } from '../services/context';
 import PageHero from '../components/shared/PageHero';
 import Field from '../components/shared/Field';
 import { CheckCircle2 } from 'lucide-react';
 export default function Contact() {
+  const { services } = useServices();
   const [form, setForm] = useState({ fullname: '', email: '', message: '' });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -39,33 +40,19 @@ export default function Contact() {
       <section className="container-app contact-layout">
         <div>
           <h2>A note can go a long way.</h2>
-          <p>
-            Share an idea for Artisan Aid or tell us what was unclear as you explored the project.
-          </p>
-          {isDemo && (
-            <p className="info-note">
-              The demo form saves a sample message in this browser. It does not deliver it to the
-              team. For direct contact, the original project listed this email address.
-            </p>
-          )}
+          <p>Share an idea for Artisan Aid or tell us how we can help.</p>
           <div className="contact-detail">
-            <strong>Original project email</strong>
+            <strong>Email our team</strong>
             <a href="mailto:artisanaid.team@gmail.com">artisanaid.team@gmail.com</a>
           </div>
-          <p className="sample-note bottom-note">
-            Opening the email link uses your email app. It is separate from the simulated form.
-          </p>
+          <p className="sample-note bottom-note">Prefer email? Write directly to our team.</p>
         </div>
         <div className="panel">
           {reference ? (
             <div className="success-panel" role="status">
               <CheckCircle2 size={40} />
-              <h2>{isDemo ? 'Your demo message is saved.' : 'Your message has been received.'}</h2>
-              <p>
-                {isDemo
-                  ? 'No email or support ticket was sent. This is a local preview of the contact workflow.'
-                  : 'Keep your reference for any follow-up.'}
-              </p>
+              <h2>Your message has been received.</h2>
+              <p>Keep your reference for any follow-up.</p>
               <p className="sample-note">Reference: {reference}</p>
               <button className="button" onClick={() => setReference('')}>
                 Write another message
@@ -108,7 +95,7 @@ export default function Contact() {
                 </p>
               )}
               <button className="button" disabled={busy}>
-                {busy ? 'Saving…' : isDemo ? 'Save demo message' : 'Send message'}
+                {busy ? 'Saving…' : 'Send message'}
               </button>
             </form>
           )}

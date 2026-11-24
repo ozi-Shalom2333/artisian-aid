@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarDays, MapPin, ArrowUpRight } from 'lucide-react';
-import { services, isDemo } from '../../services';
+import { useServices } from '../../services/context';
 import useResource from '../../hooks/useResource';
 import useAuth from '../../hooks/useAuth';
 import StatusBadge from '../../components/dashboard/StatusBadge';
-import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorState from '../../components/shared/ErrorState';
 import EmptyState from '../../components/shared/EmptyState';
+import { Skeleton } from '../../components/ui/skeleton';
 const labels = {
   All: 'All requests',
   Pending: 'Awaiting response',
@@ -15,6 +15,7 @@ const labels = {
   Rejected: 'Declined',
 };
 export default function Bookings() {
+  const { services } = useServices();
   const resource = useResource(services.listBookings);
   const auth = useAuth();
   const [filter, setFilter] = useState('All');
@@ -28,7 +29,7 @@ export default function Bookings() {
     try {
       await services.respondToBooking(id, status);
       setSuccess(
-        `${isDemo ? 'Demo request' : 'Request'} ${status === 'Confirmed' ? 'confirmed' : 'declined'}. The client dashboard now shows this response.`,
+        `Request ${status === 'Confirmed' ? 'confirmed' : 'declined'}. The client dashboard now shows this response.`,
       );
       resource.reload();
     } catch (err) {
@@ -37,7 +38,34 @@ export default function Bookings() {
       setBusy('');
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Loading your requests…" />;
+  if (resource.loading)
+    return (
+      <div className="dashboard-feature" role="status" aria-label="Loading your requests">
+        <div className="stat-row">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="stat-card space-y-2">
+              <Skeleton className="h-3 w-28" />
+              <Skeleton className="h-9 w-16" />
+              <Skeleton className="h-3 w-36" />
+            </div>
+          ))}
+        </div>
+        <div className="booking-list">
+          {[1, 2].map((n) => (
+            <div key={n} className="booking-card space-y-4">
+              <div className="booking-top">
+                <div className="space-y-2">
+                  <Skeleton className="h-3 w-24" />
+                  <Skeleton className="h-6 w-48" />
+                </div>
+                <Skeleton className="h-6 w-24 rounded-full" />
+              </div>
+              <Skeleton className="h-4 w-64" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
   const rows = resource.data.filter((booking) => filter === 'All' || booking.status === filter);
   return (
@@ -187,12 +215,6 @@ export default function Bookings() {
             </article>
           ))}
         </div>
-      )}
-      {isDemo && (
-        <p className="sample-note">
-          Requests and responses are saved in this browser. No real appointments, calls or emails
-          are made.
-        </p>
       )}
     </div>
   );

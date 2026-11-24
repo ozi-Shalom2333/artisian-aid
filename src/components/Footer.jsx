@@ -33,7 +33,6 @@ export default function Footer() {
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Artisan Aid</span>
           <Link to="/meetTeam">Built together by the Artisan Aid team.</Link>
-          <Link to="/demo">Service information</Link>
         </div>
       </div>
     </footer>

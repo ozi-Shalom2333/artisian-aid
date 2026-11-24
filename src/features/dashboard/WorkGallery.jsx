@@ -1,13 +1,15 @@
 import { useRef, useState } from 'react';
 import { ImagePlus, Trash2 } from 'lucide-react';
-import { services, isDemo } from '../../services';
+import { useServices } from '../../services/context';
 import useResource from '../../hooks/useResource';
-import { readDemoImage } from '../../lib/files';
+import { readImageFile } from '../../lib/files';
 import Field from '../../components/shared/Field';
 import Modal from '../../components/shared/Modal';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import EmptyState from '../../components/shared/EmptyState';
 import ErrorState from '../../components/shared/ErrorState';
+import { Skeleton } from '../../components/ui/skeleton';
 export default function WorkGallery() {
+  const { services } = useServices();
   const fileInput = useRef(null);
   const resource = useResource(services.getProfile);
   const [image, setImage] = useState(null);
@@ -20,7 +22,7 @@ export default function WorkGallery() {
     setError('');
     setImage(null);
     try {
-      const image = await readDemoImage(e.target.files[0]);
+      const image = await readImageFile(e.target.files[0]);
       setImage(image);
     } catch (err) {
       setError(err.message);
@@ -30,13 +32,12 @@ export default function WorkGallery() {
     e.preventDefault();
     setBusy(true);
     setError('');
+    setSuccess('');
     try {
       await services.addWork({ ...image, title });
       setImage(null);
       setTitle('');
-      setSuccess(
-        isDemo ? 'Photo added to your local demo gallery.' : 'Photo added to your gallery.',
-      );
+      setSuccess('Photo added to your gallery.');
       e.target.reset();
       resource.reload();
     } catch (err) {
@@ -48,6 +49,7 @@ export default function WorkGallery() {
   async function deletePhoto() {
     setBusy(true);
     setError('');
+    setSuccess('');
     try {
       await services.deleteWork(remove._id);
       setRemove(null);
@@ -59,17 +61,28 @@ export default function WorkGallery() {
       setBusy(false);
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Loading your gallery…" />;
+  if (resource.loading)
+    return (
+      <div className="dashboard-feature" role="status" aria-label="Loading your gallery">
+        <div className="panel space-y-4">
+          <Skeleton className="h-7 w-56" />
+          <Skeleton className="h-4 w-72" />
+          <Skeleton className="h-11 w-full" />
+          <Skeleton className="h-32 w-full" />
+        </div>
+        <div className="portfolio-grid">
+          {[1, 2].map((n) => (
+            <Skeleton key={n} className="h-48 w-full rounded-lg" />
+          ))}
+        </div>
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
   return (
     <div className="dashboard-feature">
       <div className="panel">
         <h2>Let your work do the talking</h2>
-        <p className="panel-description">
-          {isDemo
-            ? 'Up to four photos, stored in this browser. Use non-sensitive sample images.'
-            : 'Add a photo of a project you have completed.'}
-        </p>
+        <p className="panel-description">Add a photo of a project you have completed.</p>
         <form className="form-stack" onSubmit={save}>
           <Field
             label="Project or photo title"
@@ -121,23 +134,20 @@ export default function WorkGallery() {
               {success}
             </p>
           )}
-          <button
-            className="button"
-            disabled={busy || !image || (isDemo && (resource.data.portfolio?.length || 0) >= 4)}
-          >
+          <button className="button" disabled={busy || !image}>
             {busy ? 'Saving…' : 'Add to gallery'}
           </button>
         </form>
       </div>
       <div className="dash-section-title">
         <h2>Your work gallery</h2>
-        <span>
-          {resource.data.portfolio?.length || 0}
-          {isDemo ? ' / 4 photos' : ' photos'}
-        </span>
+        <span>{resource.data.portfolio?.length || 0} photos</span>
       </div>
       {!resource.data.portfolio?.length ? (
-        <p className="quiet-empty">Your next project photo can go right here.</p>
+        <EmptyState
+          title="No work photos yet"
+          description="Your next project photo can go right here."
+        />
       ) : (
         <div className="portfolio-grid">
           {resource.data.portfolio.map((work) => (

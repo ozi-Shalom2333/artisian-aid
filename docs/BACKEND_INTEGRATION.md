@@ -1,21 +1,20 @@
 # Connecting a future backend
 
-Demo mode is ready now. API mode is a **contract template**, not a working integration with the old unavailable server. No backend provider has been chosen. A service backed by your own API or a BaaS SDK can implement the same operations without replacing the page components.
+Public pages use the HTTP **contract template**, not a working integration with the old unavailable server. Simulations are confined to the local developer area. No backend provider has been chosen. A service backed by your own API or a BaaS SDK can implement the same operations without replacing the page components.
 
-## Boundary and mode selection
+## Public and testing boundary
 
-`src/services/index.js` selects one service object. `VITE_DATA_MODE=demo` is the default. `src/services/demo.js` implements the operations with fictional records and local storage. `src/services/http.js` provides a small fetch-based template with a configured base URL, 12-second timeout, normalized error messages and no fallback to successful demo results.
+`src/services/index.js` creates the public HTTP environment. `src/services/context.js` supplies its domain operations to components. There is no public simulator selection and no sample-data fallback. Missing configuration reports concise, feature-specific unavailability without network requests or local public records.
 
-Do not point the template at the old server and assume compatibility. Confirm endpoint names, payloads, pagination, relationships, storage behavior and error envelopes, then map them to the domain shapes below.
+`src/testing/bootstrap.jsx` creates the local simulator and a separate router with basename `/__testing`. It is imported only by the explicitly enabled loopback development entry. The Vite configuration defines `__LOCAL_TESTING__` from the **serve command** and **testing mode**, not an environment secret or `NODE_ENV`; all builds set it false and exclude the import. Test credentials, records and document assets are inside that excluded module tree. See [DEVELOPER_TESTING.md](DEVELOPER_TESTING.md).
 
 ```dotenv
-VITE_DATA_MODE=api
 VITE_API_BASE_URL=https://your-api.example.com/v1
 ```
 
-Restart Vite after changing environment variables and rebuild before deployment. Only public configuration belongs in `VITE_*`; it is included in browser code. No credentials or privileged keys are required by demo mode.
+Configure only after matching endpoint names, payloads, data relationships, validation, error envelopes and storage policy. Restart the dev server and rebuild when changing configuration. `VITE_*` values are browser-visible public configuration, never secrets.
 
-For a future BaaS implementation, add an adapter that implements the same object and choose it here. Keep its SDK calls, row mappings and uploads inside the adapter/helper boundary. Pages should continue to call `services.*`, receive ordinary records and handle rejected promises.
+A self-built backend or later BaaS adapter can implement the same service object and be selected in `createPublicEnvironment()`. Keep SDK calls, record mapping and uploads behind that boundary. Pages should continue receiving ordinary records and rejected promises. No provider is selected here.
 
 ## Domain conventions
 
@@ -77,40 +76,46 @@ Use the category/location values in `src/data/catalog.js` or map your backend’
 
 These routes are intentionally replaceable. The current template accepts either a direct JSON record/array or `{ data: recordOrArray }`. Login/registration `data` must contain `{ token, user }`; the adapter derives the role from `user.role`. Error responses should include `{ message }` and a non-success HTTP status.
 
-| Operation | Input / result | Proposed route |
-| --- | --- | --- |
-| `login` | `{ identifier, password }` → session | `POST /auth/login` |
-| `register` | Role, name, contact, password confirmation, area and artisan fields → session | `POST /auth/register` |
-| `logout` | Clear local session; add server revocation if needed | Local template action |
-| `listArtisans` | Public artisan array | `GET /artisans` |
-| `getArtisan` | ID → public artisan | `GET /artisans/:id` |
-| `getProfile` | Current private profile | `GET /me` |
-| `updateProfile` | Name, bio, area, business/social/availability, optional image data → updated profile | `PATCH /me` |
-| `createBooking` | Artisan ID plus title, details, date, address, phone → saved request | `POST /bookings` |
-| `listBookings` | Current role’s populated requests | `GET /bookings` |
-| `respondToBooking` | Request ID, `Confirmed` or `Rejected` → updated request | `PATCH /bookings/:id` |
-| `submitVerification` | Guarantor fields, document name and image → updated profile | `POST /me/verification` |
-| `addWork` | Title and image → saved work record | `POST /me/portfolio` |
-| `deleteWork` | Work ID → resolved removal | `DELETE /me/portfolio/:id` |
-| `createReport` | Artisan ID, reason → report | `POST /reports` |
-| `listVerifications` | Status → private artisan submissions | `GET /admin/verifications?status=...` |
-| `reviewVerification` | User ID, approved/declined, reason → updated profile | `PATCH /admin/verifications/:id` |
-| `listReports` | Open populated reports | `GET /admin/reports` |
-| `resolveReport` | Report ID, action → saved report | `PATCH /admin/reports/:id` |
-| `listPlans` | Plan array | `GET /plans` |
-| `sendContact` | Name, email, message → reference | `POST /contact` |
-| `requestPasswordReset` | Email → non-enumerating acknowledgement | `POST /auth/password-reset` |
-| `choosePlan` | Demo selection only; live template rejects | Needs future server checkout design |
-| `previewEmailVerification` | Demo flag only; live template rejects | Needs a server-issued verification flow |
-| `resetDemo` | Remove demo keys and restore seed | Demo adapter only |
+| Operation                  | Input / result                                                                                                              | Proposed route                          |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `login`                    | `{ identifier, password }` → session                                                                                        | `POST /auth/login`                      |
+| `register`                 | Role, name, contact, password, area and artisan fields → session; confirmation is checked in the form and omitted from HTTP | `POST /auth/register`                   |
+| `logout`                   | Confirm server revocation, then clear the local session                                                                     | `POST /auth/logout`                     |
+| `listArtisans`             | Public artisan array                                                                                                        | `GET /artisans`                         |
+| `getArtisan`               | ID → public artisan                                                                                                         | `GET /artisans/:id`                     |
+| `getProfile`               | Current private profile                                                                                                     | `GET /me`                               |
+| `updateProfile`            | Name, bio, area, business/social/availability, optional image data → updated profile                                        | `PATCH /me`                             |
+| `createBooking`            | Artisan ID plus title, details, date, address, phone → saved request                                                        | `POST /bookings`                        |
+| `listBookings`             | Current role’s populated requests                                                                                           | `GET /bookings`                         |
+| `respondToBooking`         | Request ID, `Confirmed` or `Rejected` → updated request                                                                     | `PATCH /bookings/:id`                   |
+| `submitVerification`       | Guarantor fields, document name and image → updated profile                                                                 | `POST /me/verification`                 |
+| `addWork`                  | Title and image → saved work record                                                                                         | `POST /me/portfolio`                    |
+| `deleteWork`               | Work ID → resolved removal                                                                                                  | `DELETE /me/portfolio/:id`              |
+| `createReport`             | Artisan ID, reason → report                                                                                                 | `POST /reports`                         |
+| `listVerifications`        | Status → private artisan submissions                                                                                        | `GET /admin/verifications?status=...`   |
+| `reviewVerification`       | User ID, approved/declined, reason → updated profile                                                                        | `PATCH /admin/verifications/:id`        |
+| `listReports`              | Open populated reports                                                                                                      | `GET /admin/reports`                    |
+| `resolveReport`            | Report ID, action → saved report                                                                                            | `PATCH /admin/reports/:id`              |
+| `listPlans`                | Plan array                                                                                                                  | `GET /plans`                            |
+| `sendContact`              | Name, email, message → reference                                                                                            | `POST /contact`                         |
+| `requestPasswordReset`     | Email → `{ accepted: true }`, a non-enumerating acknowledgement                                                             | `POST /auth/password-reset`             |
+| `choosePlan`               | Demo selection only; live template rejects                                                                                  | Needs future server checkout design     |
+| `previewEmailVerification` | Demo flag only; live template rejects                                                                                       | Needs a server-issued verification flow |
+| `resetDemo`                | Remove dedicated testing keys and restore seed                                                                              | Local testing adapter only              |
 
 `listBookings` must enforce the signed-in actor’s ownership and populate the relationships the UI needs. Admin operations require server-side Admin authorization. Restriction/removal and repeated/stale review or booking responses must be handled atomically. Never trust the client role, visibility flag or IDs as authorization.
 
-## Authentication and session integration still required
+## Confirmation, session and error handling
 
-The demo token is a label such as `demo:artisan-1`, not a credential. The HTTP template uses the separate `artisanaid.api-session.v1` key and attaches a bearer token. A 401 clears that template session. It has no refresh, revocation or secure session lifecycle implementation and should not be treated as production auth.
+The adapter validates required result shapes before an interaction shows success: login/register need a nonempty token and a user with `_id`, name and allowed role; profile saves must return the signed-in account; record mutations need `_id`; contact needs a reference; recovery needs `{ accepted: true }`. Deletion and logout accept HTTP 204 or `{ success: true }`. A successful HTTP status with an incompatible response is not presented as a completed user action. Align these requirements with the actual backend contract before connecting it.
 
-Choose and implement your session policy in the adapter. If you adopt cookies or asynchronous session restoration, add a small bootstrap/loading state around `useAuth` instead of teaching every screen a different authentication model. Registration and login need the same normalized user/session shape, and role enforcement belongs on the server.
+Network loss, timeout, malformed mutation responses and server errors can leave a write's outcome uncertain. The interface says it could not confirm the result instead of asserting that nothing happened. Add idempotency/reconciliation on the backend for retryable writes, particularly account creation, requests and contact. A missing API URL, by contrast, means no request was made and no account/message was created by this action.
+
+The provisional HTTP adapter stores only a bearer token in `artisanaid.api-session.v1`, not a user profile, role, password or test record. Startup displays a loading state and retrieves `/me` before establishing an authenticated session. Cached client roles are ignored; invalid/restricted users and failed revalidation clear the cached session. A 401 clears active state. Confirmed login can remain in memory if browser storage fails, with a warning that it will not survive reload.
+
+This is not a complete production session policy. Bearer tokens in localStorage are exposed to same-origin script and XSS; choose the session transport, expiry, refresh, revocation, cookie/CSRF and cross-tab rules with your backend. Server permissions and record ownership remain authoritative. The frontend guards only shape navigation. Current-device versus all-device logout must be defined; the UI currently offers ordinary Sign out. Failed revocation is reported at the dashboard and does not claim successful server logout.
+
+Public profile data and uploads need genuine backend/storage persistence. No public user account is stored by the frontend-only simulator. Dedicated testing keys, legacy demo records and unrelated site storage are never uploaded or migrated into a real account.
 
 ## Uploads and functionality that need further work
 
@@ -124,11 +129,11 @@ Search/filter is currently client-side over a small dataset. For larger datasets
 
 ## Practical integration sequence
 
-1. Keep demo mode while implementing and testing an adapter against this contract.
+1. Use the isolated local testing area while implementing an adapter against this contract.
 2. Add server authorization and normalize login/profile, discovery and request responses first.
 3. Connect file storage, verification and moderation with controlled document access.
 4. Implement contact delivery, email/recovery and notification behavior only when their genuine services exist.
 5. Add payment/subscription integration and update the explicit unavailable UI.
-6. Run the existing contract/journey tests plus real API integration and browser checks, then enable API mode and rebuild.
+6. Run contract/journey tests plus genuine API integration and browser checks, configure the public base URL and rebuild.
 
-No local demo records are automatically uploaded or migrated to a future backend. Treat them as disposable examples. Keep demo disclosures while publishing a portfolio demonstration.
+Testing records are disposable examples and never migrate automatically. Public token confirmation and reset-password screens remain concise unavailable states until genuine token-consumption methods/forms are connected. Subscription checkout also remains unavailable; it cannot be enabled by configuring the base URL alone.

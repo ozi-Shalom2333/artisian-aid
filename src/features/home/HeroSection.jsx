@@ -1,8 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Search, ArrowUpRight, MapPin, MoveUpRight } from 'lucide-react';
 import { useState } from 'react';
-import { locations } from '../../data/catalog';
+import { useServices } from '../../services/context';
+import useResource from '../../hooks/useResource';
+import Reveal from '../../components/motion/Reveal';
 export default function HeroSection() {
+  const { services } = useServices();
+  const locationsResource = useResource(services.listLocations);
+  const locations = locationsResource.data || [];
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
   const navigate = useNavigate();
@@ -58,14 +63,6 @@ export default function HeroSection() {
             Find an artisan <ArrowUpRight size={18} aria-hidden="true" />
           </button>
         </form>
-        <div className="popular-links">
-          <span>Popular:</span>
-          {['Carpentry', 'Plumbing', 'Cleaning'].map((word) => (
-            <Link key={word} to={`/artisanpage?q=${word}`}>
-              {word}
-            </Link>
-          ))}
-        </div>
         <div className="hero-note">
           <span className="note-icon">
             <MoveUpRight size={22} aria-hidden="true" />
@@ -76,7 +73,7 @@ export default function HeroSection() {
           </p>
         </div>
       </div>
-      <div className="hero-visual">
+      <Reveal className="hero-visual">
         <div className="hero-image-wrap">
           <img
             src="/media/hero.webp"
@@ -104,7 +101,7 @@ export default function HeroSection() {
         <span className="hero-image-credit">
           Illustrative photography from the original project
         </span>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import PageHero from '../components/shared/PageHero';
 import FeaturesSection from '../features/home/FeaturesSection';
-import { team } from '../data/team';
+import Reveal from '../components/motion/Reveal';
 export default function AboutUs() {
   return (
     <>
@@ -17,7 +17,7 @@ export default function AboutUs() {
         }
         description="Artisan Aid brings local skills and everyday needs a little closer together."
       />
-      <section className="container-app story-layout">
+      <Reveal as="section" className="container-app story-layout">
         <img src="/media/workshop.webp" alt="Two craftspeople discussing a project in a workshop" />
         <div>
           <p className="eyebrow">BUILT AROUND PEOPLE</p>
@@ -43,10 +43,10 @@ export default function AboutUs() {
             Explore artisans <ArrowUpRight size={18} />
           </Link>
           <Link className="text-link story-team-link" to="/meetTeam">
-            Meet all {team.length} contributors <ArrowUpRight size={18} />
+            Meet our contributors <ArrowUpRight size={18} />
           </Link>
         </div>
-      </section>
+      </Reveal>
       <FeaturesSection />
     </>
   );

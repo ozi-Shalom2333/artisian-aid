@@ -1,17 +1,21 @@
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
-import { categories, locations } from '../data/catalog';
 import Card from '../components/Card';
 import useResource from '../hooks/useResource';
-import { services, isDemo } from '../services';
+import { useServices } from '../services/context';
 import PageHero from '../components/shared/PageHero';
-import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/shared/EmptyState';
 import ErrorState from '../components/shared/ErrorState';
+import { Skeleton } from '../components/ui/skeleton';
 export default function ArtisanPage() {
+  const { services } = useServices();
   const { nameOfCategory } = useParams();
   const [params, setParams] = useSearchParams();
   const resource = useResource(services.listArtisans);
+  const categoriesResource = useResource(services.listCategories);
+  const locationsResource = useResource(services.listLocations);
+  const categories = categoriesResource.data || [];
+  const locations = locationsResource.data || [];
   const query = params.get('q') || '';
   const category = nameOfCategory || params.get('service') || '';
   const area = params.get('area') || '';
@@ -80,7 +84,7 @@ export default function ArtisanPage() {
                 <option value="">All services</option>
                 {categories.map((c) => (
                   <option key={c.name} value={c.name}>
-                    {c.label}
+                    {c.label || c.name}
                   </option>
                 ))}
               </select>
@@ -131,9 +135,33 @@ export default function ArtisanPage() {
           </div>
         </div>
         {resource.loading ? (
-          <LoadingSpinner message="Finding local artisans…" />
+          <div className="cards-grid" role="status" aria-label="Loading artisans">
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <div key={n} className="artisan-card">
+                <Skeleton className="h-[214px] w-full rounded-none" />
+                <div className="artisan-card-body">
+                  <div className="artisan-person">
+                    <Skeleton className="size-9 rounded-full" />
+                    <div className="flex-1 space-y-2">
+                      <Skeleton className="h-4 w-3/4" />
+                      <Skeleton className="h-3 w-1/2" />
+                    </div>
+                  </div>
+                  <div className="artisan-card-meta">
+                    <Skeleton className="h-3 w-1/3" />
+                    <Skeleton className="h-3 w-1/3" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : resource.error ? (
-          <ErrorState description={resource.error} onRetry={resource.reload} />
+          <ErrorState
+            quiet
+            title="Profiles are temporarily unavailable"
+            description={resource.error}
+            onRetry={resource.reload}
+          />
         ) : !data.length ? (
           <EmptyState
             title="No matches just yet"
@@ -157,12 +185,6 @@ export default function ArtisanPage() {
               <Card key={artisan._id} data={artisan} />
             ))}
           </div>
-        )}
-        {isDemo && (
-          <p className="sample-note bottom-note">
-            All profiles and review statuses are fictional. Photos illustrate the craft and do not
-            certify anyone’s work.
-          </p>
         )}
       </section>
     </>

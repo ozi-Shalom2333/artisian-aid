@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { services, isDemo } from '../services';
-import { categories, locations, DEMO_PASSWORD, dashboardFor } from '../data/catalog';
+import { useServices } from '../services/context';
+import useResource from '../hooks/useResource';
+import { dashboardFor } from '../data/catalog';
 import Field from '../components/shared/Field';
 import AuthLayout from '../components/auth/AuthLayout';
 export default function RegisterForm({ role }) {
+  const { services } = useServices();
+  const categoriesResource = useResource(services.listCategories);
+  const locationsResource = useResource(services.listLocations);
+  const categories = categoriesResource.data || [];
+  const locations = locationsResource.data || [];
   const navigate = useNavigate();
   const artisan = role === 'Artisan';
   const [form, setForm] = useState({
@@ -14,9 +20,9 @@ export default function RegisterForm({ role }) {
     phoneNumber: '',
     businessName: '',
     category: '',
-    lga: 'Ikeja',
-    password: isDemo ? DEMO_PASSWORD : '',
-    confirmPassword: isDemo ? DEMO_PASSWORD : '',
+    lga: '',
+    password: '',
+    confirmPassword: '',
   });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -31,7 +37,7 @@ export default function RegisterForm({ role }) {
     setError('');
     try {
       const result = await services.register(form);
-      navigate(isDemo ? '/verificationmessage' : dashboardFor(result.role));
+      navigate(dashboardFor(result.role));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -48,11 +54,6 @@ export default function RegisterForm({ role }) {
           : 'Create a client account to request and track work.'
       }
     >
-      <p className="info-note">
-        {isDemo
-          ? 'This creates a local demo account. Use sample contact details. Passwords are not stored; all demo accounts use Demo123!.'
-          : 'Account and email verification depend on your connected backend.'}
-      </p>
       <form className="form-stack" onSubmit={submit}>
         <div className="form-grid">
           <Field
@@ -96,8 +97,11 @@ export default function RegisterForm({ role }) {
               onChange={change}
               disabled={busy}
             >
+              <option value="">Select your area</option>
               {locations.map((area) => (
-                <option key={area}>{area}</option>
+                <option key={area} value={area}>
+                  {area}
+                </option>
               ))}
             </select>
           </div>
@@ -125,7 +129,7 @@ export default function RegisterForm({ role }) {
                   <option value="">Select your service</option>
                   {categories.map((c) => (
                     <option key={c.name} value={c.name}>
-                      {c.label}
+                      {c.label || c.name}
                     </option>
                   ))}
                 </select>
@@ -133,7 +137,7 @@ export default function RegisterForm({ role }) {
             </>
           )}
           <Field
-            label={isDemo ? 'Demo password' : 'Password'}
+            label="Password"
             type="password"
             name="password"
             value={form.password}
@@ -142,7 +146,7 @@ export default function RegisterForm({ role }) {
             autoComplete="new-password"
             required
             disabled={busy}
-            hint={isDemo ? 'Use Demo123!' : 'At least 8 characters.'}
+            hint="At least 8 characters."
           />
           <Field
             label="Confirm password"
@@ -162,7 +166,7 @@ export default function RegisterForm({ role }) {
           </p>
         )}
         <button className="button" disabled={busy}>
-          {busy ? 'Creating account…' : isDemo ? 'Create demo account' : 'Create account'}
+          {busy ? 'Creating account…' : 'Create account'}
         </button>
       </form>
       <p className="auth-switch">

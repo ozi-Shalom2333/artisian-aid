@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, MapPin, BadgeCheck } from 'lucide-react';
-import { categories } from '../data/catalog';
-import { isDemo } from '../services';
 import Avatar from './shared/Avatar';
 import ServiceIcon from './shared/ServiceIcon';
 export default function Card({ data }) {
-  const category = categories.find((item) => item.name === data.category);
   const work = data.portfolio?.[0];
   const photo = work?.image_url;
   return (
@@ -23,8 +20,8 @@ export default function Card({ data }) {
           />
         ) : (
           <>
-            <ServiceIcon name={category?.icon} size={72} />
-            <span>{category?.label || data.category}</span>
+            <ServiceIcon name={data.categoryIcon} size={72} />
+            <span>{data.category}</span>
           </>
         )}
         <span className="photo-caption">
@@ -45,11 +42,7 @@ export default function Card({ data }) {
             <p>{data.businessName}</p>
           </div>
           {data.verificationStatus === 'Approved' && (
-            <BadgeCheck
-              size={19}
-              className="review-icon"
-              aria-label={isDemo ? 'Profile reviewed in demo' : 'Profile reviewed'}
-            />
+            <BadgeCheck size={19} className="review-icon" aria-label="Profile reviewed" />
           )}
         </div>
         <div className="artisan-card-meta">
@@ -62,7 +55,7 @@ export default function Card({ data }) {
           </span>
         </div>
         <div className="artisan-card-footer">
-          <span>{category?.label || data.category}</span>
+          <span>{data.category}</span>
           <Link to={`/userprofile/${data._id}`} aria-label={`View ${data.fullname}'s profile`}>
             View profile <ArrowUpRight size={16} aria-hidden="true" />
           </Link>

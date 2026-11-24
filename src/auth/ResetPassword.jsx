@@ -3,14 +3,13 @@ import AuthLayout from '../components/auth/AuthLayout';
 export default function ResetPassword() {
   return (
     <AuthLayout
-      title="Password recovery needs a secure connection."
-      subtitle="This frontend demo cannot validate a reset token or change a real password."
+      title="Password reset is unavailable."
+      subtitle="Your password has not changed. Please request a new link when account recovery is available."
     >
       <div className="form-stack">
-        <p className="info-note">
-          Demo accounts always use Demo123!. A future backend must validate time-limited tokens and
-          securely update credentials.
-        </p>
+        <Link className="text-link" to="/forget">
+          Request account recovery
+        </Link>
         <Link className="button" to="/login">
           Back to sign in
         </Link>

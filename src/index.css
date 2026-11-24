@@ -39,6 +39,8 @@
   --muted-foreground: #566575;
   --border: #dce1e5;
   --radius: 8px;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 180ms;
 }
 * {
   box-sizing: border-box;
@@ -120,6 +122,9 @@ textarea {
   width: min(100% - 96px, 1240px);
   margin-inline: auto;
 }
+.motion-reveal:focus-within {
+  transform: none !important;
+}
 .skip-link {
   position: fixed;
   left: 16px;
@@ -169,8 +174,8 @@ textarea {
   padding: 12px 20px;
   border: 1px solid var(--primary);
   transition:
-    background 0.18s,
-    transform 0.18s;
+    background var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
   line-height: 1.4;
 }
 .button:hover:not(:disabled) {
@@ -582,8 +587,8 @@ textarea {
   border-radius: 8px;
   padding: 22px 18px 18px;
   transition:
-    border-color 0.2s,
-    transform 0.2s;
+    border-color var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
 }
 .service-tile:hover {
   border-color: #8daddb;
@@ -620,8 +625,8 @@ textarea {
   background: white;
   overflow: hidden;
   transition:
-    box-shadow 0.2s,
-    transform 0.2s;
+    box-shadow var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
 }
 .artisan-card:hover {
   box-shadow: 0 8px 28px #142b480c;
@@ -638,7 +643,7 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 280ms var(--motion-ease);
 }
 .artisan-card:hover .artisan-card-image img {
   transform: scale(1.03);
@@ -2734,6 +2739,13 @@ input[type='checkbox'] {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .motion-reveal,
+  .button:hover:not(:disabled),
+  .service-tile:hover,
+  .artisan-card:hover,
+  .artisan-card:hover .artisan-card-image img {
+    transform: none !important;
   }
   *,
   *::before,

@@ -1,13 +1,13 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { services, isDemo } from '../../services';
+import { useServices } from '../../services/context';
 import useResource from '../../hooks/useResource';
-import { locations } from '../../data/catalog';
-import { readDemoImage } from '../../lib/files';
+import { readImageFile } from '../../lib/files';
 import Field from '../../components/shared/Field';
-import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorState from '../../components/shared/ErrorState';
-function ProfileForm({ user }) {
+import { Skeleton } from '../../components/ui/skeleton';
+function ProfileForm({ user, locations }) {
+  const { services } = useServices();
   const fileInputs = useRef({});
   const [saved, setSaved] = useState(user);
   const [readingImages, setReadingImages] = useState(0);
@@ -15,7 +15,7 @@ function ProfileForm({ user }) {
     fullname: user.fullname,
     businessName: user.businessName || '',
     bio: user.bio || '',
-    lga: user.location?.lga || 'Ikeja',
+    lga: user.location?.lga || '',
     socialMediaLink: user.socialMediaLink || '',
     availability: user.availability ?? true,
   });
@@ -38,7 +38,7 @@ function ProfileForm({ user }) {
       return next;
     });
     try {
-      const result = await readDemoImage(e.target.files[0]);
+      const result = await readImageFile(e.target.files[0]);
       setForm((v) => ({ ...v, [key]: result.image_url }));
       setError('');
     } catch (err) {
@@ -68,13 +68,15 @@ function ProfileForm({ user }) {
       Object.values(fileInputs.current).forEach((input) => {
         if (input) input.value = '';
       });
-      setSuccess(isDemo ? 'Your demo profile is saved in this browser.' : 'Your profile is saved.');
+      setSuccess('Your profile is saved.');
     } catch (err) {
       setError(err.message);
     } finally {
       setBusy(false);
     }
   }
+  const areaOptions =
+    form.lga && !locations.includes(form.lga) ? [form.lga, ...locations] : locations;
   return (
     <div className="panel">
       <div className="panel-heading">
@@ -104,7 +106,7 @@ function ProfileForm({ user }) {
             label="Account email"
             value={user.email}
             readOnly
-            hint="Email changes require backend verification."
+            hint="Your account email is read-only."
           />
           {user.role === 'Artisan' && (
             <Field
@@ -121,8 +123,11 @@ function ProfileForm({ user }) {
           <div className="form-field">
             <label htmlFor="profile-area">Area in Lagos</label>
             <select id="profile-area" name="lga" value={form.lga} onChange={change} disabled={busy}>
-              {locations.map((area) => (
-                <option key={area}>{area}</option>
+              <option value="">Select your area</option>
+              {areaOptions.map((area) => (
+                <option key={area} value={area}>
+                  {area}
+                </option>
               ))}
             </select>
           </div>
@@ -220,8 +225,32 @@ function ProfileForm({ user }) {
   );
 }
 export default function ProfileEditor() {
+  const { services } = useServices();
   const resource = useResource(services.getProfile);
-  if (resource.loading) return <LoadingSpinner message="Loading your profile…" />;
+  const locationsResource = useResource(services.listLocations);
+  if (resource.loading)
+    return (
+      <div className="panel space-y-6" role="status" aria-label="Loading your profile">
+        <div className="space-y-2">
+          <Skeleton className="h-7 w-56" />
+          <Skeleton className="h-4 w-72" />
+        </div>
+        <div className="form-grid">
+          <Skeleton className="h-11 w-full" />
+          <Skeleton className="h-11 w-full" />
+          <Skeleton className="h-11 w-full" />
+          <Skeleton className="h-11 w-full" />
+        </div>
+        <Skeleton className="h-28 w-full" />
+        <Skeleton className="h-11 w-36" />
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
-  return <ProfileForm key={resource.data._id} user={resource.data} />;
+  return (
+    <ProfileForm
+      key={resource.data._id}
+      user={resource.data}
+      locations={locationsResource.data || []}
+    />
+  );
 }

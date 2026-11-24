@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowUpRight, Eye, EyeOff } from 'lucide-react';
-import { services, isDemo } from '../services';
-import { dashboardFor, demoAccounts, DEMO_PASSWORD } from '../data/catalog';
+import { useServices } from '../services/context';
+import { dashboardFor } from '../data/catalog';
 import AuthLayout from '../components/auth/AuthLayout';
 import Field from '../components/shared/Field';
 export default function Login() {
+  const { services } = useServices();
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const [identifier, setIdentifier] = useState('');
@@ -31,12 +32,6 @@ export default function Login() {
   }
   return (
     <AuthLayout title="Welcome back." subtitle="Sign in to manage your projects and profile.">
-      {isDemo && (
-        <p className="sample-note login-notice">
-          Live sign-in is unavailable. Use a sample account below, or an account created in this
-          browser. Use sample details only.
-        </p>
-      )}
       <form
         className="form-stack"
         onSubmit={(e) => {
@@ -49,7 +44,7 @@ export default function Login() {
           value={identifier}
           onChange={(e) => setIdentifier(e.target.value)}
           autoComplete="username"
-          placeholder={isDemo ? 'chidinma@artisanaid.ng' : 'you@example.com'}
+          placeholder="you@example.com"
           disabled={busy}
           required
         />
@@ -85,29 +80,6 @@ export default function Login() {
           <ArrowUpRight size={17} />
         </button>
       </form>
-      {isDemo && (
-        <details className="demo-login">
-          <summary>Explore with a sample account</summary>
-          {demoAccounts.map((account) => (
-            <button
-              className="demo-role"
-              key={account.role}
-              disabled={busy}
-              onClick={() => signIn({ identifier: account.email, password: DEMO_PASSWORD })}
-            >
-              <span>
-                <strong>{account.role === 'Employer' ? 'Client / Employer' : account.role}</strong>
-                <small>{account.label}</small>
-              </span>
-              <ArrowUpRight size={18} />
-            </button>
-          ))}
-          <p>
-            Every sample account uses <strong>{DEMO_PASSWORD}</strong>. Sign-in is simulated and
-            passwords are not stored.
-          </p>
-        </details>
-      )}
       <p className="auth-switch">
         New around here? <Link to="/authoption">Create an account</Link>
       </p>

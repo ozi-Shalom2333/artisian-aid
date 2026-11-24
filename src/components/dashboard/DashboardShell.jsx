@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogOut, ArrowUpRight, ChevronDown } from 'lucide-react';
 import Brand from '../Brand';
@@ -10,6 +11,8 @@ export default function DashboardShell({
   headerSubtitle,
   children,
 }) {
+  const [logoutError, setLogoutError] = useState('');
+  const [signingOut, setSigningOut] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
   const nav = (
@@ -36,8 +39,16 @@ export default function DashboardShell({
     </nav>
   );
   async function logout() {
-    await auth.logout();
-    navigate('/login', { replace: true });
+    setSigningOut(true);
+    setLogoutError('');
+    try {
+      await auth.logout();
+      navigate('/login', { replace: true });
+    } catch (err) {
+      setLogoutError(err.message);
+    } finally {
+      setSigningOut(false);
+    }
   }
   return (
     <div className="dashboard-layout">
@@ -53,8 +64,7 @@ export default function DashboardShell({
             <ArrowUpRight size={17} />
             Explore artisans
           </Link>
-          <Link to="/demo">Service information & reset</Link>
-          <button onClick={logout}>
+          <button onClick={logout} disabled={signingOut}>
             <LogOut size={17} />
             Sign out
           </button>
@@ -76,8 +86,7 @@ export default function DashboardShell({
           </summary>
           {nav}
           <Link to="/artisanpage">Explore artisans</Link>
-          <Link to="/demo">Service information & reset</Link>
-          <button className="subtle-button" onClick={logout}>
+          <button className="subtle-button" onClick={logout} disabled={signingOut}>
             Sign out
           </button>
         </details>
@@ -87,6 +96,11 @@ export default function DashboardShell({
             <h1>{headerTitle}</h1>
             <p>{headerSubtitle}</p>
           </div>
+          {logoutError && (
+            <p className="form-error" role="alert">
+              {logoutError}
+            </p>
+          )}
           {children}
         </main>
       </div>

@@ -8,22 +8,23 @@ import {
   BadgeCheck,
   CalendarDays,
 } from 'lucide-react';
-import { services, isDemo } from '../services';
+import { useServices } from '../services/context';
 import useResource from '../hooks/useResource';
 import useAuth from '../hooks/useAuth';
-import { categories } from '../data/catalog';
 import Avatar from '../components/shared/Avatar';
 import Modal from '../components/shared/Modal';
 import Field from '../components/shared/Field';
 import ServiceIcon from '../components/shared/ServiceIcon';
-import LoadingSpinner from '../components/LoadingSpinner';
+import EmptyState from '../components/shared/EmptyState';
 import ErrorState from '../components/shared/ErrorState';
+import { Skeleton } from '../components/ui/skeleton';
 export default function ArtisanProfile() {
+  const { services } = useServices();
   const { userId } = useParams();
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const auth = useAuth();
-  const loader = useCallback(() => services.getArtisan(userId), [userId]);
+  const loader = useCallback(() => services.getArtisan(userId), [services, userId]);
   const resource = useResource(loader);
   const [bookingOpen, setBookingOpen] = useState(
     params.get('request') === '1' && auth.role === 'Employer',
@@ -86,7 +87,36 @@ export default function ArtisanProfile() {
       setBusy(false);
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Getting to know this artisan…" />;
+  if (resource.loading)
+    return (
+      <section className="container-app profile-page" role="status" aria-label="Loading profile">
+        <Skeleton className="mb-6 h-4 w-32" />
+        <div className="profile-layout">
+          <div className="profile-main">
+            <Skeleton className="h-[270px] w-full rounded-none" />
+            <div className="profile-identity">
+              <Skeleton className="size-18 rounded-full" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-3 w-24" />
+                <Skeleton className="h-7 w-48" />
+                <Skeleton className="h-4 w-36" />
+              </div>
+            </div>
+            <div className="profile-section space-y-3">
+              <Skeleton className="h-5 w-48" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+          </div>
+          <aside className="profile-request space-y-4">
+            <Skeleton className="size-13 rounded-full" />
+            <Skeleton className="h-8 w-3/4" />
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-11 w-full" />
+          </aside>
+        </div>
+      </section>
+    );
   if (resource.error)
     return (
       <div className="container-app page-section">
@@ -101,7 +131,6 @@ export default function ArtisanProfile() {
       </div>
     );
   const user = resource.data;
-  const category = categories.find((c) => c.name === user.category);
   const illustrativeCover = !user.coverPhoto?.image_url || user.coverPhoto.illustrative;
   return (
     <section className="container-app profile-page">
@@ -125,15 +154,11 @@ export default function ArtisanProfile() {
           <div className="profile-identity">
             <Avatar large name={user.fullname} image={user.profilePic?.image_url} />
             <div>
-              <p className="eyebrow">{category?.label || user.category}</p>
+              <p className="eyebrow">{user.category}</p>
               <h1>{user.fullname}</h1>
               <p>{user.businessName}</p>
             </div>
-            <BadgeCheck
-              className="review-icon"
-              size={26}
-              aria-label={isDemo ? 'Profile reviewed in demo' : 'Profile reviewed'}
-            />
+            <BadgeCheck className="review-icon" size={26} aria-label="Profile reviewed" />
           </div>
           <div className="profile-meta">
             <span>
@@ -143,7 +168,6 @@ export default function ArtisanProfile() {
             <span className={user.availability ? 'available' : 'unavailable'}>
               {user.availability ? 'Open to new requests' : 'Not accepting requests'}
             </span>
-            {isDemo && <span>Fictional demo profile</span>}
           </div>
           <section className="profile-section">
             <h2>The person behind the craft</h2>
@@ -172,15 +196,16 @@ export default function ArtisanProfile() {
                 ))}
               </div>
             ) : (
-              <p className="quiet-empty">
-                This artisan is still putting their work gallery together.
-              </p>
+              <EmptyState
+                title="No work photos yet"
+                description="This artisan is still putting their work gallery together."
+              />
             )}
           </section>
         </div>
         <aside className="profile-request">
           <span className="request-icon">
-            <ServiceIcon name={category?.icon} size={28} />
+            <ServiceIcon name={user.categoryIcon} size={28} />
           </span>
           <p className="eyebrow">LET’S START A CONVERSATION</p>
           <h2>
@@ -205,11 +230,7 @@ export default function ArtisanProfile() {
           <button className="button" onClick={openBooking} disabled={!user.availability}>
             Request this artisan <ArrowUpRight size={18} />
           </button>
-          <small>
-            {isDemo
-              ? 'Demo only. No one is contacted and no job is scheduled.'
-              : 'A request is not a confirmed appointment.'}
-          </small>
+          <small>A request is not a confirmed appointment.</small>
           <button
             className="subtle-button"
             onClick={() => {
@@ -232,19 +253,15 @@ export default function ArtisanProfile() {
         busy={busy}
         title={
           created
-            ? isDemo
-              ? 'Your demo request is saved'
-              : 'Your request is saved'
+            ? 'Your request is saved'
             : step === 1
-              ? `A little detail goes a long way`
+              ? 'A little detail goes a long way'
               : 'Review your request'
         }
         description={
           created
-            ? isDemo
-              ? 'No email was sent and no real appointment was made.'
-              : 'Your request is awaiting the artisan’s response.'
-            : `Requesting ${user.fullname} · ${isDemo ? 'frontend demo' : 'booking request'}`
+            ? 'Your request is awaiting the artisan’s response.'
+            : `Requesting ${user.fullname} · booking request`
         }
       >
         {created ? (
@@ -252,8 +269,8 @@ export default function ArtisanProfile() {
             <CheckCircle2 size={42} />
             <h3>Next step: an artisan response</h3>
             <p>
-              Find “{created.serviceTitle}” under My requests. In the demo, switch to the artisan
-              account to respond.
+              Find “{created.serviceTitle}” under My requests. You can follow the artisan’s response
+              there.
             </p>
             <Link className="button" to="/employerdashboard?tab=requests">
               View my requests <ArrowUpRight size={18} />
@@ -316,7 +333,6 @@ export default function ArtisanProfile() {
                   onChange={setField}
                   minLength={5}
                   maxLength={200}
-                  hint={isDemo ? 'Use a sample address for this demo.' : undefined}
                   required
                 />
               </>
@@ -345,9 +361,7 @@ export default function ArtisanProfile() {
                   </div>
                 </dl>
                 <p className="info-note">
-                  {isDemo
-                    ? 'This saves a local demo request. It does not book a real professional.'
-                    : 'Confirm the scope and price with the artisan before work begins.'}
+                  Confirm the scope and price with the artisan before work begins.
                 </p>
               </>
             )}
@@ -368,13 +382,7 @@ export default function ArtisanProfile() {
                 </button>
               )}
               <button className="button" disabled={busy}>
-                {busy
-                  ? 'Saving request…'
-                  : step === 1
-                    ? 'Review request'
-                    : isDemo
-                      ? 'Save demo request'
-                      : 'Send request'}
+                {busy ? 'Saving request…' : step === 1 ? 'Review request' : 'Send request'}
                 <ArrowUpRight size={17} />
               </button>
             </div>
@@ -385,18 +393,8 @@ export default function ArtisanProfile() {
         open={reportOpen}
         onClose={() => setReportOpen(false)}
         busy={busy}
-        title={
-          reportDone
-            ? isDemo
-              ? 'Your demo report is saved'
-              : 'Your report is saved'
-            : 'Report a concern'
-        }
-        description={
-          isDemo
-            ? 'A simulated moderation report. No real person or support team is notified.'
-            : 'Describe the issue so the moderation team can review it.'
-        }
+        title={reportDone ? 'Your report is saved' : 'Report a concern'}
+        description="Describe the issue so the moderation team can review it."
       >
         {reportDone ? (
           <div className="success-panel">
@@ -423,7 +421,7 @@ export default function ArtisanProfile() {
               </p>
             )}
             <button className="button" disabled={busy}>
-              {busy ? 'Saving…' : isDemo ? 'Save demo report' : 'Submit report'}
+              {busy ? 'Saving…' : 'Submit report'}
             </button>
           </form>
         )}

@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthLayout from '../components/auth/AuthLayout';
 import Field from '../components/shared/Field';
-import { services, isDemo } from '../services';
+import { useServices } from '../services/context';
 export default function ForgetPassword() {
+  const { services } = useServices();
   const [email, setEmail] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -23,25 +24,13 @@ export default function ForgetPassword() {
   }
   return (
     <AuthLayout
-      title={
-        done
-          ? isDemo
-            ? 'Recovery request previewed.'
-            : 'Check your email.'
-          : 'Need a fresh start?'
-      }
-      subtitle={
-        isDemo
-          ? 'Demo recovery does not send an email or change a password. All demo accounts use Demo123!.'
-          : 'Enter your account email to request a reset link.'
-      }
+      title={done ? 'Check your email.' : 'Need a fresh start?'}
+      subtitle="Enter your account email to request a reset link."
     >
       {done ? (
         <div className="form-stack">
           <p className="success-note" role="status">
-            {isDemo
-              ? 'The form was validated. No recovery email was sent and no credential was changed.'
-              : 'If an account exists for this email, the server will send a recovery link.'}
+            If an account exists for this email, the server will send a recovery link.
           </p>
           <Link className="button" to="/login">
             Back to sign in
@@ -66,7 +55,7 @@ export default function ForgetPassword() {
             </p>
           )}
           <button className="button" disabled={busy}>
-            {busy ? 'Checking…' : isDemo ? 'Preview recovery request' : 'Request reset link'}
+            {busy ? 'Checking…' : 'Request reset link'}
           </button>
           <Link className="text-link" to="/login">
             Back to sign in

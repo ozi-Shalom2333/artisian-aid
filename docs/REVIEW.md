@@ -19,7 +19,7 @@ The earlier portfolio context supports retaining Artisan Aid’s blue-and-amber 
 | Generic social links and invented praise suggested unverified trust                    | Unsupported links/testimonials removed; review badges and photos disclose their demo meaning             |
 | Large duplicated photographs and unused legacy screens obscured the active app         | Optimized local media, removed unreachable legacy modules and dead API/mock wiring                       |
 
-Useful capabilities retained: service categories, Lagos-area discovery, three account perspectives, artisan profiles and work galleries, booking requests, profile editing, verification review, report moderation, subscription previews, account recovery entry points, contact, about and original team pages. Existing public and dashboard URL paths remain; legacy notification, recovery and admin-detail routes have explanatory redirects.
+Useful capabilities retained: service categories, Lagos-area discovery, three account perspectives, artisan profiles and work galleries, booking requests, profile editing, verification review, report moderation, subscription previews, account recovery entry points, contact, about and original team pages. Useful public and dashboard paths remain; the old public `/demo` route has been removed, while legacy notification, recovery and admin-detail routes have explanatory redirects.
 
 ## Relevant design references
 
@@ -36,16 +36,16 @@ An artisan-marketplace reference on Behance, [Kala Kosha](https://www.behance.ne
 ## Visual direction and interaction decisions
 
 - **Blue, navy and amber:** preserve the project’s recognizable identity. Navy carries headings and navigation; blue marks actions; amber adds warmth and is restrained to accents and the artisan invitation.
-- **Warm paper surfaces and craft photography:** place the people and their work at the centre. Original photographs are optimized and labelled illustrative. Initial avatars avoid assigning team photos to fictional professionals.
+- **Warm paper surfaces and craft photography:** place the people and their work at the centre. Original photographs are optimized. Illustrative sample work remains identified inside the local testing environment. Initial avatars avoid assigning team photos to fictional professionals.
 - **Confident type hierarchy:** large, tight headings establish the story, with Georgia italic emphasis and familiar self-contained body fonts. No external font request is required. Form controls use 16 px text, captions have a 12 px floor and secondary text uses one darker token.
 - **Consistent components:** shared buttons, fields, cards, status badges, layout shells and dialogs reduce visual drift. State labels accompany colour, and request details use native disclosure elements.
 - **Quiet workspaces:** requests are the default artisan/client task. Navigation uses meaningful labels and real URLs. Admin review groups the sample document, guarantor and decision in one dialog.
 - **Feedback at the task:** loading messages name the work in progress; empty states explain how to recover; retryable errors preserve the draft; success states describe what actually happened. Busy actions prevent repeat submissions.
 - **Accessible foundations:** semantic landmarks, skip link, unique field labels, native selects/checks/disclosures, visible focus, pressed/current navigation states, live error/success messages and reduced-motion handling. Dialog focus and Escape behavior use the existing Base UI primitive. Full accessibility conformance has not been audited.
 
-The arched home photograph and circular craft mark give the landing page a distinct character. Those decorative elements stay out of admin tasks, where scanability matters more. There is no splash screen, fake countdown, scroll hijacking or new motion library.
+The arched home photograph and circular craft mark give the landing page a distinct character. Those decorative elements stay out of admin tasks, where scanability matters more. The subsequent requested Framer Motion pass adds short, one-time scroll reveals with live reduced-motion support and focus bypass. It preserves readable content, existing layouts and immediate task feedback. There is no splash screen, fake countdown or scroll hijacking. See [MOTION.md](MOTION.md) for timing, placement, bundle measurements and verification limits.
 
-## Revised journeys
+## Journeys available in local testing
 
 | Journey                | Sequence and feedback                                                                                                                          |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -59,13 +59,15 @@ The arched home photograph and circular craft mark give the landing page a disti
 
 Moderation removal is a soft removal from discovery and login, preserving the record for the demo. It does not erase related request history. The team page acknowledges all eight original contributors with their exact project roles and original image assignments. These are project credits, not newly researched current employment claims.
 
-## Product identity and shared ownership correction
+## Public product and separate developer area
 
-The global portfolio-demo banner, its promotional links, portfolio wording in the story and metadata, and demo-first sign-in presentation have been removed. Public pages lead with the product and its existing blue, navy and amber identity. Sample profiles retain a quiet disclosure near the listing; simulated actions and unavailable services retain their contextual explanations. The conditional storage warning still announces when changes cannot persist.
+The public interface has no portfolio-demo promotion, sample-account picker, mock record captions, service-information/reset links or technical backend instructions. Product typography, colours, responsive layouts, original imagery, service categories and useful request/profile/dashboard components are retained. Expected discovery outages use a calm retryable state. Account, contact and recovery failures describe the relevant action at the form.
 
-Sample sign-in shortcuts remain in an initially collapsed native disclosure. Service information and reset controls remain reachable from the public footer and both desktop and mobile dashboard navigation; the existing `/demo` URL is preserved. The service implementations, storage keys and backend adapter contract are preserved.
+Inspection confirmed that the earlier account flows were simulations with browser storage and a shared sample password. That limitation was explained before editing. The user chose API-ready public screens rather than public browser-only account previews. Public actions therefore require a real response and report unavailability while the backend is absent; styling does not imply that signup or authentication already works.
 
-The story now recognizes collaborative ownership and links to all eight contributors. The team page uses the original project's "team behind the vision" framing, exact names/roles and the previously omitted Victoria image assignment. The footer and README also acknowledge the team. Credits were checked against the supplied original `MeetTeam.jsx`; no contributor names, biographies, personal links or contribution details were inferred from mock marketplace records.
+Developer tools moved to a local-only `/__testing` router, with sample account shortcuts, fixtures, reset and role dashboards. A context-scoped service lets the same interface work against either environment without global mock interception. Testing uses separate data/session keys and events, never imports public user records, and cannot be entered through public navigation. Its toolbar identifies the testing context and offers a full-page exit to the public service environment. Every build omits the testing module tree and certificate; the loopback server and connection/hostname checks restrict local development. This is not a substitute for server authentication if testing is ever hosted.
+
+The exact eight contributor names, original roles and image assignments remain in `src/data/team.js`, the team page, story links, footer and README. Credits were checked against the supplied original `MeetTeam.jsx`; no names, biographies, personal links or contributions were invented. Team role descriptions are project acknowledgments, not technical developer notices or current employment claims.
 
 ## Proportionate architecture changes
 
@@ -74,3 +76,7 @@ The React/Vite/Router stack, JavaScript conventions and existing Base UI/shadcn 
 The service layer owns validation, persistence, domain transitions and role/ownership guards. Components own form drafts and task feedback. `useResource` centralizes loading, retry and stale-result suppression; `useAuth` keeps session consumers synchronized. Domain operations are injectible for deterministic service tests. DOM integration tests use Node’s test runner, esbuild and jsdom rather than a new application test framework.
 
 Obsolete Axios/mock wiring and unused Axios, JWT, toast, icon and animation dependencies were removed. Existing generated UI primitives remain available without an unrelated component-system rewrite. Focused ESLint configuration permits the existing generated primitive exports and router definitions; hook and correctness rules remain enabled.
+
+## Account confirmation changes
+
+The public adapter no longer trusts a stored role to open a dashboard. It revalidates the cached credential through `/me`, confirms server logout and checks mutation result shapes before displaying success. Lost responses describe uncertainty, and failed saves retain form drafts. Success feedback is cleared before a new attempt so an earlier save cannot appear to confirm a failed change. No backend, provider SDK, global state package or new dependency was added.

@@ -1,16 +1,17 @@
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { services, isDemo } from '../../services';
+import { useServices } from '../../services/context';
 import useResource from '../../hooks/useResource';
 import Avatar from '../../components/shared/Avatar';
 import Field from '../../components/shared/Field';
 import Modal from '../../components/shared/Modal';
 import StatusBadge from '../../components/dashboard/StatusBadge';
-import LoadingSpinner from '../../components/LoadingSpinner';
 import EmptyState from '../../components/shared/EmptyState';
 import ErrorState from '../../components/shared/ErrorState';
+import { Skeleton } from '../../components/ui/skeleton';
 export default function AdminQueue({ status = 'Pending' }) {
-  const load = useCallback(() => services.listVerifications(status), [status]);
+  const { services } = useServices();
+  const load = useCallback(() => services.listVerifications(status), [services, status]);
   const resource = useResource(load);
   const [selected, setSelected] = useState(null);
   const [reason, setReason] = useState('');
@@ -22,11 +23,10 @@ export default function AdminQueue({ status = 'Pending' }) {
   async function review(action) {
     setBusy(true);
     setError('');
+    setSuccess('');
     try {
       await services.reviewVerification(selected._id, action, reason);
-      setSuccess(
-        `${selected.fullname} was ${action.toLowerCase()}${isDemo ? ' in the demo' : ''}.`,
-      );
+      setSuccess(`${selected.fullname} was ${action.toLowerCase()}.`);
       setSelected(null);
       resource.reload();
     } catch (err) {
@@ -35,7 +35,28 @@ export default function AdminQueue({ status = 'Pending' }) {
       setBusy(false);
     }
   }
-  if (resource.loading) return <LoadingSpinner message="Loading the review queue…" />;
+  if (resource.loading)
+    return (
+      <div className="dashboard-feature" role="status" aria-label="Loading the review queue">
+        <div className="dash-section-title">
+          <Skeleton className="h-7 w-48" />
+          <Skeleton className="h-10 w-64" />
+        </div>
+        <div className="admin-list">
+          {[1, 2, 3].map((n) => (
+            <div className="admin-row" key={n}>
+              <Skeleton className="size-9 rounded-full" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="h-3 w-56" />
+              </div>
+              <Skeleton className="h-6 w-20 rounded-full" />
+              <Skeleton className="h-9 w-28" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   if (resource.error) return <ErrorState description={resource.error} onRetry={resource.reload} />;
   const rows = resource.data.filter((u) =>
     `${u.fullname} ${u.email} ${u.category}`.toLowerCase().includes(query.toLowerCase()),
@@ -112,7 +133,7 @@ export default function AdminQueue({ status = 'Pending' }) {
         onClose={() => setSelected(null)}
         busy={busy}
         title={selected?.fullname || 'Review profile'}
-        description={`${selected?.category || 'Artisan'} · ${isDemo ? 'sample review, no real credential checks' : 'profile review'}`}
+        description={`${selected?.category || 'Artisan'} · profile review`}
       >
         {selected && (
           <div className="form-stack">
@@ -138,7 +159,7 @@ export default function AdminQueue({ status = 'Pending' }) {
               <img
                 className="upload-preview"
                 src={selected.verificationId.workCertificate.image_url}
-                alt="Sample verification document"
+                alt="Verification document"
               />
             )}
             {selected.verificationReason && (
@@ -197,7 +218,7 @@ export default function AdminQueue({ status = 'Pending' }) {
               </Link>
             ) : (
               <p className="info-note">
-                The artisan can submit a new sample document from their verification page.
+                The artisan can submit a new document from their verification page.
               </p>
             )}
             {error && (
